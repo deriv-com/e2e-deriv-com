@@ -4,7 +4,7 @@ on:
     branches: ["master"]
 jobs:
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     name: Artifacts
     steps:
       - uses: actions/checkout@v4
