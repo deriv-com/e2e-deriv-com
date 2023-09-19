@@ -3,7 +3,7 @@ const { defineConfig } = require('cypress')
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {},
-    //baseUrl: 'https://deriv.com',
+    baseUrl: 'https://deriv.com',
     defaultCommandTimeout: 10000,
     //iPhone14
     viewportWidth: 393,
@@ -18,8 +18,8 @@ module.exports = defineConfig({
     },
   },
   env: {
-    baseUrl: 'https://deriv.com',
+    //baseUrl: 'https://deriv.com',
     email: "test@example.com",
-    isMobile: "true"
+    isMobile: true
   },
 })
