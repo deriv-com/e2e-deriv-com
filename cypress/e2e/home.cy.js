@@ -4,11 +4,8 @@ describe('Home page link tests', () => {
     beforeEach(() => {
       if (Cypress.env('isMobile')) {
         cy.viewport(393,852)
-        cy.visit('/')
       }
-
-
-
+      cy.visit('/')
       cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible') //A temporary work around, as menu items are not always visible and I don't want to have to do a {force true} on all of the methods.
     })
 
