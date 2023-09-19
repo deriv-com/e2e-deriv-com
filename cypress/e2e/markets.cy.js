@@ -3,7 +3,7 @@ import '@testing-library/cypress/add-commands'
 describe('Markets link tests', () => {
     beforeEach(() => {
       cy.visit(Cypress.env('baseUrl'))
-      cy.findByRole('button', { name: 'Accept', exact: true }).click()
+      //cy.findByRole('button', { name: 'Accept', exact: true }).click()
     })
 
     it('Markets - menu', () => {
