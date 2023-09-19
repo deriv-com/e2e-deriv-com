@@ -3,11 +3,11 @@ const { defineConfig } = require('cypress')
 module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {},
-    baseUrl: 'https://deriv.com',
     defaultCommandTimeout: 10000,
     supportFile: "cypress/support/e2e.js"
   },
   env: {
-    email: "test@example.com",
+    baseUrl: 'https://deriv.com',
+    email: "test@example.com"
   },
 })
