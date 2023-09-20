@@ -8,11 +8,18 @@ module.exports = defineConfig({
     //iPhone14
     viewportWidth: 393,
     viewportHeight: 852,
-    supportFile: "cypress/support/e2e.js"
+    supportFile: "cypress/support/e2e.js",
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'cypress/results',
+      overwrite: false,
+      html: false,
+      json: true,
+    },
   },
   env: {
-    baseUrl: 'https://deriv.com',
+    //baseUrl: 'https://deriv.com',
     email: "test@example.com",
-    isMobile: "true"
+    isMobile: true
   },
 })

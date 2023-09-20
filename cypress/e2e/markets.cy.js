@@ -2,8 +2,8 @@ import '@testing-library/cypress/add-commands'
 
 describe('Markets link tests', () => {
     beforeEach(() => {
-      cy.visit(Cypress.env('baseUrl'))
-      cy.findByRole('button', { name: 'Accept', exact: true }).click()
+      cy.visit('/')
+      cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible') 
     })
 
     it('Markets - menu', () => {
