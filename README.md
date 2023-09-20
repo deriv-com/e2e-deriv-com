@@ -27,6 +27,14 @@ To set up and run the E2E tests, follow these steps:
     npm i
 4. Write e2e tests under `cypress/e2e/`
 
+5. **To run the available test using Cypress APP UI**
+    ```sh
+    npx cypress open
+    ```
+6. **To run the available test in terminal**
+    ```sh
+    npx cypress run
+
 ## Cypress Configuration
 
 In `cypress.config.js`, the Cypress configuration includes settings such as:
