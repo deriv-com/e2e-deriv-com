@@ -1,11 +1,8 @@
 import '@testing-library/cypress/add-commands'
 
-describe('Validate signup links', () => {
+describe('Validate signup functionality', () => {
   beforeEach(() => {
-    if (Cypress.env('isMobile')) {
-      cy.viewport(393,852)
-    }
-    cy.visit('/signup')
+    cy.visitResponsive('/signup') //Custom command
   })
 
   it('Validate user can signup at EU/non-EU Website', () => {
