@@ -11,6 +11,7 @@ describe('Home page link tests', () => {
 
     it('Markets - menu', () => {
       //tag: smoke
+
       if (Cypress.env('isMobile'))
       {
         //Click through 'Markets' menu-items. 
@@ -28,6 +29,7 @@ describe('Home page link tests', () => {
 
     it('About us - menu', () => {
       //tag: smoke
+
       if (Cypress.env('isMobile'))
       {
         //Click through 'About us' menu items. 
@@ -46,6 +48,7 @@ describe('Home page link tests', () => {
         cy.findByRole('link', { name: 'Who we are' }).click()
         cy.findByRole('heading', { name: 'Who we are' }).should('be.visible')
       }
+
     })
 
     it('Validate footer exists', () => {
