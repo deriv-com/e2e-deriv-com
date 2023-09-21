@@ -2,9 +2,6 @@ import '@testing-library/cypress/add-commands'
 
 describe('Trade page', () => {
 
-  beforeEach(() => {
-  })
-
   it('Validate How can we help search', () => {
     cy.visitResponsive('/trade-types/cfds') //See custome command for details
 

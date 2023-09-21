@@ -2,9 +2,6 @@ import '@testing-library/cypress/add-commands'
 
 describe('Resources page', () => {
 
-  beforeEach(() => {
-  })
-
   it('Validate the "How can we help" search', () => {
     cy.visitResponsive('/help-centre') //See custome command for details
 

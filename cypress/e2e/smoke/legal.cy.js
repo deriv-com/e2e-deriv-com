@@ -2,9 +2,6 @@ import '@testing-library/cypress/add-commands'
 
 describe('Legal page', () => {
 
-  beforeEach(() => {
-  })
-
   it('Validate links and dropdowns', () => {
     cy.visitResponsive('/regulatory') //See custome command for details
 

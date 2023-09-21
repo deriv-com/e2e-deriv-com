@@ -2,9 +2,6 @@ import '@testing-library/cypress/add-commands'
 
 describe('Markets page', () => {
 
-  beforeEach(() => {
-  })
-
   it('Validate links within Markets - Forex', () => {
     cy.visitResponsive('/markets/forex') //See custome command for details
 

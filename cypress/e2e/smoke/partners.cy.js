@@ -2,9 +2,6 @@ import '@testing-library/cypress/add-commands'
 
 describe('Partners page', () => {
 
-  beforeEach(() => {
-  })
-
   it('Validate links and functionality within Partners', () => {
     cy.visitResponsive('/partners/deriv-prime/') //See custome command for details
 
