@@ -2,9 +2,6 @@ import '@testing-library/cypress/add-commands'
 
 describe('About us page', () => {
 
-  beforeEach(() => {
-  })
-
   it('Validate links within About Us - Who we are', () => {
     cy.visitResponsive('/who-we-are') //See custome command for details
 
