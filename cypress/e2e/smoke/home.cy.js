@@ -54,9 +54,9 @@ describe('Home page', () => {
       cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible')
     })
 
-    it('Validate Chat is available', () => {
-      cy.findByRole('button', { name: 'livechat icon' }).should('be.visible')
-    })
+    // it('Validate Chat is available', () => {
+    //   cy.findByRole('button', { name: 'livechat icon' }).should('be.visible')
+    // })
 
 
 

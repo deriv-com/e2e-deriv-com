@@ -4,23 +4,13 @@ module.exports = defineConfig({
   e2e: {
     projectId: "16kef2",
     setupNodeEvents(on, config) {},
-    baseUrl: 'https://deriv.com',
+    baseUrl: 'https://staging.deriv.com',
     defaultCommandTimeout: 10000,
-    //iPhone14
-    viewportWidth: 393,
-    viewportHeight: 852,
     supportFile: "cypress/support/e2e.js",
-    //reporter: 'mochawesome',
-    //reporterOptions: {
-    //  reportDir: 'cypress/results',
-    //  overwrite: false,
-    //  html: false,
-    //  json: true,
-    //},
   },
   env: {
     //baseUrl: 'https://deriv.com',
     email: "test@example.com",
-    isMobile: true
+    isMobile: false
   },
 })
