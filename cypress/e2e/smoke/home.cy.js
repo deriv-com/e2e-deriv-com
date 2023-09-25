@@ -7,9 +7,9 @@ describe('Home page', () => {
     })
 
     //Click through 'Markets' menu-items and ensure links are vaild and load the next page. 
-    it('Validate Markets menu items', () => {
+    it('H01 - Validate Markets menu items', () => {
 
-      if (Cypress.env('isMobile'))
+      if (Cypress.env('viewPortSize') == 'small') 
       {
         cy.findByRole('img', { name: 'hamburger menu' }).click()
         cy.findByRole('button', { name: 'Markets chevron' }).click({force: true})
@@ -23,9 +23,9 @@ describe('Home page', () => {
     })
 
     //Click through 'Markets' menu-items and ensure links are vaild and load the next page. 
-    it('Validate About us menu items', () => {
+    it('H02 - Validate About us menu items', () => {
 
-      if (Cypress.env('isMobile'))
+      if (Cypress.env('viewPortSize') == 'small') 
       {
         cy.findByRole('img', { name: 'hamburger menu' }).click()
         cy.findByRole('button', { name: 'About us chevron' }).click()
@@ -46,11 +46,11 @@ describe('Home page', () => {
       }
     })
 
-    it('Validate footer exists', () => {
+    it('H03 - Validate footer exists', () => {
       cy.get('footer').should('exist')
     })
 
-    it('Validate WhatsApp is available', () => {
+    it('H04 - Validate WhatsApp is available', () => {
       cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible')
     })
 
