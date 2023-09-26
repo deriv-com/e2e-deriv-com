@@ -2,15 +2,17 @@ import '@testing-library/cypress/add-commands'
 
 describe('About us page', () => {
 
-  it('Validate links within About Us - Who we are', () => {
+  it('A01 - Validate links within About Us - Who we are', () => {
     cy.visitResponsive('/who-we-are') //See custome command for details
-
-    if (Cypress.env('isMobile')) {
+    
+    if (Cypress.env('viewPortSize') == 'small') 
+    {
         cy.findByRole('link', { name: 'Learn more about our principles' }).click()
         cy.findByRole('heading', { name: 'Our principles' }).should('be.visible')
       //etc
     }
-    else {
+    else 
+    {
       //todo - NB desktop links can be different
     }
   })

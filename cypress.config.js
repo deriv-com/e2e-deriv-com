@@ -1,8 +1,10 @@
 const { defineConfig } = require('cypress')
 
+//const gViewPortSize = {small: 'phone-xr', large: 'macbook-16'} //TODO Use enum
+
 module.exports = defineConfig({
   e2e: {
-    projectId: "16kef2",
+    projectId: '16kef2',
     setupNodeEvents(on, config) {},
     baseUrl: 'https://staging.deriv.com',
     defaultCommandTimeout: 10000,
@@ -10,7 +12,7 @@ module.exports = defineConfig({
   },
   env: {
     //baseUrl: 'https://deriv.com',
-    email: "test@example.com",
-    isMobile: false
+    email: 'test@example.com',
+    viewPortSize: 'small'
   },
 })
