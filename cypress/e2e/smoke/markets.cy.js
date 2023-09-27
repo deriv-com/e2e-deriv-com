@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 describe('Markets page', () => {
 
-  it('M01 - Validate links within Markets - Forex', () => {
+  it('Validate links within Markets - Forex', () => {
     cy.visitResponsive('/markets/forex') //See custome command for details
 
     if (Cypress.env('viewPortSize') == 'small') 
@@ -19,7 +19,7 @@ describe('Markets page', () => {
     }
   })
 
-  it('M02 - Validate links within Markets - Derived indices', () => {
+  it('Validate links within Markets - Derived indices', () => {
     cy.visitResponsive('/markets/synthetic') //See custome command for details
 
     if (Cypress.env('viewPortSize') == 'small') 
