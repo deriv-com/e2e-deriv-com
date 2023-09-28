@@ -23,8 +23,8 @@ describe('QAA-663 - Navigation Responsive - Menu items - EU and ROW', () => {
       cy.findByRole('heading', { name: 'Why choose us' }).should('be.visible')
 
     })
-
     //Click through 'Markets' menu-items and ensure links are vaild and load the next page. 
+
     it('ROW menu items', () => {
 
       //TODO - We need to be able to simulate either VPN in GH run in a non-eu reigon.
@@ -111,5 +111,4 @@ describe('QAA-668 - Validate Spanish Language Change', () => {
     })
 
   })
-
 })
