@@ -11,7 +11,8 @@ module.exports = defineConfig({
     supportFile: "cypress/support/e2e.js",
   },
   env: {
-    //baseUrl: 'https://deriv.com',
+    RegionEU: '/?region=at',
+    RegionROW: '/?region=it',
     email: 'test@example.com',
     viewPortSize: 'small'
   },
