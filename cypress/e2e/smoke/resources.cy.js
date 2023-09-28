@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 describe('Resources page', () => {
 
-  it('R01 - Validate the "How can we help" search', () => {
+  it('Validate the "How can we help" search', () => {
     cy.visitResponsive('/help-centre') //See custome command for details
 
     if (Cypress.env('viewPortSize') == 'small') 
