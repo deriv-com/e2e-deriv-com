@@ -4,7 +4,6 @@ on:
     branches: ["master"]
 jobs:
   run-e2e-smoketests:
-    permissions: write-all
     runs-on: ubuntu-latest
     name: Results
     steps:
