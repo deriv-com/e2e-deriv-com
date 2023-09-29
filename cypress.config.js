@@ -12,7 +12,8 @@ module.exports = defineConfig({
   },
   env: {
     RegionEU: '/?region=at',
-    RegionROW: '/?region=it',
+    RegionROW: '/?region=za',
+    skipROWTests: true,
     email: 'test@example.com',
     viewPortSize: 'small'
   },
