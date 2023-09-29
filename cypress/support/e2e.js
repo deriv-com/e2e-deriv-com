@@ -1,15 +1,6 @@
-//Globals
-
-const gLocations = {
-    EU: 'EU',
-    ROW: 'ROW'
-}
-
-//Commands
-
 Cypress.Commands.add('visitResponsive', (path, size) => {
     //Custom command that allows us to use baseUrl + path and detect with this is a responsive run or not.
-
+    cy.log(path)
     if (size === undefined)
         size = Cypress.env("viewPortSize")
 
