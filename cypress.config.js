@@ -6,7 +6,7 @@ module.exports = defineConfig({
   e2e: {
     projectId: '16kef2',
     setupNodeEvents(on, config) {},
-    baseUrl: 'https://staging.deriv.com',
+    baseUrl: 'https://deriv.com',
     defaultCommandTimeout: 10000,
     supportFile: "cypress/support/e2e.js",
   },
@@ -16,5 +16,9 @@ module.exports = defineConfig({
     skipROWTests: true,
     email: 'test@example.com',
     viewPortSize: 'small'
-  },
+  },  
+  retries: {
+      "runMode": 2,
+      "openMode": 0
+    },
 })

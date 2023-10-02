@@ -19,6 +19,12 @@ Cypress.Commands.add('visitResponsive', (path, size) => {
             cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible', { timeout: 30000 }) //For the home page, this seems to be the best indicator that a page has fully loaded. It may change in the future.
         }
 
+    if (path.includes('help-centre')) //Wait for relevent elements to appear (based on page)
+        {
+            cy.log('Help Centre Selected')
+            cy.findByRole('heading', { name: "Didn’t find your answer? We can help." }).should('be.visible', { timeout: 30000 })
+        }
+
 });
 
 
