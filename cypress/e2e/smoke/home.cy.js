@@ -214,31 +214,28 @@ describe('QAA-668 - Validate Spanish Language Change', () => {
     cy.findByText('Español').click()
     cy.findByRole('heading', { name: 'Un bróker, innumerables oportunidades de operación' })
   })
+})
 
-  describe('QAA-670 - Validate Hero banner message EU and ROW', () => {
+describe('QAA-670 - Validate Hero banner message EU and ROW', () => {
   
-    it('EU', () => {
-      cy.visitResponsive(Cypress.env('RegionEU')) //See custom command for details
+  it('EU', () => {
+    cy.visitResponsive(Cypress.env('RegionEU')) //See custom command for details
 
-      cy.findByTestId('typewriter-wrapper').findByText('Forex').should('be.visible')
-      cy.findByTestId('typewriter-wrapper').findByText('Cryptocurrencie').click()
-      cy.findByTestId('typewriter-wrapper').findByText('Stocks & indices').click()
-      cy.findByTestId('typewriter-wrapper').findByText('Comm').click()
-      cy.findByTestId('typewriter-wrapper').findByText('Derive').click()
-    })
+    cy.findByTestId('typewriter-wrapper').findByText('Forex').should('be.visible')
+    cy.findByTestId('typewriter-wrapper').findByText('Cryptocurrencie').click()
+    cy.findByTestId('typewriter-wrapper').findByText('Stocks & indices').click()
+    cy.findByTestId('typewriter-wrapper').findByText('Comm').click()
+    cy.findByTestId('typewriter-wrapper').findByText('Derive').click()
+  })
 
-    it('ROW', () => {
-      if (Cypress.env('skipROWTests') == false)
-      {
-        //NB. The region switch doesn't work on the EU site at the moment.
-        cy.visitResponsive(Cypress.env('RegionROW')) //See custom command for details
-        //cy.findByTestId('typewriter-wrapper').findByText('ETFs').click() //? The test case mentions ETFs but the banner doesn't appear to be different to EU
-      }
+  it('ROW', () => {
+    if (Cypress.env('skipROWTests') == false)
+    {
+      //NB. The region switch doesn't work on the EU site at the moment.
+      cy.visitResponsive(Cypress.env('RegionROW')) //See custom command for details
+      //cy.findByTestId('typewriter-wrapper').findByText('ETFs').click() //? The test case mentions ETFs but the banner doesn't appear to be different to EU
+    }     
       
-
-      
-    })
-
   })
 
 })

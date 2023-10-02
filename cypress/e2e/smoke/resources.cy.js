@@ -1,8 +1,8 @@
 import '@testing-library/cypress/add-commands'
 
-describe('Resources page', () => {
+describe('QAA-685 - Validate the "How can we help" search bar', () => {
 
-  it('Validate the "How can we help" search', () => {
+  it('Enter search and check results', () => {
     cy.visitResponsive('/help-centre') //See custome command for details
 
     if (Cypress.env('viewPortSize') == 'small') 
