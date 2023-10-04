@@ -180,7 +180,7 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
       //Click on the hamburger menu, click on the Login link and the sub menuitems should no longer be visible
       cy.findByRole('img', { name: 'hamburger menu' }).click()
       cy.findByRole('button', { name: 'Log in' }).click()
-      //cy.findByRole('heading', { name: 'Welcome!' }).should('be.visible')
+      cy.findByRole('heading', { name: 'Welcome!' }).should('be.visible')
 
     })
 })
