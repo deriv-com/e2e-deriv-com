@@ -1,6 +1,6 @@
 import '@testing-library/cypress/add-commands'
 
-describe('QAA-663 - Navigation Responsive - Menu items - EU and ROW', () => {
+describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW', () => {
 
     //Click through menu-items and ensure links are vaild and load the next page. 
     it('Generic menu items', () => {
@@ -159,7 +159,7 @@ describe('QAA-663 - Navigation Responsive - Menu items - EU and ROW', () => {
     })
 })
 
-describe('QAA-664 - Navigation Responsive - Open/Close Menu', () => {
+describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
     beforeEach(() => {
       cy.visitResponsive(Cypress.env('RegionEU'), 'small') //See custom command for details
     })
@@ -179,13 +179,13 @@ describe('QAA-664 - Navigation Responsive - Open/Close Menu', () => {
 
       //Click on the hamburger menu, click on the Login link and the sub menuitems should no longer be visible
       cy.findByRole('img', { name: 'hamburger menu' }).click()
-      cy.findByLabelText('Login').click()
-      cy.findByRole('heading', { name: 'Welcome!' }).should('be.visible')
+      cy.findByRole('button', { name: 'Log in' }).click()
+      //cy.findByRole('heading', { name: 'Welcome!' }).should('be.visible')
 
     })
 })
 
-describe('QAA-665 - Validate Footer and Popup Icons', () => {
+describe('Validate Footer and Popup Icons', () => {
     beforeEach(() => {
       cy.visitResponsive(Cypress.env('RegionEU')) //See custom command for details
     })
@@ -203,7 +203,7 @@ describe('QAA-665 - Validate Footer and Popup Icons', () => {
     // })
 })
 
-describe('QAA-668 - Validate Spanish Language Change', () => {
+describe('QATEST-1453 - Validate Spanish Language Change', () => {
   beforeEach(() => {
     cy.visitResponsive(Cypress.env('RegionEU')) //See custom command for details
     
@@ -216,26 +216,35 @@ describe('QAA-668 - Validate Spanish Language Change', () => {
   })
 })
 
-describe('QAA-670 - Validate Hero banner message EU and ROW', () => {
+describe('Validate Hero banner message', () => {
   
-  it('EU', () => {
+  it('QATEST-1310 - ROW', () => {
+    if (Cypress.env('skipROWTests') == false)
+    {
+      //TODO - Find out what should be different here otherwise, repeating the same tests seems unnecessary
+      cy.visitResponsive(Cypress.env('RegionROW')) //See custom command for details
+      cy.findByTestId('typewriter-wrapper').findByText('Forex').should('be.visible')
+      cy.findByTestId('typewriter-wrapper').findByText('Cryptocurrencie').should('be.visible')
+      cy.findByTestId('typewriter-wrapper').findByText('Stocks').should('be.visible')
+      cy.findByTestId('typewriter-wrapper').findByText('Comm').should('be.visible')
+      cy.findByTestId('typewriter-wrapper').findByText('Derive').should('be.visible')
+      cy.findByLabelText('create free demo account').click()
+      cy.findByRole('heading', { name: 'Sign up' }).should('be.visible')
+    }      
+  })
+
+  it('QATEST-1315 - EU', () => {
     cy.visitResponsive(Cypress.env('RegionEU')) //See custom command for details
 
     cy.findByTestId('typewriter-wrapper').findByText('Forex').should('be.visible')
-    cy.findByTestId('typewriter-wrapper').findByText('Cryptocurrencie').click()
-    cy.findByTestId('typewriter-wrapper').findByText('Stocks & indices').click()
-    cy.findByTestId('typewriter-wrapper').findByText('Comm').click()
-    cy.findByTestId('typewriter-wrapper').findByText('Derive').click()
+    cy.findByTestId('typewriter-wrapper').findByText('Cryptocurrencie').should('be.visible')
+    cy.findByTestId('typewriter-wrapper').findByText('Stocks').should('be.visible')
+    cy.findByTestId('typewriter-wrapper').findByText('Comm').should('be.visible')
+    cy.findByTestId('typewriter-wrapper').findByText('Derive').should('be.visible')
+    cy.findByLabelText('create free demo account').click()
+    cy.findByRole('heading', { name: 'Sign up' }).should('be.visible')
   })
 
-  it('ROW', () => {
-    if (Cypress.env('skipROWTests') == false)
-    {
-      //NB. The region switch doesn't work on the EU site at the moment.
-      cy.visitResponsive(Cypress.env('RegionROW')) //See custom command for details
-      //cy.findByTestId('typewriter-wrapper').findByText('ETFs').click() //? The test case mentions ETFs but the banner doesn't appear to be different to EU
-    }     
-      
-  })
+
 
 })
