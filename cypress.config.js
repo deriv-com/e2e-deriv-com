@@ -1,4 +1,5 @@
 const { defineConfig } = require('cypress')
+require('dotenv').config()
 
 //const gViewPortSize = {small: 'phone-xr', large: 'macbook-16'} //TODO Use enum
 
@@ -13,9 +14,11 @@ module.exports = defineConfig({
   env: {
     RegionEU: '/?region=at',
     RegionROW: '/?region=za',
-    skipROWTests: true,
+    skipROWTests: false,
     email: 'test@example.com',
-    viewPortSize: 'small'
+    viewPortSize: 'small',
+    loginEmail: process.env.DERIV_LOGIN,
+    loginPassword: process.env.DERIV_PASSWORD,
   },  
   retries: {
       "runMode": 2,
