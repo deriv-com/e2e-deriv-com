@@ -179,7 +179,7 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
 
       //Click on the hamburger menu, click on the Login link and the sub menuitems should no longer be visible
       cy.findByRole('img', { name: 'hamburger menu' }).click()
-      cy.findByRole('button', { name: 'Log in' }).click()
+      cy.findByLabelText('Login').click()
       cy.findByRole('heading', { name: 'Welcome!' }).should('be.visible')
 
     })
@@ -223,11 +223,11 @@ describe('Validate Hero banner message', () => {
     {
       //TODO - Find out what should be different here otherwise, repeating the same tests seems unnecessary
       cy.visitResponsive(Cypress.env('RegionROW')) //See custom command for details
-      cy.findByTestId('typewriter-wrapper').findByText('Forex').should('be.visible')
-      cy.findByTestId('typewriter-wrapper').findByText('Cryptocurrencie').should('be.visible')
-      cy.findByTestId('typewriter-wrapper').findByText('Stocks').should('be.visible')
-      cy.findByTestId('typewriter-wrapper').findByText('Comm').should('be.visible')
-      cy.findByTestId('typewriter-wrapper').findByText('Derive').should('be.visible')
+      cy.findByTestId('typewriter-wrapper').findByText('For').should('be.visible')
+      cy.findByTestId('typewriter-wrapper').findByText('Cry').should('be.visible')
+      cy.findByTestId('typewriter-wrapper').findByText('Sto').should('be.visible')
+      cy.findByTestId('typewriter-wrapper').findByText('Com').should('be.visible')
+      cy.findByTestId('typewriter-wrapper').findByText('Der').should('be.visible')
       cy.findByLabelText('create free demo account').click()
       cy.findByRole('heading', { name: 'Sign up' }).should('be.visible')
     }      
@@ -236,11 +236,11 @@ describe('Validate Hero banner message', () => {
   it('QATEST-1315 - EU', () => {
     cy.visitResponsive(Cypress.env('RegionEU')) //See custom command for details
 
-    cy.findByTestId('typewriter-wrapper').findByText('Forex').should('be.visible')
-    cy.findByTestId('typewriter-wrapper').findByText('Cryptocurrencie').should('be.visible')
-    cy.findByTestId('typewriter-wrapper').findByText('Stocks').should('be.visible')
-    cy.findByTestId('typewriter-wrapper').findByText('Comm').should('be.visible')
-    cy.findByTestId('typewriter-wrapper').findByText('Derive').should('be.visible')
+    cy.findByTestId('typewriter-wrapper').findByText('For').should('be.visible')
+    cy.findByTestId('typewriter-wrapper').findByText('Cry').should('be.visible')
+    cy.findByTestId('typewriter-wrapper').findByText('Sto').should('be.visible')
+    cy.findByTestId('typewriter-wrapper').findByText('Com').should('be.visible')
+    cy.findByTestId('typewriter-wrapper').findByText('Der').should('be.visible')
     cy.findByLabelText('create free demo account').click()
     cy.findByRole('heading', { name: 'Sign up' }).should('be.visible')
   })
