@@ -1,12 +1,12 @@
 import '@testing-library/cypress/add-commands'
 
-describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW', () => {
+describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Including Trade Types)', () => {
 
     //Click through menu-items and ensure links are vaild and load the next page. 
     it('Generic menu items', () => {
       cy.visitResponsive(Cypress.env('RegionEU'), 'small') //See custom command for details
 
-      //Trade
+      //Trade Types
 
       cy.findByRole('img', { name: 'hamburger menu' }).click()
       cy.findByRole('button', { name: 'Trade chevron' }).click();
@@ -20,6 +20,36 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW', () => 
       cy.findByRole('button', { name: 'Trade chevron' }).click();
       cy.findByRole('link', { name: 'Multipliers trade type Multipliers Get the upside of CFDs without the downside of losing more than your stake.' }).click()
       cy.findByRole('heading', { name: 'Multipliers', exact: true }).should('be.visible')
+
+      //Trade Platforms
+
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'Trade chevron' }).click()
+      cy.findByRole('link', { name: 'Deriv MT5 trading platform Deriv MT5 Trade on Deriv MT5, the all-in-one CFD trading platform.' }).click()
+      cy.findByRole('img', { name: 'Deriv MT5', exact: true }).should('be.visible')
+
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'Trade chevron' }).click()
+      cy.findByRole('link', { name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.' }).click()
+      cy.findByRole('img', { name: 'Deriv Trader' }).should('be.visible')
+
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
+      cy.findByRole('link', { name: 'Deriv X trading paltform Deriv X A highly customisable and easy-to-use CFD trading platform.' }).should('not.exist')
+
+      cy.findByRole('link', { name: 'Deriv EZ trading paltform Deriv EZ Trade on global markets from anywhere with our mobile-first CFD trading platform.' }).should('not.exist')
+
+      cy.findByRole('link', { name: 'SmartTrader trading platform SmartTrader Trade the world’s markets with our popular user-friendly platform.' }).should('not.exist')
+
+      cy.findByRole('link', { name: 'Deriv cTrader trading platform Deriv cTrader Advance trading, charting and technical analysis tools available for users.' }).should('not.exist')
+
+      cy.findByRole('link', { name: 'Deriv GO mobile trading app Deriv GO Trade multipliers on forex, cryptocurrencies, and synthetic indices with our mobile app.' }).should('not.exist')
+
+      cy.findByRole('link', { name: 'Deriv Bot Automated trading Deriv Bot Automated trading at your fingertips. No coding needed.' }).should('not.exist')
+
+      cy.findByRole('link', { name: 'Binary bot for creating trading bot Binary Bot Our classic "drag-and-drop" tool for creating trading bots, featuring pop-up trading charts, for advanced users.' }).should('not.exist')
+
+      cy.findByRole('img', { name: 'close menu' }).click()
 
       //Markets
 
@@ -48,6 +78,12 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW', () => 
       cy.findByRole('link', { name: 'Cryptocurrencies Cryptocurrencies Trade with leverage on the price movement of popular crypto-fiat pairs.' }).click()
       cy.findByRole('heading', { name: 'Cryptocurrencies', exact: true }).should('be.visible')
 
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'Markets chevron' }).click({force: true})
+      cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }).should('not.exist')
+
+      cy.findByRole('img', { name: 'close menu' }).click()
+
       //About us
 
       cy.findByRole('img', { name: 'hamburger menu' }).click()
@@ -60,24 +96,39 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW', () => 
       cy.findByRole('link', { name: 'Why choose us' }).click()
       cy.findByRole('heading', { name: 'Why choose us' }).should('be.visible')
 
-          //--> TODO - Partnership programmes
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'About us chevron' }).click()
+      cy.findByRole('link', { name: 'Partnership programmes' }).should('be.visible')
+      cy.findByRole('img', { name: 'close menu' }).click()
 
       cy.findByRole('img', { name: 'hamburger menu' }).click()
       cy.findByRole('button', { name: 'About us chevron' }).click()
-      cy.findByRole('link', { name: 'Contact us' }).click()
-      cy.findByRole('heading', { name: 'Contact us' }).should('be.visible')
+      cy.findByRole('link', { name: 'Contact us' }).should('be.visible')
+      cy.findByRole('img', { name: 'close menu' }).click()
 
-          //--> TODO - Careers
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'About us chevron' }).click()
+      cy.findByRole('link', { name: 'Careers' }).should('be.visible')
+      cy.findByRole('img', { name: 'close menu' }).click()
+
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'About us chevron' }).click()
+      cy.findByRole('link', { name: 'Deriv life' }).should('be.visible')
+      cy.findByRole('img', { name: 'close menu' }).click()
 
 
       //Resources
+      cy.visitResponsive(Cypress.env('RegionEU'), 'small') //See custom command for details
 
       cy.findByRole('img', { name: 'hamburger menu' }).click()
       cy.findByRole('button', { name: 'Resources chevron' }).click()
       cy.findByRole('link', { name: 'Help centre' }).click()
       cy.findByRole('heading', { name: 'How can we help?' }).should('be.visible')
 
-          //--> TODO - Community
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'Resources chevron' }).click()
+      cy.findByLabelText('Resources').findByRole('link', { name: 'Community' }).should('be.visible')
+      cy.findByRole('img', { name: 'close menu' }).click()
 
       cy.findByRole('img', { name: 'hamburger menu' }).click()
       cy.findByRole('button', { name: 'Resources chevron' }).click()
@@ -121,23 +172,18 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW', () => 
 
       cy.findByRole('img', { name: 'hamburger menu' }).click()
       cy.findByRole('button', { name: 'Partners chevron' }).click()
-      cy.findByRole('link', { name: 'Deriv Prime' }).click()
-      cy.findByRole('heading', { name: 'Global liquidity for all' }).should('be.visible')
+      cy.findByRole('link', { name: 'Deriv Prime' }).should('be.visible')
+      cy.findByRole('img', { name: 'close menu' }).click()
 
-                //--> TODO - Affiliates
-      // cy.findByRole('img', { name: 'hamburger menu' }).click()
-      // cy.findByRole('button', { name: 'Partners chevron' }).click()
-      // cy.findByRole('link', { name: 'Affiliates' }).click()
-      // cy.findByRole('heading', { name: 'Partner with a trusted online trading provider' }).should('be.visible')
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'Partners chevron' }).click()
+      cy.findByRole('link', { name: 'Affiliates' }).should('be.visible')
+      cy.findByRole('img', { name: 'close menu' }).click()
 
-                //--> TODO - Deriv API
-      // cy.visitResponsive(Cypress.env('RegionEU'), 'small') //See custom command for details
-      // cy.findByRole('img', { name: 'hamburger menu' }).click()
-      // cy.findByRole('button', { name: 'Partners chevron' }).click()
-      // cy.findByRole('link', { name: 'API', exact: true }).click()
-      // cy.findByRole('heading', { name: 'Deriv API', exact: true }).should('be.visible')
-
-            //--> TODO - Community
+      cy.findByRole('img', { name: 'hamburger menu' }).click()
+      cy.findByRole('button', { name: 'Partners chevron' }).click()
+      cy.findByRole('link', { name: 'API', exact: true }).should('be.visible')
+      cy.findByRole('img', { name: 'close menu' }).click()
 
 
     })
@@ -150,10 +196,78 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW', () => 
         {
         cy.visitResponsive(Cypress.env('RegionROW'), 'small') //See custom command for details
 
+        //Trade Types
         cy.findByRole('img', { name: 'hamburger menu' }).click()
         cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
         cy.findByRole('link', { name: 'Options trade type Options Earn a range of payouts without risking more than your initial stake.' }).click()
         cy.findByRole('heading', { name: 'What are digital options?' }).should('be.visible')
+
+        //Trade Platforms
+
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
+        cy.findByRole('link', { name: 'Deriv X trading paltform Deriv X A highly customisable and easy-to-use CFD trading platform.' }).click()
+        cy.findByRole('img', { name: 'Deriv X', exact: true }).should('be.visible')
+
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
+        cy.findByRole('link', { name: 'Deriv EZ trading paltform Deriv EZ Trade on global markets from anywhere with our mobile-first CFD trading platform.' }).click()
+        cy.findByRole('img', { name: 'Deriv EZ', exact: true }).should('be.visible')
+
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
+        cy.findByRole('link', { name: 'SmartTrader trading platform SmartTrader Trade the world’s markets with our popular user-friendly platform.' }).should('exist') //NB. Not always open, so don't click for now.
+        cy.findByRole('img', { name: 'close menu' }).click()
+        cy.visitResponsive(Cypress.env('RegionROW'), 'small') //NB. Elements often disappear at this stage, so do a page refresh as a workaorund. The new HK site should overcome this, so it's not worth putting much effort in here now.
+
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
+        cy.findByRole('link', { name: 'Deriv cTrader trading platform Deriv cTrader Advance trading, charting and technical analysis tools available for users.' }).click()
+        cy.findByRole('img', { name: '_t_Deriv ctrader logo_t_' }).should('be.visible')
+
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
+        cy.findByRole('link', { name: 'Deriv GO mobile trading app Deriv GO Trade multipliers on forex, cryptocurrencies, and synthetic indices with our mobile app.' }).click()
+        cy.findByRole('img', { name: 'Deriv Go', exact: true }).should('be.visible')
+
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
+        cy.findByRole('link', { name: 'Deriv Bot Automated trading Deriv Bot Automated trading at your fingertips. No coding needed.' }).click()
+        cy.findByRole('img', { name: 'Deriv Bot' }).should('be.visible')
+
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
+        cy.findByRole('link', { name: 'Binary bot for creating trading bot Binary Bot Our classic "drag-and-drop" tool for creating trading bots, featuring pop-up trading charts, for advanced users.' }).should('exist') //NB. Not always open, so don't click for now.
+        cy.findByRole('img', { name: 'close menu' }).click()
+
+        //Markets
+        cy.visitResponsive(Cypress.env('RegionROW'), 'small') //See custom command for details
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Markets chevron' }).click({force: true})
+        cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }).click()
+        cy.findByRole('heading', { name: 'Exchange-traded funds' }).should('be.visible')
+
+        //Partners
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Partners chevron' }).click()
+        cy.findByRole('link', { name: 'Deriv Prime' }).should('be.visible')
+        cy.findByRole('img', { name: 'close menu' }).click()
+  
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Partners chevron' }).click()
+        cy.findByRole('link', { name: 'Affiliates and IBs' }).should('be.visible')
+        cy.findByRole('img', { name: 'close menu' }).click()
+
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Partners chevron' }).click()
+        cy.findByRole('link', { name: 'Payment agents' }).should('be.visible')
+        cy.findByRole('img', { name: 'close menu' }).click()
+  
+        cy.findByRole('img', { name: 'hamburger menu' }).click()
+        cy.findByRole('button', { name: 'Partners chevron' }).click()
+        cy.findByRole('link', { name: 'API', exact: true }).should('be.visible')
+        cy.findByRole('img', { name: 'close menu' }).click()
+
         }
 
     })
@@ -179,8 +293,7 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
 
       //Click on the hamburger menu, click on the Login link and the sub menuitems should no longer be visible
       cy.findByRole('img', { name: 'hamburger menu' }).click()
-      cy.findByLabelText('Login').click()
-      cy.findByRole('heading', { name: 'Welcome!' }).should('be.visible')
+      cy.findByRole('button', { name: 'Log in' }).should('be.visible')
 
     })
 })
