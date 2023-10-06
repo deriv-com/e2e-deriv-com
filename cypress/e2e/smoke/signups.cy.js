@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 describe('Validate signup links', () => {
   beforeEach(() => {
-    cy.visitResponsive('/signup') //Custom command
+    cy.c_visitResponsive('/signup') //Custom command
   })
 
   it('Validate user can signup at EU/non-EU Website', () => {

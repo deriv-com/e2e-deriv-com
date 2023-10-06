@@ -3,7 +3,7 @@ import '@testing-library/cypress/add-commands'
 describe('Trade page', () => {
 
   it('Validate How can we help search', () => {
-    cy.visitResponsive('/trade-types/cfds') //See custome command for details
+    cy.c_visitResponsive('/trade-types/cfds') //See custome command for details
 
     if (Cypress.env('viewPortSize') == 'small')  
     {

@@ -8,6 +8,8 @@ module.exports = defineConfig({
     projectId: '16kef2',
     setupNodeEvents(on, config) {},
     baseUrl: 'https://deriv.com',
+    //baseUrl: 'https://deriv-com-v2.pages.dev/',
+    //baseUrl: 'https://deriv.com',
     defaultCommandTimeout: 10000,
     supportFile: "cypress/support/e2e.js",
   },

@@ -3,7 +3,7 @@ import '@testing-library/cypress/add-commands'
 describe('Legal page', () => {
 
   it('Validate links and dropdowns', () => {
-    cy.visitResponsive('/regulatory') //See custome command for details
+    cy.c_visitResponsive('/regulatory') //See custome command for details
 
     if (Cypress.env('viewPortSize') == 'small') 
     {
