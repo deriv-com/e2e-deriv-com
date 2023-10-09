@@ -39,6 +39,7 @@ describe('Home Page Tests', () => {
     //==Cypress/Playwright Anomoly 2==
     //Works OK in Playwright, need to find out why it doesn't in Cypress.
     //cy.findByText('$48M+Monthly withdrawals').should('be.visible')
+    
 
     //To get it working in Cypress, I have to do this.
     cy.findByRole('heading', { name: '$48M+' }).should('be.visible')
