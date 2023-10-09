@@ -24,17 +24,23 @@ describe('Home Page Tests', () => {
     cy.findByRole('heading', { name: 'Trade diverse forex assets' }).should('be.visible')
     cy.findByText('Trade over 50 forex pairs including major, minor, and exotic pairs').should('be.visible')
 
+    //==Cypress/Playwright Anomoly 1==
     //Works OK in Playwright, need to find out why it doesn't in Cypress.
     //cy.findByRole('link', { name: 'More on forex trading' }).first().click()
+
+    //When there are mulitple elements, you need to use the 'All' version of a function.
+    cy.findAllByRole('link', { name: 'More on forex trading' }).first().click()
 
     cy.findByRole('heading', { name: 'Card Slider Title' }).should('be.visible')
     //cy.locator('div').filter({ hasText: /^Card 1Description here\. Description here\. Description here\. Description here\.$/ }).nth(2).should('be.visible')
     cy.findByRole('heading', { name: 'Card 1' }).should('be.visible')
     //cy.locator('.swiper-slide > div > div > .flex > .font-sans').first().should('be.visible')
 
+    //==Cypress/Playwright Anomoly 2==
     //Works OK in Playwright, need to find out why it doesn't in Cypress.
     //cy.findByText('$48M+Monthly withdrawals').should('be.visible')
 
+    //To get it working in Cypress, I have to do this.
     cy.findByRole('heading', { name: '$48M+' }).should('be.visible')
     cy.findByRole('heading', { name: 'Monthly withdrawals' }).should('be.visible')
 
