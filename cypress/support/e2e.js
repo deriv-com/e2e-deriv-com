@@ -27,23 +27,6 @@ Cypress.Commands.add('c_visitResponsive', (path, size) => {
 
 });
 
-Cypress.Commands.add('c_login', () => {
-    cy.findByPlaceholderText('example@email.com').type(Cypress.env('loginEmail'), { log: false })
-    cy.findByLabelText('Password').click()
-    cy.findByLabelText('Password').type(Cypress.env('loginPassword'), { log: false })
-    cy.findByRole('button', { name: 'Log in' }).click()
-});
-
-Cypress.on('uncaught:exception', (err, runnable, promise) => {
-    // when the exception originated from an unhandled promise
-    // rejection, the promise is provided as a third argument
-    // you can turn off failing the test in this case
-    if (promise) {
-      return false
-    }
-    // we still want to ensure there are no other unexpected
-    // errors, so we let them fail the test
-  })
 
 
 
