@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 describe('Validate login functionality', () => {
   beforeEach(() => {
-    cy.visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
   })
 
   it('Validate user can login at EU/non-EU Website', () => {

@@ -3,7 +3,7 @@ import '@testing-library/cypress/add-commands'
 describe('QAA-685 - Validate the "How can we help" search bar', () => {
 
   it('Enter search and check results', () => {
-    cy.visitResponsive('/help-centre') //See custome command for details
+    cy.c_visitResponsive('/help-centre') 
 
     if (Cypress.env('viewPortSize') == 'small') 
     {

@@ -4,7 +4,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
     //Click through menu-items and ensure links are vaild and load the next page. 
     it('Generic menu items', () => {
-      cy.visitResponsive(Cypress.env('RegionEU'), 'small') //See custom command for details
+      cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
 
       //Trade Types
 
@@ -118,7 +118,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
 
       //Resources
-      cy.visitResponsive(Cypress.env('RegionEU'), 'small') //See custom command for details
+      cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
 
       cy.findByRole('img', { name: 'hamburger menu' }).click()
       cy.findByRole('button', { name: 'Resources chevron' }).click()
@@ -152,7 +152,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
       //Legal
 
-      cy.visitResponsive(Cypress.env('RegionEU'), 'small') //See custom command for details
+      cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
       cy.findByRole('img', { name: 'hamburger menu' }).click()
       cy.findByRole('button', { name: 'Legal chevron' }).click()
       cy.findByRole('link', { name: 'Regulatory information' }).click()
@@ -194,8 +194,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
       //NB. The region switch doesn't work on the EU site at the moment.
       if (Cypress.env('skipROWTests') == false)
         {
-        cy.visitResponsive(Cypress.env('RegionROW'), 'small') //See custom command for details
-
+        cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
         //Trade Types
         cy.findByRole('img', { name: 'hamburger menu' }).click()
         cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
@@ -218,7 +217,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
         cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
         cy.findByRole('link', { name: 'SmartTrader trading platform SmartTrader Trade the world’s markets with our popular user-friendly platform.' }).should('exist') //NB. Not always open, so don't click for now.
         cy.findByRole('img', { name: 'close menu' }).click()
-        cy.visitResponsive(Cypress.env('RegionROW'), 'small') //NB. Elements often disappear at this stage, so do a page refresh as a workaorund. The new HK site should overcome this, so it's not worth putting much effort in here now.
+        cy.c_visitResponsive(Cypress.env('RegionROW'), 'small') //NB. Elements often disappear at this stage, so do a page refresh as a workaorund. The new HK site should overcome this, so it's not worth putting much effort in here now.
 
         cy.findByRole('img', { name: 'hamburger menu' }).click()
         cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
@@ -241,7 +240,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
         cy.findByRole('img', { name: 'close menu' }).click()
 
         //Markets
-        cy.visitResponsive(Cypress.env('RegionROW'), 'small') //See custom command for details
+        cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
         cy.findByRole('img', { name: 'hamburger menu' }).click()
         cy.findByRole('button', { name: 'Markets chevron' }).click({force: true})
         cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }).click()
@@ -275,7 +274,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
 describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
     beforeEach(() => {
-      cy.visitResponsive(Cypress.env('RegionEU'), 'small') //See custom command for details
+      cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
     })
 
     it('Validate hamburger menu operation', () => {
@@ -300,7 +299,7 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
 
 describe('Validate Footer and Popup Icons', () => {
     beforeEach(() => {
-      cy.visitResponsive(Cypress.env('RegionEU')) //See custom command for details
+      cy.c_visitResponsive(Cypress.env('RegionEU'))
     })
     it('Validate footer exists', () => {
       cy.get('footer').should('exist')
@@ -318,7 +317,7 @@ describe('Validate Footer and Popup Icons', () => {
 
 describe('QATEST-1453 - Validate Spanish Language Change', () => {
   beforeEach(() => {
-    cy.visitResponsive(Cypress.env('RegionEU')) //See custom command for details
+    cy.c_visitResponsive(Cypress.env('RegionEU'))
     
   })
 
@@ -335,7 +334,7 @@ describe('Validate Hero banner message', () => {
     if (Cypress.env('skipROWTests') == false)
     {
       //TODO - Find out what should be different here otherwise, repeating the same tests seems unnecessary
-      cy.visitResponsive(Cypress.env('RegionROW')) //See custom command for details
+      cy.c_visitResponsive(Cypress.env('RegionROW'))
       cy.findByTestId('typewriter-wrapper').findByText('For').should('be.visible')
       cy.findByTestId('typewriter-wrapper').findByText('Cry').should('be.visible')
       cy.findByTestId('typewriter-wrapper').findByText('Sto').should('be.visible')
@@ -347,7 +346,7 @@ describe('Validate Hero banner message', () => {
   })
 
   it('QATEST-1315 - EU', () => {
-    cy.visitResponsive(Cypress.env('RegionEU')) //See custom command for details
+    cy.c_visitResponsive(Cypress.env('RegionEU'))
 
     cy.findByTestId('typewriter-wrapper').findByText('For').should('be.visible')
     cy.findByTestId('typewriter-wrapper').findByText('Cry').should('be.visible')
