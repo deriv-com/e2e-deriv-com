@@ -3,7 +3,7 @@ import '@testing-library/cypress/add-commands'
 describe('Partners page', () => {
 
   it('Validate links and functionality within Partners', () => {
-    cy.c_visitResponsive('/partners/deriv-prime/') //See custome command for details
+    cy.c_visitResponsive('/partners/deriv-prime/') 
 
     if (Cypress.env('viewPortSize') == 'small') 
     {

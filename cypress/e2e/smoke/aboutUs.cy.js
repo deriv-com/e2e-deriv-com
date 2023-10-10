@@ -3,7 +3,7 @@ import '@testing-library/cypress/add-commands'
 describe('About us page', () => {
 
   it('Validate links within About Us - Who we are', () => {
-    cy.c_visitResponsive('/who-we-are') //See custome command for details
+    cy.c_visitResponsive('/who-we-are') 
     
     if (Cypress.env('viewPortSize') == 'small') 
     {
