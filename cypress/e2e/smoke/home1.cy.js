@@ -41,7 +41,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
       cy.findByRole('link', { name: 'SmartTrader trading platform SmartTrader Trade the world’s markets with our popular user-friendly platform.' }).should('not.exist')
 
-      cy.findByRole('link', { name: 'Deriv cTrader trading platform Deriv cTrader Advance trading, charting and technical analysis tools available for users.' }).should('not.exist')
+      cy.findByRole('link', { name: 'Deriv cTrader trading platform Deriv cTrader An intuitive, multi-asset CFD trading platform with copy trading and custom indicators.' }).should('not.exist')
 
       cy.findByRole('link', { name: 'Deriv GO mobile trading app Deriv GO Trade multipliers on forex, cryptocurrencies, and synthetic indices with our mobile app.' }).should('not.exist')
 

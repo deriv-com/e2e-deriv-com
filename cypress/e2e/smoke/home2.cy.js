@@ -36,7 +36,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
         cy.findByRole('img', { name: 'hamburger menu' }).click()
         cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
-        cy.findByRole('link', { name: 'Deriv cTrader trading platform Deriv cTrader Advance trading, charting and technical analysis tools available for users.' }).click()
+        cy.findByRole('link', { name: 'Deriv cTrader trading platform Deriv cTrader An intuitive, multi-asset CFD trading platform with copy trading and custom indicators.' }).click()
         cy.findByRole('img', { name: '_t_Deriv ctrader logo_t_' }).should('be.visible')
 
         cy.findByRole('img', { name: 'hamburger menu' }).click()
