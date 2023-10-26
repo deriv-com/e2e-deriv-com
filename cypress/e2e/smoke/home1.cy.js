@@ -80,7 +80,8 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
       cy.findByRole('img', { name: 'hamburger menu' }).click()
       cy.findByRole('button', { name: 'Markets chevron' }).click({force: true})
-      cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }).should('not.exist')
+      cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }).click()
+      cy.findByRole('heading', { name: 'Exchange-traded funds' }).should('be.visible')
 
       cy.findByRole('img', { name: 'close menu' }).click()
 
