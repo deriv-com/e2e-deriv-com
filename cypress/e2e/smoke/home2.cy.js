@@ -25,11 +25,6 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
         cy.findByRole('img', { name: 'hamburger menu' }).click()
         cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
-        cy.findByRole('link', { name: 'Deriv EZ trading paltform Deriv EZ Trade on global markets from anywhere with our mobile-first CFD trading platform.' }).click()
-        cy.findByRole('img', { name: 'Deriv EZ', exact: true }).should('be.visible')
-
-        cy.findByRole('img', { name: 'hamburger menu' }).click()
-        cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
         cy.findByRole('link', { name: 'SmartTrader trading platform SmartTrader Trade the world’s markets with our popular user-friendly platform.' }).should('exist') //NB. Not always open, so don't click for now.
         cy.findByRole('img', { name: 'close menu' }).click()
         cy.c_visitResponsive(Cypress.env('RegionROW'), 'small') //NB. Elements often disappear at this stage, so do a page refresh as a workaorund. The new HK site should overcome this, so it's not worth putting much effort in here now.

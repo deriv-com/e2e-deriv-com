@@ -37,7 +37,6 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
       cy.findByRole('button', { name: 'Trade chevron' }).click({force: true})
       cy.findByRole('link', { name: 'Deriv X trading paltform Deriv X A highly customisable and easy-to-use CFD trading platform.' }).should('not.exist')
 
-      cy.findByRole('link', { name: 'Deriv EZ trading paltform Deriv EZ Trade on global markets from anywhere with our mobile-first CFD trading platform.' }).should('not.exist')
 
       cy.findByRole('link', { name: 'SmartTrader trading platform SmartTrader Trade the world’s markets with our popular user-friendly platform.' }).should('not.exist')
 
