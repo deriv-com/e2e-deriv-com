@@ -9,5 +9,6 @@ describe('Validate signup links', () => {
     cy.findByLabelText('I agree to the terms and conditions').should('be.visible')
     cy.contains('button', 'Create demo account').should('be.visible')
   })
+
   
 })
