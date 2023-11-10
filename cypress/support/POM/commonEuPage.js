@@ -27,21 +27,19 @@ class footerEuPage {
         multipliersLink: () => cy.findByRole('img', { name: 'Multipliers trade type' }),
         multipliersPageText: () => cy.findByRole('heading', { name: 'Multipliers', exact: true }),
         marketsMenu: () => cy.findByRole('heading', { name: 'Markets chevron' }),
-        forexLink: () => cy.findByRole('link', { name: 'Forex Forex Trade the world’s largest financial market with popular forex pairs.'}),
-        forexPageText: () =>  cy.findByRole('heading', { name: 'Forex', exact: true }),
+        forexLink: () => cy.findByRole('link', { name: 'Forex Forex Trade the world’s largest financial market with popular forex pairs.' }),
+        forexPageText: () => cy.findByRole('heading', { name: 'Forex', exact: true }),
         derivedIndicesLink: () => cy.findByRole('link', { name: 'Synthetic indices Derived indices Enjoy trading asset prices derived from simulated markets.' }),
-        derivedIndicesPageText: () =>     cy.findByRole('heading', { name: 'Derived indices' }),
-        stocksAndIndicesLink: () => cy.findByRole('link', { name: 'Stocks & indices Stocks & indices Predict broader market trends and diversify your risk with stocks & indices.'}),
+        derivedIndicesPageText: () => cy.findByRole('heading', { name: 'Derived indices' }),
+        stocksAndIndicesLink: () => cy.findByRole('link', { name: 'Stocks & indices Stocks & indices Predict broader market trends and diversify your risk with stocks & indices.' }),
         stockAndIndicesPageText: () => cy.findByRole('heading', { name: 'Stocks & indices', exact: true }),
-        commoditiesLink: () =>   cy.findByRole('link', { name: 'Commodities Commodities Trade natural resources that are central to the world\'s economy.' }),
+        commoditiesLink: () => cy.findByRole('link', { name: 'Commodities Commodities Trade natural resources that are central to the world\'s economy.' }),
         commoditiesPageLink: () => cy.findByRole('heading', { name: 'Commodities', exact: true }),
-        cryptoCurrenciesLink: () =>  cy.findByRole('link', { name: 'Cryptocurrencies Cryptocurrencies Trade with leverage on the price movement of popular crypto-fiat pairs.' }),
+        cryptoCurrenciesLink: () => cy.findByRole('link', { name: 'Cryptocurrencies Cryptocurrencies Trade with leverage on the price movement of popular crypto-fiat pairs.' }),
         cryptoCurrenciesPageText: () => cy.findByRole('heading', { name: 'Cryptocurrencies', exact: true }),
-        eTFsLink: () =>   cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }),
-        eTFsPageText: () =>  cy.findByRole('heading', { name: 'Exchange-traded funds' }),
-
+        eTFsLink: () => cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }),
+        eTFsPageText: () => cy.findByRole('heading', { name: 'Exchange-traded funds' }),
     }
-
     externalEUURls = {
         facebookEU: 'https://www.facebook.com/derivEU/',
         instagramEU: 'https://www.instagram.com/deriv_eu/',
@@ -49,58 +47,49 @@ class footerEuPage {
         youtubeEU: 'https://www.youtube.com/@deriv',
         linkedInEU: 'https://www.linkedin.com/company/derivdotcom/',
         derivlifeExpected: 'https://derivlife.com/',
-
     }
-
-
     areSocialLinksVisible() {
-        this.elements.footerFaceBookLogo().should('be.visible')
-        this.elements.footerInstagramLogo().should('be.visible')
-        this.elements.footerTwitterLogo().should('be.visible')
-        this.elements.footerYoutubeLogo().should('be.visible')
-        this.elements.footerLinkedInLogo().should('be.visible')
+        this.elements.footerFaceBookLogo().should('be.visible');
+        this.elements.footerInstagramLogo().should('be.visible');
+        this.elements.footerTwitterLogo().should('be.visible');
+        this.elements.footerYoutubeLogo().should('be.visible');
+        this.elements.footerLinkedInLogo().should('be.visible');
     }
     areAboutUsLinksVisible() {
-        this.elements.aboutUsMenu().should('be.visible')
-        this.elements.whoWeAreLink().should('be.visible')
-        this.elements.whyChooseUsLink().should('be.visible')
-        this.elements.partnershipProgrammesLink().should('be.visible')
-        this.elements.contactUsLink().should('be.visible')
-        this.elements.derivLifeLink().should('be.visible')
-
+        this.elements.aboutUsMenu().should('be.visible');
+        this.elements.whoWeAreLink().should('be.visible');
+        this.elements.whyChooseUsLink().should('be.visible');
+        this.elements.partnershipProgrammesLink().should('be.visible');
+        this.elements.contactUsLink().should('be.visible');
+        this.elements.derivLifeLink().should('be.visible');
     }
     areTradeMenuLinkVisible() {
-
-        this.elements.tradeMenu().should('be.visible')
-        this.elements.cFDLink().should('be.visible')
-        this.elements.multipliersLink().should('be.visible')
-
+        this.elements.tradeMenu().should('be.visible');
+        this.elements.cFDLink().should('be.visible');
+        this.elements.multipliersLink().should('be.visible');
     }
     areMarketLinksVisible() {
-        this.elements.marketsMenu().should('be.visible')
-        this.elements.forexLink().should('be.visible')
-        this.elements.derivedIndicesLink().should('be.visible')
-        this.elements.stocksAndIndicesLink().should('be.visible')
-        this.elements.commoditiesLink().should('be.visible')
-        this.elements.cryptoCurrenciesLink().should('be.visible')
-        this.elements.eTFsLink().should('be.visible')
+        this.elements.marketsMenu().should('be.visible');
+        this.elements.forexLink().should('be.visible');
+        this.elements.derivedIndicesLink().should('be.visible');
+        this.elements.stocksAndIndicesLink().should('be.visible');
+        this.elements.commoditiesLink().should('be.visible');
+        this.elements.cryptoCurrenciesLink().should('be.visible');
+        this.elements.eTFsLink().should('be.visible');
     }
-
     areSocialLinksCorrect(socialLink, socialWebsiteUrl) {
         socialLink().click()
         cy.findByRole('alertdialog', { name: 'Redirect notice' })
-            .should('be.visible')
+            .should('be.visible');
         cy.findByRole('alertdialog')
             .findByText('You are being redirected to an external website.')
-            .should('be.visible')
+            .should('be.visible');
         cy.window().then((win) => {
             cy.stub(win, 'open').as('windowOpen');
         });
         cy.findByRole('button', { name: 'Proceed' }).click();
         cy.reload();
         cy.get('@windowOpen').should('be.calledWith', socialWebsiteUrl);
-
     }
-
 }
 module.exports = new footerEuPage();
