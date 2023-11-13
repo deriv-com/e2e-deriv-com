@@ -20,7 +20,6 @@ class footerEuPage {
         contactUsPageText: () => cy.findByRole('heading', { name: 'Contact us' }),
         careersPageText: () => cy.findByRole('heading', { name: 'Join and grow with us.' }),
         derivLifePageText: () => cy.findByRole('heading', { name: 'Global reach, local touch' }),
-        // derivLifePageText: () => cy.get('.title-content-homepage'),
         tradeMenu: () => cy.findByRole('button', { name: 'Trade chevron' }),
         cFDLink: () => cy.findByRole('link', { name: 'CFDs trade type CFDs Trade with leverage and tight spreads for better returns on successful trades.' }),
         cFDPageText: () => cy.findByRole('heading', { name: 'CFD trading' }),
