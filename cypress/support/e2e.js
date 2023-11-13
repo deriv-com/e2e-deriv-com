@@ -10,7 +10,7 @@ Cypress.Commands.add('c_visitResponsive', (path, size) => {
         cy.viewport('iphone-xr')
     else if (size == 'medium')
         cy.viewport('ipad-2')
-    else
+    else if (size == 'desktop')
         cy.viewport('macbook-16')
 
     cy.visit(path)
