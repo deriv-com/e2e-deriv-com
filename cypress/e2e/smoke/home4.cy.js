@@ -60,7 +60,7 @@ describe('QATEST-1328 - Live Pricing table EU', () => {
       cy.commodities_viewall('eu','desk')
    })
 
-   it('Should click on View All link on all the 5 markets and check whether all instruments for the particular market is displayed - EU mobile', () => {
+   it('Should click on View All link on all the 5 markets and check whether all instruments for the particular market is displayed - EU mobile.', () => {
     cy.forex_viewall('eu','mob')
     cy.derivedindices_viewall('eu','mob')
     cy.stockindices_viewall('eu','mob')
