@@ -6,7 +6,7 @@ require('dotenv').config()
 module.exports = defineConfig({
   e2e: {
     projectId: '16kef2',
-    setupNodeEvents(on, config) {},
+    setupNodeEvents(on, config) { },
     //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
     baseUrl: 'https://handle-languages.deriv-com-preview-links.pages.dev',
@@ -21,9 +21,17 @@ module.exports = defineConfig({
     viewPortSize: 'small',
     loginEmail: process.env.DERIV_LOGIN,
     loginPassword: process.env.DERIV_PASSWORD,
-  },  
+  },
   retries: {
-      "runMode": 2,
-      "openMode": 0
-    },
+    "runMode": 2,
+    "openMode": 0
+  },
+  externalEUUrls: {
+    facebookEU: 'https://www.facebook.com/derivEU/',
+    instagramEU: 'https://www.instagram.com/deriv_eu/',
+    twitterEU: 'https://www.twitter.com/deriv_eu/',
+    youtubeEU: 'https://www.youtube.com/@deriv',
+    linkedInEU: 'https://www.linkedin.com/company/derivdotcom/',
+    derivlifeURL: 'https://derivlife.com/'
+  },
 })

@@ -1,11 +1,7 @@
 class footerEuPage {
+
     elements = {
         footerLogo: () => cy.findByRole('img', { name: "deriv logo image" }),
-        footerFaceBookLogo: () => cy.findByRole('img', { name: "_t_Facebook_t_" }),
-        footerInstagramLogo: () => cy.findByRole('img', { name: '_t_Instagram_t_' }),
-        footerTwitterLogo: () => cy.findByRole('img', { name: '_t_Twitter_t_' }),
-        footerYoutubeLogo: () => cy.findByRole('img', { name: '_t_Youtube_t_' }),
-        footerLinkedInLogo: () => cy.findByRole('img', { name: '_t_Linkedin_t_' }),
         hamburgerMenu: () => cy.findByRole('img', { name: 'hamburger menu' }),
         aboutUsMenu: () => cy.findByRole('button', { name: 'About us chevron' }),
         whoWeAreLink: () => cy.findByRole('link', { name: 'Who we are' }),
@@ -38,21 +34,24 @@ class footerEuPage {
         cryptoCurrenciesPageText: () => cy.findByRole('heading', { name: 'Cryptocurrencies', exact: true }),
         eTFsLink: () => cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }),
         eTFsPageText: () => cy.findByRole('heading', { name: 'Exchange-traded funds' }),
+        derivMT5Link: () => cy.findByRole('link', { name: 'Deriv MT5 trading platform Deriv MT5 Trade on Deriv MT5, the all-in-one CFD trading platform.' }),
+        derivMT5PageText: () => cy.findByRole('heading', { name: 'The all-in-one CFD trading platform' }),
+        derivTraderLink: () => cy.findByRole('link', { name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.' }),
+        dTraderlogo: () => cy.findByRole('img', { name: 'Deriv Trader' }),
     }
-    externalEUURls = {
-        facebookEU: 'https://www.facebook.com/derivEU/',
-        instagramEU: 'https://www.instagram.com/deriv_eu/',
-        twitterEU: 'https://www.twitter.com/deriv_eu/',
-        youtubeEU: 'https://www.youtube.com/@deriv',
-        linkedInEU: 'https://www.linkedin.com/company/derivdotcom/',
-        derivlifeExpected: 'https://derivlife.com/',
+    socialMediaLinks = {
+        footerFaceBookLogo: () => cy.findByRole('img', { name: "_t_Facebook_t_" }),
+        footerInstagramLogo: () => cy.findByRole('img', { name: '_t_Instagram_t_' }),
+        footerTwitterLogo: () => cy.findByRole('img', { name: '_t_Twitter_t_' }),
+        footerYoutubeLogo: () => cy.findByRole('img', { name: '_t_Youtube_t_' }),
+        footerLinkedInLogo: () => cy.findByRole('img', { name: '_t_Linkedin_t_' }),
     }
     areSocialLinksVisible() {
-        this.elements.footerFaceBookLogo().should('be.visible');
-        this.elements.footerInstagramLogo().should('be.visible');
-        this.elements.footerTwitterLogo().should('be.visible');
-        this.elements.footerYoutubeLogo().should('be.visible');
-        this.elements.footerLinkedInLogo().should('be.visible');
+        this.socialMediaLinks.footerFaceBookLogo().should('be.visible');
+        this.socialMediaLinks.footerInstagramLogo().should('be.visible');
+        this.socialMediaLinks.footerTwitterLogo().should('be.visible');
+        this.socialMediaLinks.footerYoutubeLogo().should('be.visible');
+        this.socialMediaLinks.footerLinkedInLogo().should('be.visible');
     }
     areAboutUsLinksVisible() {
         this.elements.aboutUsMenu().should('be.visible');
@@ -76,6 +75,10 @@ class footerEuPage {
         this.elements.cryptoCurrenciesLink().should('be.visible');
         this.elements.eTFsLink().should('be.visible');
     }
+    arePlatformLinksVisible() {
+        this.elements.derivMT5Link().should('be.visible');
+        this.elements.derivTraderLink().should('be.visible');
+    }
     areSocialLinksCorrect(socialLink, socialWebsiteUrl) {
         socialLink().click()
         cy.findByRole('alertdialog', { name: 'Redirect notice' })
@@ -89,6 +92,9 @@ class footerEuPage {
         cy.findByRole('button', { name: 'Proceed' }).click();
         cy.reload();
         cy.get('@windowOpen').should('be.calledWith', socialWebsiteUrl);
+    }
+    clickHamburgerMenu() {
+        this.elements.hamburgerMenu().click();
     }
 }
 module.exports = new footerEuPage();
