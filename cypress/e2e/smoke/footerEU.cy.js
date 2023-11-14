@@ -56,7 +56,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.careersPageText().should('be.visible');
     cy.go(-1);
     footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.aboutUsMenu().click();
+    footerEuPage.elements.aboutUsMenu().click({force: true});
     footerEuPage.elements.derivLifeLink()
       .then(($el) => {
         footerEuPage.elements.derivLifeLink().invoke('removeAttr', 'target').click();
