@@ -1,5 +1,5 @@
 import '@testing-library/cypress/add-commands'
-import footerEuPage, { socialMediaLinks } from '../../support/POM/commonEuPage';
+import footerEuPage, { areLegalLinksVisible, socialMediaLinks } from '../../support/POM/commonEuPage';
 describe('QATEST-1422 Footer EU Responsive', () => {
   beforeEach(() => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
@@ -73,7 +73,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.tradeMenu().click();
     footerEuPage.elements.multipliersLink().click();
-    footerEuPage.elements.multipliersPageText().should('be.visible')
+    footerEuPage.elements.multipliersPageText().should('be.visible');
   });
   it('Should open market menu and check all links.', () => {
     footerEuPage.clickHamburgerMenu();
@@ -87,7 +87,6 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.stockAndIndicesPageText().should('be.visible');
     footerEuPage.elements.hamburgerMenu().should('be.visible');
     footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.marketsMenu().should('be.visible');
     footerEuPage.elements.marketsMenu().click();
     footerEuPage.elements.commoditiesLink().should('be.visible');
     footerEuPage.elements.commoditiesLink().click();
@@ -108,10 +107,33 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.tradeMenu().click();
     footerEuPage.arePlatformLinksVisible();
     footerEuPage.elements.derivMT5Link().click();
-    footerEuPage.elements.derivMT5PageText().should('be.visible')
+    footerEuPage.elements.derivMT5PageText().should('be.visible');
     footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.tradeMenu().click();
     footerEuPage.elements.derivTraderLink().click();
-    footerEuPage.elements.dTraderlogo().should('be.visible')
+    footerEuPage.elements.dTraderlogo().should('be.visible');
   });
-
+  it('Should open legal menu and verify all links.', () => {
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.legalMenu().click();
+    footerEuPage.areLegalLinksVisible();
+    footerEuPage.elements.regulatoryInformationLink().click();
+    footerEuPage.elements.regulatoryInformationPageText().should('be.visible');
+    footerEuPage.elements.termsAndConditionsLink().click();
+    footerEuPage.elements.termsAndConditionsPageText().should('be.visible');
+    footerEuPage.elements.secureAndResponsibleTradingLink().click();
+    footerEuPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
+  });
+  it('Should open partners menu and verify all links.', () => {
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.partnersMenu().click();
+    footerEuPage.arePartnersLinkVisible();
+    footerEuPage.elements.derivPrimeLink().click();
+    footerEuPage.elements.derivPrimePageText().should('be.visible');
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.affiliatesLink().click();
+    footerEuPage.elements.affiliatesPageText().should('be.visible');
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.aPILink().click();
+  });
 })
