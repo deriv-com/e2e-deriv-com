@@ -19,6 +19,22 @@ describe('Validate Hero banner message', () => {
   })
 })
 
+describe('QATEST-1330 - Check trading spec and Trade now', () => {
+  
+  it('Should click on trading spec and Trade now button under live pricing table and validate its navigation.', () => {
+      
+      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.findByRole('link', { name: 'Check trading specs' }).click();
+      cy.url().should('include', 'trading-specification');
+      cy.findByText('Trading specifications for CFDs on Deriv').should('be.visible')
+      cy.go(-1);
+      cy.findByRole('button', { name: 'Trade now' }).click();
+      cy.origin('https://oauth.deriv.com', () => {
+      cy.get('.title-text').contains('Welcome!').should('be.visible') })
+        
+  })
+})
+
 describe('QATEST-1320 - Live Pricing table ROW', () => {
   
   it('Should click on all the 5 different markets and check whether the live pricing table for each is displayed.', () => {
