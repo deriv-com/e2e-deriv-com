@@ -38,6 +38,20 @@ class footerEuPage {
         derivMT5PageText: () => cy.findByRole('heading', { name: 'The all-in-one CFD trading platform' }),
         derivTraderLink: () => cy.findByRole('link', { name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.' }),
         dTraderlogo: () => cy.findByRole('img', { name: 'Deriv Trader' }),
+        legalMenu: () => cy.findByRole('heading', {name: 'Legal'}),
+        regulatoryInformationLink: () => cy.findByRole('link', {name: 'Regulatory information'}),
+        regulatoryInformationPageText: () => cy.findByRole('heading',{name: 'Regulatory information'}),
+        termsAndConditionsLink: () => cy.findByLabelText('Legal').findByRole('link', { name: 'Terms and conditions' }),
+        termsAndConditionsPageText: () => cy.findByRole('heading', {name: 'Terms and conditions'}),
+        secureAndResponsibleTradingLink: () => cy.findByLabelText('Legal').findByRole('link', { name: 'Secure and responsible trading' }),
+        secureAndResponsibleTradingPageText: () => cy.findByRole ('heading', {name: 'Secure and responsible trading'}),
+        partnersMenu: () => cy.findByRole('button', { name: 'Partners chevron' }),
+        derivPrimeLink: () => cy.findByRole('link', { name: 'Deriv Prime' }),
+        derivPrimePageText: () => cy.findByRole('heading',{name: 'Global liquidity for all'}),
+        affiliatesLink:() => cy.findByRole('link', { name: 'Affiliates' }),
+        affiliatesPageText: () => cy.findByRole('heading' ,{name: 'Partner with a trusted online trading provider'}),
+        aPILink:() => cy.findByRole('link', { name: 'API', exact: true }),
+        aPIPageText: () => cy.findByRole ('heading', {name: 'Deriv API'}),
     }
     socialMediaLinks = {
         footerFaceBookLogo: () => cy.findByRole('img', { name: "_t_Facebook_t_" }),
@@ -78,6 +92,18 @@ class footerEuPage {
     arePlatformLinksVisible() {
         this.elements.derivMT5Link().should('be.visible');
         this.elements.derivTraderLink().should('be.visible');
+    }
+    areLegalLinksVisible(){
+        this.elements.regulatoryInformationLink().should('be.visible');
+        this.elements.termsAndConditionsLink().should('be.visible');
+        this.elements.secureAndResponsibleTradingLink().should('be.visible');
+        
+    }
+    arePartnersLinkVisible()
+    {
+        this.elements.derivPrimeLink().should('be.visible');
+        this.elements.affiliatesLink().should('be.visible');
+        this.elements.aPILink().should('be.visible');
     }
     areSocialLinksCorrect(socialLink, socialWebsiteUrl) {
         socialLink().click()
