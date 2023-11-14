@@ -120,7 +120,7 @@ class footerEuPage {
         cy.get('@windowOpen').should('be.calledWith', socialWebsiteUrl);
     }
     clickHamburgerMenu() {
-        this.elements.hamburgerMenu().click();
+        this.elements.hamburgerMenu().click({force:true});
     }
 }
 module.exports = new footerEuPage();

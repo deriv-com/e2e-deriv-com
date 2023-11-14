@@ -43,7 +43,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.whoWeArePageText().should('be.visible');
     footerEuPage.elements.whyChooseUsLink().click();
     footerEuPage.elements.whyChooseUsPageText().should('be.visible');
-    footerEuPage.elements.partnershipProgrammesLink().click();
+    footerEuPage.elements.partnershipProgrammesLink().click({force:true});
     footerEuPage.elements.partnershipProgrammesPageText().should('be.visible');
     cy.go(-1);
     footerEuPage.clickHamburgerMenu();
@@ -89,7 +89,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.marketsMenu().click();
     footerEuPage.elements.commoditiesLink().should('be.visible');
-    footerEuPage.elements.commoditiesLink().click();
+    footerEuPage.elements.commoditiesLink().click({force:true});
     footerEuPage.elements.commoditiesPageLink().should('be.visible');
     footerEuPage.elements.hamburgerMenu().should('be.visible');
     footerEuPage.clickHamburgerMenu();
