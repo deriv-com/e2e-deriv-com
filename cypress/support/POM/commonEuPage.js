@@ -1,6 +1,10 @@
 class footerEuPage {
     elements = {
         footerLogo: () => cy.findByRole('img', { name: "deriv logo image" }),
+        proceedButton: () => cy.findByRole('button', { name: 'Proceed' }),
+        alertDialog: () =>  cy.findByRole('alertdialog', { name: 'Redirect notice' }),
+        alertRedirectMessage : () => cy.findByRole('alertdialog')
+        .findByText('You are being redirected to an external website.'),
         hamburgerMenu: () => cy.findByRole('img', { name: 'hamburger menu' }),
         aboutUsMenu: () => cy.findByRole('button', { name: 'About us chevron' }),
         whoWeAreLink: () => cy.findByRole('link', { name: 'Who we are' }),
@@ -51,6 +55,18 @@ class footerEuPage {
         affiliatesPageText: () => cy.findByRole('heading', { name: 'Partner with a trusted online trading provider' }),
         aPILink: () => cy.findByRole('link', { name: 'API', exact: true }),
         aPIPageText: () => cy.findByRole('heading', { name: 'Deriv API' }),
+        resourcesMenu: () => cy.findByRole('button', {name: 'Resources chevron'}),
+        helpCenterLink: () => cy.findByRole ('link' , {name: 'Help centre'}),
+        helpCenterPage:() =>cy.findByRole ('heading', {name: 'How can we help?'}),
+        communityLink: () => cy.findByRole ('link' , {name: 'Community'}),
+        communityPapageText: () => cy.findByRole('heading' , {name: 'Welcome to our community'}),
+        tradersToolLink: () => cy.findByRole ('link' , {name: 'Traders’ tools'}),
+        paymentMethodLink: () => cy.findByRole ('link' , {name: 'Payment methods'}),
+        derivMT5SignalLink: () => cy.findByRole ('link' , {name: 'Help Deriv MT5 Signals'}),
+        statusPagelLink: () => cy.findByRole ('link' , {name: 'Status page'}),
+        derivBlogLink: () => cy.findByRole ('link' , {name: 'Deriv Blog'}),
+
+
     }
     socialMediaLinks = {
         footerFaceBookLogo: () => cy.findByRole('img', { name: "_t_Facebook_t_" }),
@@ -104,15 +120,12 @@ class footerEuPage {
     }
     areSocialLinksCorrect(socialLink, socialWebsiteUrl) {
         socialLink().click()
-        cy.findByRole('alertdialog', { name: 'Redirect notice' })
-            .should('be.visible');
-        cy.findByRole('alertdialog')
-            .findByText('You are being redirected to an external website.')
-            .should('be.visible');
+        this.elements.alertDialog().should('be.visible');
+        this.elements.alertRedirectMessage().should('be.visible');
         cy.window().then((win) => {
             cy.stub(win, 'open').as('windowOpen');
         });
-        cy.findByRole('button', { name: 'Proceed' }).click();
+        this.elements.proceedButton().click();
         cy.reload();
         cy.get('@windowOpen').should('be.calledWith', socialWebsiteUrl);
     }
