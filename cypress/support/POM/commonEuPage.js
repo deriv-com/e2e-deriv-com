@@ -1,5 +1,4 @@
 class footerEuPage {
-
     elements = {
         footerLogo: () => cy.findByRole('img', { name: "deriv logo image" }),
         hamburgerMenu: () => cy.findByRole('img', { name: 'hamburger menu' }),
@@ -21,7 +20,7 @@ class footerEuPage {
         cFDPageText: () => cy.findByRole('heading', { name: 'CFD trading' }),
         multipliersLink: () => cy.findByRole('img', { name: 'Multipliers trade type' }),
         multipliersPageText: () => cy.findByRole('heading', { name: 'Multipliers', exact: true }),
-        marketsMenu: () => cy.findByRole('heading', { name: 'Markets chevron' }),
+        marketsMenu: () => cy.findByRole('button', { name: 'Markets chevron' }),
         forexLink: () => cy.findByRole('link', { name: 'Forex Forex Trade the world’s largest financial market with popular forex pairs.' }),
         forexPageText: () => cy.findByRole('heading', { name: 'Forex', exact: true }),
         derivedIndicesLink: () => cy.findByRole('link', { name: 'Synthetic indices Derived indices Enjoy trading asset prices derived from simulated markets.' }),
@@ -38,20 +37,20 @@ class footerEuPage {
         derivMT5PageText: () => cy.findByRole('heading', { name: 'The all-in-one CFD trading platform' }),
         derivTraderLink: () => cy.findByRole('link', { name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.' }),
         dTraderlogo: () => cy.findByRole('img', { name: 'Deriv Trader' }),
-        legalMenu: () => cy.findByRole('heading', {name: 'Legal'}),
-        regulatoryInformationLink: () => cy.findByRole('link', {name: 'Regulatory information'}),
-        regulatoryInformationPageText: () => cy.findByRole('heading',{name: 'Regulatory information'}),
+        legalMenu: () => cy.findByRole('button', { name: 'Legal chevron' }),
+        regulatoryInformationLink: () => cy.findByRole('link', { name: 'Regulatory information' }),
+        regulatoryInformationPageText: () => cy.findByRole('heading', { name: 'Regulatory information' }),
         termsAndConditionsLink: () => cy.findByLabelText('Legal').findByRole('link', { name: 'Terms and conditions' }),
-        termsAndConditionsPageText: () => cy.findByRole('heading', {name: 'Terms and conditions'}),
+        termsAndConditionsPageText: () => cy.findByRole('heading', { name: 'Terms and conditions' }),
         secureAndResponsibleTradingLink: () => cy.findByLabelText('Legal').findByRole('link', { name: 'Secure and responsible trading' }),
-        secureAndResponsibleTradingPageText: () => cy.findByRole ('heading', {name: 'Secure and responsible trading'}),
+        secureAndResponsibleTradingPageText: () => cy.findByRole('heading', { name: 'Secure and responsible trading' }),
         partnersMenu: () => cy.findByRole('button', { name: 'Partners chevron' }),
         derivPrimeLink: () => cy.findByRole('link', { name: 'Deriv Prime' }),
-        derivPrimePageText: () => cy.findByRole('heading',{name: 'Global liquidity for all'}),
-        affiliatesLink:() => cy.findByRole('link', { name: 'Affiliates' }),
-        affiliatesPageText: () => cy.findByRole('heading' ,{name: 'Partner with a trusted online trading provider'}),
-        aPILink:() => cy.findByRole('link', { name: 'API', exact: true }),
-        aPIPageText: () => cy.findByRole ('heading', {name: 'Deriv API'}),
+        derivPrimePageText: () => cy.findByRole('heading', { name: 'Global liquidity for all' }),
+        affiliatesLink: () => cy.findByRole('link', { name: 'Affiliates' }),
+        affiliatesPageText: () => cy.findByRole('heading', { name: 'Partner with a trusted online trading provider' }),
+        aPILink: () => cy.findByRole('link', { name: 'API', exact: true }),
+        aPIPageText: () => cy.findByRole('heading', { name: 'Deriv API' }),
     }
     socialMediaLinks = {
         footerFaceBookLogo: () => cy.findByRole('img', { name: "_t_Facebook_t_" }),
@@ -93,14 +92,12 @@ class footerEuPage {
         this.elements.derivMT5Link().should('be.visible');
         this.elements.derivTraderLink().should('be.visible');
     }
-    areLegalLinksVisible(){
+    areLegalLinksVisible() {
         this.elements.regulatoryInformationLink().should('be.visible');
         this.elements.termsAndConditionsLink().should('be.visible');
         this.elements.secureAndResponsibleTradingLink().should('be.visible');
-        
     }
-    arePartnersLinkVisible()
-    {
+    arePartnersLinkVisible() {
         this.elements.derivPrimeLink().should('be.visible');
         this.elements.affiliatesLink().should('be.visible');
         this.elements.aPILink().should('be.visible');
@@ -120,7 +117,7 @@ class footerEuPage {
         cy.get('@windowOpen').should('be.calledWith', socialWebsiteUrl);
     }
     clickHamburgerMenu() {
-        this.elements.hamburgerMenu().click({force:true});
+        this.elements.hamburgerMenu().click({ force: true });
     }
 }
 module.exports = new footerEuPage();
