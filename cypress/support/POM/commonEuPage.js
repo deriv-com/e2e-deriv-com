@@ -1,7 +1,10 @@
 class footerEuPage {
-
     elements = {
         footerLogo: () => cy.findByRole('img', { name: "deriv logo image" }),
+        proceedButton: () => cy.findByRole('button', { name: 'Proceed' }),
+        alertDialog: () =>  cy.findByRole('alertdialog', { name: 'Redirect notice' }),
+        alertRedirectMessage : () => cy.findByRole('alertdialog')
+        .findByText('You are being redirected to an external website.'),
         hamburgerMenu: () => cy.findByRole('img', { name: 'hamburger menu' }),
         aboutUsMenu: () => cy.findByRole('button', { name: 'About us chevron' }),
         whoWeAreLink: () => cy.findByRole('link', { name: 'Who we are' }),
@@ -21,7 +24,7 @@ class footerEuPage {
         cFDPageText: () => cy.findByRole('heading', { name: 'CFD trading' }),
         multipliersLink: () => cy.findByRole('img', { name: 'Multipliers trade type' }),
         multipliersPageText: () => cy.findByRole('heading', { name: 'Multipliers', exact: true }),
-        marketsMenu: () => cy.findByRole('heading', { name: 'Markets chevron' }),
+        marketsMenu: () => cy.findByRole('button', { name: 'Markets chevron' }),
         forexLink: () => cy.findByRole('link', { name: 'Forex Forex Trade the world’s largest financial market with popular forex pairs.' }),
         forexPageText: () => cy.findByRole('heading', { name: 'Forex', exact: true }),
         derivedIndicesLink: () => cy.findByRole('link', { name: 'Synthetic indices Derived indices Enjoy trading asset prices derived from simulated markets.' }),
@@ -38,20 +41,32 @@ class footerEuPage {
         derivMT5PageText: () => cy.findByRole('heading', { name: 'The all-in-one CFD trading platform' }),
         derivTraderLink: () => cy.findByRole('link', { name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.' }),
         dTraderlogo: () => cy.findByRole('img', { name: 'Deriv Trader' }),
-        legalMenu: () => cy.findByRole('heading', {name: 'Legal'}),
-        regulatoryInformationLink: () => cy.findByRole('link', {name: 'Regulatory information'}),
-        regulatoryInformationPageText: () => cy.findByRole('heading',{name: 'Regulatory information'}),
+        legalMenu: () => cy.findByRole('button', { name: 'Legal chevron' }),
+        regulatoryInformationLink: () => cy.findByRole('link', { name: 'Regulatory information' }),
+        regulatoryInformationPageText: () => cy.findByRole('heading', { name: 'Regulatory information' }),
         termsAndConditionsLink: () => cy.findByLabelText('Legal').findByRole('link', { name: 'Terms and conditions' }),
-        termsAndConditionsPageText: () => cy.findByRole('heading', {name: 'Terms and conditions'}),
+        termsAndConditionsPageText: () => cy.findByRole('heading', { name: 'Terms and conditions' }),
         secureAndResponsibleTradingLink: () => cy.findByLabelText('Legal').findByRole('link', { name: 'Secure and responsible trading' }),
-        secureAndResponsibleTradingPageText: () => cy.findByRole ('heading', {name: 'Secure and responsible trading'}),
+        secureAndResponsibleTradingPageText: () => cy.findByRole('heading', { name: 'Secure and responsible trading' }),
         partnersMenu: () => cy.findByRole('button', { name: 'Partners chevron' }),
         derivPrimeLink: () => cy.findByRole('link', { name: 'Deriv Prime' }),
-        derivPrimePageText: () => cy.findByRole('heading',{name: 'Global liquidity for all'}),
-        affiliatesLink:() => cy.findByRole('link', { name: 'Affiliates' }),
-        affiliatesPageText: () => cy.findByRole('heading' ,{name: 'Partner with a trusted online trading provider'}),
-        aPILink:() => cy.findByRole('link', { name: 'API', exact: true }),
-        aPIPageText: () => cy.findByRole ('heading', {name: 'Deriv API'}),
+        derivPrimePageText: () => cy.findByRole('heading', { name: 'Global liquidity for all' }),
+        affiliatesLink: () => cy.findByRole('link', { name: 'Affiliates' }),
+        affiliatesPageText: () => cy.findByRole('heading', { name: 'Partner with a trusted online trading provider' }),
+        aPILink: () => cy.findByRole('link', { name: 'API', exact: true }),
+        aPIPageText: () => cy.findByRole('heading', { name: 'Deriv API' }),
+        resourcesMenu: () => cy.findByRole('button', {name: 'Resources chevron'}),
+        helpCenterLink: () => cy.findByRole ('link' , {name: 'Help centre'}),
+        helpCenterPage:() =>cy.findByRole ('heading', {name: 'How can we help?'}),
+        communityLink: () => cy.findByRole ('link' , {name: 'Community'}),
+        communityPapageText: () => cy.findByRole('heading' , {name: 'Welcome to our community'}),
+        tradersToolLink: () => cy.findByRole ('link' , {name: 'Traders’ tools'}),
+        paymentMethodLink: () => cy.findByRole ('link' , {name: 'Payment methods'}),
+        derivMT5SignalLink: () => cy.findByRole ('link' , {name: 'Help Deriv MT5 Signals'}),
+        statusPagelLink: () => cy.findByRole ('link' , {name: 'Status page'}),
+        derivBlogLink: () => cy.findByRole ('link' , {name: 'Deriv Blog'}),
+
+
     }
     socialMediaLinks = {
         footerFaceBookLogo: () => cy.findByRole('img', { name: "_t_Facebook_t_" }),
@@ -93,34 +108,29 @@ class footerEuPage {
         this.elements.derivMT5Link().should('be.visible');
         this.elements.derivTraderLink().should('be.visible');
     }
-    areLegalLinksVisible(){
+    areLegalLinksVisible() {
         this.elements.regulatoryInformationLink().should('be.visible');
         this.elements.termsAndConditionsLink().should('be.visible');
         this.elements.secureAndResponsibleTradingLink().should('be.visible');
-        
     }
-    arePartnersLinkVisible()
-    {
+    arePartnersLinkVisible() {
         this.elements.derivPrimeLink().should('be.visible');
         this.elements.affiliatesLink().should('be.visible');
         this.elements.aPILink().should('be.visible');
     }
     areSocialLinksCorrect(socialLink, socialWebsiteUrl) {
         socialLink().click()
-        cy.findByRole('alertdialog', { name: 'Redirect notice' })
-            .should('be.visible');
-        cy.findByRole('alertdialog')
-            .findByText('You are being redirected to an external website.')
-            .should('be.visible');
+        this.elements.alertDialog().should('be.visible');
+        this.elements.alertRedirectMessage().should('be.visible');
         cy.window().then((win) => {
             cy.stub(win, 'open').as('windowOpen');
         });
-        cy.findByRole('button', { name: 'Proceed' }).click();
+        this.elements.proceedButton().click();
         cy.reload();
         cy.get('@windowOpen').should('be.calledWith', socialWebsiteUrl);
     }
     clickHamburgerMenu() {
-        this.elements.hamburgerMenu().click({force:true});
+        this.elements.hamburgerMenu().click({ force: true });
     }
 }
 module.exports = new footerEuPage();
