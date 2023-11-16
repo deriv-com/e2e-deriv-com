@@ -23,13 +23,13 @@ describe('QATEST-1330 - Check trading spec and Trade now', () => {
   
   it('Should click on trading spec and Trade now button under live pricing table and validate its navigation in mobile.', () => {
       
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
+      cy.c_visitResponsive(Cypress.env('RegionROW'), 'small');
       cy.check_tradingspecs_and_tradenow_button();  
   })
 
   it('Should click on trading spec and Trade now button under live pricing table and validate its navigation in desktop.', () => {
       
-    cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+    cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop');
     cy.check_tradingspecs_and_tradenow_button();
     
   })
