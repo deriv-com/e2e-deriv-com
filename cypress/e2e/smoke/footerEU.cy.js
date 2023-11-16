@@ -5,7 +5,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
   });
   it('Should verify deriv logo and social media icons.', () => {
-    footerEuPage.elements.footerLogo().should('be.visible')
+    footerEuPage.elements.footerLogo().should('be.visible');
     footerEuPage.areSocialLinksVisible();
   });
   const externalEUUrls = Cypress.config('externalEUUrls');
@@ -35,7 +35,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     ];
     socialLinks.forEach((link) => { footerEuPage.areSocialLinksCorrect(link.element, link.url); });
   });
-  it('Should open about us menu and verify for all links.', () => {
+  it('Should open about us menu and verify links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.areAboutUsLinksVisible();
@@ -43,6 +43,10 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.whoWeArePageText().should('be.visible');
     footerEuPage.elements.whyChooseUsLink().click();
     footerEuPage.elements.whyChooseUsPageText().should('be.visible');
+  });
+  it('Should open about us menu and verify all of the links.', () =>{
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.elements.partnershipProgrammesLink().click({ force: true });
     footerEuPage.elements.partnershipProgrammesPageText().should('be.visible');
     cy.go(-1);
@@ -73,7 +77,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.multipliersLink().click();
     footerEuPage.elements.multipliersPageText().should('be.visible');
   });
-  it('Should open market menu and verify all links.', () => {
+  it('Should open market menu and verify links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.marketsMenu().click();
     footerEuPage.areMarketLinksVisible();
@@ -83,8 +87,10 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.derivedIndicesPageText().should('be.visible');
     footerEuPage.elements.stocksAndIndicesLink().click();
     footerEuPage.elements.stockAndIndicesPageText().should('be.visible');
+  }),
+  it('Should open market menu and verify all of the links.' ,() => {
     footerEuPage.elements.hamburgerMenu().should('be.visible');
-    footerEuPage.clickHamburgerMenu();ß
+    footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.marketsMenu().click({ force: true });
     footerEuPage.elements.commoditiesLink().should('be.visible');
     footerEuPage.elements.commoditiesLink().click({ force: true });
@@ -119,6 +125,9 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.regulatoryInformationPageText().should('be.visible');
     footerEuPage.elements.termsAndConditionsLink().click();
     footerEuPage.elements.termsAndConditionsPageText().should('be.visible');
+    footerEuPage.elements.cookiesEUAcceptButton().click();
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.legalMenu().click();
     footerEuPage.elements.secureAndResponsibleTradingLink().click();
     footerEuPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
   });
@@ -132,6 +141,76 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.affiliatesLink().click();
     footerEuPage.elements.affiliatesPageText().should('be.visible');
     footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.aPILink().click();
+    footerEuPage.elements.aPILink()
+      .then(($ele) => {
+        footerEuPage.elements.aPILink().invoke('removeAttr', 'target').click();
+        const aPILink = $ele.attr('href');
+        cy.request(aPILink).its('status').should('eq', 200);
+      })
+  });
+  it('Should open resources/support menu and verify all links.', () => {
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.resourcesMenu().click();
+    footerEuPage.elements.helpCenterLink().click();
+    footerEuPage.elements.helpCenterPage().should('be.visible');
+    footerEuPage.elements.cookiesEUAcceptButton().click();
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.resourcesMenu().click();
+    footerEuPage.elements.communityLink().invoke('removeAttr', 'target').click();
+    cy.go(-1);
+    footerEuPage.elements.hamburgerMenu().should('be.visible');
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.resourcesMenu().click();
+    footerEuPage.elements.statusPagelLink().click();
+    footerEuPage.elements.proceedButton().click();
+  });
+  it('Should open resources/support menu and verify all of the links.',() => {
+    footerEuPage.elements.cookiesEUAcceptButton().click();
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.resourcesMenu().click();
+    footerEuPage.elements.derivMT5SignalLink().click();
+    footerEuPage.elements.hamburgerMenu().should('be.visible');
+    footerEuPage.clickHamburgerMenu();
+    footerEuPage.elements.resourcesMenu().click();
+    footerEuPage.elements.derivBlogLink()
+      .then(($el) => {
+        footerEuPage.elements.derivBlogLink().invoke('removeAttr', 'target').click();
+        const derivBlog = $el.attr('href');
+        cy.wrap(derivBlog).should('eq', externalEUUrls.derivBlog);
+      })
+  });
+  it('Should open and verify footer (licence) PDF.', () => {
+    footerEuPage.elements.footerEUlicence().should('be.visible');
+    footerEuPage.elements.footerEUlicence()
+      .invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EUlicencePDF)
+      .then(href => {
+        cy.request(href).then(pdf => {
+        })
+        cy.request(href).its('status').should('eq', 200);
+      })
+  });
+  it('Should open below footer links.', () => {
+    footerEuPage.elements.cookiesEUAcceptButton().click();
+    footerEuPage.elements.footerTermsAndConditionLink().click();
+    footerEuPage.elements.termsAndConditionsPageText().should('be.visible');
+    footerEuPage.elements.footerSecureAndRespTradingLink().click();
+    footerEuPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
+    footerEuPage.elements.footerRiskDisclosureLink().should('be.visible');
+    footerEuPage.elements.footerRiskDisclosureLink().invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EURiskDiscPDF)
+      .then(href => {
+        cy.request(href).then(pdf => {
+        })
+        cy.request(href).its('status').should('eq', 200);
+      })
+  })
+  it('Should open CFD banner link.', () => {
+    footerEuPage.elements.cookiesEUAcceptButton().click();
+    footerEuPage.elements.cFDFloatingBannerLink().should('be.visible');
+    footerEuPage.elements.cFDFloatingBannerLink().invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EURiskDiscPDF)
+      .then(href => {
+        cy.request(href).then(pdf => {
+        })
+        cy.request(href).its('status').should('eq', 200);
+      })
   });
 })
