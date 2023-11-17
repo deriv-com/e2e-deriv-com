@@ -1,5 +1,5 @@
 import '@testing-library/cypress/add-commands'
-import footerEUPage, { areLegalLinksVisible, socialMediaLinks } from '../../support/POM/commonEuPage';
+import footerEUPage, { areLegalLinksVisible, socialMediaLinks } from '../../support/POM/commonEUPage';
 describe('QATEST-1422 Footer EU Responsive', () => {
   beforeEach(() => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
