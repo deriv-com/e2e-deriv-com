@@ -2,7 +2,6 @@ import '@testing-library/cypress/add-commands'
 
 describe('QATEST-1328 - Live Pricing table EU', () => {
 
-
   it('Should click on all the 5 different markets and check whether the live pricing table for each is displayed.', () => {
      cy.c_visitResponsive(Cypress.env('RegionEU'))
      cy.validate_markets('eu')

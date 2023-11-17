@@ -2,9 +2,9 @@ class footerEUPage {
     elements = {
         footerLogo: () => cy.findByRole('img', { name: "deriv logo image" }),
         proceedButton: () => cy.findByRole('button', { name: 'Proceed' }),
-        alertDialog: () =>  cy.findByRole('alertdialog', { name: 'Redirect notice' }),
-        alertRedirectMessage : () => cy.findByRole('alertdialog')
-        .findByText('You are being redirected to an external website.'),
+        alertDialog: () => cy.findByRole('alertdialog', { name: 'Redirect notice' }),
+        alertRedirectMessage: () => cy.findByRole('alertdialog')
+            .findByText('You are being redirected to an external website.'),
         hamburgerMenu: () => cy.findByRole('img', { name: 'hamburger menu' }),
         aboutUsMenu: () => cy.findByRole('button', { name: 'About us chevron' }),
         whoWeAreLink: () => cy.findByRole('link', { name: 'Who we are' }),
@@ -45,9 +45,11 @@ class footerEUPage {
         regulatoryInformationLink: () => cy.findByRole('link', { name: 'Regulatory information' }),
         regulatoryInformationPageText: () => cy.findByRole('heading', { name: 'Regulatory information' }),
         termsAndConditionsLink: () => cy.findByLabelText('Legal').findByRole('link', { name: 'Terms and conditions' }),
+        footerTermsAndConditionLink: () => cy.findByRole('link', {name: 'Terms and conditions'}),
         termsAndConditionsPageText: () => cy.findByRole('heading', { name: 'Terms and conditions' }),
         secureAndResponsibleTradingLink: () => cy.findByLabelText('Legal').findByRole('link', { name: 'Secure and responsible trading' }),
         secureAndResponsibleTradingPageText: () => cy.findByRole('heading', { name: 'Secure and responsible trading' }),
+        footerSecureAndRespTradingLink: () => cy.findByRole('link' , {name: 'Secure and responsible trading'}),
         partnersMenu: () => cy.findByRole('button', { name: 'Partners chevron' }),
         derivPrimeLink: () => cy.findByRole('link', { name: 'Deriv Prime' }),
         derivPrimePageText: () => cy.findByRole('heading', { name: 'Global liquidity for all' }),
@@ -55,18 +57,20 @@ class footerEUPage {
         affiliatesPageText: () => cy.findByRole('heading', { name: 'Partner with a trusted online trading provider' }),
         aPILink: () => cy.findByRole('link', { name: 'API', exact: true }),
         aPIPageText: () => cy.findByRole('heading', { name: 'Deriv API' }),
-        resourcesMenu: () => cy.findByRole('button', {name: 'Resources chevron'}),
-        helpCenterLink: () => cy.findByRole ('link' , {name: 'Help centre'}),
-        helpCenterPage:() =>cy.findByRole ('heading', {name: 'How can we help?'}),
-        communityLink: () => cy.findByRole ('link' , {name: 'Community'}),
-        communityPapageText: () => cy.findByRole('heading' , {name: 'Welcome to our community'}),
-        tradersToolLink: () => cy.findByRole ('link' , {name: 'Traders’ tools'}),
-        paymentMethodLink: () => cy.findByRole ('link' , {name: 'Payment methods'}),
-        derivMT5SignalLink: () => cy.findByRole ('link' , {name: 'Help Deriv MT5 Signals'}),
-        statusPagelLink: () => cy.findByRole ('link' , {name: 'Status page'}),
-        derivBlogLink: () => cy.findByRole ('link' , {name: 'Deriv Blog'}),
-
-
+        resourcesMenu: () => cy.findByRole('button', { name: 'Resources chevron' }),
+        helpCenterLink: () => cy.findByRole('link', { name: 'Help centre' }),
+        helpCenterPage: () => cy.findByRole('heading', { name: 'How can we help?' }),
+        communityLink: () => cy.findByRole('link', { name: 'Community' }),
+        communityPapageText: () => cy.findByRole('heading', { name: 'Welcome to our community' }),
+        tradersToolLink: () => cy.findByRole('link', { name: 'Traders’ tools' }),
+        paymentMethodLink: () => cy.findByRole('link', { name: 'Payment methods' }),
+        derivMT5SignalLink: () => cy.findByRole('link', { name: 'Deriv MT5 Signals' }),
+        statusPagelLink: () => cy.findByRole('link', { name: 'Status page' }),
+        derivBlogLink: () => cy.findByRole('link', { name: 'Deriv Blog' }),
+        footerEUlicence: () => cy.findByRole('link', { name: '(licence)' }),
+        footerRiskDisclosureLink: () => cy.findByRole('link', { name: 'Risk disclosure' }),
+        cookiesEUAcceptButton: () => cy.findByRole('button', {name: 'Accept'}),
+        cFDFloatingBannerLink: () => cy.findByRole('link' , {name: '71% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.'}),
     }
     socialMediaLinks = {
         footerFaceBookLogo: () => cy.findByRole('img', { name: "_t_Facebook_t_" }),
@@ -74,6 +78,10 @@ class footerEUPage {
         footerTwitterLogo: () => cy.findByRole('img', { name: '_t_Twitter_t_' }),
         footerYoutubeLogo: () => cy.findByRole('img', { name: '_t_Youtube_t_' }),
         footerLinkedInLogo: () => cy.findByRole('img', { name: '_t_Linkedin_t_' }),
+    }
+    eUPDFs = {
+        EUlicencePDF: '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
+        EURiskDiscPDF: '/tnc/eu/risk-disclosure.pdf',
     }
     areSocialLinksVisible() {
         this.socialMediaLinks.footerFaceBookLogo().should('be.visible');
