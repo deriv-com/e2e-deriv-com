@@ -17,12 +17,12 @@ describe('QATEST-1378 - Should validate signup page', () => {
 
   it('Should be able to sign up on a NON-EU website', () => {
     cy.c_visitResponsive('/signup' + String(Cypress.env('RegionROW')));
-    validateSignup ();
+    validateSignup();
   });
 
   it('Should be able to sign up on a EU website', () => {
     cy.c_visitResponsive('/signup' + String(Cypress.env('RegionEU')));
-    validateSignup ();
+    validateSignup();
     // EU-specific footer
     cy.findByRole('link', { name: '71% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.' }).should('be.visible');
   });
