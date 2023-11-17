@@ -9,6 +9,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.areSocialLinksVisible();
   });
   const externalEUUrls = Cypress.config('externalEUUrls');
+
   it('Should open and verify all footer social media links.', () => {
     const socialLinks = [
       {
@@ -35,6 +36,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     ];
     socialLinks.forEach((link) => { footerEuPage.areSocialLinksCorrect(link.element, link.url); });
   });
+
   it('Should open about us menu and verify links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
@@ -44,6 +46,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.whyChooseUsLink().click();
     footerEuPage.elements.whyChooseUsPageText().should('be.visible');
   });
+
   it('Should open about us menu and verify all of the links.', () =>{
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
@@ -66,6 +69,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         cy.wrap(derivLife).should('eq', externalEUUrls.derivlifeURL);
       })
   });
+
   it('Should open trade type menu and verify all links.', () => {
     footerEuPage.elements.hamburgerMenu().click();
     footerEuPage.elements.tradeMenu().click();
@@ -77,6 +81,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.multipliersLink().click();
     footerEuPage.elements.multipliersPageText().should('be.visible');
   });
+
   it('Should open market menu and verify links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.marketsMenu().click();
@@ -88,6 +93,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.stocksAndIndicesLink().click();
     footerEuPage.elements.stockAndIndicesPageText().should('be.visible');
   }),
+
   it('Should open market menu and verify all of the links.' ,() => {
     footerEuPage.elements.hamburgerMenu().should('be.visible');
     footerEuPage.clickHamburgerMenu();
@@ -106,6 +112,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.eTFsLink().click();
     footerEuPage.elements.eTFsPageText().should('be.visible');
   });
+  
   it('Should open platform menu and verify all links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.tradeMenu().click();
@@ -117,6 +124,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.derivTraderLink().click();
     footerEuPage.elements.dTraderlogo().should('be.visible');
   });
+
   it('Should open legal menu and verify all links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.legalMenu().click();
@@ -131,6 +139,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.secureAndResponsibleTradingLink().click();
     footerEuPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
   });
+
   it('Should open partners menu and verify all links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.partnersMenu().click();
@@ -148,6 +157,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         cy.request(aPILink).its('status').should('eq', 200);
       })
   });
+
   it('Should open resources/support menu and verify all links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.resourcesMenu().click();
@@ -164,6 +174,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.statusPagelLink().click();
     footerEuPage.elements.proceedButton().click();
   });
+
   it('Should open resources/support menu and verify all of the links.',() => {
     footerEuPage.elements.cookiesEUAcceptButton().click();
     footerEuPage.clickHamburgerMenu();
@@ -179,6 +190,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         cy.wrap(derivBlog).should('eq', externalEUUrls.derivBlog);
       })
   });
+
   it('Should open and verify footer (licence) PDF.', () => {
     footerEuPage.elements.footerEUlicence().should('be.visible');
     footerEuPage.elements.footerEUlicence()
@@ -189,6 +201,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         cy.request(href).its('status').should('eq', 200);
       })
   });
+
   it('Should open below footer links.', () => {
     footerEuPage.elements.cookiesEUAcceptButton().click();
     footerEuPage.elements.footerTermsAndConditionLink().click();
@@ -203,6 +216,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         cy.request(href).its('status').should('eq', 200);
       })
   })
+  
   it('Should open CFD banner link.', () => {
     footerEuPage.elements.cookiesEUAcceptButton().click();
     footerEuPage.elements.cFDFloatingBannerLink().should('be.visible');
