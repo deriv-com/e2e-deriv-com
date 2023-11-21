@@ -8,6 +8,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.footerLogo().should('be.visible');
     footerEuPage.areSocialLinksVisible();
   });
+
   const externalEUUrls = Cypress.config('externalEUUrls');
 
   it('Should open and verify all footer social media links.', () => {
@@ -28,7 +29,6 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         element: footerEuPage.socialMediaLinks.footerYoutubeLogo,
         url: externalEUUrls.youtubeEU
       },
-
       {
         element: footerEuPage.socialMediaLinks.footerLinkedInLogo,
         url: externalEUUrls.linkedInEU
@@ -37,7 +37,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     socialLinks.forEach((link) => { footerEuPage.areSocialLinksCorrect(link.element, link.url); });
   });
 
-  it('Should open about us menu and verify links.', () => {
+  it('Should open about us menu and verify whoWeAre and WhyChooseUs.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.areAboutUsLinksVisible();
@@ -47,19 +47,23 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.whyChooseUsPageText().should('be.visible');
   });
 
-  it('Should open about us menu and verify all of the links.', () =>{
+  it('Should open about us menu and verify partnershipProgrammes.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.elements.partnershipProgrammesLink().click({ force: true });
     footerEuPage.elements.partnershipProgrammesPageText().should('be.visible');
-    cy.go(-1);
+  });
+
+  it('Should open about us menu and verify contact us and careers links. ', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.elements.contactUsLink().click();
     footerEuPage.elements.contactUsPageText().should('be.visible');
     footerEuPage.elements.careersLink().click();
     footerEuPage.elements.careersPageText().should('be.visible');
-    cy.go(-1);
+  });
+
+  it('Should open about us menu and verify derivlife.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.elements.derivLifeLink()
@@ -74,8 +78,8 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.hamburgerMenu().click();
     footerEuPage.elements.tradeMenu().click();
     footerEuPage.areTradeMenuLinkVisible();
-    footerEuPage.elements.cFDLink().click();
-    footerEuPage.elements.cFDPageText().should('be.visible');
+    footerEuPage.elements.cfdLink().click();
+    footerEuPage.elements.cfdPageText().should('be.visible');
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.tradeMenu().click();
     footerEuPage.elements.multipliersLink().click();
@@ -94,25 +98,25 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.stockAndIndicesPageText().should('be.visible');
   }),
 
-  it('Should open market menu and verify all of the links.' ,() => {
-    footerEuPage.elements.hamburgerMenu().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.marketsMenu().click({ force: true });
-    footerEuPage.elements.commoditiesLink().should('be.visible');
-    footerEuPage.elements.commoditiesLink().click({ force: true });
-    footerEuPage.elements.commoditiesPageLink().should('be.visible');
-    footerEuPage.elements.hamburgerMenu().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.marketsMenu().click();
-    footerEuPage.elements.cryptoCurrenciesLink().click();
-    footerEuPage.elements.cryptoCurrenciesPageText().should('be.visible');
-    footerEuPage.elements.hamburgerMenu().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.marketsMenu().click();
-    footerEuPage.elements.eTFsLink().click();
-    footerEuPage.elements.eTFsPageText().should('be.visible');
-  });
-  
+    it('Should open market menu and verify all of the links.', () => {
+      footerEuPage.elements.hamburgerMenu().should('be.visible');
+      footerEuPage.clickHamburgerMenu();
+      footerEuPage.elements.marketsMenu().click({ force: true });
+      footerEuPage.elements.commoditiesLink().should('be.visible');
+      footerEuPage.elements.commoditiesLink().click({ force: true });
+      footerEuPage.elements.commoditiesPageLink().should('be.visible');
+      footerEuPage.elements.hamburgerMenu().should('be.visible');
+      footerEuPage.clickHamburgerMenu();
+      footerEuPage.elements.marketsMenu().click();
+      footerEuPage.elements.cryptoCurrenciesLink().click();
+      footerEuPage.elements.cryptoCurrenciesPageText().should('be.visible');
+      footerEuPage.elements.hamburgerMenu().should('be.visible');
+      footerEuPage.clickHamburgerMenu();
+      footerEuPage.elements.marketsMenu().click();
+      footerEuPage.elements.etfsLink().click();
+      footerEuPage.elements.etfsPageText().should('be.visible');
+    });
+
   it('Should open platform menu and verify all links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.tradeMenu().click();
@@ -167,7 +171,9 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.resourcesMenu().click();
     footerEuPage.elements.communityLink().invoke('removeAttr', 'target').click();
-    cy.go(-1);
+  });
+
+  it('Should open resource/support menu and verify status page.', () => {
     footerEuPage.elements.hamburgerMenu().should('be.visible');
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.resourcesMenu().click();
@@ -175,7 +181,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.proceedButton().click();
   });
 
-  it('Should open resources/support menu and verify all of the links.',() => {
+  it('Should open resources/support menu and verify links.', () => {
     footerEuPage.elements.cookiesEUAcceptButton().click();
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.resourcesMenu().click();
@@ -187,7 +193,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
       .then(($el) => {
         footerEuPage.elements.derivBlogLink().invoke('removeAttr', 'target').click();
         const derivBlog = $el.attr('href');
-        cy.wrap(derivBlog).should('eq', externalEUUrls.derivBlog);
+        cy.wrap(derivBlog).should('eq', externalEUUrls.derivBlogURL);
       })
   });
 
@@ -215,12 +221,12 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         })
         cy.request(href).its('status').should('eq', 200);
       })
-  })
-  
+  });
+
   it('Should open CFD banner link.', () => {
     footerEuPage.elements.cookiesEUAcceptButton().click();
-    footerEuPage.elements.cFDFloatingBannerLink().should('be.visible');
-    footerEuPage.elements.cFDFloatingBannerLink().invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EURiskDiscPDF)
+    footerEuPage.elements.cfdFloatingBannerLink().should('be.visible');
+    footerEuPage.elements.cfdFloatingBannerLink().invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EURiskDiscPDF)
       .then(href => {
         cy.request(href).then(pdf => {
         })

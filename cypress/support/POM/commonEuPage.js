@@ -20,8 +20,8 @@ class footerEuPage {
         careersPageText: () => cy.findByRole('heading', { name: 'Join and grow with us.' }),
         derivLifePageText: () => cy.findByRole('heading', { name: 'Global reach, local touch' }),
         tradeMenu: () => cy.findByRole('button', { name: 'Trade chevron' }),
-        cFDLink: () => cy.findByRole('link', { name: 'CFDs trade type CFDs Trade with leverage and tight spreads for better returns on successful trades.' }),
-        cFDPageText: () => cy.findByRole('heading', { name: 'CFD trading' }),
+        cfdLink: () => cy.findByRole('link', { name: 'CFDs trade type CFDs Trade with leverage and tight spreads for better returns on successful trades.' }),
+        cfdPageText: () => cy.findByRole('heading', { name: 'CFD trading' }),
         multipliersLink: () => cy.findByRole('img', { name: 'Multipliers trade type' }),
         multipliersPageText: () => cy.findByRole('heading', { name: 'Multipliers', exact: true }),
         marketsMenu: () => cy.findByRole('button', { name: 'Markets chevron' }),
@@ -35,8 +35,8 @@ class footerEuPage {
         commoditiesPageLink: () => cy.findByRole('heading', { name: 'Commodities', exact: true }),
         cryptoCurrenciesLink: () => cy.findByRole('link', { name: 'Cryptocurrencies Cryptocurrencies Trade with leverage on the price movement of popular crypto-fiat pairs.' }),
         cryptoCurrenciesPageText: () => cy.findByRole('heading', { name: 'Cryptocurrencies', exact: true }),
-        eTFsLink: () => cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }),
-        eTFsPageText: () => cy.findByRole('heading', { name: 'Exchange-traded funds' }),
+        etfsLink: () => cy.findByRole('link', { name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.' }),
+        etfsPageText: () => cy.findByRole('heading', { name: 'Exchange-traded funds' }),
         derivMT5Link: () => cy.findByRole('link', { name: 'Deriv MT5 trading platform Deriv MT5 Trade on Deriv MT5, the all-in-one CFD trading platform.' }),
         derivMT5PageText: () => cy.findByRole('heading', { name: 'The all-in-one CFD trading platform' }),
         derivTraderLink: () => cy.findByRole('link', { name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.' }),
@@ -70,7 +70,7 @@ class footerEuPage {
         footerEUlicence: () => cy.findByRole('link', { name: '(licence)' }),
         footerRiskDisclosureLink: () => cy.findByRole('link', { name: 'Risk disclosure' }),
         cookiesEUAcceptButton: () => cy.findByRole('button', {name: 'Accept'}),
-        cFDFloatingBannerLink: () => cy.findByRole('link' , {name: '71% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.'}),
+        cfdFloatingBannerLink: () => cy.findByRole('link' , {name: '71% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.'}),
     }
     socialMediaLinks = {
         footerFaceBookLogo: () => cy.findByRole('img', { name: "_t_Facebook_t_" }),
@@ -100,7 +100,7 @@ class footerEuPage {
     }
     areTradeMenuLinkVisible() {
         this.elements.tradeMenu().should('be.visible');
-        this.elements.cFDLink().should('be.visible');
+        this.elements.cfdLink().should('be.visible');
         this.elements.multipliersLink().should('be.visible');
     }
     areMarketLinksVisible() {
@@ -110,7 +110,7 @@ class footerEuPage {
         this.elements.stocksAndIndicesLink().should('be.visible');
         this.elements.commoditiesLink().should('be.visible');
         this.elements.cryptoCurrenciesLink().should('be.visible');
-        this.elements.eTFsLink().should('be.visible');
+        this.elements.etfsLink().should('be.visible');
     }
     arePlatformLinksVisible() {
         this.elements.derivMT5Link().should('be.visible');
