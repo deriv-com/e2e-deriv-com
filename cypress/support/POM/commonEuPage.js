@@ -28,11 +28,11 @@ class footerEuPage {
     derivLifePageText: () =>
       cy.findByRole('heading', { name: 'Global reach, local touch' }),
     tradeMenu: () => cy.findByRole('button', { name: 'Trade chevron' }),
-    cFDLink: () =>
+    cfdLink: () =>
       cy.findByRole('link', {
         name: 'CFDs trade type CFDs Trade with leverage and tight spreads for better returns on successful trades.',
       }),
-    cFDPageText: () => cy.findByRole('heading', { name: 'CFD trading' }),
+    cfdPageText: () => cy.findByRole('heading', { name: 'CFD trading' }),
     multipliersLink: () =>
       cy.findByRole('img', { name: 'Multipliers trade type' }),
     multipliersPageText: () =>
@@ -68,11 +68,11 @@ class footerEuPage {
       }),
     cryptoCurrenciesPageText: () =>
       cy.findByRole('heading', { name: 'Cryptocurrencies', exact: true }),
-    eTFsLink: () =>
+    etfsLink: () =>
       cy.findByRole('link', {
         name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.',
       }),
-    eTFsPageText: () =>
+    etfsPageText: () =>
       cy.findByRole('heading', { name: 'Exchange-traded funds' }),
     derivMT5Link: () =>
       cy.findByRole('link', {
@@ -134,7 +134,7 @@ class footerEuPage {
     footerRiskDisclosureLink: () =>
       cy.findByRole('link', { name: 'Risk disclosure' }),
     cookiesEUAcceptButton: () => cy.findByRole('button', { name: 'Accept' }),
-    cFDFloatingBannerLink: () =>
+    cfdFloatingBannerLink: () =>
       cy.findByRole('link', {
         name: '71% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.',
       }),
@@ -168,7 +168,7 @@ class footerEuPage {
   }
   areTradeMenuLinkVisible() {
     this.elements.tradeMenu().should('be.visible')
-    this.elements.cFDLink().should('be.visible')
+    this.elements.cfdLink().should('be.visible')
     this.elements.multipliersLink().should('be.visible')
   }
   areMarketLinksVisible() {
@@ -178,7 +178,7 @@ class footerEuPage {
     this.elements.stocksAndIndicesLink().should('be.visible')
     this.elements.commoditiesLink().should('be.visible')
     this.elements.cryptoCurrenciesLink().should('be.visible')
-    this.elements.eTFsLink().should('be.visible')
+    this.elements.etfsLink().should('be.visible')
   }
   arePlatformLinksVisible() {
     this.elements.derivMT5Link().should('be.visible')
