@@ -257,10 +257,25 @@ Cypress.Commands.add('commodities_viewall', (site, view) => {
 })
 
 Cypress.Commands.add('check_tradingspecs_and_tradenow_button', () => {
+  const externalEUUrls = Cypress.config('externalEUUrls')
   cy.findByRole('link', { name: 'Check trading specs' }).click()
   cy.url().should('include', 'trading-specification')
   cy.findByText('Trading specifications for CFDs on Deriv').should('be.visible')
   cy.go(-1)
-  cy.findByRole('button', { name: 'Trade now' }).click()
-  cy.get('.title-text').contains('Welcome!').should('be.visible')
-})
+  cy.url().then((url) => {
+     if (url.includes(externalEUUrls.stagingderivURL) || url.includes(externalEUUrls.derivURL)) 
+     {
+       cy.findByRole('button', { name: 'Trade now' }).click()
+       cy.get('.title-text').contains('Welcome!').should('be.visible');
+     } 
+     else 
+     {
+       cy.findByRole('button', { name: 'Trade now' }).click()
+       cy.origin(externalEUUrls.loginURL, () => {
+       cy.get('.title-text').contains('Welcome!').should('be.visible');
+       })
+     }
+   })
+ })
+
+  
