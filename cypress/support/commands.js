@@ -24,28 +24,23 @@ Cypress.Commands.add('validate_markets', (site) => {
 
 function forex_instruments_row() {
   cy.findByRole('link', { name: 'View all >' }).click()
-
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Major pairs').should('be.visible')
   cy.findByText('Minor pairs').should('be.visible')
   cy.findByText('Exotic pairs').should('be.visible')
   cy.findByText('Micro pairs').should('be.visible')
-
   cy.findByRole('heading', { name: 'Options' }).click()
   cy.findByText('Major pairs').should('be.visible')
   cy.findByText('Minor pairs').should('be.visible')
-
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Major pairs').should('be.visible')
 }
 
 function forex_instruments_eu() {
   cy.findByRole('link', { name: 'View all >' }).click()
-
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Major pairs').should('be.visible')
   cy.findByText('Minor pairs').should('be.visible')
-
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Major pairs').should('be.visible')
 }
@@ -54,7 +49,6 @@ function derivedindices_row() {
   cy.findByRole('img', { name: 'Derived indices' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('button', { name: 'Synthetics' }).should('be.visible')
-
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Drift switching indices').should('be.visible')
   cy.findByText('DEX indices').should('be.visible')
@@ -63,34 +57,26 @@ function derivedindices_row() {
   cy.findByText('Jump indices').should('be.visible')
   cy.findByText('Step indices').should('be.visible')
   cy.findByText('Range break indices').should('be.visible')
-
   cy.findByRole('heading', { name: 'Options' }).click()
   cy.findByText('Continuous indices').should('be.visible')
   cy.findByText('Jump indices').should('be.visible')
   cy.findByText('Daily reset indices').should('be.visible')
-
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Continuous indices').should('be.visible')
   cy.findByText('Crash/Boom').should('be.visible')
   cy.findByText('Jump indices').should('be.visible')
   cy.findByText('Step indices').should('be.visible')
-
   cy.findByRole('button', { name: 'Baskets' }).click()
-
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Commodities Basket').should('be.visible')
   cy.findByText('Forex Basket').should('be.visible')
-
   cy.findByRole('heading', { name: 'Options' }).click()
   cy.findByText('Commodities Basket').should('be.visible')
   cy.findByText('Forex Basket').should('be.visible')
-
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Commodities Basket').should('be.visible')
   cy.findByText('Forex Basket').should('be.visible')
-
   cy.findByRole('button', { name: 'Derived FX' }).click()
-
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Derived FX').should('be.visible')
 }
@@ -99,11 +85,9 @@ function derivedindices_eu() {
   cy.findByRole('img', { name: 'Derived indices' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('button', { name: 'Synthetics' }).should('be.visible')
-
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Volatility indices').should('be.visible')
   cy.findByText('Crash/Boom').should('be.visible')
-
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Continuous indices').should('be.visible')
   cy.findByText('Crash/Boom').should('be.visible')
@@ -117,7 +101,6 @@ function stockindices_row() {
   cy.findByText('Asian indices').should('be.visible')
   cy.findByText('European indices').should('be.visible')
   cy.findByText('Stocks').should('be.visible')
-
   cy.findByRole('heading', { name: 'Options' }).click()
   cy.findByText('American indices').should('be.visible')
   cy.findByText('Asian indices').should('be.visible')
@@ -139,7 +122,6 @@ function cryptocurrencies_row() {
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Crypto pairs').should('be.visible')
-
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Crypto pairs').should('be.visible')
 }
@@ -280,7 +262,5 @@ Cypress.Commands.add('check_tradingspecs_and_tradenow_button', () => {
   cy.findByText('Trading specifications for CFDs on Deriv').should('be.visible')
   cy.go(-1)
   cy.findByRole('button', { name: 'Trade now' }).click()
-  cy.origin('https://oauth.deriv.com', () => {
-    cy.get('.title-text').contains('Welcome!').should('be.visible')
-  })
+  cy.get('.title-text').contains('Welcome!').should('be.visible')
 })
