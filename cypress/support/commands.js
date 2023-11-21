@@ -261,6 +261,20 @@ Cypress.Commands.add('check_tradingspecs_and_tradenow_button', () => {
   cy.url().should('include', 'trading-specification')
   cy.findByText('Trading specifications for CFDs on Deriv').should('be.visible')
   cy.go(-1)
-  cy.findByRole('button', { name: 'Trade now' }).click()
-  cy.get('.title-text').contains('Welcome!').should('be.visible')
-})
+  cy.url().then((url) => {
+     if (url.includes('staging.deriv') || url.includes('deriv.com')) 
+     {
+       cy.findByRole('button', { name: 'Trade now' }).click()
+       cy.get('.title-text').contains('Welcome!').should('be.visible');
+     } 
+     else 
+     {
+       cy.findByRole('button', { name: 'Trade now' }).click()
+       cy.origin('https://oauth.deriv.com', () => {
+       cy.get('.title-text').contains('Welcome!').should('be.visible');
+       })
+     }
+   })
+ })
+
+  
