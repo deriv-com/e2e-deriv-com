@@ -34,8 +34,8 @@
 #  (Just to make this file easier to understand)
 # ================================================
 
-#  mark-odonnell-deriv
-#  meeyun-deriv
+#  @deriv-com/admin-e2e-cases
+#  @deriv-com/e2e-code-owners
 
 ######################################################################################################
 #
@@ -55,18 +55,18 @@
 # (in case no pattern matches a path in a PR - this should be treated as a bug and result in adding the path to CODEOWNERS)
 # ==============================================================
 
-*                                                               @markodonnell-deriv 
+*                                                               @deriv-com/admin-e2e-cases 
 
 
 # ==============================================================
 #  deriv-com/config
 # ==============================================================
 
-/.github/**/*                                                   @markodonnell-deriv
+/.github/**/*                                                   @deriv-com/admin-e2e-cases
 
 
 # ==============================================================
 #  deriv-com/smoke tests
 # ==============================================================
 
-/cypress/e2e/smoke/**/*                                         @markodonnell-deriv @meeyun-deriv
+/cypress/e2e/smoke/**/*                                         @deriv-com/e2e-code-owners
