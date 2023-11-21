@@ -346,8 +346,7 @@ Cypress.Commands.add("derivedindices_viewall", (site,view) =>{
       cy.findByText('Trading specifications for CFDs on Deriv').should('be.visible');
       cy.go(-1);
       cy.findByRole('button', { name: 'Trade now' }).click();
-      cy.origin('https://oauth.deriv.com', () => {
       cy.get('.title-text').contains('Welcome!').should('be.visible');
-      })
+      
 
    })
