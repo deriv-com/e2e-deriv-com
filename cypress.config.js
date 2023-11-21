@@ -33,6 +33,6 @@ module.exports = defineConfig({
     youtubeEU: 'https://www.youtube.com/@deriv',
     linkedInEU: 'https://www.linkedin.com/company/derivdotcom/',
     derivlifeURL: 'https://derivlife.com/',
-    derivBlogURL: 'https://blog.deriv.com'
+    derivBlogURL: 'https://blog.deriv.com/'
   },
 })
