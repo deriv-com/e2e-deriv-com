@@ -282,8 +282,8 @@ Cypress.Commands.add('check_tradingspecs_and_tradenow_button', () => {
 
   cy.findByRole('img', { name: 'hamburger menu' }).should('be.visible');
   cy.findByRole('link', { name: 'deriv-logo' })
-    .should('be.visible').click();
-  cy.url().should('include', '/');
+    .should('be.visible').click()
+  cy.url().should('include', '/')
   cy.findByText('EN', { exact: true }).should('be.visible');
 
  })
