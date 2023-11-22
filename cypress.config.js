@@ -30,6 +30,9 @@ module.exports = defineConfig({
     derivlifeURL: 'https://derivlife.com/',
     derivBlogURL: 'https://blog.deriv.com',
     smartTraderURL: 'https://smarttrader.deriv.com/en/trading',
+    loginURL:'https://oauth.deriv.com/',
+    stagingderivURL:'https://staging.deriv.com/',
+    derivURL:'https://deriv.com/'
   },
 
   externalSocialUrls: {
