@@ -33,13 +33,13 @@ module.exports = defineConfig({
   },
 
   externalSocialUrls: {
-    facebookEU: 'https://www.facebook.com/derivEU/',
-    instagramEU: 'https://www.instagram.com/deriv_eu/',
-    twitterEU: 'https://www.twitter.com/deriv_eu/',
-    facebookROW: 'https://www.facebook.com/derivdotcom',
-    instagramROW: 'https://www.instagram.com/deriv_official/',
+    facebookEu: 'https://www.facebook.com/derivEU/',
+    instagramEu: 'https://www.instagram.com/deriv_eu/',
+    twitterEu: 'https://www.twitter.com/deriv_eu/',
+    facebookRow: 'https://www.facebook.com/derivdotcom',
+    instagramRow: 'https://www.instagram.com/deriv_official/',
     youtubeDeriv: 'https://www.youtube.com/@deriv',
     linkedInDeriv: 'https://www.linkedin.com/company/derivdotcom/',
-    twitterROW: 'https://twitter.com/derivdotcom/',
+    twitterRow: 'https://twitter.com/derivdotcom/',
   },
 })
