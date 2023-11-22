@@ -1,4 +1,4 @@
-Cypress.Commands.add('validate_markets', (site) => {
+Cypress.Commands.add('shouldHaveCorrectMarkets', (site) => {
   if (site == 'row') {
     cy.findByText('GBP/USD').should('be.visible')
     cy.findByRole('img', { name: 'Derived indices' }).click()
@@ -22,7 +22,7 @@ Cypress.Commands.add('validate_markets', (site) => {
   }
 })
 
-function forex_instruments_row() {
+function shouldHaveRowForexInstruments() {
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Major pairs').should('be.visible')
@@ -36,7 +36,7 @@ function forex_instruments_row() {
   cy.findByText('Major pairs').should('be.visible')
 }
 
-function forex_instruments_eu() {
+function shouldHaveEuForexInstruments() {
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Major pairs').should('be.visible')
@@ -45,7 +45,7 @@ function forex_instruments_eu() {
   cy.findByText('Major pairs').should('be.visible')
 }
 
-function derivedindices_row() {
+function shouldHaveRowDerivedIndices() {
   cy.findByRole('img', { name: 'Derived indices' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('button', { name: 'Synthetics' }).should('be.visible')
@@ -81,7 +81,7 @@ function derivedindices_row() {
   cy.findByText('Derived FX').should('be.visible')
 }
 
-function derivedindices_eu() {
+function shouldHaveEuDerivedIndices() {
   cy.findByRole('img', { name: 'Derived indices' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('button', { name: 'Synthetics' }).should('be.visible')
@@ -93,7 +93,7 @@ function derivedindices_eu() {
   cy.findByText('Crash/Boom').should('be.visible')
 }
 
-function stockindices_row() {
+function shouldHaveRowStockIndices() {
   cy.findByRole('img', { name: 'Stocks & indices' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
@@ -107,7 +107,7 @@ function stockindices_row() {
   cy.findByText('European indices').should('be.visible')
 }
 
-function stockindices_eu() {
+function shouldHaveEuStockIndices() {
   cy.findByRole('img', { name: 'Stocks & indices' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
@@ -117,7 +117,7 @@ function stockindices_eu() {
   cy.findByText('Stocks').should('be.visible')
 }
 
-function cryptocurrencies_row() {
+function shouldHaveRowCryptocurrencies() {
   cy.findByRole('img', { name: 'Cryptocurrencies' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
@@ -126,7 +126,7 @@ function cryptocurrencies_row() {
   cy.findByText('Crypto pairs').should('be.visible')
 }
 
-function cryptocurrencies_eu() {
+function shouldHaveEuCryptocurrencies() {
   cy.findByRole('img', { name: 'Cryptocurrencies' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
@@ -136,7 +136,7 @@ function cryptocurrencies_eu() {
   cy.findByText('Crypto pairs').should('be.visible')
 }
 
-function commodities_row() {
+function shouldHaveRowCommodities() {
   cy.findByRole('img', { name: 'Commodities' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
@@ -148,7 +148,7 @@ function commodities_row() {
   cy.findByText('Energy').should('be.visible')
 }
 
-function commodities_eu() {
+function shouldHaveEuCommodities() {
   cy.findByRole('img', { name: 'Commodities' }).click()
   cy.findByRole('link', { name: 'View all >' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
@@ -156,114 +156,118 @@ function commodities_eu() {
   cy.findByText('Energy').should('be.visible')
 }
 
-Cypress.Commands.add('forex_viewall', (site, view) => {
+Cypress.Commands.add('forexViewAll', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
-      forex_instruments_row()
+      shouldHaveRowForexInstruments()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionROW'))
-      forex_instruments_row()
+      shouldHaveRowForexInstruments()
     }
   } else {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
-      forex_instruments_eu()
+      shouldHaveEuForexInstruments()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
-      forex_instruments_eu()
+      shouldHaveEuForexInstruments()
     }
   }
 })
 
-Cypress.Commands.add('derivedindices_viewall', (site, view) => {
+Cypress.Commands.add('derivedIndicesViewAll', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
-      derivedindices_row()
+      shouldHaveRowDerivedIndices()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionROW'))
-      derivedindices_row()
+      shouldHaveRowDerivedIndices()
     }
   } else {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
-      derivedindices_eu()
+      shouldHaveEuDerivedIndices()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
-      derivedindices_eu()
+      shouldHaveEuDerivedIndices()
     }
   }
 })
 
-Cypress.Commands.add('stockindices_viewall', (site, view) => {
+Cypress.Commands.add('stockIndicesViewAll', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
-      stockindices_row()
+      shouldHaveRowStockIndices()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionROW'))
-      stockindices_row()
+      shouldHaveRowStockIndices()
     }
   } else {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
-      stockindices_eu()
+      shouldHaveEuStockIndices()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
-      stockindices_eu()
+      shouldHaveEuStockIndices()
     }
   }
 })
 
-Cypress.Commands.add('cryptocurrencies_viewall', (site, view) => {
+Cypress.Commands.add('cryptocurrenciesViewAll', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
-      cryptocurrencies_row()
+      shouldHaveRowCryptocurrencies()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionROW'))
-      cryptocurrencies_row()
+      shouldHaveRowCryptocurrencies()
     }
   } else {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
-      cryptocurrencies_eu()
+      shouldHaveEuCryptocurrencies()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
-      cryptocurrencies_eu()
+      shouldHaveEuCryptocurrencies()
     }
   }
 })
 
-Cypress.Commands.add('commodities_viewall', (site, view) => {
+Cypress.Commands.add('commoditiesViewAll', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
-      commodities_row()
+      shouldHaveRowCommodities()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionROW'))
-      commodities_row()
+      shouldHaveRowCommodities()
     }
   } else {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
-      commodities_eu()
+      shouldHaveEuCommodities()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
-      commodities_eu()
+      shouldHaveEuCommodities()
     }
   }
 })
 
+<<<<<<< Updated upstream
 Cypress.Commands.add('check_tradingspecs_and_tradenow_button', () => {
   const externalEUUrls = Cypress.config('externalEUUrls')
+=======
+Cypress.Commands.add('checkTradingSpecsAndTradeNowButton', () => {
+>>>>>>> Stashed changes
   cy.findByRole('link', { name: 'Check trading specs' }).click()
   cy.url().should('include', 'trading-specification')
   cy.findByText('Trading specifications for CFDs on Deriv').should('be.visible')
   cy.go(-1)
   cy.url().then((url) => {
-     if (url.includes(externalEUUrls.stagingderivURL) || url.includes(externalEUUrls.derivURL)) 
+     if (url.includes(externalEUUrls.stagingDerivUrl) || url.includes(externalEUUrls.derivUrl)) 
      {
        cy.findByRole('button', { name: 'Trade now' }).click()
        cy.get('.title-text').contains('Welcome!').should('be.visible');

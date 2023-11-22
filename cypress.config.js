@@ -26,16 +26,16 @@ module.exports = defineConfig({
     "runMode": 2,
     "openMode": 0
   },
-  externalEUUrls: {
+  externalEuUrls: {
     facebookEU: 'https://www.facebook.com/derivEU/',
     instagramEU: 'https://www.instagram.com/deriv_eu/',
     twitterEU: 'https://www.twitter.com/deriv_eu/',
     youtubeEU: 'https://www.youtube.com/@deriv',
-    linkedInEU: 'https://www.linkedin.com/company/derivdotcom/',
-    derivlifeURL: 'https://derivlife.com/',
-    derivBlogURL: 'https://blog.deriv.com/',
+    linkedInEu: 'https://www.linkedin.com/company/derivdotcom/',
+    derivLifeUrl: 'https://derivlife.com/',
+    derivBlogURL: 'https://blog.deriv.com',
     loginURL: 'https://oauth.deriv.com',
-    stagingderivURL: 'https://staging.deriv.com/',
-    derivURL: 'https://deriv.com/'
-  }
+    stagingDerivUrl: 'https://staging.deriv.com/',
+    derivUrl: 'https://deriv.com/'
+  },
 })

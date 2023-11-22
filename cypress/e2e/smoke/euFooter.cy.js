@@ -14,29 +14,29 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.areSocialLinksVisible()
   })
 
-  const externalEUUrls = Cypress.config('externalEUUrls')
+  const externalEuUrls = Cypress.config('externalEuUrls')
 
   it('should open and verify all footer social media links.', () => {
     const socialLinks = [
       {
         element: footerEuPage.socialMediaLinks.footerFaceBookLogo,
-        url: externalEUUrls.facebookEU,
+        url: externalEuUrls.facebookEU,
       },
       {
         element: footerEuPage.socialMediaLinks.footerInstagramLogo,
-        url: externalEUUrls.instagramEU,
+        url: externalEuUrls.instagramEU,
       },
       {
         element: footerEuPage.socialMediaLinks.footerTwitterLogo,
-        url: externalEUUrls.twitterEU,
+        url: externalEuUrls.twitterEU,
       },
       {
         element: footerEuPage.socialMediaLinks.footerYoutubeLogo,
-        url: externalEUUrls.youtubeEU,
+        url: externalEuUrls.youtubeEU,
       },
       {
         element: footerEuPage.socialMediaLinks.footerLinkedInLogo,
-        url: externalEUUrls.linkedInEU,
+        url: externalEuUrls.linkedInEu,
       },
     ]
     socialLinks.forEach((link) => {
@@ -79,7 +79,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         .invoke('removeAttr', 'target')
         .click()
       const derivLife = $el.attr('href')
-      cy.wrap(derivLife).should('eq', externalEUUrls.derivlifeURL)
+      cy.wrap(derivLife).should('eq', externalEuUrls.derivlifeURL)
     })
   })
 
@@ -204,7 +204,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         .invoke('removeAttr', 'target')
         .click()
       const derivBlog = $el.attr('href')
-      cy.wrap(derivBlog).should('eq', externalEUUrls.derivBlogURL)
+      cy.wrap(derivBlog).should('eq', externalEuUrls.derivBlogURL)
     })
   })
 

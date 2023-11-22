@@ -1,6 +1,6 @@
 import '@testing-library/cypress/add-commands'
 
-function check_tradetype_learnmore_eu() {
+function checkEuTradeTypeLearnMore() {
   cy.findByRole('heading', { name: 'Trade types' }).should('be.visible')
   cy.findByText('Trade the way you want with 2 flexible trade types.').should(
     'be.visible'
@@ -25,11 +25,11 @@ function check_tradetype_learnmore_eu() {
 describe('QATEST-1342 Trade Types - EU', () => {
   it('should check trade type section is visible and validate the navigation of learn more link in mobile', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
-    check_tradetype_learnmore_eu()
+    checkEuTradeTypeLearnMore()
   })
 
   it('should check trade type section is visible and validate the navigation of learn more link in desktop', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
-    check_tradetype_learnmore_eu()
+    checkEuTradeTypeLearnMore()
   })
 })
