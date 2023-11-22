@@ -9,29 +9,30 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.areSocialLinksVisible();
   });
 
-  const externalEUUrls = Cypress.config('externalEUUrls');
+  const externalURLs = Cypress.config('externalUrls');
+  const externalSocialURLs = Cypress.config('externalSocialUrls');
 
   it('Should open and verify all footer social media links.', () => {
     const socialLinks = [
       {
         element: footerEuPage.socialMediaLinks.footerFaceBookLogo,
-        url: externalEUUrls.facebookEU
+        url: externalSocialURLs.facebookEU
       },
       {
         element: footerEuPage.socialMediaLinks.footerInstagramLogo,
-        url: externalEUUrls.instagramEU
+        url: externalSocialURLs.instagramEU
       },
       {
         element: footerEuPage.socialMediaLinks.footerTwitterLogo,
-        url: externalEUUrls.twitterEU
+        url: externalSocialURLs.twitterEU
       },
       {
         element: footerEuPage.socialMediaLinks.footerYoutubeLogo,
-        url: externalEUUrls.youtubeEU
+        url: externalSocialURLs.youtubeDeriv
       },
       {
         element: footerEuPage.socialMediaLinks.footerLinkedInLogo,
-        url: externalEUUrls.linkedInEU
+        url: externalSocialURLs.linkedInDeriv
       }
     ];
     socialLinks.forEach((link) => { footerEuPage.areSocialLinksCorrect(link.element, link.url); });
@@ -70,7 +71,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
       .then(($el) => {
         footerEuPage.elements.derivLifeLink().invoke('removeAttr', 'target').click();
         const derivLife = $el.attr('href');
-        cy.wrap(derivLife).should('eq', externalEUUrls.derivlifeURL);
+        cy.wrap(derivLife).should('eq', externalURLs.derivlifeURL);
       })
   });
 
@@ -193,7 +194,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
       .then(($el) => {
         footerEuPage.elements.derivBlogLink().invoke('removeAttr', 'target').click();
         const derivBlog = $el.attr('href');
-        cy.wrap(derivBlog).should('eq', externalEUUrls.derivBlogURL);
+        cy.wrap(derivBlog).should('eq', externalURLs.derivBlogURL);
       })
   });
 

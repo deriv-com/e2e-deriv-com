@@ -10,6 +10,8 @@ class footerEuPage {
         whoWeAreLink: () => cy.findByRole('link', { name: 'Who we are' }),
         whyChooseUsLink: () => cy.findByRole('link', { name: 'Why choose us' }),
         partnershipProgrammesLink: () => cy.findByRole('link', { name: 'Partnership programmes' }),
+        principlesLink: () => cy.findByRole('link', {name: 'Principles'}),
+        principlesPageText: () => cy.findByRole('heading', {name: 'Our principles'}),
         contactUsLink: () => cy.findByRole('link', { name: 'Contact us' }),
         careersLink: () => cy.findByRole('link', { name: 'Careers' }),
         derivLifeLink: () => cy.findByRole('link', { name: 'Deriv life' }),
@@ -22,6 +24,8 @@ class footerEuPage {
         tradeMenu: () => cy.findByRole('button', { name: 'Trade chevron' }),
         cfdLink: () => cy.findByRole('link', { name: 'CFDs trade type CFDs Trade with leverage and tight spreads for better returns on successful trades.' }),
         cfdPageText: () => cy.findByRole('heading', { name: 'CFD trading' }),
+        optionsLink: () => cy.findByRole('link', { name: 'Options trade type Options Earn a range of payouts without risking more than your initial stake.'}),
+        optionsPageText: () => cy.findByRole('heading' ,{name: 'What are digital options?'}),
         multipliersLink: () => cy.findByRole('img', { name: 'Multipliers trade type' }),
         multipliersPageText: () => cy.findByRole('heading', { name: 'Multipliers', exact: true }),
         marketsMenu: () => cy.findByRole('button', { name: 'Markets chevron' }),
@@ -39,7 +43,10 @@ class footerEuPage {
         etfsPageText: () => cy.findByRole('heading', { name: 'Exchange-traded funds' }),
         derivMT5Link: () => cy.findByRole('link', { name: 'Deriv MT5 trading platform Deriv MT5 Trade on Deriv MT5, the all-in-one CFD trading platform.' }),
         derivMT5PageText: () => cy.findByRole('heading', { name: 'The all-in-one CFD trading platform' }),
+        derivXLink: () => cy.findByRole('link', { name: 'Deriv X trading paltform Deriv X A highly customisable and easy-to-use CFD trading platform.'}),
         derivTraderLink: () => cy.findByRole('link', { name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.' }),
+        smartTraderLink: () =>  cy.findByRole('link', {name: 'SmartTrader trading platform SmartTrader Trade the world’s markets with our popular user-friendly platform.'}),
+        smartTraderPage: () => cy.findByRole('heading', {name: 'Winning the contract'}),
         dTraderlogo: () => cy.findByRole('img', { name: 'Deriv Trader' }),
         legalMenu: () => cy.findByRole('button', { name: 'Legal chevron' }),
         regulatoryInformationLink: () => cy.findByRole('link', { name: 'Regulatory information' }),
@@ -54,6 +61,7 @@ class footerEuPage {
         derivPrimeLink: () => cy.findByRole('link', { name: 'Deriv Prime' }),
         derivPrimePageText: () => cy.findByRole('heading', { name: 'Global liquidity for all' }),
         affiliatesLink: () => cy.findByRole('link', { name: 'Affiliates' }),
+        affiliatesIBLink: () => cy.findByRole('link', {name: 'Affiliates and IBs'}),
         affiliatesPageText: () => cy.findByRole('heading', { name: 'Partner with a trusted online trading provider' }),
         aPILink: () => cy.findByRole('link', { name: 'API', exact: true }),
         aPIPageText: () => cy.findByRole('heading', { name: 'Deriv API' }),
@@ -63,6 +71,8 @@ class footerEuPage {
         communityLink: () => cy.findByRole('link', { name: 'Community' }),
         communityPapageText: () => cy.findByRole('heading', { name: 'Welcome to our community' }),
         tradersToolLink: () => cy.findByRole('link', { name: 'Traders’ tools' }),
+        paymentAgentLink: () => cy.findByRole('link', {name: 'Payment agents'}),
+        paymentAgentPageText: () => cy.findByRole('heading', {name: 'Become a payment agent on Deriv'}),
         paymentMethodLink: () => cy.findByRole('link', { name: 'Payment methods' }),
         derivMT5SignalLink: () => cy.findByRole('link', { name: 'Deriv MT5 Signals' }),
         statusPagelLink: () => cy.findByRole('link', { name: 'Status page' }),
@@ -72,12 +82,13 @@ class footerEuPage {
         cookiesEUAcceptButton: () => cy.findByRole('button', {name: 'Accept'}),
         cfdFloatingBannerLink: () => cy.findByRole('link' , {name: '71% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.'}),
     }
+
     socialMediaLinks = {
-        footerFaceBookLogo: () => cy.findByRole('img', { name: "_t_Facebook_t_" }),
-        footerInstagramLogo: () => cy.findByRole('img', { name: '_t_Instagram_t_' }),
-        footerTwitterLogo: () => cy.findByRole('img', { name: '_t_Twitter_t_' }),
-        footerYoutubeLogo: () => cy.findByRole('img', { name: '_t_Youtube_t_' }),
-        footerLinkedInLogo: () => cy.findByRole('img', { name: '_t_Linkedin_t_' }),
+        footerFaceBookLogo: () => cy.findByRole('link', { name: "_t_Facebook_t_" }),
+        footerInstagramLogo: () => cy.findByRole('link', { name: '_t_Instagram_t_' }),
+        footerTwitterLogo: () => cy.findByRole('link', { name: '_t_Twitter_t_' }),
+        footerYoutubeLogo: () => cy.findByRole('link', { name: '_t_Youtube_t_' }),
+        footerLinkedInLogo: () => cy.findByRole('link', { name: '_t_Linkedin_t_' }),
     }
     eUPDFs = {
         EUlicencePDF: '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
@@ -141,4 +152,6 @@ class footerEuPage {
         this.elements.hamburgerMenu().click({ force: true });
     }
 }
+
+  
 module.exports = new footerEuPage();
