@@ -10,6 +10,7 @@ describe('QATEST-1304 - Home page header menu EU', () => {
         cy.findByRole('button', { name: 'Log in' }).should('be.visible').click()
         cy.url().should('include', 'signup')
         cy.go('back')
+        cy.url().should('include', '/')
       })
 
 })
