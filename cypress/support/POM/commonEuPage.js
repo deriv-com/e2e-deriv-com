@@ -140,12 +140,12 @@ class footerEuPage {
       }),
   }
   socialMediaLinks = {
-    footerFaceBookLogo: () => cy.findByRole('img', { name: '_t_Facebook_t_' }),
+    footerFaceBookLogo: () => cy.findByRole('link', { name: '_t_Facebook_t_' }),
     footerInstagramLogo: () =>
-      cy.findByRole('img', { name: '_t_Instagram_t_' }),
-    footerTwitterLogo: () => cy.findByRole('img', { name: '_t_Twitter_t_' }),
-    footerYoutubeLogo: () => cy.findByRole('img', { name: '_t_Youtube_t_' }),
-    footerLinkedInLogo: () => cy.findByRole('img', { name: '_t_Linkedin_t_' }),
+      cy.findByRole('link', { name: '_t_Instagram_t_' }),
+    footerTwitterLogo: () => cy.findByRole('link', { name: '_t_Twitter_t_' }),
+    footerYoutubeLogo: () => cy.findByRole('link', { name: '_t_Youtube_t_' }),
+    footerLinkedInLogo: () => cy.findByRole('link', { name: '_t_Linkedin_t_' }),
   }
   eUPDFs = {
     EUlicencePDF: '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',

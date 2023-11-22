@@ -26,16 +26,20 @@ module.exports = defineConfig({
     "runMode": 2,
     "openMode": 0
   },
-  externalEUUrls: {
-    facebookEU: 'https://www.facebook.com/derivEU/',
-    instagramEU: 'https://www.instagram.com/deriv_eu/',
-    twitterEU: 'https://www.twitter.com/deriv_eu/',
-    youtubeEU: 'https://www.youtube.com/@deriv',
-    linkedInEU: 'https://www.linkedin.com/company/derivdotcom/',
+  externalUrls: {
     derivlifeURL: 'https://derivlife.com/',
-    derivBlogURL: 'https://blog.deriv.com/',
-    loginURL: 'https://oauth.deriv.com',
-    stagingderivURL: 'https://staging.deriv.com/',
-    derivURL: 'https://deriv.com/'
-  }
+    derivBlogURL: 'https://blog.deriv.com',
+    smartTraderURL: 'https://smarttrader.deriv.com/en/trading',
+  },
+
+  externalSocialUrls: {
+    facebookEu: 'https://www.facebook.com/derivEU/',
+    instagramEu: 'https://www.instagram.com/deriv_eu/',
+    twitterEu: 'https://www.twitter.com/deriv_eu/',
+    facebookRow: 'https://www.facebook.com/derivdotcom',
+    instagramRow: 'https://www.instagram.com/deriv_official/',
+    youtubeDeriv: 'https://www.youtube.com/@deriv',
+    linkedInDeriv: 'https://www.linkedin.com/company/derivdotcom/',
+    twitterRow: 'https://twitter.com/derivdotcom/',
+  },
 })
