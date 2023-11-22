@@ -4,7 +4,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   beforeEach(() => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
   });
-  it('Should verify deriv logo and social media icons.', () => {
+  it('should verify deriv logo and social media icons.', () => {
     footerEuPage.elements.footerLogo().should('be.visible');
     footerEuPage.areSocialLinksVisible();
   });
@@ -12,7 +12,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   const externalURLs = Cypress.config('externalUrls');
   const externalSocialURLs = Cypress.config('externalSocialUrls');
 
-  it('Should open and verify all footer social media links.', () => {
+  it('should open and verify all footer social media links.', () => {
     const socialLinks = [
       {
         element: footerEuPage.socialMediaLinks.footerFaceBookLogo,
@@ -38,7 +38,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     socialLinks.forEach((link) => { footerEuPage.areSocialLinksCorrect(link.element, link.url); });
   });
 
-  it('Should open about us menu and verify whoWeAre and WhyChooseUs.', () => {
+  it('should open about us menu and verify whoWeAre and WhyChooseUs.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.areAboutUsLinksVisible();
@@ -48,14 +48,14 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.whyChooseUsPageText().should('be.visible');
   });
 
-  it('Should open about us menu and verify partnershipProgrammes.', () => {
+  it('should open about us menu and verify partnershipProgrammes.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.elements.partnershipProgrammesLink().click({ force: true });
     footerEuPage.elements.partnershipProgrammesPageText().should('be.visible');
   });
 
-  it('Should open about us menu and verify contact us and careers links. ', () => {
+  it('should open about us menu and verify contact us and careers links. ', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.elements.contactUsLink().click();
@@ -64,7 +64,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.careersPageText().should('be.visible');
   });
 
-  it('Should open about us menu and verify derivlife.', () => {
+  it('should open about us menu and verify derivlife.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.aboutUsMenu().click();
     footerEuPage.elements.derivLifeLink()
@@ -75,7 +75,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
       })
   });
 
-  it('Should open trade type menu and verify all links.', () => {
+  it('should open trade type menu and verify all links.', () => {
     footerEuPage.elements.hamburgerMenu().click();
     footerEuPage.elements.tradeMenu().click();
     footerEuPage.areTradeMenuLinkVisible();
@@ -87,7 +87,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.multipliersPageText().should('be.visible');
   });
 
-  it('Should open market menu and verify links.', () => {
+  it('should open market menu and verify links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.marketsMenu().click();
     footerEuPage.areMarketLinksVisible();
@@ -99,7 +99,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.stockAndIndicesPageText().should('be.visible');
   }),
 
-    it('Should open market menu and verify all of the links.', () => {
+    it('should open market menu and verify all of the links.', () => {
       footerEuPage.elements.hamburgerMenu().should('be.visible');
       footerEuPage.clickHamburgerMenu();
       footerEuPage.elements.marketsMenu().click({ force: true });
@@ -118,7 +118,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
       footerEuPage.elements.etfsPageText().should('be.visible');
     });
 
-  it('Should open platform menu and verify all links.', () => {
+  it('should open platform menu and verify all links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.tradeMenu().click();
     footerEuPage.arePlatformLinksVisible();
@@ -130,7 +130,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.dTraderlogo().should('be.visible');
   });
 
-  it('Should open legal menu and verify all links.', () => {
+  it('should open legal menu and verify all links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.legalMenu().click();
     footerEuPage.areLegalLinksVisible();
@@ -145,7 +145,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
   });
 
-  it('Should open partners menu and verify all links.', () => {
+  it('should open partners menu and verify all links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.partnersMenu().click();
     footerEuPage.arePartnersLinkVisible();
@@ -163,7 +163,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
       })
   });
 
-  it('Should open resources/support menu and verify all links.', () => {
+  it('should open resources/support menu and verify all links.', () => {
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.resourcesMenu().click();
     footerEuPage.elements.helpCenterLink().click();
@@ -174,7 +174,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.communityLink().invoke('removeAttr', 'target').click();
   });
 
-  it('Should open resource/support menu and verify status page.', () => {
+  it('should open resource/support menu and verify status page.', () => {
     footerEuPage.elements.hamburgerMenu().should('be.visible');
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.resourcesMenu().click();
@@ -182,7 +182,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     footerEuPage.elements.proceedButton().click();
   });
 
-  it('Should open resources/support menu and verify links.', () => {
+  it('should open resources/support menu and verify links.', () => {
     footerEuPage.elements.cookiesEUAcceptButton().click();
     footerEuPage.clickHamburgerMenu();
     footerEuPage.elements.resourcesMenu().click();
@@ -198,7 +198,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
       })
   });
 
-  it('Should open and verify footer (licence) PDF.', () => {
+  it('should open and verify footer (licence) PDF.', () => {
     footerEuPage.elements.footerEUlicence().should('be.visible');
     footerEuPage.elements.footerEUlicence()
       .invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EUlicencePDF)
@@ -209,7 +209,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
       })
   });
 
-  it('Should open below footer links.', () => {
+  it('should open below footer links.', () => {
     footerEuPage.elements.cookiesEUAcceptButton().click();
     footerEuPage.elements.footerTermsAndConditionLink().click();
     footerEuPage.elements.termsAndConditionsPageText().should('be.visible');
@@ -224,7 +224,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
       })
   });
 
-  it('Should open CFD banner link.', () => {
+  it('should open CFD banner link.', () => {
     footerEuPage.elements.cookiesEUAcceptButton().click();
     footerEuPage.elements.cfdFloatingBannerLink().should('be.visible');
     footerEuPage.elements.cfdFloatingBannerLink().invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EURiskDiscPDF)
