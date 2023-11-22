@@ -1,7 +1,7 @@
 import '@testing-library/cypress/add-commands'
 
-describe('Validate Hero banner message', () => {
-  it('QATEST-1315 - EU', () => {
+describe('QATEST-1315 - Validate Hero banner message EU', () => {
+  it('should have correct EU home banner content', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'))
 
     cy.findByTestId('typewriter-wrapper')

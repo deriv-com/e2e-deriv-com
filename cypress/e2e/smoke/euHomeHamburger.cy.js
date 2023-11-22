@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Including Trade Types)', () => {
   //Click through menu-items and ensure links are valid and load the next page.
-  it('Generic menu items', () => {
+  it('should have the correct hamburger menu', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
 
     //Trade Types

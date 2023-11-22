@@ -34,7 +34,7 @@ function pricing_table_check() {
 }
 
 describe('QATEST1320 - Validating the updates of pricing table - ROW & EU', () => {
-  it('Should navigate to pricing table of each market and check whether the values in table are getting changed every 10 seconds - ROW.', () => {
+  it('should navigate to pricing table of each market and check whether the values in table are getting changed every 10 seconds - ROW.', () => {
     cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
     pricing_table_check()
     cy.findByRole('img', { name: 'Derived indices' }).click()
@@ -47,7 +47,7 @@ describe('QATEST1320 - Validating the updates of pricing table - ROW & EU', () =
     pricing_table_check()
   })
 
-  it('Should navigate to pricing table of each market and check whether the values in table are getting changed every 10 seconds - EU.', () => {
+  it('should navigate to pricing table of each market and check whether the values in table are getting changed every 10 seconds - EU.', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
     pricing_table_check()
     cy.findByRole('img', { name: 'Derived indices' }).click()
