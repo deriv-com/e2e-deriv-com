@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Including Trade Types)', () => {
   //Click through menu-items and ensure links are valid and load the next page.
-  it('ROW menu items', () => {
+  it('should have correct menu items for ROW', () => {
     //NB. The region switch doesn't work on the EU site at the moment.
     if (Cypress.env('skipROWTests') == false) {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
