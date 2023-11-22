@@ -278,4 +278,41 @@ Cypress.Commands.add('check_tradingspecs_and_tradenow_button', () => {
    })
  })
 
-  
+ Cypress.Commands.add('check_homepage_header', () => {
+
+  cy.findByRole('img', { name: 'hamburger menu' }).should('be.visible');
+  cy.findByRole('link', { name: 'deriv-logo' })
+    .should('be.visible').click();
+  cy.url().should('include', '/');
+  cy.findByText('EN', { exact: true }).should('be.visible');
+
+ })
+
+ Cypress.Commands.add('check_hamburger_menu', () => {
+  cy.findByRole('img', { name: 'hamburger menu' }).should('be.visible').click();
+  cy.findByRole('button', { name: 'Trade chevron' }).should('be.visible');
+  cy.findByRole('button', { name: 'Markets chevron' }).should('be.visible');
+  cy.findByRole('button', { name: 'About us chevron' }).should('be.visible');
+  cy.findByRole('button', { name: 'Resources chevron' }).should('be.visible');
+  cy.findByRole('button', { name: 'Legal chevron' }).should('be.visible');
+  cy.findByRole('button', { name: 'Partners chevron' }).should('be.visible');
+  cy.findByRole('img', { name: 'close menu' }).click();
+
+ })
+
+
+Cypress.Commands.add('validate_signup', () => {
+  cy.findByRole('heading', { name: 'Sign up' }).should('be.visible');
+
+  cy.findByPlaceholderText('Email').should('be.visible');
+  cy.findByLabelText('I agree to the terms and conditions').should(
+    'be.visible'
+  );
+  cy.contains('button', 'Create demo account').should('be.visible');
+
+  cy.findByRole('button', { name: 'Google' }).should('be.visible');
+  cy.findByRole('button', { name: 'Facebook' }).should('be.visible');
+  cy.findByRole('button', { name: 'Apple' }).should('be.visible');
+
+  cy.contains('Already have an account? Log in').should('be.visible');
+})
