@@ -23,12 +23,12 @@ function check_tradetype_learnmore_eu() {
 }
 
 describe('QATEST-1342 Trade Types - EU', () => {
-  it('Should check trade type section is visible and validate the navigation of learn more link in mobile', () => {
+  it('should check trade type section is visible and validate the navigation of learn more link in mobile', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
     check_tradetype_learnmore_eu()
   })
 
-  it('Should check trade type section is visible and validate the navigation of learn more link in desktop', () => {
+  it('should check trade type section is visible and validate the navigation of learn more link in desktop', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
     check_tradetype_learnmore_eu()
   })

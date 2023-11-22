@@ -1,7 +1,7 @@
 import '@testing-library/cypress/add-commands'
 
-describe('Validate Hero banner message', () => {
-  it('QATEST-1310 - ROW', () => {
+describe('QATEST-1310 - Validate Hero banner message ROW', () => {
+  it('should have correct home banner content for ROW ', () => {
     if (Cypress.env('skipROWTests') == false) {
       //TODO - Find out what should be different here otherwise, repeating the same tests seems unnecessary
       cy.c_visitResponsive(Cypress.env('RegionROW'))
