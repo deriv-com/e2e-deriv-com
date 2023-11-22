@@ -256,12 +256,9 @@ Cypress.Commands.add('commoditiesViewAll', (site, view) => {
   }
 })
 
-<<<<<<< Updated upstream
-Cypress.Commands.add('check_tradingspecs_and_tradenow_button', () => {
-  const externalEUUrls = Cypress.config('externalEUUrls')
-=======
+
 Cypress.Commands.add('checkTradingSpecsAndTradeNowButton', () => {
->>>>>>> Stashed changes
+  const externalEUUrls = Cypress.config('externalEUUrls')
   cy.findByRole('link', { name: 'Check trading specs' }).click()
   cy.url().should('include', 'trading-specification')
   cy.findByText('Trading specifications for CFDs on Deriv').should('be.visible')

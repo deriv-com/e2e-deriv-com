@@ -79,7 +79,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         .invoke('removeAttr', 'target')
         .click()
       const derivLife = $el.attr('href')
-      cy.wrap(derivLife).should('eq', externalEuUrls.derivlifeURL)
+      cy.wrap(derivLife).should('eq', externalEuUrls.derivLifeUrl)
     })
   })
 
