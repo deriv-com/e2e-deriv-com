@@ -27,12 +27,13 @@ module.exports = defineConfig({
     "openMode": 0
   },
   externalUrls: {
-    derivlifeURL: 'https://derivlife.com/',
-    derivBlogURL: 'https://blog.deriv.com',
+    derivlifeURL:   'https://derivlife.com/',
+    derivBlogURL:   'https://blog.deriv.com',
     smartTraderURL: 'https://smarttrader.deriv.com/en/trading',
-    loginURL:'https://oauth.deriv.com/',
+    loginURL:       'https://oauth.deriv.com/',
     stagingderivURL:'https://staging.deriv.com/',
-    derivURL:'https://deriv.com/'
+    derivURL:       'https://deriv.com/',
+    binaryBotURL:   'https://bot.deriv.com/?l=en',
   },
 
   externalSocialUrls: {

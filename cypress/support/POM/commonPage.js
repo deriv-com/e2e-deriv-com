@@ -96,9 +96,29 @@ class footerEuPage {
       cy.findByRole('heading', { name: 'The all-in-one CFD trading platform' }),
     derivTraderLink: () =>
       cy.findByRole('link', {
-        name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.',
+        name: 'Dtrader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.',
       }),
     dTraderlogo: () => cy.findByRole('img', { name: 'Deriv Trader' }),
+    derivcTraderLink: () =>
+    cy.findByRole('link' , { name:
+       'Deriv cTrader trading platform Deriv cTrader An intuitive, multi-asset CFD trading platform with copy trading and custom indicators.'
+    }),
+    derivcTraderPgaeText: () =>
+    cy.findByRole ('heading', { name: 'What is Deriv cTrader' }),
+    derivBinaryBotLink: () =>
+      cy.findByRole('link' , { name:
+         'Binary bot for creating trading bot Binary Bot Our classic "drag-and-drop" tool for creating trading bots, featuring pop-up trading charts, for advanced users.'
+      }),
+    derivGoLink: () =>
+      cy.findByRole ('link' , {
+        name: 'Deriv GO mobile trading app Deriv GO Trade multipliers on forex, cryptocurrencies, and synthetic indices with our mobile app.'
+      }),
+    derivBotLink: () =>
+      cy.findByRole('link' , {
+        name: 'Deriv Bot Automated trading Deriv Bot Automated trading at your fingertips. No coding needed.'
+      }),
+    derivBotPageText: () => 
+      cy.findByRole ('heading', { name: 'Automate your trading ideas without writing code' }),
     legalMenu: () => cy.findByRole('button', { name: 'Legal chevron' }),
     regulatoryInformationLink: () =>
       cy.findByRole('link', { name: 'Regulatory information' }),
