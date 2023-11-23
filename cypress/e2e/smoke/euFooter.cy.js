@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 import footerEuPage, {
   areLegalLinksVisible,
   socialMediaLinks,
-} from '../../support/POM/commonEuPage'
+} from '../../support/POM/commonPage'
 
 describe('QATEST-1422 Footer EU Responsive', () => {
   beforeEach(() => {

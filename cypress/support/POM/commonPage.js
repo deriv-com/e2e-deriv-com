@@ -12,6 +12,9 @@ class footerEuPage {
     aboutUsMenu: () => cy.findByRole('button', { name: 'About us chevron' }),
     whoWeAreLink: () => cy.findByRole('link', { name: 'Who we are' }),
     whyChooseUsLink: () => cy.findByRole('link', { name: 'Why choose us' }),
+    principlesLink: () => cy.findByRole('link', { name: 'Principles' }),
+    principlesPageText: () =>
+      cy.findByRole('heading', { name: 'Our principles' }),
     partnershipProgrammesLink: () =>
       cy.findByRole('link', { name: 'Partnership programmes' }),
     contactUsLink: () => cy.findByRole('link', { name: 'Contact us' }),
@@ -20,6 +23,9 @@ class footerEuPage {
     whoWeArePageText: () => cy.findByRole('heading', { name: 'Who we are' }),
     whyChooseUsPageText: () =>
       cy.findByRole('heading', { name: 'Why choose us' }),
+    optionsLink: () => cy.findByRole('link',
+      { name: 'Options trade type Options Earn a range of payouts without risking more than your initial stake.' }),
+    optionsPageText: () => cy.findByRole('heading', { name: 'What are digital options?' }),
     partnershipProgrammesPageText: () =>
       cy.findByRole('heading', { name: 'Deriv partnership programmes' }),
     contactUsPageText: () => cy.findByRole('heading', { name: 'Contact us' }),
@@ -38,6 +44,9 @@ class footerEuPage {
     multipliersPageText: () =>
       cy.findByRole('heading', { name: 'Multipliers', exact: true }),
     marketsMenu: () => cy.findByRole('button', { name: 'Markets chevron' }),
+    derivXLink: () => cy.findByRole('link', {
+      name: 'Deriv X trading paltform Deriv X A highly customisable and easy-to-use CFD trading platform.'
+     }),
     forexLink: () =>
       cy.findByRole('link', {
         name: 'Forex Forex Trade the world’s largest financial market with popular forex pairs.',
@@ -46,14 +55,19 @@ class footerEuPage {
       cy.findByRole('heading', { name: 'Forex', exact: true }),
     derivedIndicesLink: () =>
       cy.findByRole('link', {
-        name: 'Synthetic indices Derived indices Enjoy trading asset prices derived from simulated markets.',
+        name: 'Synthetic indices Derived indices Enjoy trading asset prices derived from real-world or simulated markets.',
       }),
+    smartTraderLink: () => cy.findByRole('link', {
+      name: 'SmartTrader trading platform SmartTrader Trade the world’s markets with our popular user-friendly platform.'
+    }),
+    smartTraderPage: () => cy.findByRole('heading', { name: 'Winning the contract' }),
     derivedIndicesPageText: () =>
       cy.findByRole('heading', { name: 'Derived indices' }),
     stocksAndIndicesLink: () =>
       cy.findByRole('link', {
         name: 'Stocks & indices Stocks & indices Predict broader market trends and diversify your risk with stocks & indices.',
       }),
+    affiliatesIBLink: () => cy.findByRole('link', { name: 'Affiliates and IBs' }),
     stockAndIndicesPageText: () =>
       cy.findByRole('heading', { name: 'Stocks & indices', exact: true }),
     commoditiesLink: () =>
@@ -82,9 +96,29 @@ class footerEuPage {
       cy.findByRole('heading', { name: 'The all-in-one CFD trading platform' }),
     derivTraderLink: () =>
       cy.findByRole('link', {
-        name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.',
+        name: 'Dtrader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.',
       }),
     dTraderlogo: () => cy.findByRole('img', { name: 'Deriv Trader' }),
+    derivcTraderLink: () =>
+    cy.findByRole('link' , { name:
+       'Deriv cTrader trading platform Deriv cTrader An intuitive, multi-asset CFD trading platform with copy trading and custom indicators.'
+    }),
+    derivcTraderPgaeText: () =>
+    cy.findByRole ('heading', { name: 'What is Deriv cTrader' }),
+    derivBinaryBotLink: () =>
+      cy.findByRole('link' , { name:
+         'Binary bot for creating trading bot Binary Bot Our classic "drag-and-drop" tool for creating trading bots, featuring pop-up trading charts, for advanced users.'
+      }),
+    derivGoLink: () =>
+      cy.findByRole ('link' , {
+        name: 'Deriv GO mobile trading app Deriv GO Trade multipliers on forex, cryptocurrencies, and synthetic indices with our mobile app.'
+      }),
+    derivBotLink: () =>
+      cy.findByRole('link' , {
+        name: 'Deriv Bot Automated trading Deriv Bot Automated trading at your fingertips. No coding needed.'
+      }),
+    derivBotPageText: () => 
+      cy.findByRole ('heading', { name: 'Automate your trading ideas without writing code' }),
     legalMenu: () => cy.findByRole('button', { name: 'Legal chevron' }),
     regulatoryInformationLink: () =>
       cy.findByRole('link', { name: 'Regulatory information' }),
@@ -125,6 +159,7 @@ class footerEuPage {
     communityPapageText: () =>
       cy.findByRole('heading', { name: 'Welcome to our community' }),
     tradersToolLink: () => cy.findByRole('link', { name: 'Traders’ tools' }),
+    tradersToolPageText: () => cy.findByRole ('heading' , {name: 'Traders’ tools'}),
     paymentMethodLink: () => cy.findByRole('link', { name: 'Payment methods' }),
     derivMT5SignalLink: () =>
       cy.findByRole('link', { name: 'Deriv MT5 Signals' }),
@@ -138,6 +173,8 @@ class footerEuPage {
       cy.findByRole('link', {
         name: '71% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.',
       }),
+    paymentAgentLink: () => cy.findByRole('link', { name: 'Payment agents' }),
+    paymentAgentPageText: () => cy.findByRole('heading', { name: 'Become a payment agent on Deriv' }),
   }
   socialMediaLinks = {
     footerFaceBookLogo: () => cy.findByRole('link', { name: '_t_Facebook_t_' }),
