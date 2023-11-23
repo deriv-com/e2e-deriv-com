@@ -12,7 +12,7 @@ describe('QATEST- Footer ROW Responsive', () => {
     const externalURLs = Cypress.config('externalUrls');
     const externalSocialURLs = Cypress.config('externalSocialUrls');
 
-    it.only('should open and verify all footer social media links.', () => {
+    it('should open and verify all footer social media links.', () => {
 
         const socialMediaLinks = [
             { name: 'Facebook', func: footerEuPage.socialMediaLinks.footerFaceBookLogo, expectedUrl: externalSocialURLs.facebookRow },
