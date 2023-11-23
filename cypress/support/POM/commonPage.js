@@ -159,6 +159,7 @@ class footerEuPage {
     communityPapageText: () =>
       cy.findByRole('heading', { name: 'Welcome to our community' }),
     tradersToolLink: () => cy.findByRole('link', { name: 'Traders’ tools' }),
+    tradersToolPageText: () => cy.findByRole ('heading' , {name: 'Traders’ tools'}),
     paymentMethodLink: () => cy.findByRole('link', { name: 'Payment methods' }),
     derivMT5SignalLink: () =>
       cy.findByRole('link', { name: 'Deriv MT5 Signals' }),
