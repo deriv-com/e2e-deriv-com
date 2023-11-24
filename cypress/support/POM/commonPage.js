@@ -175,9 +175,12 @@ class commonPage {
       }),
     paymentAgentLink: () => cy.findByRole('link', { name: 'Payment agents' }),
     paymentAgentPageText: () => cy.findByRole('heading', { name: 'Become a payment agent on Deriv' }),
-   
+    footerRowlicence: () => cy.findByRole('link', { name: 'licence' }),
+    derivFxLicence: () => cy.get('[href="/regulatory/Deriv_(FX)_Ltd.pdf"]'),
   }
-  socialMediaLinks = {
+
+  socialMediaLinks = 
+  {
     footerFaceBookLogo: () => cy.findByRole('link', { name: '_t_Facebook_t_' }),
     footerInstagramLogo: () =>
       cy.findByRole('link', { name: '_t_Instagram_t_' }),
@@ -185,11 +188,19 @@ class commonPage {
     footerYoutubeLogo: () => cy.findByRole('link', { name: '_t_Youtube_t_' }),
     footerLinkedInLogo: () => cy.findByRole('link', { name: '_t_Linkedin_t_' }),
   }
-  euPdfs = {
-    EulicencePdf: '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
-    EuRiskDiscPdf: '/tnc/eu/risk-disclosure.pdf',
+
+  euPdfs =
+   {
+    eulicencePdf:  '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
+    euRiskDiscPdf: '/tnc/eu/risk-disclosure.pdf',
+   }
+
+  rowPdfs = {
+    derivFx:  '/regulatory/Deriv_(FX)_Ltd.pdf',
+    derivBVI: '/regulatory/Deriv_(BVI)_Ltd.pdf',
+    derivV:   '/regulatory/Deriv_(V)_Ltd.pdf',
   }
-  
+
   areSocialLinksVisible() {
     this.socialMediaLinks.footerFaceBookLogo().should('be.visible')
     this.socialMediaLinks.footerInstagramLogo().should('be.visible')
