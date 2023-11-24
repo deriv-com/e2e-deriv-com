@@ -1,5 +1,5 @@
 import '@testing-library/cypress/add-commands'
-import footerEuPage, {
+import commonPage, {
   areLegalLinksVisible,
   socialMediaLinks,
 } from '../../support/POM/commonPage'
@@ -9,8 +9,8 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
   });
   it('should verify deriv logo and social media icons.', () => {
-    footerEuPage.elements.footerLogo().should('be.visible');
-    footerEuPage.areSocialLinksVisible();
+    commonPage.elements.footerLogo().should('be.visible');
+    commonPage.areSocialLinksVisible();
   });
 
   const externalURLs = Cypress.config('externalUrls');
@@ -19,212 +19,212 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   it('should open and verify all footer social media links.', () => {
     const socialLinks = [
       {
-        element: footerEuPage.socialMediaLinks.footerFaceBookLogo,
+        element: commonPage.socialMediaLinks.footerFaceBookLogo,
         url: externalSocialURLs.facebookEu
       },
       {
-        element: footerEuPage.socialMediaLinks.footerInstagramLogo,
+        element: commonPage.socialMediaLinks.footerInstagramLogo,
         url: externalSocialURLs.instagramEu
       },
       {
-        element: footerEuPage.socialMediaLinks.footerTwitterLogo,
+        element: commonPage.socialMediaLinks.footerTwitterLogo,
         url: externalSocialURLs.twitterEu
       },
       {
-        element: footerEuPage.socialMediaLinks.footerYoutubeLogo,
+        element: commonPage.socialMediaLinks.footerYoutubeLogo,
         url: externalSocialURLs.youtubeDeriv
       },
       {
-        element: footerEuPage.socialMediaLinks.footerLinkedInLogo,
+        element: commonPage.socialMediaLinks.footerLinkedInLogo,
         url: externalSocialURLs.linkedInDeriv
       }
     ];
-    socialLinks.forEach((link) => { footerEuPage.areSocialLinksCorrect(link.element, link.url); });
+    socialLinks.forEach((link) => { commonPage.areSocialLinksCorrect(link.element, link.url); });
   });
 
   it('should open about us menu and verify whoWeAre and WhyChooseUs.', () => {
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.aboutUsMenu().click();
-    footerEuPage.areAboutUsLinksVisible();
-    footerEuPage.elements.whoWeAreLink().click();
-    footerEuPage.elements.whoWeArePageText().should('be.visible');
-    footerEuPage.elements.whyChooseUsLink().click();
-    footerEuPage.elements.whyChooseUsPageText().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.aboutUsMenu().click();
+    commonPage.areAboutUsLinksVisible();
+    commonPage.elements.whoWeAreLink().click();
+    commonPage.elements.whoWeArePageText().should('be.visible');
+    commonPage.elements.whyChooseUsLink().click();
+    commonPage.elements.whyChooseUsPageText().should('be.visible');
   });
 
   it('should open about us menu and verify partnershipProgrammes.', () => {
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.aboutUsMenu().click();
-    footerEuPage.elements.partnershipProgrammesLink().click({ force: true });
-    footerEuPage.elements.partnershipProgrammesPageText().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.aboutUsMenu().click();
+    commonPage.elements.partnershipProgrammesLink().click({ force: true });
+    commonPage.elements.partnershipProgrammesPageText().should('be.visible');
   });
 
   it('should open about us menu and verify contact us and careers links. ', () => {
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.aboutUsMenu().click();
-    footerEuPage.elements.contactUsLink().click();
-    footerEuPage.elements.contactUsPageText().should('be.visible');
-    footerEuPage.elements.careersLink().click();
-    footerEuPage.elements.careersPageText().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.aboutUsMenu().click();
+    commonPage.elements.contactUsLink().click();
+    commonPage.elements.contactUsPageText().should('be.visible');
+    commonPage.elements.careersLink().click();
+    commonPage.elements.careersPageText().should('be.visible');
   });
 
   it('should open about us menu and verify derivlife.', () => {
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.aboutUsMenu().click();
-    footerEuPage.elements.derivLifeLink()
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.aboutUsMenu().click();
+    commonPage.elements.derivLifeLink()
       .then(($el) => {
-        footerEuPage.elements.derivLifeLink().invoke('removeAttr', 'target').click();
+        commonPage.elements.derivLifeLink().invoke('removeAttr', 'target').click();
         const derivLife = $el.attr('href');
         cy.wrap(derivLife).should('eq', externalURLs.derivlifeURL);
       })
   });
 
   it('should open trade type menu and verify all links.', () => {
-    footerEuPage.elements.hamburgerMenu().click();
-    footerEuPage.elements.tradeMenu().click();
-    footerEuPage.areTradeMenuLinkVisible();
-    footerEuPage.elements.cfdLink().click();
-    footerEuPage.elements.cfdPageText().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.tradeMenu().click();
-    footerEuPage.elements.multipliersLink().click();
-    footerEuPage.elements.multipliersPageText().should('be.visible');
+    commonPage.elements.hamburgerMenu().click();
+    commonPage.elements.tradeMenu().click();
+    commonPage.areTradeMenuLinkVisible();
+    commonPage.elements.cfdLink().click();
+    commonPage.elements.cfdPageText().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.tradeMenu().click();
+    commonPage.elements.multipliersLink().click();
+    commonPage.elements.multipliersPageText().should('be.visible');
   });
 
   it('should open market menu and verify links.', () => {
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.marketsMenu().click();
-    footerEuPage.areMarketLinksVisible();
-    footerEuPage.elements.forexLink().click();
-    footerEuPage.elements.forexPageText().should('be.visible');
-    footerEuPage.elements.derivedIndicesLink().click();
-    footerEuPage.elements.derivedIndicesPageText().should('be.visible');
-    footerEuPage.elements.stocksAndIndicesLink().click();
-    footerEuPage.elements.stockAndIndicesPageText().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.marketsMenu().click();
+    commonPage.areMarketLinksVisible();
+    commonPage.elements.forexLink().click();
+    commonPage.elements.forexPageText().should('be.visible');
+    commonPage.elements.derivedIndicesLink().click();
+    commonPage.elements.derivedIndicesPageText().should('be.visible');
+    commonPage.elements.stocksAndIndicesLink().click();
+    commonPage.elements.stockAndIndicesPageText().should('be.visible');
   });
 
   it('should open market menu and verify all of the links.', () => {
-    footerEuPage.elements.hamburgerMenu().should('be.visible')
-    footerEuPage.clickHamburgerMenu()
-    footerEuPage.elements.marketsMenu().click({ force: true })
-    footerEuPage.elements.commoditiesLink().should('be.visible')
-    footerEuPage.elements.commoditiesLink().click({ force: true })
-    footerEuPage.elements.commoditiesPageLink().should('be.visible')
-    footerEuPage.elements.hamburgerMenu().should('be.visible')
-    footerEuPage.clickHamburgerMenu()
-    footerEuPage.elements.marketsMenu().click()
-    footerEuPage.elements.cryptoCurrenciesLink().click()
-    footerEuPage.elements.cryptoCurrenciesPageText().should('be.visible')
-    footerEuPage.elements.hamburgerMenu().should('be.visible')
-    footerEuPage.clickHamburgerMenu()
-    footerEuPage.elements.marketsMenu().click()
-    footerEuPage.elements.etfsLink().click()
-    footerEuPage.elements.etfsPageText().should('be.visible')
+    commonPage.elements.hamburgerMenu().should('be.visible')
+    commonPage.clickHamburgerMenu()
+    commonPage.elements.marketsMenu().click({ force: true })
+    commonPage.elements.commoditiesLink().should('be.visible')
+    commonPage.elements.commoditiesLink().click({ force: true })
+    commonPage.elements.commoditiesPageLink().should('be.visible')
+    commonPage.elements.hamburgerMenu().should('be.visible')
+    commonPage.clickHamburgerMenu()
+    commonPage.elements.marketsMenu().click()
+    commonPage.elements.cryptoCurrenciesLink().click()
+    commonPage.elements.cryptoCurrenciesPageText().should('be.visible')
+    commonPage.elements.hamburgerMenu().should('be.visible')
+    commonPage.clickHamburgerMenu()
+    commonPage.elements.marketsMenu().click()
+    commonPage.elements.etfsLink().click()
+    commonPage.elements.etfsPageText().should('be.visible')
   })
 
   it('should open market menu and verify all of the links.', () => {
-    footerEuPage.elements.hamburgerMenu().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.marketsMenu().click({ force: true });
-    footerEuPage.elements.commoditiesLink().should('be.visible');
-    footerEuPage.elements.commoditiesLink().click({ force: true });
-    footerEuPage.elements.commoditiesPageLink().should('be.visible');
-    footerEuPage.elements.hamburgerMenu().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.marketsMenu().click();
-    footerEuPage.elements.cryptoCurrenciesLink().click();
-    footerEuPage.elements.cryptoCurrenciesPageText().should('be.visible');
-    footerEuPage.elements.hamburgerMenu().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.marketsMenu().click();
-    footerEuPage.elements.etfsLink().click();
-    footerEuPage.elements.etfsPageText().should('be.visible');
+    commonPage.elements.hamburgerMenu().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.marketsMenu().click({ force: true });
+    commonPage.elements.commoditiesLink().should('be.visible');
+    commonPage.elements.commoditiesLink().click({ force: true });
+    commonPage.elements.commoditiesPageLink().should('be.visible');
+    commonPage.elements.hamburgerMenu().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.marketsMenu().click();
+    commonPage.elements.cryptoCurrenciesLink().click();
+    commonPage.elements.cryptoCurrenciesPageText().should('be.visible');
+    commonPage.elements.hamburgerMenu().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.marketsMenu().click();
+    commonPage.elements.etfsLink().click();
+    commonPage.elements.etfsPageText().should('be.visible');
   });
 
   it('should open platform menu and verify all links.', () => {
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.tradeMenu().click();
-    footerEuPage.arePlatformLinksVisible();
-    footerEuPage.elements.derivMT5Link().click();
-    footerEuPage.elements.derivMT5PageText().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.tradeMenu().click();
-    footerEuPage.elements.derivTraderLink().click();
-    footerEuPage.elements.dTraderlogo().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.tradeMenu().click();
+    commonPage.arePlatformLinksVisible();
+    commonPage.elements.derivMT5Link().click();
+    commonPage.elements.derivMT5PageText().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.tradeMenu().click();
+    commonPage.elements.derivTraderLink().click();
+    commonPage.elements.dTraderlogo().should('be.visible');
   });
 
   it('should open legal menu and verify all links.', () => {
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.legalMenu().click();
-    footerEuPage.areLegalLinksVisible();
-    footerEuPage.elements.regulatoryInformationLink().click();
-    footerEuPage.elements.regulatoryInformationPageText().should('be.visible');
-    footerEuPage.elements.termsAndConditionsLink().click();
-    footerEuPage.elements.termsAndConditionsPageText().should('be.visible');
-    footerEuPage.elements.cookiesEUAcceptButton().click();
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.legalMenu().click();
-    footerEuPage.elements.secureAndResponsibleTradingLink().click();
-    footerEuPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.legalMenu().click();
+    commonPage.areLegalLinksVisible();
+    commonPage.elements.regulatoryInformationLink().click();
+    commonPage.elements.regulatoryInformationPageText().should('be.visible');
+    commonPage.elements.termsAndConditionsLink().click();
+    commonPage.elements.termsAndConditionsPageText().should('be.visible');
+    commonPage.elements.cookiesEUAcceptButton().click();
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.legalMenu().click();
+    commonPage.elements.secureAndResponsibleTradingLink().click();
+    commonPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
   });
 
   it('should open partners menu and verify all links.', () => {
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.partnersMenu().click();
-    footerEuPage.arePartnersLinkVisible();
-    footerEuPage.elements.derivPrimeLink().click();
-    footerEuPage.elements.derivPrimePageText().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.affiliatesLink().click();
-    footerEuPage.elements.affiliatesPageText().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.aPILink()
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.partnersMenu().click();
+    commonPage.arePartnersLinkVisible();
+    commonPage.elements.derivPrimeLink().click();
+    commonPage.elements.derivPrimePageText().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.affiliatesLink().click();
+    commonPage.elements.affiliatesPageText().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.aPILink()
       .then(($ele) => {
-        footerEuPage.elements.aPILink().invoke('removeAttr', 'target').click();
+        commonPage.elements.aPILink().invoke('removeAttr', 'target').click();
         const aPILink = $ele.attr('href');
         cy.request(aPILink).its('status').should('eq', 200);
       })
   });
 
   it('should open resources/support menu and verify all links.', () => {
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.resourcesMenu().click();
-    footerEuPage.elements.helpCenterLink().click();
-    footerEuPage.elements.helpCenterPage().should('be.visible');
-    footerEuPage.elements.cookiesEUAcceptButton().click();
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.resourcesMenu().click();
-    footerEuPage.elements.communityLink().invoke('removeAttr', 'target').click();
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.resourcesMenu().click();
+    commonPage.elements.helpCenterLink().click();
+    commonPage.elements.helpCenterPage().should('be.visible');
+    commonPage.elements.cookiesEUAcceptButton().click();
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.resourcesMenu().click();
+    commonPage.elements.communityLink().invoke('removeAttr', 'target').click();
   });
 
   it('should open resource/support menu and verify status page.', () => {
-    footerEuPage.elements.hamburgerMenu().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.resourcesMenu().click();
-    footerEuPage.elements.statusPagelLink().click();
-    footerEuPage.elements.proceedButton().click();
+    commonPage.elements.hamburgerMenu().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.resourcesMenu().click();
+    commonPage.elements.statusPagelLink().click();
+    commonPage.elements.proceedButton().click();
   });
 
   it('should open resources/support menu and verify links.', () => {
-    footerEuPage.elements.cookiesEUAcceptButton().click();
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.resourcesMenu().click();
-    footerEuPage.elements.derivMT5SignalLink().click();
-    footerEuPage.elements.hamburgerMenu().should('be.visible');
-    footerEuPage.clickHamburgerMenu();
-    footerEuPage.elements.resourcesMenu().click();
-    footerEuPage.elements.derivBlogLink()
+    commonPage.elements.cookiesEUAcceptButton().click();
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.resourcesMenu().click();
+    commonPage.elements.derivMT5SignalLink().click();
+    commonPage.elements.hamburgerMenu().should('be.visible');
+    commonPage.clickHamburgerMenu();
+    commonPage.elements.resourcesMenu().click();
+    commonPage.elements.derivBlogLink()
       .then(($el) => {
-        footerEuPage.elements.derivBlogLink().invoke('removeAttr', 'target').click();
+        commonPage.elements.derivBlogLink().invoke('removeAttr', 'target').click();
         const derivBlog = $el.attr('href');
         cy.wrap(derivBlog).should('eq', externalURLs.derivBlogURL);
       })
   });
 
   it('should open and verify footer (licence) PDF.', () => {
-    footerEuPage.elements.footerEUlicence().should('be.visible');
-    footerEuPage.elements.footerEUlicence()
-      .invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EUlicencePDF)
+    commonPage.elements.footerEUlicence().should('be.visible');
+    commonPage.elements.footerEUlicence()
+      .invoke('attr', 'href').and('include', commonPage.eUPDFs.EUlicencePDF)
       .then(href => {
         cy.request(href).then(pdf => {
         })
@@ -233,13 +233,13 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   });
 
   it('should open below footer links.', () => {
-    footerEuPage.elements.cookiesEUAcceptButton().click();
-    footerEuPage.elements.footerTermsAndConditionLink().click();
-    footerEuPage.elements.termsAndConditionsPageText().should('be.visible');
-    footerEuPage.elements.footerSecureAndRespTradingLink().click();
-    footerEuPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
-    footerEuPage.elements.footerRiskDisclosureLink().should('be.visible');
-    footerEuPage.elements.footerRiskDisclosureLink().invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EURiskDiscPDF)
+    commonPage.elements.cookiesEUAcceptButton().click();
+    commonPage.elements.footerTermsAndConditionLink().click();
+    commonPage.elements.termsAndConditionsPageText().should('be.visible');
+    commonPage.elements.footerSecureAndRespTradingLink().click();
+    commonPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
+    commonPage.elements.footerRiskDisclosureLink().should('be.visible');
+    commonPage.elements.footerRiskDisclosureLink().invoke('attr', 'href').and('include', commonPage.eUPDFs.EURiskDiscPDF)
       .then(href => {
         cy.request(href).then(pdf => {
         })
@@ -248,9 +248,9 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   });
 
   it('should open CFD banner link.', () => {
-    footerEuPage.elements.cookiesEUAcceptButton().click();
-    footerEuPage.elements.cfdFloatingBannerLink().should('be.visible');
-    footerEuPage.elements.cfdFloatingBannerLink().invoke('attr', 'href').and('include', footerEuPage.eUPDFs.EURiskDiscPDF)
+    commonPage.elements.cookiesEUAcceptButton().click();
+    commonPage.elements.cfdFloatingBannerLink().should('be.visible');
+    commonPage.elements.cfdFloatingBannerLink().invoke('attr', 'href').and('include', commonPage.eUPDFs.EURiskDiscPDF)
       .then(href => {
         cy.request(href).then(pdf => {
         })
@@ -259,12 +259,12 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   })
 
   it('should open CFD banner link.', () => {
-    footerEuPage.elements.cookiesEUAcceptButton().click()
-    footerEuPage.elements.cfdFloatingBannerLink().should('be.visible')
-    footerEuPage.elements
+    commonPage.elements.cookiesEUAcceptButton().click()
+    commonPage.elements.cfdFloatingBannerLink().should('be.visible')
+    commonPage.elements
       .cfdFloatingBannerLink()
       .invoke('attr', 'href')
-      .and('include', footerEuPage.eUPDFs.EURiskDiscPDF)
+      .and('include', commonPage.eUPDFs.EURiskDiscPDF)
       .then((href) => {
         cy.request(href).then((pdf) => { })
         cy.request(href).its('status').should('eq', 200)

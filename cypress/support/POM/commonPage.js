@@ -1,4 +1,4 @@
-class footerEuPage {
+class commonPage {
   elements = {
     footerLogo: () => cy.findByRole('img', { name: 'deriv logo image' }),
     proceedButton: () => cy.findByRole('button', { name: 'Proceed' }),
@@ -246,4 +246,4 @@ class footerEuPage {
     this.elements.hamburgerMenu().click({ force: true })
   }
 }
-module.exports = new footerEuPage()
+module.exports = new commonPage()
