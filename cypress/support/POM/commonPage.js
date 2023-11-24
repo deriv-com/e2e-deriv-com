@@ -175,7 +175,7 @@ class commonPage {
     footerRiskDisclosureLink: () =>
       cy.findByRole('link', { name: 'Risk disclosure' }),
     cookiesEUAcceptButton: () => cy.findByRole('button', { name: 'Accept' }),
-    cfdFloatingBannerLink: () =>
+    cfdFBannerLink: () =>
       cy.findByRole('link', {
         name: '71% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.',
       }),

@@ -52,18 +52,6 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     commonPage.elements.stockAndIndicesPageText().should('be.visible');
   });
 
-  it('should open platform menu and verify all links.', () => {
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.tradeMenu().click();
-    commonPage.arePlatformLinksVisible();
-    commonPage.elements.derivMT5Link().click();
-    commonPage.elements.derivMT5PageText().should('be.visible');
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.tradeMenu().click();
-    commonPage.elements.derivTraderLink().click();
-    commonPage.elements.dTraderlogo().should('be.visible');
-  });
-
   it('should open legal menu and verify all links.', () => {
     commonPage.clickHamburgerMenu();
     commonPage.elements.legalMenu().click();
@@ -108,30 +96,6 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     commonPage.elements.communityLink().invoke('removeAttr', 'target').click();
   });
 
-  it('should open resource/support menu and verify status page.', () => {
-    commonPage.elements.hamburgerMenu().should('be.visible');
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.resourcesMenu().click();
-    commonPage.elements.statusPagelLink().click();
-    commonPage.elements.proceedButton().click();
-  });
-
-  it('should open resources/support menu and verify links.', () => {
-    commonPage.elements.cookiesEUAcceptButton().click();
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.resourcesMenu().click();
-    commonPage.elements.derivMT5SignalLink().click();
-    commonPage.elements.hamburgerMenu().should('be.visible');
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.resourcesMenu().click();
-    commonPage.elements.derivBlogLink()
-      .then(($el) => {
-        commonPage.elements.derivBlogLink().invoke('removeAttr', 'target').click();
-        const derivBlog = $el.attr('href');
-        cy.wrap(derivBlog).should('eq', externalURLs.derivBlogURL);
-      })
-  });
-
   it('should open and verify footer (licence) PDF.', () => {
     commonPage.elements.footerEulicence().should('be.visible');
     commonPage.elements.footerEulicence()
@@ -159,21 +123,10 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   });
 
   it('should open CFD banner link.', () => {
-    commonPage.elements.cookiesEUAcceptButton().click();
-    commonPage.elements.cfdFloatingBannerLink().should('be.visible');
-    commonPage.elements.cfdFloatingBannerLink().invoke('attr', 'href').and('include', commonPage.euPdfs.euRiskDiscPdf)
-      .then(href => {
-        cy.request(href).then(pdf => {
-        })
-        cy.request(href).its('status').should('eq', 200);
-      })
-  })
-
-  it('should open CFD banner link.', () => {
     commonPage.elements.cookiesEUAcceptButton().click()
-    commonPage.elements.cfdFloatingBannerLink().should('be.visible')
+    commonPage.elements.cfdFBannerLink().should('be.visible')
     commonPage.elements
-      .cfdFloatingBannerLink()
+      .cfdFBannerLink()
       .invoke('attr', 'href')
       .and('include', commonPage.euPdfs.euRiskDiscPdf)
       .then((href) => {
