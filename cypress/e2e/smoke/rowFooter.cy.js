@@ -13,19 +13,36 @@ describe('QATEST- Footer ROW Responsive', () => {
     const externalSocialURLs = Cypress.config('externalSocialUrls');
 
     it('should open and verify all footer social media links.', () => {
-
         const socialMediaLinks = [
-            { name: 'Facebook', func: commonPage.socialMediaLinks.footerFaceBookLogo, expectedUrl: externalSocialURLs.facebookRow },
-            { name: 'Twitter', func: commonPage.socialMediaLinks.footerTwitterLogo, expectedUrl: externalSocialURLs.twitterRow },
-            { name: 'Instagram', func: commonPage.socialMediaLinks.footerInstagramLogo, expectedUrl: externalSocialURLs.instagramRow },
-            { name: 'LinkedIn', func: commonPage.socialMediaLinks.footerLinkedInLogo, expectedUrl: externalSocialURLs.linkedInDeriv },
-           // { name: 'Youtube', func: commonPage.socialMediaLinks.footerYoutubeLogo, expectedUrl: externalSocialURLs.youtubeDeriv },
+            {
+                name: 'Facebook', func: commonPage.socialMediaLinks.footerFaceBookLogo, expectedUrl: externalSocialURLs.facebookRow
+            },
+            {
+                name: 'Twitter', func: commonPage.socialMediaLinks.footerTwitterLogo, expectedUrl: externalSocialURLs.twitterRow
+            },
+            {
+                name: 'Instagram', func: commonPage.socialMediaLinks.footerInstagramLogo, expectedUrl: externalSocialURLs.instagramRow
+            },
+            {
+                name: 'LinkedIn', func: commonPage.socialMediaLinks.footerLinkedInLogo, expectedUrl: externalSocialURLs.linkedInDeriv
+            },
+            {
+                name: 'Youtube', func: commonPage.socialMediaLinks.footerYoutubeLogo, expectedUrl: externalSocialURLs.youtubeDeriv
+            },
         ];
         socialMediaLinks.forEach((socialMedia) => {
             socialMedia.func().then(($el) => {
-                socialMedia.func().invoke('removeAttr', 'target').click();
-                const linkHref = $el.attr('href');
-                cy.wrap(linkHref).should('eq', socialMedia.expectedUrl);
+                socialMedia.func().invoke('removeAttr', 'target').then(() => {
+                    const linkHref = $el.attr('href');
+                    if (socialMedia.name === 'Youtube') {
+                        if (linkHref.includes('youtube.com')) {
+                            $el.click();
+                        }
+                    } else {
+                        socialMedia.func().invoke('removeAttr', 'target').click();
+                    }
+                    cy.wrap(linkHref).should('eq', socialMedia.expectedUrl);
+                });
             });
             cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
         });
