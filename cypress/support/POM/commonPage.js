@@ -165,7 +165,7 @@ class commonPage {
       cy.findByRole('link', { name: 'Deriv MT5 Signals' }),
     statusPagelLink: () => cy.findByRole('link', { name: 'Status page' }),
     derivBlogLink: () => cy.findByRole('link', { name: 'Deriv Blog' }),
-    footerEUlicence: () => cy.findByRole('link', { name: '(licence)' }),
+    footerEulicence: () => cy.findByRole('link', { name: '(licence)' }),
     footerRiskDisclosureLink: () =>
       cy.findByRole('link', { name: 'Risk disclosure' }),
     cookiesEUAcceptButton: () => cy.findByRole('button', { name: 'Accept' }),
@@ -175,6 +175,7 @@ class commonPage {
       }),
     paymentAgentLink: () => cy.findByRole('link', { name: 'Payment agents' }),
     paymentAgentPageText: () => cy.findByRole('heading', { name: 'Become a payment agent on Deriv' }),
+   
   }
   socialMediaLinks = {
     footerFaceBookLogo: () => cy.findByRole('link', { name: '_t_Facebook_t_' }),
@@ -184,10 +185,11 @@ class commonPage {
     footerYoutubeLogo: () => cy.findByRole('link', { name: '_t_Youtube_t_' }),
     footerLinkedInLogo: () => cy.findByRole('link', { name: '_t_Linkedin_t_' }),
   }
-  eUPDFs = {
-    EUlicencePDF: '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
-    EURiskDiscPDF: '/tnc/eu/risk-disclosure.pdf',
+  euPdfs = {
+    EulicencePdf: '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
+    EuRiskDiscPdf: '/tnc/eu/risk-disclosure.pdf',
   }
+  
   areSocialLinksVisible() {
     this.socialMediaLinks.footerFaceBookLogo().should('be.visible')
     this.socialMediaLinks.footerInstagramLogo().should('be.visible')

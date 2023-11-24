@@ -222,9 +222,9 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   });
 
   it('should open and verify footer (licence) PDF.', () => {
-    commonPage.elements.footerEUlicence().should('be.visible');
-    commonPage.elements.footerEUlicence()
-      .invoke('attr', 'href').and('include', commonPage.eUPDFs.EUlicencePDF)
+    commonPage.elements.footerEulicence().should('be.visible');
+    commonPage.elements.footerEulicence()
+      .invoke('attr', 'href').and('include', commonPage.euPdfs.EulicencePdf)
       .then(href => {
         cy.request(href).then(pdf => {
         })
@@ -250,7 +250,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   it('should open CFD banner link.', () => {
     commonPage.elements.cookiesEUAcceptButton().click();
     commonPage.elements.cfdFloatingBannerLink().should('be.visible');
-    commonPage.elements.cfdFloatingBannerLink().invoke('attr', 'href').and('include', commonPage.eUPDFs.EURiskDiscPDF)
+    commonPage.elements.cfdFloatingBannerLink().invoke('attr', 'href').and('include', commonPage.euPdfs.EuRiskDiscPdf)
       .then(href => {
         cy.request(href).then(pdf => {
         })
@@ -264,7 +264,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     commonPage.elements
       .cfdFloatingBannerLink()
       .invoke('attr', 'href')
-      .and('include', commonPage.eUPDFs.EURiskDiscPDF)
+      .and('include', commonPage.euPdfs.EuRiskDiscPdf)
       .then((href) => {
         cy.request(href).then((pdf) => { })
         cy.request(href).its('status').should('eq', 200)
