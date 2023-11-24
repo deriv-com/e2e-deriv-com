@@ -30,7 +30,7 @@ function enterValidEmail(email)
 }
 
 describe('QATEST-1395 - Sign up Section: Email validation', () => {
-  it('Should validate the behavior when invalid and valid email id is entered in signup section.', () => {
+  it('should validate the behavior when invalid and valid email id is entered in signup section.', () => {
   cy.c_visitResponsive(Cypress.env('RegionROW'))
   const invalidEmail1 = generateRandomEmail()
   enterInvalidEmail(invalidEmail1)
