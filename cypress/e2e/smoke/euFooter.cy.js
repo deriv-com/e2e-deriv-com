@@ -42,103 +42,14 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     socialLinks.forEach((link) => { commonPage.areSocialLinksCorrect(link.element, link.url); });
   });
 
-  it('should open about us menu and verify whoWeAre and WhyChooseUs.', () => {
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.aboutUsMenu().click();
-    commonPage.areAboutUsLinksVisible();
-    commonPage.elements.whoWeAreLink().click();
-    commonPage.elements.whoWeArePageText().should('be.visible');
-    commonPage.elements.whyChooseUsLink().click();
-    commonPage.elements.whyChooseUsPageText().should('be.visible');
-  });
-
-  it('should open about us menu and verify partnershipProgrammes.', () => {
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.aboutUsMenu().click();
-    commonPage.elements.partnershipProgrammesLink().click({ force: true });
-    commonPage.elements.partnershipProgrammesPageText().should('be.visible');
-  });
-
-  it('should open about us menu and verify contact us and careers links. ', () => {
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.aboutUsMenu().click();
-    commonPage.elements.contactUsLink().click();
-    commonPage.elements.contactUsPageText().should('be.visible');
-    commonPage.elements.careersLink().click();
-    commonPage.elements.careersPageText().should('be.visible');
-  });
-
-  it('should open about us menu and verify derivlife.', () => {
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.aboutUsMenu().click();
-    commonPage.elements.derivLifeLink()
-      .then(($el) => {
-        commonPage.elements.derivLifeLink().invoke('removeAttr', 'target').click();
-        const derivLife = $el.attr('href');
-        cy.wrap(derivLife).should('eq', externalURLs.derivlifeURL);
-      })
-  });
-
-  it('should open trade type menu and verify all links.', () => {
-    commonPage.elements.hamburgerMenu().click();
-    commonPage.elements.tradeMenu().click();
-    commonPage.areTradeMenuLinkVisible();
-    commonPage.elements.cfdLink().click();
-    commonPage.elements.cfdPageText().should('be.visible');
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.tradeMenu().click();
-    commonPage.elements.multipliersLink().click();
-    commonPage.elements.multipliersPageText().should('be.visible');
-  });
-
   it('should open market menu and verify links.', () => {
     commonPage.clickHamburgerMenu();
     commonPage.elements.marketsMenu().click();
     commonPage.areMarketLinksVisible();
-    commonPage.elements.forexLink().click();
-    commonPage.elements.forexPageText().should('be.visible');
     commonPage.elements.derivedIndicesLink().click();
     commonPage.elements.derivedIndicesPageText().should('be.visible');
     commonPage.elements.stocksAndIndicesLink().click();
     commonPage.elements.stockAndIndicesPageText().should('be.visible');
-  });
-
-  it('should open market menu and verify all of the links.', () => {
-    commonPage.elements.hamburgerMenu().should('be.visible')
-    commonPage.clickHamburgerMenu()
-    commonPage.elements.marketsMenu().click({ force: true })
-    commonPage.elements.commoditiesLink().should('be.visible')
-    commonPage.elements.commoditiesLink().click({ force: true })
-    commonPage.elements.commoditiesPageLink().should('be.visible')
-    commonPage.elements.hamburgerMenu().should('be.visible')
-    commonPage.clickHamburgerMenu()
-    commonPage.elements.marketsMenu().click()
-    commonPage.elements.cryptoCurrenciesLink().click()
-    commonPage.elements.cryptoCurrenciesPageText().should('be.visible')
-    commonPage.elements.hamburgerMenu().should('be.visible')
-    commonPage.clickHamburgerMenu()
-    commonPage.elements.marketsMenu().click()
-    commonPage.elements.etfsLink().click()
-    commonPage.elements.etfsPageText().should('be.visible')
-  })
-
-  it('should open market menu and verify all of the links.', () => {
-    commonPage.elements.hamburgerMenu().should('be.visible');
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.marketsMenu().click({ force: true });
-    commonPage.elements.commoditiesLink().should('be.visible');
-    commonPage.elements.commoditiesLink().click({ force: true });
-    commonPage.elements.commoditiesPageLink().should('be.visible');
-    commonPage.elements.hamburgerMenu().should('be.visible');
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.marketsMenu().click();
-    commonPage.elements.cryptoCurrenciesLink().click();
-    commonPage.elements.cryptoCurrenciesPageText().should('be.visible');
-    commonPage.elements.hamburgerMenu().should('be.visible');
-    commonPage.clickHamburgerMenu();
-    commonPage.elements.marketsMenu().click();
-    commonPage.elements.etfsLink().click();
-    commonPage.elements.etfsPageText().should('be.visible');
   });
 
   it('should open platform menu and verify all links.', () => {

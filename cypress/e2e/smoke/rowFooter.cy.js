@@ -108,7 +108,7 @@ describe('QATEST- Footer ROW Responsive', () => {
         commonPage.areMarketLinksVisible();
         commonPage.elements.forexLink().click();
         commonPage.elements.forexPageText().should('be.visible');
-        commonPage.elements.derivedIndicesLink().click();
+        commonPage.elements.derivedIndicesRowLink().click();
         commonPage.elements.derivedIndicesPageText().should('be.visible');
         commonPage.elements.stocksAndIndicesLink().click();
         commonPage.elements.stockAndIndicesPageText().should('be.visible');
