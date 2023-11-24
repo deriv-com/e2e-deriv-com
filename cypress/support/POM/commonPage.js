@@ -46,7 +46,7 @@ class commonPage {
     marketsMenu: () => cy.findByRole('button', { name: 'Markets chevron' }),
     derivXLink: () => cy.findByRole('link', {
       name: 'Deriv X trading paltform Deriv X A highly customisable and easy-to-use CFD trading platform.'
-     }),
+    }),
     forexLink: () =>
       cy.findByRole('link', {
         name: 'Forex Forex Trade the world’s largest financial market with popular forex pairs.',
@@ -54,6 +54,10 @@ class commonPage {
     forexPageText: () =>
       cy.findByRole('heading', { name: 'Forex', exact: true }),
     derivedIndicesLink: () =>
+      cy.findByRole('link', {
+        name: 'Synthetic indices Derived indices Enjoy trading asset prices derived from simulated markets.',
+      }),
+      derivedIndicesRowLink: () =>
       cy.findByRole('link', {
         name: 'Synthetic indices Derived indices Enjoy trading asset prices derived from real-world or simulated markets.',
       }),
@@ -100,25 +104,27 @@ class commonPage {
       }),
     dTraderlogo: () => cy.findByRole('img', { name: 'Deriv Trader' }),
     derivcTraderLink: () =>
-    cy.findByRole('link' , { name:
-       'Deriv cTrader trading platform Deriv cTrader An intuitive, multi-asset CFD trading platform with copy trading and custom indicators.'
-    }),
+      cy.findByRole('link', {
+        name:
+          'Deriv cTrader trading platform Deriv cTrader An intuitive, multi-asset CFD trading platform with copy trading and custom indicators.'
+      }),
     derivcTraderPgaeText: () =>
-    cy.findByRole ('heading', { name: 'What is Deriv cTrader' }),
+      cy.findByRole('heading', { name: 'What is Deriv cTrader' }),
     derivBinaryBotLink: () =>
-      cy.findByRole('link' , { name:
-         'Binary bot for creating trading bot Binary Bot Our classic "drag-and-drop" tool for creating trading bots, featuring pop-up trading charts, for advanced users.'
+      cy.findByRole('link', {
+        name:
+          'Binary bot for creating trading bot Binary Bot Our classic "drag-and-drop" tool for creating trading bots, featuring pop-up trading charts, for advanced users.'
       }),
     derivGoLink: () =>
-      cy.findByRole ('link' , {
+      cy.findByRole('link', {
         name: 'Deriv GO mobile trading app Deriv GO Trade multipliers on forex, cryptocurrencies, and synthetic indices with our mobile app.'
       }),
     derivBotLink: () =>
-      cy.findByRole('link' , {
+      cy.findByRole('link', {
         name: 'Deriv Bot Automated trading Deriv Bot Automated trading at your fingertips. No coding needed.'
       }),
-    derivBotPageText: () => 
-      cy.findByRole ('heading', { name: 'Automate your trading ideas without writing code' }),
+    derivBotPageText: () =>
+      cy.findByRole('heading', { name: 'Automate your trading ideas without writing code' }),
     legalMenu: () => cy.findByRole('button', { name: 'Legal chevron' }),
     regulatoryInformationLink: () =>
       cy.findByRole('link', { name: 'Regulatory information' }),
@@ -159,7 +165,7 @@ class commonPage {
     communityPapageText: () =>
       cy.findByRole('heading', { name: 'Welcome to our community' }),
     tradersToolLink: () => cy.findByRole('link', { name: 'Traders’ tools' }),
-    tradersToolPageText: () => cy.findByRole ('heading' , {name: 'Traders’ tools'}),
+    tradersToolPageText: () => cy.findByRole('heading', { name: 'Traders’ tools' }),
     paymentMethodLink: () => cy.findByRole('link', { name: 'Payment methods' }),
     derivMT5SignalLink: () =>
       cy.findByRole('link', { name: 'Deriv MT5 Signals' }),
@@ -175,30 +181,32 @@ class commonPage {
       }),
     paymentAgentLink: () => cy.findByRole('link', { name: 'Payment agents' }),
     paymentAgentPageText: () => cy.findByRole('heading', { name: 'Become a payment agent on Deriv' }),
-    footerRowlicence: () => cy.findByRole('link', { name: 'licence' }),
     derivFxLicence: () => cy.get('[href="/regulatory/Deriv_(FX)_Ltd.pdf"]'),
+    derivVLicence: () => cy.get('[href="/regulatory/Deriv_(V)_Ltd.pdf"]'),
+    derivBVILicence: () => cy.get('[href="/regulatory/Deriv_(BVI)_Ltd.pdf"]'),
   }
 
-  socialMediaLinks = 
-  {
-    footerFaceBookLogo: () => cy.findByRole('link', { name: '_t_Facebook_t_' }),
-    footerInstagramLogo: () =>
-      cy.findByRole('link', { name: '_t_Instagram_t_' }),
-    footerTwitterLogo: () => cy.findByRole('link', { name: '_t_Twitter_t_' }),
-    footerYoutubeLogo: () => cy.findByRole('link', { name: '_t_Youtube_t_' }),
-    footerLinkedInLogo: () => cy.findByRole('link', { name: '_t_Linkedin_t_' }),
-  }
+  socialMediaLinks =
+    {
+      footerFaceBookLogo: () => cy.findByRole('link', { name: '_t_Facebook_t_' }),
+      footerInstagramLogo: () =>
+        cy.findByRole('link', { name: '_t_Instagram_t_' }),
+      footerTwitterLogo: () => cy.findByRole('link', { name: '_t_Twitter_t_' }),
+      footerYoutubeLogo: () => cy.findByRole('link', { name: '_t_Youtube_t_' }),
+      footerLinkedInLogo: () => cy.findByRole('link', { name: '_t_Linkedin_t_' }),
+    }
 
   euPdfs =
-   {
-    eulicencePdf:  '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
-    euRiskDiscPdf: '/tnc/eu/risk-disclosure.pdf',
-   }
+    {
+      eulicencePdf: '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
+      euRiskDiscPdf: '/tnc/eu/risk-disclosure.pdf',
+    }
 
   rowPdfs = {
-    derivFx:  '/regulatory/Deriv_(FX)_Ltd.pdf',
+    derivFx: '/regulatory/Deriv_(FX)_Ltd.pdf',
     derivBVI: '/regulatory/Deriv_(BVI)_Ltd.pdf',
-    derivV:   '/regulatory/Deriv_(V)_Ltd.pdf',
+    derivV: '/regulatory/Deriv_(V)_Ltd.pdf',
+    rowRiskDiscPdf: 'tnc/risk-disclosure.pdf',
   }
 
   areSocialLinksVisible() {

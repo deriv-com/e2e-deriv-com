@@ -224,7 +224,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   it('should open and verify footer (licence) PDF.', () => {
     commonPage.elements.footerEulicence().should('be.visible');
     commonPage.elements.footerEulicence()
-      .invoke('attr', 'href').and('include', commonPage.euPdfs.EulicencePdf)
+      .invoke('attr', 'href').and('include', commonPage.euPdfs.eulicencePdf)
       .then(href => {
         cy.request(href).then(pdf => {
         })
@@ -239,7 +239,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     commonPage.elements.footerSecureAndRespTradingLink().click();
     commonPage.elements.secureAndResponsibleTradingPageText().should('be.visible');
     commonPage.elements.footerRiskDisclosureLink().should('be.visible');
-    commonPage.elements.footerRiskDisclosureLink().invoke('attr', 'href').and('include', commonPage.eUPDFs.EURiskDiscPDF)
+    commonPage.elements.footerRiskDisclosureLink().invoke('attr', 'href').and('include', commonPage.euPdfs.euRiskDiscPdf)
       .then(href => {
         cy.request(href).then(pdf => {
         })
@@ -250,7 +250,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   it('should open CFD banner link.', () => {
     commonPage.elements.cookiesEUAcceptButton().click();
     commonPage.elements.cfdFloatingBannerLink().should('be.visible');
-    commonPage.elements.cfdFloatingBannerLink().invoke('attr', 'href').and('include', commonPage.euPdfs.EuRiskDiscPdf)
+    commonPage.elements.cfdFloatingBannerLink().invoke('attr', 'href').and('include', commonPage.euPdfs.euRiskDiscPdf)
       .then(href => {
         cy.request(href).then(pdf => {
         })
@@ -264,7 +264,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     commonPage.elements
       .cfdFloatingBannerLink()
       .invoke('attr', 'href')
-      .and('include', commonPage.euPdfs.EuRiskDiscPdf)
+      .and('include', commonPage.euPdfs.euRiskDiscPdf)
       .then((href) => {
         cy.request(href).then((pdf) => { })
         cy.request(href).its('status').should('eq', 200)
