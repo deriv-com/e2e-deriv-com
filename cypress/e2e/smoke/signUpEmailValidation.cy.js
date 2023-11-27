@@ -6,7 +6,7 @@ function enterInvalidEmail(email)
   cy.findByRole('checkbox').click()
   cy.get('.error').should('be.visible').and('contain.text', 'Email is required')
   cy.findByRole('button', { name: 'Sign up' }).should('be.disabled')
-  cy.get('input[name="email"]').clear();
+  cy.get('input[name="email"]').clear()
 }
 
 function enterValidEmail(email)
