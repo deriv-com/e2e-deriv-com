@@ -278,4 +278,6 @@ Cypress.Commands.add('check_tradingspecs_and_tradenow_button', () => {
    })
  })
 
-  
+
+
+
