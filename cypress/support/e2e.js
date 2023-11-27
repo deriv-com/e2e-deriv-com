@@ -1,4 +1,4 @@
-import "./livepricing";
+import "./livepricing"
 
 Cypress.Commands.add("c_visitResponsive", (path, size) => {
   //Custom command that allows us to use baseUrl + path and detect with this is a responsive run or not.
@@ -27,3 +27,7 @@ Cypress.Commands.add("c_visitResponsive", (path, size) => {
     }).should("be.visible", { timeout: 30000 });
   }
 });
+
+Cypress.Commands.add('c_generateRandomEmail', (domain) => {
+  return `user${Math.floor(Math.random() * 100000)}${domain}`
+})
