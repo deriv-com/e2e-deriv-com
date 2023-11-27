@@ -20,13 +20,13 @@ function enterValidEmail(email)
 describe('QATEST-1395 - Sign up Section: Email validation', () => {
   it('should validate the behavior when invalid and valid email id is entered in signup section.', () => {
   cy.c_visitResponsive(Cypress.env('RegionROW'))
-  cy.generateRandomEmail('@.com').then((email) => {
+  cy.c_generateRandomEmail('@.com').then((email) => {
     enterInvalidEmail(email)
   })
-  cy.generateRandomEmail('com').then((email) => {
+  cy.c_generateRandomEmail('com').then((email) => {
     enterInvalidEmail(email)
   })
-  cy.generateRandomEmail('@gmail.com').then((email) => {
+  cy.c_generateRandomEmail('@gmail.com').then((email) => {
     enterValidEmail(email)
   })
 
