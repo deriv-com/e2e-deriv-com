@@ -1,9 +1,5 @@
 import '@testing-library/cypress/add-commands'
 
-const generateRandomEmail = (domain) => {
-  return `user${Math.floor(Math.random() * 100000)}${domain}`;
-};
-
 function enterInvalidEmail(email)
 {
   cy.findByPlaceholderText('Email address').should('be.visible').type(email)
@@ -24,13 +20,16 @@ function enterValidEmail(email)
 describe('QATEST-1395 - Sign up Section: Email validation', () => {
   it('should validate the behavior when invalid and valid email id is entered in signup section.', () => {
   cy.c_visitResponsive(Cypress.env('RegionROW'))
-  let email
-  email = generateRandomEmail('@.com');
-  enterInvalidEmail(email);
-  email= generateRandomEmail('com');
-  enterInvalidEmail(email);
-  email = generateRandomEmail('@gmail.com');
-  enterValidEmail(email);
+  cy.generateRandomEmail('@.com').then((email) => {
+    enterInvalidEmail(email)
+  })
+  cy.generateRandomEmail('com').then((email) => {
+    enterInvalidEmail(email)
+  })
+  cy.generateRandomEmail('@gmail.com').then((email) => {
+    enterValidEmail(email)
+  })
+
  })
 })
 
