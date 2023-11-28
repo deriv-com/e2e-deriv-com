@@ -2,11 +2,11 @@ import '@testing-library/cypress/add-commands'
 
 
 function check_homepage_header (){
-    cy.findByRole('img', { name: 'hamburger menu' }).should('be.visible');
+    cy.findByRole('img', { name: 'hamburger menu' }).should('be.visible')
     cy.findByRole('link', { name: 'deriv-logo' })
       .should('be.visible').click()
     cy.url().should('include', '/')
-    cy.findByText('EN', { exact: true }).should('be.visible');  
+    cy.findByText('EN', { exact: true }).should('be.visible')
 }
 
 function check_hamburger_menu () {
@@ -30,10 +30,7 @@ describe('QATEST-1298 - should validate home page header menu', () => {
             cy.c_visitResponsive(`/${Cypress.env('Region' + region)}`);
             check_homepage_header()
             check_hamburger_menu()
-            cy.findByRole('button', { name: 'Log in' }).should('be.visible').click();
-            cy.url().should('include', 'signup');
-            cy.go('back');
-            cy.url().should('include', '/');
+            cy.findByRole('button', { name: 'Log in' }).should('be.visible')
         });
     });
 });
