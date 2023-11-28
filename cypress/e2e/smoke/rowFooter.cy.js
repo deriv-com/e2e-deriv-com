@@ -9,18 +9,21 @@ describe('QATEST- Footer ROW Responsive', () => {
         footerEuPage.elements.footerLogo().should('be.visible');
         footerEuPage.areSocialLinksVisible();
     });
+    
     const externalURLs = Cypress.config('externalUrls');
     const externalSocialURLs = Cypress.config('externalSocialUrls');
-
+    
     it('should open and verify all footer social media links.', () => {
 
+        
         const socialMediaLinks = [
-        { name: 'Facebook', func: footerEuPage.socialMediaLinks.footerFaceBookLogo, expectedUrl: externalSocialURLs.facebookRow },
-        { name: 'Twitter', func: footerEuPage.socialMediaLinks.footerTwitterLogo, expectedUrl: externalSocialURLs.twitterRow },
-        { name: 'Instagram', func: footerEuPage.socialMediaLinks.footerInstagramLogo, expectedUrl: externalSocialURLs.instagramRow },
-        { name: 'LinkedIn', func: footerEuPage.socialMediaLinks.footerLinkedInLogo, expectedUrl: externalSocialURLs.linkedInDeriv },
-           // { name: 'Youtube', func: footerEuPage.socialMediaLinks.footerYoutubeLogo, expectedUrl: externalSocialURLs.youtubeDeriv },
-             ];
+            { name: 'Facebook', func: footerEuPage.socialMediaLinks.footerFaceBookLogo, expectedUrl: externalSocialURLs.facebookRow },
+            { name: 'Facebook', func: footerEuPage.socialMediaLinks.footerFaceBookLogo, expectedUrl: Cypress.externalURLs('facebookRow') },
+            { name: 'Twitter', func: footerEuPage.socialMediaLinks.footerTwitterLogo, expectedUrl: externalSocialURLs.twitterRow },
+            { name: 'Instagram', func: footerEuPage.socialMediaLinks.footerInstagramLogo, expectedUrl: externalSocialURLs.instagramRow },
+            { name: 'LinkedIn', func: footerEuPage.socialMediaLinks.footerLinkedInLogo, expectedUrl: externalSocialURLs.linkedInDeriv },
+            { name: 'Youtube', func: footerEuPage.socialMediaLinks.footerYoutubeLogo, expectedUrl: externalSocialURLs.youtubeDeriv },
+        ];
         socialMediaLinks.forEach((socialMedia) => {
             socialMedia.func().then(($el) => {
                 socialMedia.func().invoke('removeAttr', 'target').click();

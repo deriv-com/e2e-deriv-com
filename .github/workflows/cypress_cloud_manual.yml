@@ -39,7 +39,7 @@ jobs:
         # wait-on: 'http://localhost:3000' # Waits for above
         # Records to Cypress Cloud 
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        record: true
+        record: false
         parallel: true # Runs test in parallel using settings above
         spec: cypress/e2e/${{ github.event.inputs.suite }}/*.js
         group: 'e2e Tests'
