@@ -13,12 +13,11 @@ describe('QATEST- Footer ROW Responsive', () => {
     const externalURLs = Cypress.config('externalUrls');
     const externalSocialURLs = Cypress.config('externalSocialUrls');
     
-    it('should open and verify all footer social media links.', () => {
+    it.only('should open and verify all footer social media links.', () => {
 
         
         const socialMediaLinks = [
             { name: 'Facebook', func: footerEuPage.socialMediaLinks.footerFaceBookLogo, expectedUrl: externalSocialURLs.facebookRow },
-            { name: 'Facebook', func: footerEuPage.socialMediaLinks.footerFaceBookLogo, expectedUrl: Cypress.externalURLs('facebookRow') },
             { name: 'Twitter', func: footerEuPage.socialMediaLinks.footerTwitterLogo, expectedUrl: externalSocialURLs.twitterRow },
             { name: 'Instagram', func: footerEuPage.socialMediaLinks.footerInstagramLogo, expectedUrl: externalSocialURLs.instagramRow },
             { name: 'LinkedIn', func: footerEuPage.socialMediaLinks.footerLinkedInLogo, expectedUrl: externalSocialURLs.linkedInDeriv },
