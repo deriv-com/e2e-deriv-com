@@ -1,6 +1,6 @@
 import "./livepricing"
 
-Cypress.Commands.add("c_visitResponsive", (path, size) => {
+Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
   //Custom command that allows us to use baseUrl + path and detect with this is a responsive run or not.
   cy.log(path);
   if (size === undefined) size = Cypress.env("viewPortSize");
@@ -10,7 +10,8 @@ Cypress.Commands.add("c_visitResponsive", (path, size) => {
   else if (size == "desktop") cy.viewport("macbook-16");
 
   cy.visit(path);
-
+  cy.log("this is to know whats quick load " + quickLoad)
+  if (quickLoad === undefined){
   if (path.includes("region")) {
     //Wait for relevent elements to appear (based on page)
     cy.log("Home page Selected");
@@ -26,6 +27,7 @@ Cypress.Commands.add("c_visitResponsive", (path, size) => {
       name: "Didn’t find your answer? We can help.",
     }).should("be.visible", { timeout: 30000 });
   }
+}
 });
 
 Cypress.Commands.add('c_generateRandomEmail', (domain) => {
