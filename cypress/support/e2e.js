@@ -10,7 +10,6 @@ Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
   else if (size == "desktop") cy.viewport("macbook-16");
 
   cy.visit(path);
-  cy.log("this is to know whats quick load " + quickLoad)
   if (quickLoad === undefined){
   if (path.includes("region")) {
     //Wait for relevent elements to appear (based on page)
