@@ -3,7 +3,7 @@ import '@testing-library/cypress/add-commands'
 describe('QATEST-1266 - deriv.com ROW home page should be opened with the url as same as deriv.com', () => {
     const checkDerivComROWLayout = (layout) => {
         cy.c_visitResponsive(Cypress.env('RegionROW'), layout , true) 
-        const baseUrl = Cypress.config('baseUrl')
+        const baseUrl = Cypress.config('baseUrl').toLowerCase();
         const urlToMatch = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
         cy.url().should('eq', urlToMatch + Cypress.env('RegionROW'))
         cy.findByRole('heading', { name: 'Options' }).should('be.visible')   // checking Option trade type is present on ROW
