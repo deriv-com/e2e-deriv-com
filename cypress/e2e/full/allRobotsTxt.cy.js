@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 describe('QATEST-42045 - Check Robots Txt Content', () => {
   it('visits the robots.txt file and verifies content', () => {
-    cy.request(Cypress.config('baseUrl') + '/robots.txt').then((response) => {
+    cy.request('/robots.txt').then((response) => {
       expect(response.status).to.eq(200)
 
       const robotsTxtContent = response.body
