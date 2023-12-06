@@ -1,6 +1,4 @@
 import '@testing-library/cypress/add-commands'
-// import footer, { areLegalLinksVisible, socialMediaLinks } from '../../support/POM/commonPage'
-// import rowFooter from '../../support/POM/commonPage'
 import footer, {
   areLegalLinksVisible,
   socialMediaLinks,
