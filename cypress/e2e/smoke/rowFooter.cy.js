@@ -37,11 +37,11 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
         func: footer.socialMediaLinks.linkedInLogo,
         expectedUrl: externalSocialUrls.linkedInDeriv,
       },
-      // {
-      //   name: 'Youtube',
-      //   func: footer.socialMediaLinks.youtubeLogo,
-      //   expectedUrl: externalSocialUrls.youtubeDeriv,
-      // },
+      {
+        name: 'Youtube',
+        func: footer.socialMediaLinks.youtubeLogo,
+        expectedUrl: externalSocialUrls.youtubeDeriv,
+      },
     ]
     socialMediaLinks.forEach((socialMedia) => {
       socialMedia.func().then(($el) => {
