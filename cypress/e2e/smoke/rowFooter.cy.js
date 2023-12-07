@@ -89,6 +89,8 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
     footer.elements.termsAndConditionLink().click()
     tncPage.elements.headerTxt().should('be.visible')
 
+    cy.go('back')
+
     // risk disclosure
     footer.elements.riskDisclosureLink().should('be.visible')
     footer.elements
