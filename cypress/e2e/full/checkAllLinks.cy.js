@@ -1,5 +1,5 @@
 import '@testing-library/cypress/add-commands'
-describe('check Staging deriv.com URLs', () => {
+describe('check deriv.com URLs', () => {
   const capturedUrls = [];
   it('retrieve all URLs and check for broken links', () => {
     cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
@@ -43,7 +43,7 @@ describe('check Staging deriv.com URLs', () => {
             }
             else {
               cy.log(`Child Link with "staging.deriv": ${childUrl}`);
-              cy.log('childCaptured URLs:');
+              console.log('childCaptured URLs:' , childUrl);
             }
           });
         }
