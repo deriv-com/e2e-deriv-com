@@ -45,8 +45,13 @@ describe('check deriv.com URLs', () => {
     uniqueLinks.forEach((url, index) => {
       cy.log(`Visiting URL ${index + 1}/${uniqueLinks.length}: ${url}`);
       if (!excludedTerms.some(term => url.includes(term))) {
-        cy.visit(url);
-        //  cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible');        
+        if (applink.some(term => url.includes(term))) {
+          cy.visit(url);
+        }
+        else {
+          cy.visit(url);
+          cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible');
+        }
       }
 
       cy.get('a').each(($link) => {
