@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@cypress/code-coverage": "^3.12.13",
     "@testing-library/cypress": "^10.0.1",
     "cypress": "^13.2.0",
     "cypress-dotenv": "^2.0.0",

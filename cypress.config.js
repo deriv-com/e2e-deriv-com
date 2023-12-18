@@ -6,7 +6,14 @@ require('dotenv').config()
 module.exports = defineConfig({
   e2e: {
     projectId: '16kef2',
-    setupNodeEvents(on, config) { },
+    setupNodeEvents(on, config) { 
+      require('@cypress/code-coverage/task')(on, config)
+      // include any other plugin code...
+
+      // It's IMPORTANT to return the config object
+      // with any changed environment variables
+      return config
+    },
     //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
     baseUrl: 'https://staging.deriv.com/',

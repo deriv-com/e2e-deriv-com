@@ -1,4 +1,6 @@
 import "./livepricing";
+// cypress/support/e2e.js
+import '@cypress/code-coverage/support'
 
 Cypress.Commands.add("c_visitResponsive", (path, size) => {
   //Custom command that allows us to use baseUrl + path and detect with this is a responsive run or not.
