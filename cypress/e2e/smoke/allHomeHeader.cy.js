@@ -24,7 +24,7 @@ function check_trade_menu(region) {
             cy.findByRole('link', { name: 'Deriv cTrader trading platform Deriv cTrader An intuitive, multi-asset CFD trading platform with copy trading and custom indicators.' }).scrollIntoView().should('be.visible')
             cy.findByRole('link', { name: 'Dtrader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.' }).should('be.visible').should('be.visible')
             cy.findByRole('link', { name: 'Deriv GO mobile trading app Deriv GO Trade multipliers on forex, cryptocurrencies, and synthetic indices with our mobile app.' }).should('be.visible')
-            cy.findByRole('link', { name: 'Deriv Bot Automated trading Deriv Bot Automated trading at your fingertips. No coding needed.' }).should('be.visible')
+            cy.findByRole('link', { name: 'Deriv Bot Automated trading Deriv Bot Automated trading at your fingertips. No coding needed.' }).scrollIntoView().should('be.visible')
             cy.findByRole('link', { name: 'Binary bot for creating trading bot Binary Bot Our classic "drag-and-drop" tool for creating trading bots, featuring pop-up trading charts, for advanced users.' }).should('be.visible')
         }
         if (region === 'EU') {
