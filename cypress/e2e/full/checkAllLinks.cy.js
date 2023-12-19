@@ -1,7 +1,7 @@
 import '@testing-library/cypress/add-commands'
 describe('check deriv.com URLs', () => {
   const capturedUrls = [];
-  it.only('retrieve all URLs and check for broken links', () => {
+  it('retrieve all URLs and check for broken links', () => {
     cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
     cy.get('a').each(($link) => {
       const url = $link.prop('href');
