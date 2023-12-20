@@ -1,13 +1,14 @@
 import '@testing-library/cypress/add-commands'
 describe('check deriv.com URLs', () => {
   const capturedUrls = [];
-  it('retrieve all URLs and check for broken links', () => {
+  const derivLinks = ["deriv.com", "derivdotcom", "@deriv", "deriv_official"]
+  it('retrieve all urls and check for broken links', () => {
     cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
     cy.get('a').each(($link) => {
       const url = $link.prop('href');
-      if (url.includes('deriv.com')) {
+      if (derivLinks.some(term => url.includes(term))) {
         capturedUrls.push(url);
-        console.log("Captured URLs:", url);
+        console.log(url);
         cy.request({
           url,
           failOnStatusCode: false,
@@ -38,11 +39,11 @@ describe('check deriv.com URLs', () => {
       });
   });
 
-  it('visit all captured URLs, and capture their child links', () => {
+  it('visit all captured urls, and capture their child links', () => {
     const uniqueLinks = [...new Set(capturedUrls)];
     console.log(uniqueLinks);
-    const excludedLinks = ['.exe', 'trustpilot', 'blog.deriv.com', 'api.deriv.com', 'community.deriv.com', '.pdf'];
-    const applink = ["app.deriv.com", "smarttrader.deriv.com", "bot.deriv.com"]
+    const excludedLinks = ['.exe', 'trustpilot', 'blog.deriv.com', 'api.deriv.com', 'community.deriv.com', '.pdf', "twitter", "www."];
+    const applink = ["app.deriv.com", "smarttrader.deriv.com", "bot.deriv.com", "p2p"];
     cy.on('uncaught:exception', (err, runnable) => {
       if (err.message.includes("Cannot read properties of null")) {
         return true;
@@ -58,14 +59,12 @@ describe('check deriv.com URLs', () => {
         else {
           cy.visit(url);
           cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible');
+          cy.findByRole('heading', { name: 'The requested URL was not found' }).should('not.exist');
         }
       }
       cy.get('a').each(($link) => {
         const childUrl = $link.prop('href');
-        
-        
         if (childUrl.includes('deriv.com') && !capturedUrls.includes(childUrl)) {
-    
           cy.request({
             url: childUrl,
             failOnStatusCode: false,
@@ -75,7 +74,7 @@ describe('check deriv.com URLs', () => {
                 cy.log("Broken link found:", (childUrl));
               }
               else {
-                cy.log("Child Link with deriv.com:", (childUrl));
+                cy.log("Child Links with deriv.com:", (childUrl));
                 console.log('childCaptured URLs:', childUrl);
               }
             });
