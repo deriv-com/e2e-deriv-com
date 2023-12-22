@@ -63,8 +63,9 @@ describe('check deriv.com URLs', () => {
           cy.findByRole('heading', { name: 'The requested URL was not found' }).should('not.exist');
         }
       }
+      const derivAllowed= ["deriv.com"]
       function containsDerivSubstring(url) {
-        return url.includes('deriv.com');
+        return url.includes(derivAllowed);
       }
 
       cy.get('a').each(($link) => {
