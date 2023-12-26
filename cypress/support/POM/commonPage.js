@@ -1,3 +1,4 @@
+import 'cypress-xpath';
 class footer {
   elements = {
     termsAndConditionLink: () =>
@@ -39,11 +40,12 @@ class footer {
   }
 
   socialMediaLinks = {
-    facebookLogo: () => cy.findByRole('link', { name: '_t_Facebook_t_' }),
-    instagramLogo: () => cy.findByRole('link', { name: '_t_Instagram_t_' }),
-    twitterLogo: () => cy.findByRole('link', { name: '_t_Twitter_t_' }),
-    youtubeLogo: () => cy.findByRole('link', { name: '_t_Youtube_t_' }),
-    linkedInLogo: () => cy.findByRole('link', { name: '_t_Linkedin_t_' }),
+
+    facebookLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[1]'),
+    instagramLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[2]'),
+    twitterLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[3]'),
+    youtubeLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[4]'),
+    linkedInLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[5]'),
   }
 
   areSocialLinksVisible() {

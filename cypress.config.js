@@ -37,9 +37,9 @@ module.exports = defineConfig({
   },
 
   externalSocialUrls: {
-    facebookEu: 'https://www.facebook.com/derivEU/',
+    facebookEu: 'https://www.facebook.com/DerivEU',
     instagramEu: 'https://www.instagram.com/deriv_eu/',
-    twitterEu: 'https://www.twitter.com/deriv_eu/',
+    twitterEu: 'https://twitter.com/deriv_eu/',
     facebookRow: 'https://www.facebook.com/derivdotcom',
     instagramRow: 'https://www.instagram.com/deriv_official/',
     youtubeDeriv: 'https://www.youtube.com/@deriv',
