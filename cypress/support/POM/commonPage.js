@@ -1,4 +1,3 @@
-import 'cypress-xpath';
 class footer {
   elements = {
     termsAndConditionLink: () =>
@@ -7,10 +6,10 @@ class footer {
       cy.findByRole('link', { name: 'Secure and responsible trading' }),
     riskDisclosureLink: () =>
       cy.findByRole('link', { name: 'Risk disclosure' }),
-    dfxLicenceLink: () => cy.findAllByRole('link', { name: 'licence' }).eq(0),
-    bviLicenceLink: () => cy.findAllByRole('link', { name: 'licence' }).eq(1),
+    dfxLicenceLink: () => cy.findByRole('link', { name: '(licence)' }).first(),
+    bviLicenceLink: () => cy.findByRole('link', { name: '(licence)' }).eq(1),
     vanuatuLicenceLink: () =>
-      cy.findAllByRole('link', { name: 'licence' }).eq(2),
+      cy.findByRole('link', { name: '(licence)' }).eq(2),
     dielLicenceLink: () => cy.findByRole('link', { name: '(licence)' }),
     derivLogo: () => cy.findByRole('img', { name: 'deriv logo image' }),
     cookiesAcceptButton: () => cy.findByRole('button', { name: 'Accept' }),
@@ -39,14 +38,14 @@ class footer {
     diel: '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
   }
 
-  socialMediaLinks = {
-
-    facebookLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[1]'),
-    instagramLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[2]'),
-    twitterLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[3]'),
-    youtubeLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[4]'),
-    linkedInLogo: () => cy.xpath('//*[@id="gatsby-focus-wrapper"]/main/section[4]/div/div[1]/div[2]/a[5]'),
-  }
+  socialMediaLinks =
+    {
+      facebookLogo: () => cy.get('.mx-auto > div > div:nth-child(2) > a').first(),
+      instagramLogo: () => cy.get('.mx-auto > div > div:nth-child(2) > a:nth-child(2)'),
+      twitterLogo: () => cy.get('.flex > a:nth-child(3)').first(),
+      youtubeLogo: () => cy.get('.mx-auto > div > div:nth-child(2) > a:nth-child(4)'),
+      linkedInLogo: () => cy.get('.flex > a:nth-child(5)'),
+    }
 
   areSocialLinksVisible() {
     this.socialMediaLinks.facebookLogo().should('be.visible')
