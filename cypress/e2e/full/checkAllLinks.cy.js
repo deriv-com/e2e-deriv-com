@@ -66,9 +66,11 @@ describe('check deriv.com URLs', () => {
         function containsDerivSubstring(url) {
           return url.includes(derivAllowed);
         }
+        let allChildUrls = [];
         cy.get('a').each(($link) => {
           const childUrl = $link.prop('href');
           if (containsDerivSubstring(childUrl) && !capturedUrls.includes(childUrl)) {
+            allChildUrls.push(childUrl); 
             cy.request({
               url: childUrl,
               failOnStatusCode: false,
@@ -78,6 +80,7 @@ describe('check deriv.com URLs', () => {
               } else {
                 cy.log("Child Links with deriv:", childUrl);
                 console.log('childCaptured URLs:', childUrl);
+                
               }
             });
           }
