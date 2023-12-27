@@ -19,7 +19,7 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
         name: 'Facebook',
         func: footer.socialMediaLinks.facebookLogo,
         expectedUrl: externalSocialUrls.facebookRow,
-      },  
+      },
       {
         name: 'Twitter',
         func: footer.socialMediaLinks.twitterLogo,
@@ -54,7 +54,7 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
   it('has valid licence links.', () => {
     footer.elements.dfxLicenceLink().should('be.visible')
     footer.elements.bviLicenceLink().should('be.visible')
-   footer.elements.vanuatuLicenceLink().should('be.visible')
+    footer.elements.vanuatuLicenceLink().should('be.visible')
 
     footer.elements
       .dfxLicenceLink()

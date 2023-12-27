@@ -6,10 +6,11 @@ class footer {
       cy.findByRole('link', { name: 'Secure and responsible trading' }),
     riskDisclosureLink: () =>
       cy.findByRole('link', { name: 'Risk disclosure' }),
-    dfxLicenceLink: () => cy.findByRole('link', { name: '(licence)' }).first(),
-    bviLicenceLink: () => cy.findByRole('link', { name: '(licence)' }).eq(1),
+    
+    dfxLicenceLink: () => cy.findAllByRole('link', { name: '(licence)' }).first(),
+    bviLicenceLink: () => cy.findAllByRole('link', { name: '(licence)' }).eq(1),
     vanuatuLicenceLink: () =>
-      cy.findByRole('link', { name: '(licence)' }).eq(2),
+      cy.findAllByRole('link', { name: '(licence)' }).eq(2),
     dielLicenceLink: () => cy.findByRole('link', { name: '(licence)' }),
     derivLogo: () => cy.findByRole('img', { name: 'deriv logo image' }),
     cookiesAcceptButton: () => cy.findByRole('button', { name: 'Accept' }),
