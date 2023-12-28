@@ -6,7 +6,7 @@ class footer {
       cy.findByRole('link', { name: 'Secure and responsible trading' }),
     riskDisclosureLink: () =>
       cy.findByRole('link', { name: 'Risk disclosure' }),
-    
+
     dfxLicenceLink: () => cy.findAllByRole('link', { name: '(licence)' }).first(),
     bviLicenceLink: () => cy.findAllByRole('link', { name: '(licence)' }).eq(1),
     vanuatuLicenceLink: () =>
@@ -41,11 +41,11 @@ class footer {
 
   socialMediaLinks =
     {
-      facebookLogo: () => cy.get('.mx-auto > div > div:nth-child(2) > a').first(),
-      instagramLogo: () => cy.get('.mx-auto > div > div:nth-child(2) > a:nth-child(2)'),
-      twitterLogo: () => cy.get('.flex > a:nth-child(3)').first(),
-      youtubeLogo: () => cy.get('.mx-auto > div > div:nth-child(2) > a:nth-child(4)'),
-      linkedInLogo: () => cy.get('.flex > a:nth-child(5)'),
+      facebookLogo: () => cy.get('[data-cy="facebook"]'),
+      instagramLogo: () => cy.get('[data-cy="instagram"]'),
+      twitterLogo: () => cy.get('[data-cy="twitter"]'),
+      youtubeLogo: () => cy.get('[data-cy="youtube"]'),
+      linkedInLogo: () => cy.get('[data-cy="linkedin"]'),
     }
 
   areSocialLinksVisible() {
