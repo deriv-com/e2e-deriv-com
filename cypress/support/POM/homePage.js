@@ -15,7 +15,11 @@ class homeBanner {
         resourcesMenu: () => cy.findByRole('list').contains('Resources'),
         legalMenu: () => cy.findByRole('list').contains('Legal'),
         partnersMenu: () => cy.findByRole('list').contains('Partners'),
-        crossIcon: () => cy.get('[class="cursor-pointer"]'),    
+        crossIcon: () => cy.get('[class="cursor-pointer"]'),   
+        cfdMenu: () =>  findByRole('link', { name: 'CFDs' }),
+        optionsMenu: () =>  findByRole('link', { name: 'Options' }),
+        multiplierMenu: () =>  findByRole('link', { name: 'Multipliers' }),
+
 
     }
 
