@@ -6,10 +6,11 @@ class footer {
       cy.findByRole('link', { name: 'Secure and responsible trading' }),
     riskDisclosureLink: () =>
       cy.findByRole('link', { name: 'Risk disclosure' }),
-    dfxLicenceLink: () => cy.findAllByRole('link', { name: 'licence' }).eq(0),
-    bviLicenceLink: () => cy.findAllByRole('link', { name: 'licence' }).eq(1),
+
+    dfxLicenceLink: () => cy.findAllByRole('link', { name: '(licence)' }).first(),
+    bviLicenceLink: () => cy.findAllByRole('link', { name: '(licence)' }).eq(1),
     vanuatuLicenceLink: () =>
-      cy.findAllByRole('link', { name: 'licence' }).eq(2),
+      cy.findAllByRole('link', { name: '(licence)' }).eq(2),
     dielLicenceLink: () => cy.findByRole('link', { name: '(licence)' }),
     derivLogo: () => cy.findByRole('img', { name: 'deriv logo image' }),
     cookiesAcceptButton: () => cy.findByRole('button', { name: 'Accept' }),
@@ -38,13 +39,14 @@ class footer {
     diel: '/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
   }
 
-  socialMediaLinks = {
-    facebookLogo: () => cy.findByRole('link', { name: '_t_Facebook_t_' }),
-    instagramLogo: () => cy.findByRole('link', { name: '_t_Instagram_t_' }),
-    twitterLogo: () => cy.findByRole('link', { name: '_t_Twitter_t_' }),
-    youtubeLogo: () => cy.findByRole('link', { name: '_t_Youtube_t_' }),
-    linkedInLogo: () => cy.findByRole('link', { name: '_t_Linkedin_t_' }),
-  }
+  socialMediaLinks =
+    {
+      facebookLogo: () => cy.get('[data-cy="facebook"]'),
+      instagramLogo: () => cy.get('[data-cy="instagram"]'),
+      twitterLogo: () => cy.get('[data-cy="twitter"]'),
+      youtubeLogo: () => cy.get('[data-cy="youtube"]'),
+      linkedInLogo: () => cy.get('[data-cy="linkedin"]'),
+    }
 
   areSocialLinksVisible() {
     this.socialMediaLinks.facebookLogo().should('be.visible')
