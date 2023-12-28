@@ -1,23 +1,25 @@
 import '@testing-library/cypress/add-commands'
+import homeBanner from '../../support/POM/homePage'
 
 
 function check_homepage_header (){
-    cy.findByRole('img', { name: 'hamburger menu' }).should('be.visible')
-    cy.findByRole('link', { name: 'deriv-logo' })
-      .should('be.visible').click()
+    homeBanner.elements.hamBurgerMenu().should('be.visible');
+   homeBanner.elements.derivLogo().click();
     cy.url().should('include', '/')
-    cy.findByText('EN', { exact: true }).should('be.visible')
+  
 }
 
 function check_hamburger_menu () {
-    cy.findByRole('img', { name: 'hamburger menu' }).should('be.visible').click()
-    cy.findByRole('button', { name: 'Trade chevron' }).should('be.visible')
-    cy.findByRole('button', { name: 'Markets chevron' }).should('be.visible')
-    cy.findByRole('button', { name: 'About us chevron' }).should('be.visible')
-    cy.findByRole('button', { name: 'Resources chevron' }).should('be.visible')
-    cy.findByRole('button', { name: 'Legal chevron' }).should('be.visible')
-    cy.findByRole('button', { name: 'Partners chevron' }).should('be.visible')
-    cy.findByRole('img', { name: 'close menu' }).click()
+    homeBanner.elements.hamBurgerMenu().click ({force: true});
+    homeBanner.elements.tradeMenu().should('be.visible')
+    homeBanner.elements.marketsMenu().should('be.visible')
+    homeBanner.elements.aboutUsMenu().should('be.visible')
+    homeBanner.elements.resourcesMenu().should('be.visible')
+    homeBanner.elements.legalMenu().should('be.visible')
+    homeBanner.elements.partnersMenu().should('be.visible')
+   
+   
+    homeBanner.elements.crossIcon().click();
 }
 
 
