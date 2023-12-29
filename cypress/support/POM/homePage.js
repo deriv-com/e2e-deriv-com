@@ -32,7 +32,6 @@ class homeBanner {
         affiliatesIbs: () => cy.findAllByRole('link', { name: 'Affiliates and IBs' }),
         paymentAgent: () => cy.findAllByRole('link', { name: 'Payment agents' }),
         apiLink: () => cy.findAllByRole('link', { name: 'API' }),
-
     }
 
 }
