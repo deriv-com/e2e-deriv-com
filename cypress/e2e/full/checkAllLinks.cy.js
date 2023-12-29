@@ -76,6 +76,7 @@ describe('check deriv.com URLs', () => {
               url: childUrl,
               failOnStatusCode: false,
             }).then((response) => {
+              cy.visit(childUrl)
               if (response.status !== 200) {
                 cy.log("Broken link found:", childUrl)
               } else {
