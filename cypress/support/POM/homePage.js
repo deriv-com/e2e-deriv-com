@@ -20,6 +20,7 @@ class homeBanner {
         cfdHeading: () => cy.findAllByRole('heading', { name: 'CFD trading' }),
         optionsMenu: () => cy.findAllByRole('link', { name: 'Options' }),
         multiplierMenu: () => cy.findAllByRole('link', { name: 'Multipliers' }),
+        mt5Link: () => cy.findAllByRole('link', { name: 'Deriv MT5' }),
         derivxLink: () => cy.findAllByRole('link', { name: 'Deriv X' }),
         smartTraderLink: () => cy.findAllByRole('link', { name: 'SmartTrader' }),
         BinaryBotLink: () => cy.findAllByRole('link', { name: 'Binary Bot' }),
