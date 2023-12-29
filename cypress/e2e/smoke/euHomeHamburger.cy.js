@@ -40,7 +40,8 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
     homeBanner.elements.derivGo().should('not.exist')
     homeBanner.elements.derivBot().should('not.exist')
     homeBanner.elements.BinaryBotLink().should('not.exist')
-    cy.get('[class="cursor-pointer"]').eq(1).should('be.visible').click();
+    homeBanner.elements.crossIcon().click()
+    
 
 
     // Markets
@@ -100,39 +101,39 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
     homeBanner.elements.aboutUsMenu().click()
     homeBanner.elements.partnershipProgrammes().should('be.visible')
 
-  cy.get('[class="cursor-pointer"]').eq(1).should('be.visible').click();
+  homeBanner.elements.crossIcon().click()
 
 
   homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.aboutUsMenu().click()
     homeBanner.elements.contactUs().should('be.visible')
-    cy.get('[class="cursor-pointer"]').eq(1).should('be.visible').click();
+    homeBanner.elements.crossIcon().click()
 
   homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.aboutUsMenu().click()
     homeBanner.elements.careers().should('be.visible')
-    cy.get('[class="cursor-pointer"]').eq(1).should('be.visible').click();
+    homeBanner.elements.crossIcon().click()
 
   homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.aboutUsMenu().click()
     homeBanner.elements.derivLife().should('be.visible')
-    cy.get('[class="cursor-pointer"]').eq(1).should('be.visible').click(); //Need to change Eq 1
+    homeBanner.elements.crossIcon().click() 
 
     // Resources
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
 
-  homeBanner.elements.hamBurgerMenu().click() // Need to update the tag above this issue.
-    homeBanner.elements.resourcesMenu().should('be.visible').click();
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.resourcesMenu().should('be.visible').click()
     homeBanner.elements.helpCentre().click()
     cy.findByRole('heading', { name: 'How can we help?' }).should('be.visible')
 
   homeBanner.elements.hamBurgerMenu().click()
-    homeBanner.elements.resourcesMenu().should('be.visible').click();
+    homeBanner.elements.resourcesMenu().should('be.visible').click()
     homeBanner.elements.community().should('be.visible')
-    cy.get('[class="cursor-pointer"]').eq(1).should('be.visible').click();
+    homeBanner.elements.crossIcon().click()
 
   homeBanner.elements.hamBurgerMenu().click()
-    homeBanner.elements.resourcesMenu().should('be.visible').click();
+    homeBanner.elements.resourcesMenu().should('be.visible').click()
     homeBanner.elements.traderstool().click()
     cy.findByRole('heading', { name: 'Traders’ tools' }).should('be.visible')
 
@@ -178,17 +179,17 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
   homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.partnersMenu().click()
     homeBanner.elements.derivPrime().should('be.visible')
-    cy.get('[class="cursor-pointer"]').eq(1).should('be.visible').click();
+    homeBanner.elements.crossIcon().click()
 
   homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.partnersMenu().click()
     homeBanner.elements.affiliates().should('be.visible')
-    cy.get('[class="cursor-pointer"]').eq(1).should('be.visible').click();
+    homeBanner.elements.crossIcon().click()
 
   homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.partnersMenu().click()
     homeBanner.elements.apiLink().should('be.visible')
-    cy.get('[class="cursor-pointer"]').eq(1).should('be.visible').click();
+    homeBanner.elements.crossIcon().click()
   })
 })
 
@@ -200,15 +201,15 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
   it('Validate hamburger menu operation', () => {
     //Click on the hamburger menu, click on the X to close and the sub menuitems should no longer be visible (checking for the visibility of the Trade menu item should be good enough for this)
   homeBanner.elements.hamBurgerMenu().click()
-    cy.get('[class="cursor-pointer"]').should('be.visible').click()
+    homeBanner.elements.crossIcon().click()
     homeBanner.elements.hamBurgerMenu().should('be.visible')
 
     //Click on the hamburger menu, click on the EN link and the sub menuitems should no longer be visible
   homeBanner.elements.hamBurgerMenu().click()
     cy.findByText('English').click()
     cy.contains('English').should('be.visible')
-    homeBanner.elements.hamBurgerMenu().should('be.visible').click()
-
+    homeBanner.elements.crossIcon().click()
+    
   })
 })
 
