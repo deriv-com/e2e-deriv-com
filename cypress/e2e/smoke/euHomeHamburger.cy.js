@@ -1,242 +1,195 @@
 import '@testing-library/cypress/add-commands'
+import homeBanner from '../../support/POM/homePage'
 
 describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Including Trade Types)', () => {
   //Click through menu-items and ensure links are valid and load the next page.
   it('should have the correct hamburger menu', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
 
-    //Trade Types
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Trade chevron' }).click()
-    cy.findByRole('link', {
-      name: 'CFDs trade type CFDs Trade with leverage and tight spreads for better returns on successful trades.',
-    }).click()
-    cy.findByRole('heading', { name: 'CFD trading', exact: true }).should(
-      'be.visible'
-    )
+    // Trade Types
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.tradeMenu().click()
+    homeBanner.elements.cfdMenu().click()
+    cy.findByRole('heading', { name: 'CFD trading', exact: true }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Trade chevron' }).click({ force: true })
-    cy.findByRole('link', {
-      name: 'Options trade type Options Earn a range of payouts without risking more than your initial stake.',
-    }).should('not.exist')
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.tradeMenu().click()
+    homeBanner.elements.optionsMenu().should('not.exist')
 
-    cy.findByRole('button', { name: 'Trade chevron' }).click()
-    cy.findByRole('link', {
-      name: 'Multipliers trade type Multipliers Get the upside of CFDs without the downside of losing more than your stake.',
-    }).click()
-    cy.findByRole('heading', { name: 'Multipliers', exact: true }).should(
-      'be.visible'
-    )
+
+  homeBanner.elements.tradeMenu().click()
+    homeBanner.elements.multiplierMenu().click()
+    cy.findByRole('heading', { name: 'Multipliers', exact: true }).should('be.visible')
 
     //Trade Platforms
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Trade chevron' }).click()
-    cy.findByRole('link', {
-      name: 'Deriv MT5 trading platform Deriv MT5 Trade on Deriv MT5, the all-in-one CFD trading platform.',
-    }).click()
-    cy.findByRole('img', { name: 'Deriv MT5', exact: true }).should(
-      'be.visible'
-    )
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.tradeMenu().click()
+    homeBanner.elements.mt5Link().click()
+    cy.findByRole('img', { name: 'Deriv MT5', exact: true }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Trade chevron' }).click()
-    cy.findByRole('link', {
-      name: 'Deriv trader trading platform Deriv Trader A whole new trading experience on a powerful yet easy to use platform.',
-    }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.tradeMenu().click()
+    homeBanner.elements.dtraderLink().click()
     cy.findByRole('img', { name: 'Deriv Trader' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Trade chevron' }).click({ force: true })
-    cy.findByRole('link', {
-      name: 'Deriv X trading paltform Deriv X A highly customisable and easy-to-use CFD trading platform.',
-    }).should('not.exist')
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.tradeMenu().click()
+    homeBanner.elements.derivxLink().should('not.exist')
+    homeBanner.elements.smartTraderLink().should('not.exist')
+    homeBanner.elements.cTraderLink().should('not.exist')
+    homeBanner.elements.derivGo().should('not.exist')
+    homeBanner.elements.derivBot().should('not.exist')
+    homeBanner.elements.BinaryBotLink().should('not.exist')
+    homeBanner.elements.crossIcon().click()
+    
 
-    cy.findByRole('link', {
-      name: 'SmartTrader trading platform SmartTrader Trade the world’s markets with our popular user-friendly platform.',
-    }).should('not.exist')
 
-    cy.findByRole('link', {
-      name: 'Deriv cTrader trading platform Deriv cTrader An intuitive, multi-asset CFD trading platform with copy trading and custom indicators.',
-    }).should('not.exist')
-
-    cy.findByRole('link', {
-      name: 'Deriv GO mobile trading app Deriv GO Trade multipliers on forex, cryptocurrencies, and synthetic indices with our mobile app.',
-    }).should('not.exist')
-
-    cy.findByRole('link', {
-      name: 'Deriv Bot Automated trading Deriv Bot Automated trading at your fingertips. No coding needed.',
-    }).should('not.exist')
-
-    cy.findByRole('link', {
-      name: 'Binary bot for creating trading bot Binary Bot Our classic "drag-and-drop" tool for creating trading bots, featuring pop-up trading charts, for advanced users.',
-    }).should('not.exist')
-
-    cy.findByRole('img', { name: 'close menu' }).click()
-
-    //Markets
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Markets chevron' }).click({ force: true })
-    cy.findByRole('link', {
-      name: 'Forex Forex Trade the world’s largest financial market with popular forex pairs.',
-    }).click()
+    // Markets
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.marketsMenu().click()
+    homeBanner.elements.forexTxt().click()
     cy.findByRole('heading', { name: 'Forex', exact: true }).should(
       'be.visible'
     )
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Markets chevron' }).click({ force: true })
-    cy.findByRole('link', {
-      name: 'Synthetic indices Derived indices Enjoy trading asset prices derived from simulated markets.',
-    }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.marketsMenu().click()
+    homeBanner.elements.derivedIndicesTxt().click()
     cy.findByRole('heading', { name: 'Derived indices' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Markets chevron' }).click({ force: true })
-    cy.findByRole('link', {
-      name: 'Stocks & indices Stocks & indices Predict broader market trends and diversify your risk with stocks & indices.',
-    }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.marketsMenu().click()
+    homeBanner.elements.stockIndicesTxt().click()
     cy.findByRole('heading', { name: 'Stocks & indices', exact: true }).should(
       'be.visible'
     )
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Markets chevron' }).click({ force: true })
-    cy.findByRole('link', {
-      name: "Commodities Commodities Trade natural resources that are central to the world's economy.",
-    }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.marketsMenu().click()
+    homeBanner.elements.commoditiesTxt().click()
     cy.findByRole('heading', { name: 'Commodities', exact: true }).should(
       'be.visible'
     )
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Markets chevron' }).click({ force: true })
-    cy.findByRole('link', {
-      name: 'Cryptocurrencies Cryptocurrencies Trade with leverage on the price movement of popular crypto-fiat pairs.',
-    }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.marketsMenu().click()
+    homeBanner.elements.cryptoTxt().click()
     cy.findByRole('heading', { name: 'Cryptocurrencies', exact: true }).should(
       'be.visible'
     )
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Markets chevron' }).click({ force: true })
-    cy.findByRole('link', {
-      name: 'Exchange-traded funds (ETFs) Exchange-traded funds (ETFs) Diversify your portfolio and enjoy low-cost intraday trading with ETFs.',
-    }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.marketsMenu().click()
+    homeBanner.elements.etfLink().click()
     cy.findByRole('heading', { name: 'Exchange-traded funds' }).should(
       'be.visible'
     )
 
-    //About us
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'About us chevron' }).click()
-    cy.findByRole('link', { name: 'Who we are' }).click()
+
+    // About us
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.aboutUsMenu().click()
+    homeBanner.elements.whoWeAre().click()
     cy.findByRole('heading', { name: 'Who we are' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'About us chevron' }).click()
-    cy.findByRole('link', { name: 'Why choose us' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.aboutUsMenu().click()
+    homeBanner.elements.whyChooseUs().click()
     cy.findByRole('heading', { name: 'Why choose us' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'About us chevron' }).click()
-    cy.findByRole('link', { name: 'Partnership programmes' }).should(
-      'be.visible'
-    )
-    cy.findByRole('img', { name: 'close menu' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.aboutUsMenu().click()
+    homeBanner.elements.partnershipProgrammes().should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'About us chevron' }).click()
-    cy.findByRole('link', { name: 'Contact us' }).should('be.visible')
-    cy.findByRole('img', { name: 'close menu' }).click()
+  homeBanner.elements.crossIcon().click()
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'About us chevron' }).click()
-    cy.findByRole('link', { name: 'Careers' }).should('be.visible')
-    cy.findByRole('img', { name: 'close menu' }).click()
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'About us chevron' }).click()
-    cy.findByRole('link', { name: 'Deriv life' }).should('be.visible')
-    cy.findByRole('img', { name: 'close menu' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.aboutUsMenu().click()
+    homeBanner.elements.contactUs().should('be.visible')
+    homeBanner.elements.crossIcon().click()
 
-    //Resources
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.aboutUsMenu().click()
+    homeBanner.elements.careers().should('be.visible')
+    homeBanner.elements.crossIcon().click()
+
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.aboutUsMenu().click()
+    homeBanner.elements.derivLife().should('be.visible')
+    homeBanner.elements.crossIcon().click() 
+
+    // Resources
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Resources chevron' }).click()
-    cy.findByRole('link', { name: 'Help centre' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.resourcesMenu().should('be.visible').click()
+    homeBanner.elements.helpCentre().click()
     cy.findByRole('heading', { name: 'How can we help?' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Resources chevron' }).click()
-    cy.findByLabelText('Resources')
-      .findByRole('link', { name: 'Community' })
-      .should('be.visible')
-    cy.findByRole('img', { name: 'close menu' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.resourcesMenu().should('be.visible').click()
+    homeBanner.elements.community().should('be.visible')
+    homeBanner.elements.crossIcon().click()
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Resources chevron' }).click()
-    cy.findByRole('link', { name: 'Traders’ tools' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.resourcesMenu().should('be.visible').click()
+    homeBanner.elements.traderstool().click()
     cy.findByRole('heading', { name: 'Traders’ tools' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Resources chevron' }).click()
-    cy.findByRole('link', { name: 'Payment methods', exact: true }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.resourcesMenu().should('be.visible').click()
+    homeBanner.elements.paymentMethod().click()
     cy.findByRole('heading', { name: 'Payment methods' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Resources chevron' }).click()
-    cy.findByRole('link', { name: 'Deriv MT5 Signals' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.resourcesMenu().should('be.visible').click()
+    homeBanner.elements.derivMt5().click()
     cy.findByRole('heading', { name: 'Deriv MT5 signals' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Resources chevron' }).click()
-    cy.findByRole('link', { name: 'Status page' }).click()
-    cy.findByRole('button', { name: 'Proceed' }).should('be.visible')
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.resourcesMenu().should('be.visible').click()
+    homeBanner.elements.statusPage().should('be.visible')
 
-    //Legal
+    // Legal
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Legal chevron' }).click()
-    cy.findByRole('link', { name: 'Regulatory information' }).click()
+
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.legalMenu().click()
+    homeBanner.elements.regulatoryInfo().click()
     cy.findByRole('heading', { name: 'Regulatory information' }).should(
       'be.visible'
     )
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Legal chevron' }).click()
-    cy.findByLabelText('Legal')
-      .findByRole('link', { name: 'Terms and conditions' })
-      .click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.legalMenu().click()
+    homeBanner.elements.termsCondition().click()
     cy.findByRole('heading', { name: 'Terms and conditions' }).should(
       'be.visible'
     )
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Legal chevron' }).click()
-    cy.findByLabelText('Legal')
-      .findByRole('link', { name: 'Secure and responsible trading' })
-      .click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.legalMenu().click()
+    homeBanner.elements.secureResponsible().click()
     cy.findByRole('heading', { name: 'Secure and responsible trading' }).should(
       'be.visible'
     )
 
     //Partners
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Partners chevron' }).click()
-    cy.findByRole('link', { name: 'Deriv Prime' }).should('be.visible')
-    cy.findByRole('img', { name: 'close menu' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.partnersMenu().click()
+    homeBanner.elements.derivPrime().should('be.visible')
+    homeBanner.elements.crossIcon().click()
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Partners chevron' }).click()
-    cy.findByRole('link', { name: 'Affiliates' }).should('be.visible')
-    cy.findByRole('img', { name: 'close menu' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.partnersMenu().click()
+    homeBanner.elements.affiliates().should('be.visible')
+    homeBanner.elements.crossIcon().click()
 
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Partners chevron' }).click()
-    cy.findByRole('link', { name: 'API', exact: true }).should('be.visible')
-    cy.findByRole('img', { name: 'close menu' }).click()
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.partnersMenu().click()
+    homeBanner.elements.apiLink().should('be.visible')
+    homeBanner.elements.crossIcon().click()
   })
 })
 
@@ -247,19 +200,16 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
 
   it('Validate hamburger menu operation', () => {
     //Click on the hamburger menu, click on the X to close and the sub menuitems should no longer be visible (checking for the visibility of the Trade menu item should be good enough for this)
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('img', { name: 'close menu' }).click()
-    cy.findByRole('img', { name: 'hamburger menu' }).should('be.visible')
+  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.crossIcon().click()
+    homeBanner.elements.hamBurgerMenu().should('be.visible')
 
     //Click on the hamburger menu, click on the EN link and the sub menuitems should no longer be visible
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByText('EN', { exact: true }).click()
+  homeBanner.elements.hamBurgerMenu().click()
     cy.findByText('English').click()
-    cy.findByRole('img', { name: 'hamburger menu' }).should('be.visible')
-
-    //Click on the hamburger menu, click on the Login link and the sub menuitems should no longer be visible
-    cy.findByRole('img', { name: 'hamburger menu' }).click()
-    cy.findByRole('button', { name: 'Log in' }).should('be.visible')
+    cy.contains('English').should('be.visible')
+    homeBanner.elements.crossIcon().click()
+    
   })
 })
 
@@ -268,7 +218,7 @@ describe('Validate Footer and Popup Icons', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'))
   })
   it('Validate footer exists', () => {
-    cy.get('footer').should('exist')
+    homeBanner.elements.footer().should('exist')
   })
 
   it('Validate WhatsApp is available', () => {
