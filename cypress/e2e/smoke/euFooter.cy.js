@@ -38,7 +38,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     })
   })
 
-  it('should display EU footer and contain valid links.', () => {
+  it.only('should display EU footer and contain valid links.', () => {
     footer.elements.cookiesAcceptButton().click()
 
     footer.elements.dielLicenceLink().should('be.visible')
@@ -50,11 +50,6 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         cy.request(href).then((pdf) => {})
         cy.request(href).its('status').should('eq', 200)
       })
-    footer.elements.termsAndConditionLink().click()
-    tncPage.elements.headerTxt().should('be.visible')
-
-    footer.elements.secureAndRespTradingLink().click()
-    responsiblePage.elements.headerTxt().should('be.visible')
 
     footer.elements.riskDisclosureLink().should('be.visible')
     footer.elements
@@ -75,5 +70,15 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         cy.request(href).then((pdf) => {})
         cy.request(href).its('status').should('eq', 200)
       })
+
+    footer.elements.termsAndConditionLink().click()
+    tncPage.elements.headerTxt().should('be.visible')
+
+    footer.elements.secureAndRespTradingLink().click()
+    responsiblePage.elements.headerTxt().should('be.visible')
+
+    
+
+
   })
 })
