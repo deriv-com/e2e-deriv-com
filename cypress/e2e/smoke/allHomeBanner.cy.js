@@ -7,10 +7,10 @@ describe('QATEST-1315 & 1310 - Validate Hero banner message', () => {
     const urlToMatch = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
 
     cy.c_visitResponsive(Cypress.env('RegionROW'))
-    homeBanner.elements.forexTxt().should('be.visible')
-    homeBanner.elements.cryptoTxt().should('be.visible')
-    homeBanner.elements.stockIndicesTxt().should('be.visible')
-    homeBanner.elements.derivedIndicesTxt().should('be.visible')
+    homeBanner.elements.bannerForexTxt().should('be.visible')
+    homeBanner.elements.bannerCryptoTxt().should('be.visible')
+    homeBanner.elements.bannerStockIndicesTxt().should('be.visible')
+    homeBanner.elements.bannerDerivedIndicesTxt().should('be.visible')
     homeBanner.elements.createFreeDemoAccount().click()
     cy.url().should('eq', urlToMatch + '/signup/')
 
