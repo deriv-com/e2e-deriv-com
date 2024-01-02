@@ -99,6 +99,7 @@ function check_partner_menu(region) {
 
     if (region === 'EU') {
         homeBanner.elements.affiliates().should('be.visible')
+        homeBanner.elements.paymentAgent().should('not.exist')
     }
 
     homeBanner.elements.apiLink().should('be.visible')
