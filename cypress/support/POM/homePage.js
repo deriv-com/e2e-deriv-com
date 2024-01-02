@@ -1,15 +1,15 @@
 class homeBanner {
     elements = {
-        // forexTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Forex' }),
-        // cryptoTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Cryptocurrencies' }),
-        // stockIndicesTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Stocks & indices' }),
-        // commoditiesTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Commodities' }),
-        // derivedIndicesTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Derived indices' }),
-        forexTxt: () => cy.findByTestId('typewriter-wrapper').contains('Forex'),
-        cryptoTxt: () => cy.findByTestId('typewriter-wrapper').contains('Cryptocurrencies'),
-        stockIndicesTxt: () => cy.findByTestId('typewriter-wrapper').contains('Stocks & indices'),
-        commoditiesTxt: () => cy.findByTestId('typewriter-wrapper').contains('Commodities'),
-        derivedIndicesTxt: () => cy.findByTestId('typewriter-wrapper').contains('Derived Indices'),
+        forexTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Forex' }),
+        cryptoTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Cryptocurrencies' }),
+        stockIndicesTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Stocks & indices' }),
+        commoditiesTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Commodities' }),
+        derivedIndicesTxt: () => cy.findByRole('navigation').findByRole('link', { name: 'Derived indices' }),
+        bannerForexTxt: () => cy.findByTestId('typewriter-wrapper').contains('Forex'),
+        bannerCryptoTxt: () => cy.findByTestId('typewriter-wrapper').contains('Cryptocurrencies'),
+        bannerStockIndicesTxt: () => cy.findByTestId('typewriter-wrapper').contains('Stocks & indices'),
+        bannerCommoditiesTxt: () => cy.findByTestId('typewriter-wrapper').contains('Commodities'),
+        bannerDerivedIndicesTxt: () => cy.findByTestId('typewriter-wrapper').contains('Derived Indices'),
 
 
         createFreeDemoAccount: () => cy.findByLabelText('create free demo account'),
