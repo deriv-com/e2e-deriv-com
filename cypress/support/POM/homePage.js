@@ -22,6 +22,7 @@ class homeBanner {
         resourcesMenu: () => cy.findByRole('navigation').contains('Resources'),
         legalMenu: () => cy.findByRole('navigation').contains('Legal'),
         partnersMenu: () => cy.findByRole('navigation').contains('Partners'),
+        backIcon: () => cy.get('[data-cy="nav-back-icon"]'),
         crossIcon: () => cy.get('[data-cy="nav-cross-icon"]'),
         cfdMenu: () => cy.findAllByRole('link', { name: 'CFDs' }),
         cfdHeading: () => cy.findAllByRole('heading', { name: 'CFD trading' }),
