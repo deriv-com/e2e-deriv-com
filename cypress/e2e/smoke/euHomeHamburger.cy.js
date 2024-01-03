@@ -1,5 +1,7 @@
 import '@testing-library/cypress/add-commands'
 import homeBanner from '../../support/POM/homePage'
+import footer from '../../support/POM/commonPage'
+
 
 describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Including Trade Types)', () => {
   //Click through menu-items and ensure links are valid and load the next page.
@@ -218,7 +220,8 @@ describe('Validate Footer and Popup Icons', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'))
   })
   it('Validate footer exists', () => {
-    homeBanner.elements.footer().should('exist')
+
+    footer.elements.cfdFloatingBannerLink().should('exist')
   })
 
   it('Validate WhatsApp is available', () => {
