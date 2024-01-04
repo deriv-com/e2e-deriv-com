@@ -55,7 +55,6 @@ Cypress.Commands.add('c_emailVerification', (verification_code, event_email_url,
           if (code) {
             verification_code = code[1]
             Cypress.env("emailVerificationCode", verification_code)
-            cy.log("In e2e : " + verification_code)
           } else {
             cy.log("Unable to find code in the URL")
           }

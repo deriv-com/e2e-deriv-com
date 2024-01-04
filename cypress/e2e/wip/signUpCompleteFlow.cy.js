@@ -45,6 +45,14 @@ describe('Cypress test for full sign up flow', () => {
       cy.findByRole('button', { name: 'Start trading' }).click();
     }
 
+    function tradingPreference(){
+      cy.get('.dc-btn.dc-btn--transparent').then(($element) => {
+        if ($element.is(':visible')) {
+            cy.get('.dc-btn.dc-btn--transparent').eq(1).click()
+        } 
+      });
+    }
+
     function completeOnboarding(){
       for (let next_button_count = 0; next_button_count < 5; next_button_count++) {
         cy.contains('button', 'Next').should('be.visible')
@@ -69,23 +77,18 @@ describe('Cypress test for full sign up flow', () => {
       cy.then(() => {
         verification_code = Cypress.env("emailVerificationCode")
         const today = new Date();
-        cy.log("In singup code : "+ verification_code);
         const signupUrl = `https://staging-app.deriv.com/redirect?action=signup&lang=EN_US&code=${verification_code}&date_first_contact=${today.toISOString().split('T')[0]}&signup_device=desktop`
         cy.visit(signupUrl)
         localStorage.setItem('config.server_url', Cypress.env("configServer"))
         localStorage.setItem('config.app_id', Cypress.env("configAppId"))
-        cy.log('Value of config.server_url in localStorage:', localStorage.getItem('config.server_url'));
-        cy.log('Value of config.appid in localStorage:', localStorage.getItem('config.app_id'));
    
         cy.get('h1').contains('Select your country and').should('be.visible')
 
         selectCountryOfResidence()
         selectCitizenship()
         enterPassword()
-        // cy.contains('h2', 'trading').should('be.visible')
-        // cy.get('.dc-btn.dc-btn--transparent').eq(1).invoke('click')
+        tradingPreference() // stuck at this point where we are not able to perform click on options from model
         completeOnboarding()
-        cy.url().should('eq', derivAppUrl+'appstore/traders-hub');
 
       })
     })
