@@ -219,7 +219,7 @@ describe('Validate Footer and Popup Icons', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'))
   })
   it('Validate footer exists', () => {
-    footer.elements.cfdFloatingBannerLink().should('exist')
+    footer.elements.cfdFloatingBannerLink().should('be.visible')
   })
 
   it('Validate WhatsApp is available', () => {
