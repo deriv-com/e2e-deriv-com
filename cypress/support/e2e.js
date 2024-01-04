@@ -34,18 +34,14 @@ Cypress.Commands.add('c_generateRandomEmail', (domain) => {
   return `user${Math.floor(Math.random() * 100000)}${domain}`
 })
 
-
+let recallCounter = 0;
 Cypress.Commands.add('c_emailVerification', (verification_code, event_email_url, epoch) => {
-  cy.visit(
-    `https://${Cypress.env("emailUser")}:${Cypress.env(
-      "emailPassword"
-    )}@${event_email_url}`
-  )
-  cy.origin(
-    `https://${event_email_url}`,{ args: { epoch } },  ({ epoch }) => {     
-      cy.scrollTo("bottom")
+  cy.visit(`https://${Cypress.env("emailUser")}:${Cypress.env("emailPassword")}@${event_email_url}`)
+  
+  cy.origin(`https://${event_email_url}`,{ args: { epoch } },  ({ epoch }) => {     
+  cy.scrollTo("bottom")
       cy.get("a").last().click()
-      cy.contains('p', "sanity"+epoch).should('be.visible');
+      cy.contains('p', "sanity"+epoch).should('be.visible')
       cy
         .get("a")
         .eq(1)

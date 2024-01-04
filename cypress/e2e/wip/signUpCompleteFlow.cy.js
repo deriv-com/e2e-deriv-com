@@ -17,14 +17,14 @@ function generate_epoch(){
 describe('Cypress test for full sign up flow', () => {
 
     const epoch = generate_epoch()
-    const sign_up_mail =  'sanity' + `${epoch}` + '@binary.com';
-    let verification_code;
+    const sign_up_mail =  'sanity' + `${epoch}` + '@binary.com'
+    let verification_code
 
     beforeEach(() => {
       cy.c_visitResponsive(Cypress.env('RegionROW'),'desktop')
       localStorage.setItem("config.server_url", Cypress.env("configServer"))
       localStorage.setItem("config.app_id", Cypress.env("configAppId"))
-      enterValidEmail(sign_up_mail);
+      enterValidEmail(sign_up_mail)
     })
 
     function selectCountryOfResidence(){
@@ -36,13 +36,13 @@ describe('Cypress test for full sign up flow', () => {
     function selectCitizenship(){
       cy.findByLabelText('Citizenship').type(Cypress.env("citizenship")) 
       cy.findByText(Cypress.env("citizenship")).click()
-      cy.findByRole('button', { name: 'Next' }).click();
+      cy.findByRole('button', { name: 'Next' }).click()
     }
 
     function enterPassword(){
       cy.findByLabelText('Create a password').should('be.visible')
       cy.findByLabelText('Create a password').type(Cypress.env("user_password"))
-      cy.findByRole('button', { name: 'Start trading' }).click();
+      cy.findByRole('button', { name: 'Start trading' }).click()
     }
 
     function tradingPreference(){
@@ -50,13 +50,13 @@ describe('Cypress test for full sign up flow', () => {
         if ($element.is(':visible')) {
             cy.get('.dc-btn.dc-btn--transparent').eq(1).click()
         } 
-      });
+      })
     }
 
     function completeOnboarding(){
       for (let next_button_count = 0; next_button_count < 5; next_button_count++) {
         cy.contains('button', 'Next').should('be.visible')
-        cy.contains('button', 'Next').click();
+        cy.contains('button', 'Next').click()
       }
       cy.contains('Start trading').should('be.visible')
       cy.contains('button', 'Start trading').click()   
@@ -76,8 +76,8 @@ describe('Cypress test for full sign up flow', () => {
       cy.c_emailVerification(verification_code,Cypress.env("event_email_url"), epoch)
       cy.then(() => {
         verification_code = Cypress.env("emailVerificationCode")
-        const today = new Date();
-        const signupUrl = `https://staging-app.deriv.com/redirect?action=signup&lang=EN_US&code=${verification_code}&date_first_contact=${today.toISOString().split('T')[0]}&signup_device=desktop`
+        const today = new Date()
+        const signupUrl = `${Cypress.env("derivAppUrl")}/redirect?action=signup&lang=EN_US&code=${verification_code}&date_first_contact=${today.toISOString().split('T')[0]}&signup_device=desktop`
         cy.visit(signupUrl)
         localStorage.setItem('config.server_url', Cypress.env("configServer"))
         localStorage.setItem('config.app_id', Cypress.env("configAppId"))
