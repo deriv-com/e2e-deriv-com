@@ -22,7 +22,8 @@ class footer {
         .findByRole('alertdialog')
         .findByText('You are being redirected to an external website.'),
     cfdFloatingBannerLink: () =>
-      cy.findByRole('link').contains('% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.'),
+    cy.contains('cfdFloatingText').should('be.visible'),
+      // cy.findByRole('link').contains('% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.'),
   }
 
   riskDisclosurePdf = {
