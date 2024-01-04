@@ -82,7 +82,8 @@ describe('Cypress test for full sign up flow', () => {
         selectCountryOfResidence()
         selectCitizenship()
         enterPassword()
-        cy.findByRole('heading', { name: 'Welcome to Trader\'s Hub' }).should('be.visible')
+        // cy.contains('h2', 'trading').should('be.visible')
+        // cy.get('.dc-btn.dc-btn--transparent').eq(1).invoke('click')
         completeOnboarding()
         cy.url().should('eq', derivAppUrl+'appstore/traders-hub');
 

@@ -35,14 +35,14 @@ Cypress.Commands.add('c_generateRandomEmail', (domain) => {
 })
 
 
-Cypress.Commands.add('c_emailVerification', (verification_code, base_url, epoch) => {
+Cypress.Commands.add('c_emailVerification', (verification_code, event_email_url, epoch) => {
   cy.visit(
     `https://${Cypress.env("emailUser")}:${Cypress.env(
       "emailPassword"
-    )}@${base_url}`
+    )}@${event_email_url}`
   )
   cy.origin(
-    `https://${base_url}`,{ args: { epoch } },  ({ epoch }) => {
+    `https://${event_email_url}`,{ args: { epoch } },  ({ epoch }) => {     
       cy.scrollTo("bottom")
       cy.get("a").last().click()
       cy.contains('p', "sanity"+epoch).should('be.visible');
