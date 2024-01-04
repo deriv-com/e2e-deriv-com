@@ -62,27 +62,3 @@ Cypress.Commands.add('c_emailVerification', (verification_code, event_email_url,
     }
   )
 })
-
-
-
-Cypress.Commands.add('c_emailSignup', (signupUrl) => {
-  
-  cy.get('h1').contains('Select your country and').should('be.visible')
-  cy.findByLabelText('Country of residence').should('be.visible')
-  cy.findByLabelText('Country of residence').clear().type(Cypress.env("country_of_residence"))
-  cy.findByText(Cypress.env("country_of_residence")).click()
-
-  cy.findByLabelText('Citizenship').should('be.visible')
-  cy.findByLabelText('Citizenship').type(Cypress.env("citizenship")) 
-  cy.findByText(Cypress.env("citizenship")).click()
-  cy.findByRole('button', { name: 'Next' }).click();
-
-  cy.findByLabelText('Create a password').should('be.visible')
-  cy.findByLabelText('Create a password').type(Cypress.env("user_password"))
-  cy.findByRole('button', { name: 'Start trading' }).should('be.enabled')
-  cy.findByRole('button', { name: 'Start trading' }).click();
-        
-})
-
-
-
