@@ -58,7 +58,6 @@ class homeBanner {
         regulatoryInfo: () => cy.findAllByRole('link', { name: 'Regulatory information' }),
         termsCondition: () => cy.findAllByRole('link', { name: 'Terms & conditions' }),
         secureResponsible: () => cy.findAllByRole('link', { name: 'Secure & responsible trading' }),
-        cfdFloatingText: () => cy.contains('% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here.')
     }
 
 }
