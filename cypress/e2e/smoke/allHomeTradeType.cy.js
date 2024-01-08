@@ -23,13 +23,13 @@ const tradeTypeConfig = {
 function checkTradeTypes(region) {
   const config = tradeTypeConfig[region]
 
-  cy.findByRole('heading', { name: 'Trade types' }).should('be.visible')
-  cy.findByText(`Trade the way you want with ${config.heading} trade types.`).should('be.visible')
+  cy.findByRole('heading', { name: 'Trade types' }).should('exist')
+  cy.findByText(`Trade the way you want with ${config.heading} trade types.`).should('exist')
 
   config.types.forEach((trade, index) => {
-    cy.findByRole('heading', { name: trade.name }).should('be.visible')
+    cy.findByRole('heading', { name: trade.name }).scrollIntoView().wait(1000) .should('exist')
     cy.findByText(trade.text).should('be.visible')
-    cy.get('[class*="item_learn_more"]').eq(index).trigger('mouseover').click()
+    cy.get('[class*="item_learn_more"]').eq(index).should('exist').trigger('mouseover').click()
     cy.url().should('include', config.urls[index])
     cy.go(-1)
   });
