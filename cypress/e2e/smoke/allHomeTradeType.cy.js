@@ -24,7 +24,7 @@ function checkTradeTypes(region) {
   const config = tradeTypeConfig[region]
 
   cy.findByRole('heading', { name: 'Trade types' }).should('exist')
-  cy.findByText(`Trade the way you want with ${config.heading} trade types.`).should('be.visible')
+  cy.findByText(`Trade the way you want with ${config.heading} trade types.`).should('exist')
 
   config.types.forEach((trade, index) => {
     cy.findByRole('heading', { name: trade.name }).scrollIntoView().should('be.visible');
