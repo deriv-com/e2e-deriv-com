@@ -29,7 +29,7 @@ module.exports = defineConfig({
     emailUser: process.env.AUTH_EMAIL_USER,
     emailPassword: process.env.AUTH_EMAIL_PASSWORD,
     event_email_url: process.env.EVENTS_EMAIL,
-    emailVerificationCode : '',
+    emailVerificationCode : process.env.EMAIL_VERIFICATION_CODE,
     country_of_residence: process.env.COUNTRY_OF_RESIDENCE,
     citizenship: process.env.CITIZENSHIP,
     user_password: process.env.USERPASSWORD,
