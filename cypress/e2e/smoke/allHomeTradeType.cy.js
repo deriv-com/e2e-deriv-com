@@ -33,7 +33,10 @@ function checkTradeTypes(region) {
     cy.findByText(trade.text).should('be.visible')
     cy.get('[class*="item_learn_more"]').eq(index).should('exist').trigger('mouseover').click()
     cy.url().should('include', config.urls[index])
-    homeBanner.elements.derivLogo().click()
+    cy.go('back')
+    cy.findByRole("button", { name: "whatsapp icon" }).should("be.visible", {
+      timeout: 30000,
+    });
   });
 }
 
