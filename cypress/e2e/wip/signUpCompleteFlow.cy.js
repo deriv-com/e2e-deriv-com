@@ -76,11 +76,10 @@ describe('Cypress test for full sign up flow', () => {
 
 
     it('enter mail id to signup on deriv.com', () => {
-      cy.wait(20000)
+      cy.wait(5000) //TODO - To be replaced by a loop within the emailVerification below.
       cy.c_emailVerification(verification_code,Cypress.env("event_email_url"), epoch)
       cy.then(() => {
-        cy.c_visitResponsive(Cypress.env("derivAppUrl"), "desktop")
-        //cy.c_visitResponsive(Cypress.env("derivAppUrl") + '/endpoint', "desktop")
+        cy.c_visitResponsive(Cypress.env("derivAppUrl") + '/endpoint', "desktop")
         localStorage.setItem('config.server_url', Cypress.env("configServer"))
         localStorage.setItem('config.app_id', Cypress.env("configAppId"))
 
