@@ -17,11 +17,11 @@ function checkTradeTypes(region) {
     scrollToAndCheckExistence('heading', 'Multipliers');
     cy.findByText('Multiply your potential profit without risking more than your stake.').should('be.visible');
 
-    homeBanner.elements.learnMore().eq(0).should('exist').trigger('mouseover').click();
+    cy.get('[class*="item_learn_more"]').eq(0).should('exist').trigger('mouseover').click();
     cy.url().should('include', 'cfds');
     cy.go('back');
 
-    homeBanner.elements.learnMore().eq(1).should('exist').trigger('mouseover').click();
+    cy.get('[class*="item_learn_more"]').eq(1).should('exist').trigger('mouseover').click();
     cy.url().should('include', 'multiplier');
     cy.go('back');
 
@@ -38,15 +38,15 @@ function checkTradeTypes(region) {
     scrollToAndCheckExistence('heading', 'Multipliers');
     cy.findByText('Multiply your potential profit without risking more than your stake.').should('be.visible');
 
-    homeBanner.elements.learnMore().eq(0).should('exist').trigger('mouseover').click();
+    cy.get('[class*="item_learn_more"]').eq(0).should('exist').trigger('mouseover').click();
     cy.url().should('include', 'cfds');
     cy.go('back');
 
-    homeBanner.elements.learnMore().eq(1).should('exist').trigger('mouseover').click();
+    cy.get('[class*="item_learn_more"]').eq(1).should('exist').trigger('mouseover').click();
     cy.url().should('include', 'options');
     cy.go('back');
 
-    homeBanner.elements.learnMore().eq(2).should('exist').trigger('mouseover').click();
+    cy.get('[class*="item_learn_more"]').eq(2).should('exist').trigger('mouseover').click();
     cy.url().should('include', 'multiplier');
     cy.go('back');
   } 
