@@ -50,6 +50,7 @@ function checkTradeTypes(region) {
     cy.url().should('include', 'multiplier');
     cy.go('back');
   } else {
+    cy.log('invalid region')
   }
 }
 
