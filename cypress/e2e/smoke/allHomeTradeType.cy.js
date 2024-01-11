@@ -11,10 +11,10 @@ function checkTradeTypes(region) {
   if (region === 'EU') {
     cy.findByText('Trade the way you want with 2 flexible trade types.').should('exist');
 
-    scrollToAndCheckExistence('heading', 'CFDs');
+    cy.scrollToAndCheckExistence('heading', 'CFDs');
     cy.findByText('Trade with leverage and low spreads for better returns on successful trades.').should('be.visible');
 
-    scrollToAndCheckExistence('heading', 'Multipliers');
+    cy.scrollToAndCheckExistence('heading', 'Multipliers');
     cy.findByText('Multiply your potential profit without risking more than your stake.').should('be.visible');
 
     cy.get('[class*="item_learn_more"]').eq(0).should('exist').trigger('mouseover').click();
@@ -24,18 +24,16 @@ function checkTradeTypes(region) {
     cy.get('[class*="item_learn_more"]').eq(1).should('exist').trigger('mouseover').click();
     cy.url().should('include', 'multiplier');
     cy.go('back');
-
   } else if (region === 'ROW') {
-
     cy.findByText('Trade the way you want with 3 exciting trade types.').should('exist');
 
-    scrollToAndCheckExistence('heading', 'CFDs');
+    cy.scrollToAndCheckExistence('heading', 'CFDs');
     cy.findByText('Trade with leverage and low spreads for better returns on successful trades.').should('be.visible');
 
-    scrollToAndCheckExistence('heading', 'Options');
+    cy.scrollToAndCheckExistence('heading', 'Options');
     cy.findByText('Earn a range of payouts by correctly predicting market movements.').should('be.visible');
 
-    scrollToAndCheckExistence('heading', 'Multipliers');
+    cy.scrollToAndCheckExistence('heading', 'Multipliers');
     cy.findByText('Multiply your potential profit without risking more than your stake.').should('be.visible');
 
     cy.get('[class*="item_learn_more"]').eq(0).should('exist').trigger('mouseover').click();
