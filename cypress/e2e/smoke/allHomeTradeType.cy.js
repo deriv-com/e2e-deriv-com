@@ -1,42 +1,54 @@
 import '@testing-library/cypress/add-commands';
 
-const tradeTypeConfig = {
-  EU: {
-    heading: '2 flexible',
-    types: [
-      { name: 'CFDs', text: 'Trade with leverage and low spreads for better returns on successful trades.' },
-      { name: 'Multipliers', text: 'Multiply your potential profit without risking more than your stake.' },
-    ],
-    urls: ['cfds', 'multiplier'],
-  },
-  ROW: {
-    heading: '3 exciting',
-    types: [
-      { name: 'CFDs', text: 'Trade with leverage and low spreads for better returns on successful trades.' },
-      { name: 'Options', text: 'Earn a range of payouts by correctly predicting market movements.' },
-      { name: 'Multipliers', text: 'Multiply your potential profit without risking more than your stake.' },
-    ],
-    urls: ['cfds', 'options', 'multiplier'],
-  },
-};
-
 Cypress.Commands.add('scrollToAndCheckExistence', (role, name) => {
   cy.findByRole(role, { name }).scrollIntoView().should('exist');
 });
 
 function checkTradeTypes(region) {
-  const config = tradeTypeConfig[region]
-
   cy.scrollToAndCheckExistence('heading', 'Trade types');
-  cy.findByText(`Trade the way you want with ${config.heading} trade types.`).should('exist')
 
-  config.types.forEach((trade, index) => {
-    cy.scrollToAndCheckExistence('heading', trade.name);
-    cy.findByText(trade.text).should('be.visible');
-    cy.get('[class*="item_learn_more"]').eq(index).should('exist').trigger('mouseover').click();
-    cy.url().should('include', config.urls[index]);
+  if (region === 'EU') {
+    cy.findByText('Trade the way you want with 2 flexible trade types.').should('exist');
+
+    cy.scrollToAndCheckExistence('heading', 'CFDs');
+    cy.findByText('Trade with leverage and low spreads for better returns on successful trades.').should('be.visible');
+
+    cy.scrollToAndCheckExistence('heading', 'Multipliers');
+    cy.findByText('Multiply your potential profit without risking more than your stake.').should('be.visible');
+
+    cy.get('[class*="item_learn_more"]').eq(0).should('exist').trigger('mouseover').click();
+    cy.url().should('include', 'cfds');
     cy.go('back');
-  });
+
+    cy.get('[class*="item_learn_more"]').eq(1).should('exist').trigger('mouseover').click();
+    cy.url().should('include', 'multiplier');
+    cy.go('back');
+  } else if (region === 'ROW') {
+    cy.findByText('Trade the way you want with 3 exciting trade types.').should('exist');
+
+    cy.scrollToAndCheckExistence('heading', 'CFDs');
+    cy.findByText('Trade with leverage and low spreads for better returns on successful trades.').should('be.visible');
+
+    cy.scrollToAndCheckExistence('heading', 'Options');
+    cy.findByText('Earn a range of payouts by correctly predicting market movements.').should('be.visible');
+
+    cy.scrollToAndCheckExistence('heading', 'Multipliers');
+    cy.findByText('Multiply your potential profit without risking more than your stake.').should('be.visible');
+
+    cy.get('[class*="item_learn_more"]').eq(0).should('exist').trigger('mouseover').click();
+    cy.url().should('include', 'cfds');
+    cy.go('back');
+
+    cy.get('[class*="item_learn_more"]').eq(1).should('exist').trigger('mouseover').click();
+    cy.url().should('include', 'options');
+    cy.go('back');
+
+    cy.get('[class*="item_learn_more"]').eq(2).should('exist').trigger('mouseover').click();
+    cy.url().should('include', 'multiplier');
+    cy.go('back');
+  } else {
+    // Handle other regions or throw an error if needed
+  }
 }
 
 describe('QATEST-1342 Trade Types - EU', () => {
