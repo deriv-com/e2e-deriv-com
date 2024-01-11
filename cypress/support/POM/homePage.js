@@ -58,6 +58,7 @@ class homeBanner {
         regulatoryInfo: () => cy.findAllByRole('link', { name: 'Regulatory information' }),
         termsCondition: () => cy.findAllByRole('link', { name: 'Terms & conditions' }),
         secureResponsible: () => cy.findAllByRole('link', { name: 'Secure & responsible trading' }),
+        learnMore: () => cy.get('[class*="item_learn_more"]'), 
     }
 
 }
