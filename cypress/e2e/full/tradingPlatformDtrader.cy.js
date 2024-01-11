@@ -34,35 +34,27 @@ function validate_dtraderpage(region)
     cy.contains('Create free demo account').eq(0).click()
 }
 
-describe('QATEST-1529 - should validate the dtrader page - EU', () => {
-    /*it('should be able to navigate to dtrader page from home page and validate the page content and links for EU in mobile', () => {
-        cy.c_visitResponsive(Cypress.env('RegionEU'))
-        homeBanner.elements.hamBurgerMenu().should('be.visible').click()
-        homeBanner.elements.tradeMenu().should('be.visible').click()
-        homeBanner.elements.dtraderLink().should('be.visible').click()
-        validate_dtraderpage('EU')
-    })*/
+describe('QATEST-1529 - should validate the dtrader page in desktop', () => {
 
-    it('should be able to navigate to dtrader page from home page and validate the page content and links for EU in desktop', () => {
+    it('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findByText('Flagship options, accumulators, & multipliers trading platform.').should('be.visible').click();
         validate_dtraderpage('EU')
     })
 
-    it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW in desktop', () => {
+    it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findByText('Flagship options, accumulators, & multipliers trading platform.').should('be.visible').click();
         validate_dtraderpage('ROW')
     })
 
-    
 })
 
-describe('QATEST-1529 - should validate the dtrader page - ROW', () => {
+describe('QATEST-1536 - should validate the dtrader page in responsive', () => {
     
-    it('should be able to navigate to dtrader page from home page and validate the page content and links for EU in mobile', () => {
+    it('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
@@ -70,19 +62,12 @@ describe('QATEST-1529 - should validate the dtrader page - ROW', () => {
         validate_dtraderpage('EU')
     })
 
-    it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW in mobile', () => {
+    it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.dtraderLink().should('be.visible').click()
         validate_dtraderpage('ROW')
     })
-
-    /*it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW in desktop', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
-        homeBanner.elements.tradeMenu().should('be.visible').click()
-        cy.findByText('Flagship options, accumulators, & multipliers trading platform.').should('be.visible').click();
-        validate_dtraderpage('ROW')
-    })*/
 })
 
