@@ -49,7 +49,8 @@ function checkTradeTypes(region) {
     cy.get('[class*="item_learn_more"]').eq(2).should('exist').trigger('mouseover').click();
     cy.url().should('include', 'multiplier');
     cy.go('back');
-  } 
+  } else {
+  }
 }
 
 describe('QATEST-1342 Trade Types - EU', () => {
