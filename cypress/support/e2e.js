@@ -47,14 +47,14 @@ Cypress.Commands.add('c_emailVerification', (verification_code, event_email_url,
       .eq(1)
         .invoke("attr", "href")
         .then((href) => {
-        const code = href.match(/code=([A-Za-z0-9]{8})/)
-        if (code) {
-          verification_code = code[1]
-          Cypress.env("emailVerificationCode", verification_code)
-        } else {
+          const code = href.match(/code=([A-Za-z0-9]{8})/)
+          if (code) {
+            verification_code = code[1]
+            Cypress.env("emailVerificationCode", verification_code)
+          } else {
             cy.log("Unable to find code in the URL")
-        }
-      })
+          }
+        })
     }
   )
 })
