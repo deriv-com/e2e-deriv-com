@@ -35,11 +35,14 @@ Cypress.Commands.add('c_generateRandomEmail', (domain) => {
 
 let recallCounter = 0;
 Cypress.Commands.add('c_emailVerification', (verification_code, event_email_url, epoch) => {
+
   cy.visit(`https://${Cypress.env("emailUser")}:${Cypress.env("emailPassword")}@${event_email_url}`)
-  
-  cy.origin(`https://${event_email_url}`,{ args: { epoch } },  ({ epoch }) => { 
+
+  cy.origin(`https://${Cypress.env("emailUser")}:${Cypress.env("emailPassword")}@${event_email_url}`, () => { 
+
     cy.scrollTo("bottom")
     cy.get('a[href*="CustomerIO_account_opening_new.html"]').last().click()
+    cy.log('After click---')
     cy
       .get("a")
       .eq(1)

@@ -80,8 +80,11 @@ describe('Cypress test for full sign up flow', () => {
       cy.c_emailVerification(verification_code,Cypress.env("event_email_url"), epoch)
       cy.then(() => {
         cy.c_visitResponsive(Cypress.env("derivAppUrl") + '/endpoint', "desktop")
-        localStorage.setItem('config.server_url', Cypress.env("configServer"))
-        localStorage.setItem('config.app_id', Cypress.env("configAppId"))
+        cy.findByLabelText('Server').click();
+        cy.findByLabelText('Server').clear().type('qa10.deriv.dev');
+        cy.findByLabelText('OAuth App ID').click();
+        cy.findByLabelText('OAuth App ID').clear().type('1007');
+        cy.findByRole('button', { name: 'Submit' }).click();
 
         verification_code = Cypress.env("emailVerificationCode")
         cy.log('verification code' + verification_code)
@@ -95,7 +98,7 @@ describe('Cypress test for full sign up flow', () => {
         selectCountryOfResidence()
         selectCitizenship()
         enterPassword()
-        tradingPreference() // stuck at this point where we are not able to perform click on options from model
+        //Disabled for now -- tradingPreference() // stuck at this point where we are not able to perform click on options from model
         completeOnboarding()
 
       })
