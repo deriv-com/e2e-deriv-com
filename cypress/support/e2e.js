@@ -39,7 +39,7 @@ Cypress.Commands.add('c_emailVerification', (verification_code, event_email_url,
   cy.visit(`https://${Cypress.env("emailUser")}:${Cypress.env("emailPassword")}@${event_email_url}`)
 
   cy.origin(`https://${event_email_url}`,{ args: { epoch } },  ({ epoch }) => {     
-    cy.scrollTo("bottom")
+
     cy.get('a[href*="CustomerIO_account_opening_new.html"]').last().click()
     cy.contains('p', "sanity"+epoch).should('be.visible')
     cy
