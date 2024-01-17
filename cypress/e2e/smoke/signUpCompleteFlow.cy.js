@@ -80,11 +80,11 @@ describe('Cypress test for full sign up flow', () => {
       cy.c_emailVerification(verification_code,Cypress.env("event_email_url"), epoch)
       cy.then(() => {
         cy.c_visitResponsive(Cypress.env("derivAppUrl") + '/endpoint', "desktop")
-        cy.findByLabelText('Server').click();
-        cy.findByLabelText('Server').clear().type('qa10.deriv.dev');
-        cy.findByLabelText('OAuth App ID').click();
-        cy.findByLabelText('OAuth App ID').clear().type('1007');
-        cy.findByRole('button', { name: 'Submit' }).click();
+        cy.findByLabelText('Server').click()
+        cy.findByLabelText('Server').clear().type(Cypress.env("configServer"))
+        cy.findByLabelText('OAuth App ID').click()
+        cy.findByLabelText('OAuth App ID').clear().type(Cypress.env("configAppId"))
+        cy.findByRole('button', { name: 'Submit' }).click()
 
         verification_code = Cypress.env("emailVerificationCode")
         cy.log('verification code' + verification_code)
