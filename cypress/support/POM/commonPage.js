@@ -55,13 +55,14 @@ class footer {
   }
 
   areSocialLinksCorrect(socialLink, socialWebsiteUrl) {
-    socialLink().click()
+    socialLink().click({force: true})
+    
     this.elements.alertDialog().should('be.visible')
     this.elements.alertRedirectMessage().should('be.visible')
     cy.window().then((win) => {
       cy.stub(win, 'open').as('windowOpen')
     })
-    this.elements.proceedButton().click()
+    this.elements.proceedButton().click({force: true})
     cy.reload()
     cy.get('@windowOpen').should('be.calledWith', socialWebsiteUrl)
   }

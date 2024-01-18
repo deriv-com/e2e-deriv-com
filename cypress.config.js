@@ -8,7 +8,6 @@ module.exports = defineConfig({
   e2e: {
     projectId: '16kef2',
     setupNodeEvents(on, config) { },
-    //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
     baseUrl: 'https://staging.deriv.com/', 
     defaultCommandTimeout: 10000,
