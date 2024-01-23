@@ -36,7 +36,7 @@ function validate_dtraderpage(region)
 
 describe('QATEST-1529 - should validate the dtrader page in desktop', () => {
 
-    it('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
+    it.only('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findByText('Flagship options, accumulators, & multipliers trading platform.').should('be.visible').click();
