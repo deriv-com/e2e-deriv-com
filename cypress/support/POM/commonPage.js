@@ -23,6 +23,8 @@ class footer {
         .findByText('You are being redirected to an external website.'),
     cfdFloatingBannerLink: () =>
       cy.contains('% of retail investor accounts lose money when trading CFDs with Deriv, read our full Risk disclosure here'),
+    whatsappIcon: () =>
+    cy.findByRole("button", { name: "whatsapp icon" }),
   }
 
   riskDisclosurePdf = {
@@ -63,6 +65,7 @@ class footer {
     })
     this.elements.proceedButton().click()
     cy.reload()
+    this.elements.whatsappIcon().should("be.visible", {timeout: 30000});
     cy.get('@windowOpen').should('be.calledWith', socialWebsiteUrl)
   }
 }
