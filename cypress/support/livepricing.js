@@ -1,29 +1,38 @@
 Cypress.Commands.add('validate_markets', (site) => {
   if (site == 'row') {
-    cy.findByText('GBP/USD').should('be.visible')
-    cy.findByRole('img', { name: 'Derived indices' }).click()
-    cy.findByText('Jump 50 Index').should('be.visible')
-    cy.findByRole('img', { name: 'Stocks & indices' }).click()
-    cy.findByText('US Tech 100').should('be.visible')
-    cy.findByRole('img', { name: 'Cryptocurrencies' }).click()
-    cy.findByText('DSH/USD').should('be.visible')
-    cy.findByRole('img', { name: 'Commodities' }).click()
-    cy.findByText('Gold/USD').should('be.visible')
-  } else {
-    cy.findByText('GBP/USD').should('be.visible')
-    cy.findByRole('img', { name: 'Derived indices' }).click()
+    cy.findByText('AUD/USD').should('be.visible')
+    cy.findByRole('tab', { name: 'Derived indices' }).click()
+    cy.findByText('Crash 1000 Index').should('be.visible')
+    cy.findByRole('tab', { name: 'ETFs' }).click()
+    cy.findByText('Gold Miners (GDX)').should('be.visible')
+    cy.findByRole('tab', { name: 'Stocks & indices' }).click()
+    cy.findByText('Apple (APPL)').should('be.visible')
+    cy.findByRole('tab', { name: 'Cryptocurrencies' }).click()
+    cy.findByText('BTC/USD').should('be.visible')
+    cy.findByRole('tab', { name: 'Commodities' }).click()
+    cy.findByText('Silver/USD').should('be.visible')
+  } 
+  else{
+    cy.findByText('AUD/USD').should('be.visible')
+    cy.findByRole('tab', { name: 'Derived indices' }).click()
     cy.findByText('Crash 300 Index').should('be.visible')
-    cy.findByRole('img', { name: 'Stocks & indices' }).click()
-    cy.findByText('US Tech 100').should('be.visible')
-    cy.findByRole('img', { name: 'Cryptocurrencies' }).click()
-    cy.findByText('DOG/USD').should('be.visible')
-    cy.findByRole('img', { name: 'Commodities' }).click()
-    cy.findByText('Gold/USD').should('be.visible')
+    cy.findByRole('tab', { name: 'ETFs' }).click()
+    cy.findByText('Gold Miners (GDX)').should('be.visible')
+    cy.findByRole('tab', { name: 'Stocks & indices' }).click()
+    cy.findByText('Apple (APPL)').should('be.visible')
+    cy.findByRole('tab', { name: 'Cryptocurrencies' }).click()
+    cy.findByText('BTC/USD').should('be.visible')
+    cy.findByRole('tab', { name: 'Commodities' }).click()
+    cy.findByText('Silver/USD').should('be.visible')
+
   }
+  
 })
 
+
+  
 function forex_instruments_row() {
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('link', { name: 'See all forex pairs' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Major pairs').should('be.visible')
   cy.findByText('Minor pairs').should('be.visible')
@@ -37,7 +46,7 @@ function forex_instruments_row() {
 }
 
 function forex_instruments_eu() {
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('link', { name: 'See all forex pairs' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Major pairs').should('be.visible')
   cy.findByText('Minor pairs').should('be.visible')
@@ -46,8 +55,8 @@ function forex_instruments_eu() {
 }
 
 function derivedindices_row() {
-  cy.findByRole('img', { name: 'Derived indices' }).click()
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('tab', { name: 'Derived indices' }).click()
+  cy.findByRole('link', { name: 'See all derived indices pairs' }).click()
   cy.findByRole('button', { name: 'Synthetics' }).should('be.visible')
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Drift switching indices').should('be.visible')
@@ -82,8 +91,8 @@ function derivedindices_row() {
 }
 
 function derivedindices_eu() {
-  cy.findByRole('img', { name: 'Derived indices' }).click()
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('tab', { name: 'Derived indices' }).click()
+  cy.findByRole('link', { name: 'See all derived indices pairs' }).click()
   cy.findByRole('button', { name: 'Synthetics' }).should('be.visible')
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Volatility indices').should('be.visible')
@@ -94,8 +103,8 @@ function derivedindices_eu() {
 }
 
 function stockindices_row() {
-  cy.findByRole('img', { name: 'Stocks & indices' }).click()
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('tab', { name: 'Stocks & indices' }).click()
+  cy.findByRole('link', { name: 'See all stocks & indices pairs' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('American indices').should('be.visible')
   cy.findByText('Asian indices').should('be.visible')
@@ -108,8 +117,8 @@ function stockindices_row() {
 }
 
 function stockindices_eu() {
-  cy.findByRole('img', { name: 'Stocks & indices' }).click()
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('tab', { name: 'Stocks & indices' }).click()
+  cy.findByRole('link', { name: 'See all stocks & indices pairs' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('American indices').should('be.visible')
   cy.findByText('Asian indices').should('be.visible')
@@ -118,8 +127,8 @@ function stockindices_eu() {
 }
 
 function cryptocurrencies_row() {
-  cy.findByRole('img', { name: 'Cryptocurrencies' }).click()
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('tab', { name: 'Cryptocurrencies' }).click()
+  cy.findByRole('link', { name: 'See all cryptocurrencies'}).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Crypto pairs').should('be.visible')
   cy.findByRole('heading', { name: 'Multipliers' }).click()
@@ -127,8 +136,8 @@ function cryptocurrencies_row() {
 }
 
 function cryptocurrencies_eu() {
-  cy.findByRole('img', { name: 'Cryptocurrencies' }).click()
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('tab', { name: 'Cryptocurrencies' }).click()
+  cy.findByRole('link', { name: 'See all cryptocurrencies' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Crypto pairs').should('be.visible')
 
@@ -137,8 +146,8 @@ function cryptocurrencies_eu() {
 }
 
 function commodities_row() {
-  cy.findByRole('img', { name: 'Commodities' }).click()
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('tab', { name: 'Commodities' }).click()
+  cy.findByRole('link', { name: 'See all commodities' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Metals').should('be.visible')
   cy.findByText('Energy').should('be.visible')
@@ -149,8 +158,8 @@ function commodities_row() {
 }
 
 function commodities_eu() {
-  cy.findByRole('img', { name: 'Commodities' }).click()
-  cy.findByRole('link', { name: 'View all >' }).click()
+  cy.findByRole('tab', { name: 'Commodities' }).click()
+  cy.findByRole('link', { name: 'See all commodities' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Metals').should('be.visible')
   cy.findByText('Energy').should('be.visible')
@@ -256,27 +265,13 @@ Cypress.Commands.add('commodities_viewall', (site, view) => {
   }
 })
 
-Cypress.Commands.add('check_tradingspecs_and_tradenow_button', () => {
-  const externalUrls = Cypress.config('externalUrls')
-  cy.findByRole('link', { name: 'Check trading specs' }).click()
-  cy.url().should('include', 'trading-specification')
-  cy.findByText('Trading specifications for CFDs on Deriv').should('be.visible')
-  cy.go(-1)
-  cy.url().then((url) => {
-     if (url.includes(externalUrls.stagingderivURL) || url.includes(externalUrls.derivURL)) 
-     {
-       cy.findByRole('button', { name: 'Trade now' }).click()
-       cy.get('.title-text').contains('Welcome!').should('be.visible');
-     } 
-     else 
-     {
-       cy.findByRole('button', { name: 'Trade now' }).click()
-       cy.origin(externalUrls.loginURL, () => {
-       cy.get('.title-text').contains('Welcome!').should('be.visible');
-       })
-     }
-   })
- })
+Cypress.Commands.add('check_buy_sell_button', () => {
+      cy.findAllByRole('button', { name: 'Buy' }).first().click()
+      cy.url().should('include', '/signup/')
+      cy.go('back');
+      cy.findAllByRole('button', { name: 'Sell' }).first().click()
+      cy.go(-1);
+})
 
 
 

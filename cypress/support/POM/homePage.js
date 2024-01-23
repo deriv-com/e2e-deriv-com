@@ -12,7 +12,7 @@ class homeBanner {
         bannerDerivedIndicesTxt: () => cy.findByTestId('typewriter-wrapper').contains('Derived Indices'),
 
 
-        createFreeDemoAccount: () => cy.findByLabelText('create free demo account'),
+        createFreeDemoAccount: () => cy.findByLabelText('Open demo account'),
         hamBurgerMenu: () => cy.get('[data-cy="mobile-header"]').find('[data-cy="hamburger-menu"]'),
         derivLogo: () =>   cy.get('[data-cy="mobile-header"]').find('[data-cy="deriv-logo"]'),
         langEnglish: () => cy.findByText('English'),
