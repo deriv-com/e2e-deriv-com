@@ -79,12 +79,15 @@ describe('Cypress test for full sign up flow', () => {
       cy.wait(5000) //TODO - To be replaced by a loop within the emailVerification below.
       cy.c_emailVerification(verification_code,Cypress.env("event_email_url"), epoch)
       cy.then(() => {
-        cy.c_visitResponsive(Cypress.env("derivAppUrl") + '/endpoint', "desktop")
-        cy.findByLabelText('Server').click()
-        cy.findByLabelText('Server').clear().type(Cypress.env("configServer"))
-        cy.findByLabelText('OAuth App ID').click()
-        cy.findByLabelText('OAuth App ID').clear().type(Cypress.env("configAppId"))
-        cy.findByRole('button', { name: 'Submit' }).click()
+        cy.c_visitResponsive(
+          Cypress.env("derivAppUrl") + '/endpoint',
+          "desktop"
+        ).then(() => {
+          cy.window().then((win) => {
+            win.localStorage.setItem("config.server_url", Cypress.env('configServer'))
+            win.localStorage.setItem("config.app_id", Cypress.env('configAppId'))
+          })
+        })
 
         verification_code = Cypress.env("emailVerificationCode")
         cy.log('verification code' + verification_code)
@@ -98,7 +101,6 @@ describe('Cypress test for full sign up flow', () => {
         selectCountryOfResidence()
         selectCitizenship()
         enterPassword()
-        //Disabled for now -- tradingPreference() // stuck at this point where we are not able to perform click on options from model
         completeOnboarding()
 
       })
