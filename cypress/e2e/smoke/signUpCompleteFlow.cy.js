@@ -21,7 +21,6 @@ describe('Cypress test for full sign up flow', () => {
     let verification_code
 
     beforeEach(() => {
-      //cy.c_visitResponsive("/endpoint","desktop")
       localStorage.setItem("config.server_url", Cypress.env("configServer"))
       localStorage.setItem("config.app_id", Cypress.env("configAppId"))
       cy.c_visitResponsive(Cypress.env('RegionEU'),"desktop")
