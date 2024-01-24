@@ -21,13 +21,10 @@ describe('Cypress test for full sign up flow', () => {
     let verification_code
 
     beforeEach(() => {
-      cy.c_visitResponsive("/endpoint","large")
+      //cy.c_visitResponsive("/endpoint","desktop")
       localStorage.setItem("config.server_url", Cypress.env("configServer"))
       localStorage.setItem("config.app_id", Cypress.env("configAppId"))
-      cy.c_visitResponsive("/endpoint","large")
-      cy.c_visitResponsive(Cypress.env('RegionEU'),"large")
-      cy.log('Server' + Cypress.env("configServer"))
-      cy.log('AppId' + Cypress.env("configAppId"))
+      cy.c_visitResponsive(Cypress.env('RegionEU'),"desktop")
       enterValidEmail(sign_up_mail)
     })
 
@@ -90,7 +87,6 @@ describe('Cypress test for full sign up flow', () => {
         })
 
         verification_code = Cypress.env("emailVerificationCode")
-        cy.log('verification code' + verification_code)
         const today = new Date()
         const signupUrl = `${Cypress.env("derivAppUrl")}/redirect?action=signup&lang=EN_US&code=${verification_code}&date_first_contact=${today.toISOString().split('T')[0]}&signup_device=desktop`
 
