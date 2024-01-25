@@ -20,6 +20,9 @@ function Dbot_page()
         });
         cy.go('back'); 
     }
+    cy.findByRole('heading', { name: 'Build your strategy visually' }, { timeout: 5000 }).should('be.visible')
+    cy.findByRole('img', { name: 'Build your bot using drag and drop' }).click()
+
     cy.findByRole('heading', { name: 'Automate your trading ideas without writing code' }, { timeout: 10000 }).should('be.visible')
     for (let index = 0; index < 2; index++) 
     {
@@ -31,14 +34,12 @@ function Dbot_page()
     for (let index = 0; index < 2; index++) 
     {
         
-        cy.findAllByRole('link', {name: 'Go to live demo'}, { timeout: 5000 }).eq(index).click();
-        //cy.go('back')
+        cy.findAllByRole('link', {name: 'Go to live demo'}, { timeout: 5000 }).eq(index).click()
+       
     }
     cy.findByText('Build a trading robot in 5 easy steps').should('be.visible')
     cy.findByText('1. Select an asset').click()
-
-    //cy.findByRole('img', { name: 'Select an asset' }).click();
-    cy.findByText('2. Set the purchase conditions').click();
+    cy.findByText('2. Set the purchase conditions').click()
     cy.findByRole('img', { name: 'purchase conditions' }).click()
     cy.findByText('3. Set the restart conditions').click();
     cy.findByRole('img', { name: 'restart conditions' }).click()
@@ -67,10 +68,7 @@ describe('QATEST-1548 - should validate the Dbot page in responsive', () => {
             Dbot_page()
 
 
-         })
-    
-
-    
+         })    
 })
 
 
