@@ -1,4 +1,4 @@
-Cypress.Commands.add('validate_markets', (site) => {
+Cypress.Commands.add('c_validateMarkets', (site) => {
   if (site == 'row') {
     cy.findByText('AUD/USD').should('be.visible')
     cy.findByRole('tab', { name: 'Derived indices' }).click()
@@ -165,7 +165,7 @@ function commodities_eu() {
   cy.findByText('Energy').should('be.visible')
 }
 
-Cypress.Commands.add('forex_viewall', (site, view) => {
+Cypress.Commands.add('c_forexViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
@@ -185,7 +185,7 @@ Cypress.Commands.add('forex_viewall', (site, view) => {
   }
 })
 
-Cypress.Commands.add('derivedindices_viewall', (site, view) => {
+Cypress.Commands.add('c_derivedindicesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
@@ -205,7 +205,7 @@ Cypress.Commands.add('derivedindices_viewall', (site, view) => {
   }
 })
 
-Cypress.Commands.add('stockindices_viewall', (site, view) => {
+Cypress.Commands.add('c_stockindicesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
@@ -225,7 +225,7 @@ Cypress.Commands.add('stockindices_viewall', (site, view) => {
   }
 })
 
-Cypress.Commands.add('cryptocurrencies_viewall', (site, view) => {
+Cypress.Commands.add('c_cryptocurrenciesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
@@ -245,7 +245,7 @@ Cypress.Commands.add('cryptocurrencies_viewall', (site, view) => {
   }
 })
 
-Cypress.Commands.add('commodities_viewall', (site, view) => {
+Cypress.Commands.add('c_commoditiesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
       cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
@@ -265,7 +265,7 @@ Cypress.Commands.add('commodities_viewall', (site, view) => {
   }
 })
 
-Cypress.Commands.add('check_buy_sell_button', () => {
+Cypress.Commands.add('c_checkBuySellButton', () => {
       cy.findAllByRole('button', { name: 'Buy' }).first().click()
       cy.url().should('include', '/signup/')
       cy.go('back');
