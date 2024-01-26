@@ -19,7 +19,7 @@ const realtradetype = {
         {realtext:'Fund your account. Start trading on the mobile app, desktop app, or web browser.',realimg:'Deriv MT5 demo account'}
       ],
   },
-};
+}
 
 
 
@@ -41,6 +41,15 @@ const demotradetype = {
     },
   };
 
+  function proceedEU(region)
+    {
+  
+      if (region === 'RegionEU'){
+  cy.findByText('Redirect notice').should('be.visible')
+  cy.findByRole('link', { name: 'Proceed' }).click()
+      }
+    }
+
 function validate_dmt5page(region)
 {   const config = demotradetype[region]
     const configreal = realtradetype[region]
@@ -55,11 +64,11 @@ function validate_dmt5page(region)
     if(index === 0)
     {
       cy.findAllByRole('listitem').contains(`${demoaccount.demotext}`).scrollIntoView()
-      cy.findByRole('img', { name: `${demoaccount.demoimg}` }).scrollIntoView().should('be.visible');
+      cy.findByRole('img', { name: `${demoaccount.demoimg}` }).scrollIntoView().should('be.visible')
     }
     if(index > 0){
-    cy.findAllByRole('listitem').contains(`${demoaccount.demotext}`).scrollIntoView().click();
-    cy.findByRole('img', { name: `${demoaccount.demoimg}` }).scrollIntoView().should('be.visible');}
+    cy.findAllByRole('listitem').contains(`${demoaccount.demotext}`).scrollIntoView().click()
+    cy.findByRole('img', { name: `${demoaccount.demoimg}` }).scrollIntoView().should('be.visible')}
   });
   
 
@@ -98,16 +107,23 @@ function validate_dmt5page(region)
     cy.go('back')
     cy.get('.typography__Text-sc-10mkw78-0.typography__LinkText-sc-10mkw78-2.gYcoeS.lkBhkX').click()
     cy.findByRole('link', {name: 'Trade without commission'}).click()
+
+
     cy.findByRole('link', {name: 'Google Play'}).click()
+    proceedEU(region)
     cy.findByRole('link', {name: 'App Store'}).click()
+    proceedEU(region)
     cy.findByRole('link', {name: 'AppGallery'}).click()
+    proceedEU(region)
     cy.findByRole('link', {name: 'Use it on your Web Browser'}).click()
+    proceedEU(region)
     cy.findByRole('link', {name: 'Linux'}).click()
+    proceedEU(region)
     cy.contains('Create free demo account').click()
     cy.findByText('Join over 2.5 million traders').should('be.visible')
     cy.go('back')
 
-
+    
 
     
     if (region === 'ROW') {   
@@ -121,6 +137,7 @@ function validate_dmt5page(region)
        }
     }
 
+
     cy.findByRole('link', { name: 'Deriv demo account' }).click()
     cy.findByText('Join over 2.5 million traders').should('be.visible')
     cy.go('back')
@@ -131,15 +148,15 @@ describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
 
     it('should be able to navigate to dmt5 page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
-        homeBanner.elements.tradeMenu().should('be.visible').click()
-        cy.findByText('The most popular and comprehensive CFDs platform.').should('be.visible').click();
+        homeBanner.elements.tradeMenu().click()
+        cy.findByText('The most popular and comprehensive CFDs platform.').should('be.visible').click()
         validate_dmt5page('EU')
     })
 
     it('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
-        homeBanner.elements.tradeMenu().should('be.visible').click()
-        cy.findByText('The most popular and comprehensive CFDs platform.').should('be.visible').click();
+        homeBanner.elements.tradeMenu().click()
+        cy.findByText('The most popular and comprehensive CFDs platform.').should('be.visible').click()
         validate_dmt5page('ROW')
     })
 
