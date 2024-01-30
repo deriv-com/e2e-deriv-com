@@ -21,8 +21,6 @@ const realtradetype = {
   },
 }
 
-
-
 const demotradetype = {
     EU: {
       types: [ 
@@ -41,12 +39,11 @@ const demotradetype = {
     },
   };
 
-  function proceedEU(region)
+function proceedEU(region)
     {
-  
       if (region === 'RegionEU'){
-  cy.findByText('Redirect notice').should('be.visible')
-  cy.findByRole('link', { name: 'Proceed' }).click()
+        cy.findByText('Redirect notice').should('be.visible')
+        cy.findByRole('link', { name: 'Proceed' }).click()
       }
     }
 
@@ -60,31 +57,30 @@ function validate_dmt5page(region)
     cy.findByText('Get trading with Deriv MT5').should('be.visible')
     cy.findByRole('img', { name: 'Deriv MT5 logo' }).should('be.visible')
 
-  config.types.forEach((demoaccount,index) => {
+    config.types.forEach((demoaccount,index) => {
     if(index === 0)
     {
       cy.findAllByRole('listitem').contains(`${demoaccount.demotext}`).scrollIntoView()
-      cy.findByRole('img', { name: `${demoaccount.demoimg}` }).scrollIntoView().should('be.visible')
-    }
-    if(index > 0){
-    cy.findAllByRole('listitem').contains(`${demoaccount.demotext}`).scrollIntoView().click()
-    cy.findByRole('img', { name: `${demoaccount.demoimg}` }).scrollIntoView().should('be.visible')}
-  });
-  
+      cy.findByRole('img', { name: `${demoaccount.demoimg}` }).scrollIntoView().should('be.visible')}
 
+    if(index > 0){
+      cy.findAllByRole('listitem').contains(`${demoaccount.demotext}`).scrollIntoView().click()
+      cy.findByRole('img', { name: `${demoaccount.demoimg}` }).scrollIntoView().should('be.visible')} })
+  
     cy.findByRole('heading', { name: 'How to get started with a Deriv MT5 account' }).scrollIntoView().should("be.visible", {timeout: 50000,})
     cy.findByText('Real account').click()
 
-  configreal.types.forEach((realaccount,index) => {
+    configreal.types.forEach((realaccount,index) => {
     if(index === 0)
     {
       cy.findAllByRole('listitem').contains(`${realaccount.realtext}`).scrollIntoView()
     }
 
-    if(index > 0){
-    cy.findAllByRole('listitem').contains(`${realaccount.realtext}`).click()
-    cy.findByRole('img', {name: `${realaccount.realimg}`}).scrollIntoView().should('be.visible')}
-  })
+    if(index > 0)
+    {
+      cy.findAllByRole('listitem').contains(`${realaccount.realtext}`).click()
+      cy.findByRole('img', {name: `${realaccount.realimg}`}).scrollIntoView().should('be.visible')
+    }})
 
     cy.findByRole('link', { name: 'sign in' }).click()
     cy.findByText('Welcome!').should('be.visible')
@@ -108,7 +104,6 @@ function validate_dmt5page(region)
     cy.get('.typography__Text-sc-10mkw78-0.typography__LinkText-sc-10mkw78-2.gYcoeS.lkBhkX').click()
     cy.findByRole('link', {name: 'Trade without commission'}).click()
 
-
     cy.findByRole('link', {name: 'Google Play'}).click()
     proceedEU(region)
     cy.findByRole('link', {name: 'App Store'}).click()
@@ -123,9 +118,6 @@ function validate_dmt5page(region)
     cy.findByText('Join over 2.5 million traders').should('be.visible')
     cy.go('back')
 
-    
-
-    
     if (region === 'ROW') {   
     cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
     for (let index = 0; index < 4; index++) 
@@ -136,8 +128,6 @@ function validate_dmt5page(region)
          cy.url().should('include', '/dmt5/')
        }
     }
-
-
     cy.findByRole('link', { name: 'Deriv demo account' }).click()
     cy.findByText('Join over 2.5 million traders').should('be.visible')
     cy.go('back')
