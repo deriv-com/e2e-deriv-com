@@ -2,11 +2,11 @@ import '@testing-library/cypress/add-commands'
 
 function enterValidEmail(email)
 {
-  cy.findByPlaceholderText('Email address').should('be.visible').type(email)
+  cy.findByPlaceholderText('Email').should('be.visible').type(email)
   cy.findByRole('checkbox').click()
   cy.get('.error').should('not.exist')
-  cy.findByRole('button', { name: 'Sign up' }).should('not.be.disabled')
-  cy.findByRole('button', { name: 'Sign up' }).click()
+  cy.findByRole('button', { name: 'Create demo account' }).should('not.be.disabled')
+  cy.findByRole('button', { name: 'Create demo account' }).click()
   cy.findByRole('heading', { name: 'Check your email' }).should('be.visible')
 }
 
@@ -21,7 +21,7 @@ describe('Cypress test for full sign up flow', () => {
     let verification_code
 
     beforeEach(() => {
-      cy.c_visitResponsive(Cypress.env('RegionROW'),'desktop')
+      cy.c_visitResponsive('/signup' + Cypress.env('RegionROW'),'desktop')
       localStorage.setItem("config.server_url", Cypress.env("configServer"))
       localStorage.setItem("config.app_id", Cypress.env("configAppId"))
       enterValidEmail(sign_up_mail)
@@ -94,4 +94,3 @@ describe('Cypress test for full sign up flow', () => {
     })
 
 })
-

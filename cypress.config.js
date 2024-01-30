@@ -10,7 +10,8 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) { },
     //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
-    baseUrl: 'https://staging.deriv.com/', 
+    baseUrl: 'https://translation-new-home.deriv-com-preview-links.pages.dev/', 
+    // baseUrl:'https://staging.deriv.com/',
     defaultCommandTimeout: 10000,
     supportFile: "cypress/support/e2e.js",
     
