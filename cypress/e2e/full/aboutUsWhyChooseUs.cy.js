@@ -1,9 +1,7 @@
 import '@testing-library/cypress/add-commands'
 import homeBanner from '../../support/POM/homePage'
 
-
 function validate_AboutUs_whyChooseUs()
-
 {
 cy.findByRole('heading', { name: 'Why choose us' }).should('be.visible')
 
