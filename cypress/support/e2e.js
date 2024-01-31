@@ -1,5 +1,5 @@
 import "./livepricing"
-
+import 'cypress-iframe'
 
 Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
   //Custom command that allows us to use baseUrl + path and detect with this is a responsive run or not.
