@@ -5,6 +5,7 @@ require('dotenv').config()
 //const gViewPortSize = {small: 'phone-xr', large: 'macbook-16'} //TODO Use enum
 
 module.exports = defineConfig({
+  chromeWebSecurity: false,
   e2e: {
     projectId: '16kef2',
     setupNodeEvents(on, config) { },
