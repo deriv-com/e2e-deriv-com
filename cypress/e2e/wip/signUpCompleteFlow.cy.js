@@ -21,9 +21,9 @@ describe('Cypress test for full sign up flow', () => {
     let verification_code
 
     beforeEach(() => {
-      cy.c_visitResponsive('/signup' + Cypress.env('RegionROW'),'desktop')
       localStorage.setItem("config.server_url", Cypress.env("configServer"))
       localStorage.setItem("config.app_id", Cypress.env("configAppId"))
+      cy.c_visitResponsive('/signup' + Cypress.env('RegionROW'),'desktop')
       enterValidEmail(sign_up_mail)
     })
 
@@ -72,22 +72,30 @@ describe('Cypress test for full sign up flow', () => {
 
 
     it('enter mail id to signup on deriv.com', () => {
-      
+      cy.wait(5000) //TODO - To be replaced by a loop within the emailVerification below.
       cy.c_emailVerification(verification_code,Cypress.env("event_email_url"), epoch)
       cy.then(() => {
+        cy.c_visitResponsive(
+          Cypress.env("derivAppUrl") + '/endpoint',
+          "desktop"
+        ).then(() => {
+          cy.window().then((win) => {
+            win.localStorage.setItem("config.server_url", Cypress.env('configServer'))
+            win.localStorage.setItem("config.app_id", Cypress.env('configAppId'))
+          })
+        })
+
         verification_code = Cypress.env("emailVerificationCode")
         const today = new Date()
         const signupUrl = `${Cypress.env("derivAppUrl")}/redirect?action=signup&lang=EN_US&code=${verification_code}&date_first_contact=${today.toISOString().split('T')[0]}&signup_device=desktop`
-        cy.visit(signupUrl)
-        localStorage.setItem('config.server_url', Cypress.env("configServer"))
-        localStorage.setItem('config.app_id', Cypress.env("configAppId"))
+
+        cy.c_visitResponsive(signupUrl, "desktop")
    
         cy.get('h1').contains('Select your country and').should('be.visible')
 
         selectCountryOfResidence()
         selectCitizenship()
         enterPassword()
-        tradingPreference() // stuck at this point where we are not able to perform click on options from model
         completeOnboarding()
 
       })

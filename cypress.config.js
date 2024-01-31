@@ -10,8 +10,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) { },
     //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
-    baseUrl: 'https://translation-new-home.deriv-com-preview-links.pages.dev/', 
-    // baseUrl:'https://staging.deriv.com/',
+    baseUrl:'https://staging.deriv.com/',
     defaultCommandTimeout: 10000,
     supportFile: "cypress/support/e2e.js",
     
@@ -30,7 +29,7 @@ module.exports = defineConfig({
     emailUser: process.env.AUTH_EMAIL_USER,
     emailPassword: process.env.AUTH_EMAIL_PASSWORD,
     event_email_url: process.env.EVENTS_EMAIL,
-    emailVerificationCode : '',
+    emailVerificationCode : process.env.EMAIL_VERIFICATION_CODE,
     country_of_residence: process.env.COUNTRY_OF_RESIDENCE,
     citizenship: process.env.CITIZENSHIP,
     user_password: process.env.USERPASSWORD,

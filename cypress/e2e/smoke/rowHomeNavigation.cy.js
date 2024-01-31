@@ -6,8 +6,7 @@ describe('QATEST-1266 - deriv.com ROW home page should be opened with the url as
         const baseUrl = Cypress.config('baseUrl').toLowerCase();
         const urlToMatch = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
         cy.url().should('eq', urlToMatch + Cypress.env('RegionROW'))
-        cy.findByRole('heading', { name: 'Options' }).should('be.visible')   // checking Option trade type is present on ROW
-        cy.findByRole('img', { name: 'p2p banner' })                          // checking p2p section is present  on ROW
+        cy.findByText('Trade CFDs and options on global financial markets, all in one place with 24/7 trading and worldwide support.').should('be.visible')
     }
 
     it('Should open url deriv.com and check ROW HomePage opens in mobile', ()=> {
