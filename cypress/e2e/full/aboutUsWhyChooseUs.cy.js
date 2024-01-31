@@ -65,13 +65,13 @@ cy.url().should('include', '/signup/')
 describe('QATEST-1647 - should validate the About Us - Why choose us', () => 
 {
 
-    it('should be able to navigate to dmt5 page from home page and validate the page content and links for EU', () => {
+    it('should validate Why Choose Us page for EU', () => {
         cy.c_visitResponsive(`/why-choose-us/${Cypress.env('RegionEU')}`, 'desktop')
 
         validate_AboutUs_whyChooseUs('EU')
     })
 
-    it('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
+    it('should validate Why Choose Us page for ROW', () => {
         cy.c_visitResponsive(`/why-choose-us/${Cypress.env('RegionROW')}`, 'desktop')
        
         validate_AboutUs_whyChooseUs('ROW')
@@ -82,13 +82,13 @@ describe('QATEST-1647 - should validate the About Us - Why choose us', () =>
 describe('QATEST-1647- Responsive - should validate the About Us - Why choose us', () => 
 {
     
-    it('should be able to navigate to dmt5 page from home page and validate the page content and links for EU', () => {
+    it('should validate Why Choose Us page for EU', () => {
         cy.c_visitResponsive(`/why-choose-us/${Cypress.env('RegionEU')}`)
        
         validate_AboutUs_whyChooseUs('EU')
     })
 
-    it('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
+    it('should validate Why Choose Us page for ROW', () => {
         cy.c_visitResponsive(`/why-choose-us/${Cypress.env('RegionROW')}`)
        
         validate_AboutUs_whyChooseUs('ROW')
