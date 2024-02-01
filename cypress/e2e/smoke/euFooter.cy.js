@@ -9,6 +9,7 @@ describe('QATEST-1422 Footer EU Responsive', () => {
   })
 
   const externalSocialUrls = Cypress.config('externalSocialUrls')
+  const { googlePlay, appStore, appGallery } = Cypress.config().appMarketUrl;
 
   it('should open and verify all footer social media links.', () => {
     const socialLinks = [
@@ -76,9 +77,16 @@ describe('QATEST-1422 Footer EU Responsive', () => {
 
     footer.elements.secureAndRespTradingLink().click()
     responsiblePage.elements.headerTxt().should('be.visible')
-
-    
-
-
   })
+
+  it('should verify deriv go mobile app download link is not present', () => {
+    
+    cy.get(`a[href="${googlePlay}"]`)
+      .should('not.exist')
+    cy.get(`a[href*="${appStore}"]`)
+      .should('not.exist')
+    cy.get(`a[href*="${appGallery}"]`)
+      .should('not.exist')
+  })
+
 })
