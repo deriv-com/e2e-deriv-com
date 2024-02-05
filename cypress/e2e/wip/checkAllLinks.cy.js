@@ -92,7 +92,6 @@ describe('check deriv.com URLs', () => {
         })
       })
     })
-    cy.log(`Captured Urls ${capturedUrls}`)
   })
 })
 
