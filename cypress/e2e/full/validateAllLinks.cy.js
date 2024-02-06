@@ -28,13 +28,15 @@ let linkDetails = {
         'instagram',
         'youtube',
         'https://staging.deriv.com/trade-types/options/', // Bug raised as https://app.clickup.com/t/86bxbkfqm  will remove once the issue is fixed because till then test will keep on failing without verifying other links
-        'https://staging.deriv.com/p2p/',  // because p2p is not available without vpn as per reference 
     ],
     excludedCheckLinks: [
         'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg', //causing hang because takes a lot of time downloading pdf
         'https://www.instagram.com/derivcareers/',
         'javascript:;',
         'mailto:'
+    ],
+    linksAllowedFailingVisits: [
+        '/p2p/',  // because p2p is not available without vpn as per reference 
     ],
     linksAllowedFailingStatuses: {
         404: [
@@ -54,7 +56,8 @@ let linkDetails = {
     },
     checkedLinks: [], // To check if link has already been checked or not.
     visitedLinks: [], // To check if link has already been visited or not.
-    failedLinks: [], // To see Failed Links
+    failedCheckLinks: [], // To see Failed links which were checked only.
+    failedVisitLinks: [], // To see Failed links which were visited successfully but had 404 being displayed on the page.
 }
 
 let passingStatusCodes = [
@@ -153,9 +156,9 @@ const checkLinks = (currentLink) => {
             linkDetails.checkedLinks.push(currentLink)
             if (!passingStatusCodes.some(statusCode => response.status == statusCode)) {
                 if (!isAllowedFailingStatus(currentLink)) {
-                    linkDetails.failedLinks.push(`Link "${currentLink}" failed with Status code: ${response.status}"`)
+                    linkDetails.failedCheckLinks.push(`Link "${currentLink}" failed with Status code: ${response.status}"`)
                     cy.log(`Current failed Link is ${currentLink} with Status code: ${response.status}`)
-                    cy.log(`The total failed links are: ${linkDetails.failedLinks.length}`, linkDetails.failedLinks)
+                    cy.log(`The total failed links are: ${linkDetails.failedCheckLinks.length}`, linkDetails.failedCheckLinks)
                 } else {
                     cy.log(`Current link ${currentLink} is allowed to have failed status`)
                 }
@@ -164,6 +167,12 @@ const checkLinks = (currentLink) => {
         if (currentLink && !isLinkExcluded('Visit', currentLink) && isLinkValid(currentLink)) {
             cy.visit(currentLink)
             linkDetails.visitedLinks.push(currentLink)
+            cy.document().then(doc => {
+                const pageFailed = doc.querySelector('img[alt="Page not found"]')
+                if (pageFailed && pageFailed != undefined && pageFailed != null && !linkDetails.linksAllowedFailingVisits.some(link=> currentLink.toLowerCase().includes(link.toLowerCase()))) {
+                    linkDetails.failedVisitLinks.push(currentLink)
+                }
+            })
             cy.get("a").each(availableLink => {
                 const currentLink = availableLink.prop('href')
                 checkLinks(currentLink)
@@ -180,8 +189,8 @@ describe('QATEST-96657 - Check URL in deriv.com', () => {
         cy.clearAllLocalStorage()
         cy.clearAllCookies()
         cy.intercept({ resourceType: /xhr|fetch/ }, { log: false }) // to have cleaner logs for this test 
-      })
-    it('should validate all links', () => {
+    })
+    it('should validate each Url in deriv.com', () => {
         cy.c_visitResponsive(Cypress.env('RegionDIEL'), 'desktop')
         linkDetails.visitedLinks.push(`${Cypress.env('RegionDIEL')}`)
         cy.get("a").each(availableLink => {
@@ -203,10 +212,13 @@ describe('QATEST-96657 - Check URL in deriv.com', () => {
 
         cy.log('Visited Links: ', linkDetails.visitedLinks.sort())
         cy.log('Verified Links: ', linkDetails.checkedLinks.sort())
-        cy.log('Failed Links: ', linkDetails.failedLinks.sort())
-        cy.wrap(linkDetails.failedLinks).then(failedLinks => {
-            expect(failedLinks.length, 'Number of failed links :').to.be.eql(0)
+        cy.log('Failed Checked Links: ', linkDetails.failedCheckLinks.sort())
+        cy.log('Failed Visited Links: ', linkDetails.failedVisitLinks.sort())
+        let totalFailure = linkDetails.failedCheckLinks.length + linkDetails.failedVisitLinks.length
+        cy.wrap(totalFailure,{log:false}).then(failures=>{
+            expect(failures, 'Number of failed links :').to.be.eql(0)
         })
+        
     })
 })
 
