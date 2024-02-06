@@ -174,7 +174,7 @@ const checkLinks = (currentLink) => {
 
 
 
-describe('Validate all links', () => {
+describe('QATEST-96657 - Check URL in deriv.com', () => {
     before(() => {
         cy.clearAllSessionStorage()
         cy.clearAllLocalStorage()
