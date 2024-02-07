@@ -1,4 +1,5 @@
 import "./livepricing"
+import "./location"
 import 'cypress-iframe'
 
 Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
