@@ -4,62 +4,83 @@ import { allLinks } from '../../support/POM/expectedURLs'
 Cypress.on('uncaught:exception', (err, runnable) => {
   return false
 })
+var CurrentLinks= []
+var IinitialList= []
+var len
+beforeEach(() => {
+  cy.c_visitResponsive(Cypress.env('RegionDIEL'), 'desktop');
+  cy.get("a").each(link => {
+  const href = link.prop('href');
+  cy.wrap(IinitialList).invoke('push', href);
+  cy.log('array',IinitialList)
+  cy.wrap(IinitialList).then(a=>{
+  len = a.length
+  cy.log('the length is ',len)
+  .then(() => {
+    // Remove duplicates using a Set
+    CurrentLinks = Array.from(new Set(IinitialList));
+    cy.log('Unique Links:', CurrentLinks);
+    cy.log('Unique Array:', CurrentLinks.join(', '));
+  });
+})});
+});
 
-describe('QQAA-1178 - Compare Links', () => {
-  it('visits all links for DIEL residance and compare links with pre-defined list', () => {
-    // Visit homepage
-    // cy.c_visitResponsive(Cypress.env('RegionDIEL'), 'desktop');
-    if (allLinks.CurrentLinks.length == allLinks.ExpectedLinks_DIEL.length) {
+
+describe('QATEST-97047 - Compare URL in production and staging', () => {
+
+  it('visits all links for DIEL countries in staging and compare links with pre-defined list', () => {
+
+    if (CurrentLinks.length == allLinks.ExpectedLinks_DIEL.length) {
       cy.log('Lengths are equal.');
       try {
-        // Check if allLinks.CurrentLinks have all links of allLinks.ExpectedLinks_DIEL
-        expect(allLinks.CurrentLinks).to.have.members(allLinks.ExpectedLinks_DIEL);
+        // Check if CurrentLinks have all links of allLinks.ExpectedLinks_DIEL
+        expect(CurrentLinks).to.have.members(allLinks.ExpectedLinks_DIEL);
         cy.log('Logs identical, test passed');
       }
       catch (error) {
         // If the expectation failed , continue with following checks : 
-        allLinks.MissingLinks = allLinks.CurrentLinks.filter(link => !allLinks.ExpectedLinks_DIEL.includes(link));
-        allLinks.NewLinks = allLinks.ExpectedLinks_DIEL.filter(link => !allLinks.CurrentLinks.includes(link));
+        allLinks.MissingLinks = CurrentLinks.filter(link => !allLinks.ExpectedLinks_DIEL.includes(link));
+        allLinks.NewLinks = allLinks.ExpectedLinks_DIEL.filter(link => !CurrentLinks.includes(link));
         cy.log('Please check the missing links:');
         cy.log(allLinks.MissingLinks);
         cy.log('Please check the New links:');
         cy.log(allLinks.NewLinks);
       }
     }
-    if (allLinks.CurrentLinks.length > allLinks.ExpectedLinks_DIEL.length) {
-      cy.log('allLinks.CurrentLinks length is :');
-      cy.log(allLinks.CurrentLinks.length);
+    if (CurrentLinks.length > allLinks.ExpectedLinks_DIEL.length) {
+      cy.log('CurrentLinks length is :');
+      cy.log(CurrentLinks.length);
       cy.log('allLinks.ExpectedLinks_DIEL length is :');
       cy.log(allLinks.ExpectedLinks_DIEL.length);
       try {
-        expect(allLinks.CurrentLinks).to.include.members(allLinks.ExpectedLinks_DIEL);
-        allLinks.MissingLinks = allLinks.CurrentLinks.filter(link => !allLinks.ExpectedLinks_DIEL.includes(link));
+        expect(CurrentLinks).to.include.members(allLinks.ExpectedLinks_DIEL);
+        allLinks.MissingLinks = CurrentLinks.filter(link => !allLinks.ExpectedLinks_DIEL.includes(link));
         cy.log('Please check the Missing links:');
         cy.log(allLinks.MissingLinks);
       }
       catch (error) {
-        allLinks.MissingLinks = allLinks.CurrentLinks.filter(link => !allLinks.ExpectedLinks_DIEL.includes(link));
-        allLinks.NewLinks = allLinks.ExpectedLinks_DIEL.filter(link => !allLinks.CurrentLinks.includes(link));
+        allLinks.MissingLinks = CurrentLinks.filter(link => !allLinks.ExpectedLinks_DIEL.includes(link));
+        allLinks.NewLinks = allLinks.ExpectedLinks_DIEL.filter(link => !CurrentLinks.includes(link));
         cy.log('Please check the missing links:');
         cy.log(allLinks.MissingLinks);
         cy.log('Please check the New links:');
         cy.log(allLinks.NewLinks);
       }
     }
-    if (allLinks.CurrentLinks.length < allLinks.ExpectedLinks_DIEL.length) {
-      cy.log('allLinks.CurrentLinks length is :');
-      cy.log(allLinks.CurrentLinks.length);
+    if (CurrentLinks.length < allLinks.ExpectedLinks_DIEL.length) {
+      cy.log('CurrentLinks length is :');
+      cy.log(CurrentLinks.length);
       cy.log('allLinks.ExpectedLinks_DIEL length is :');
       cy.log(allLinks.ExpectedLinks_DIEL.length);
       try {
-        expect(allLinks.ExpectedLinks_DIEL).to.include.members(allLinks.CurrentLinks);
-        allLinks.NewLinks = allLinks.ExpectedLinks_DIEL.filter(link => !allLinks.CurrentLinks.includes(link));
+        expect(allLinks.ExpectedLinks_DIEL).to.include.members(CurrentLinks);
+        allLinks.NewLinks = allLinks.ExpectedLinks_DIEL.filter(link => !CurrentLinks.includes(link));
         cy.log('Please check the New links:');
         cy.log(allLinks.NewLinks);
       }
       catch (error) {
-        allLinks.MissingLinks = allLinks.CurrentLinks.filter(link => !allLinks.ExpectedLinks_DIEL.includes(link));
-        allLinks.NewLinks = allLinks.ExpectedLinks_DIEL.filter(link => !allLinks.CurrentLinks.includes(link));
+        allLinks.MissingLinks = CurrentLinks.filter(link => !allLinks.ExpectedLinks_DIEL.includes(link));
+        allLinks.NewLinks = allLinks.ExpectedLinks_DIEL.filter(link => !CurrentLinks.includes(link));
         cy.log('Please check the missing links:');
         cy.log(allLinks.MissingLinks);
         cy.log('Please check the New links:');
@@ -72,11 +93,8 @@ describe('QQAA-1178 - Compare Links', () => {
     cy.wrap(allLinks.NewLinks,{log:false}).then((list)=>{
       expect(list.length).to.eq(0);
     })
+    })});
 
-
-  });
-
-});
 
 
 
