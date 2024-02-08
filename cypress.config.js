@@ -61,4 +61,10 @@ module.exports = defineConfig({
     linkedInDeriv: 'https://www.linkedin.com/company/derivdotcom/',
     twitterRow: 'https://twitter.com/derivdotcom/',
   },
+
+  appMarketUrl: {
+    googlePlay: 'https://play.google.com/store/apps/details?id=com.deriv.app',
+    appStore: 'https://apps.apple.com/my/app/deriv-go-online-trading-app/',
+    appGallery: 'https://appgallery.huawei.com/app/C103801913',
+  },
 })

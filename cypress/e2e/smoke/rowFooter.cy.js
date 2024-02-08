@@ -4,14 +4,15 @@ import footer, {
   socialMediaLinks,
 } from '../../support/POM/commonPage'
 import tncPage from '../../support/POM/tncPage'
+
 import responsiblePage from '../../support/POM/responsiblePage'
 
 describe('QATEST-1399 - Footer ROW Responsive', () => {
   beforeEach(() => {
     cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
   })
-
   const externalSocialUrls = Cypress.config('externalSocialUrls')
+  const { googlePlay, appStore, appGallery } = Cypress.config().appMarketUrl;
 
   it('should have correct footer social media links.', () => {
     const socialMediaLinks = [
@@ -105,5 +106,22 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
     //secure and responsibility
     footer.elements.secureAndRespTradingLink().click()
     responsiblePage.elements.headerTxt().should('be.visible')
+  })
+
+  it('should verify deriv go mobile app download link', () => {
+
+    cy.findAllByText('Trade multipliers on our mobile app.').should('be.visible')
+    cy.get(`a[href="${googlePlay}"]`)
+      .should('be.visible')
+      .find('img[alt="get it on google play"]')
+      .should('exist')
+    cy.get(`a[href*="${appStore}"]`)
+      .should('be.visible')
+      .find('img[alt="download on the app store"]')
+      .should('exist')
+    cy.get(`a[href*="${appGallery}"]`)
+      .should('be.visible')
+      .find('img[alt="explore it on appgallery"]')
+      .should('exist')
   })
 })
