@@ -2,19 +2,19 @@ import '@testing-library/cypress/add-commands';
 
 const tradeTypeConfig = {
   EU: {
-    heading: '2 flexible',
+    heading: 'CFDs and multipliers',
     types: [
-      { name: 'CFDs', text: 'Trade with leverage and low spreads for better returns on successful trades.' },
-      { name: 'Multipliers', text: 'Multiply your potential profit without risking more than your stake.' },
+      { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' },
+      { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multipliers'},
     ],
     urls: ['cfds', 'multiplier'],
   },
   ROW: {
-    heading: '3 exciting',
+    heading: 'CFDs, options, and multipliers',
     types: [
-      { name: 'CFDs', text: 'Trade with leverage and low spreads for better returns on successful trades.' },
-      { name: 'Options', text: 'Earn a range of payouts by correctly predicting market movements.' },
-      { name: 'Multipliers', text: 'Multiply your potential profit without risking more than your stake.' },
+      { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' },
+      { name: 'Options', text: 'Trade diverse vanilla and exotic options across platforms and markets without risking more than your initial stake.' , learnmore: 'options' },
+      { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multiplier' },
     ],
     urls: ['cfds', 'options', 'multiplier'],
   },
@@ -23,13 +23,12 @@ const tradeTypeConfig = {
 function checkTradeTypes(region) {
   const config = tradeTypeConfig[region]
 
-  cy.findByRole('heading', { name: 'Trade types' }).should('be.visible')
-  cy.findByText(`Trade the way you want with ${config.heading} trade types.`).should('be.visible')
+  cy.findByText(`Trade ${config.heading}`).should('be.visible')
 
   config.types.forEach((trade, index) => {
     cy.findByRole('heading', { name: trade.name }).should('be.visible')
     cy.findByText(trade.text).should('be.visible')
-    cy.get('[class*="item_learn_more"]').eq(index).trigger('mouseover').click()
+    cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).trigger('mouseover').click()
     cy.url().should('include', config.urls[index])
     cy.go(-1)
   });

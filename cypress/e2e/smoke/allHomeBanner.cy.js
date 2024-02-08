@@ -7,11 +7,10 @@ describe('QATEST-1315 & 1310 - Validate Hero banner message', () => {
     const urlToMatch = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
 
     cy.c_visitResponsive(Cypress.env('RegionROW'))
-    homeBanner.elements.bannerForexTxt().should('be.visible')
-    homeBanner.elements.bannerCryptoTxt().should('be.visible')
-    homeBanner.elements.bannerStockIndicesTxt().should('be.visible')
-    homeBanner.elements.bannerDerivedIndicesTxt().should('be.visible')
-    homeBanner.elements.createFreeDemoAccount().click()
+    cy.findByRole('heading', { name: 'Trading for anyone. Anywhere. Anytime.' }).should('be.visible')
+    cy.findByText('Trade CFDs and options on global financial markets, all in one place with 24/7 trading and worldwide support.').click();
+    cy.findByRole('img', { name: 'Trustpilot' }).click();
+    cy.contains('Open demo account').click({force: true});
     cy.url().should('eq', urlToMatch + '/signup/')
 
   })
