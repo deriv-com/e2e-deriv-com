@@ -23,13 +23,18 @@ function validate_dtraderpage(region)
     for (let index = 0; index < 4; index++) 
        {
          cy.findAllByText('Learn more' , {timeout: 10000}).eq(index).click()
-         cy.go(-1)
+         const urlPath = ['/dmt5/', '/deriv-go/', '/derivx/', '/dbot/'];
+ 
+         cy.url().should(url => {
+         expect(urlPath.some(path => url.includes(path))).to.be.true;
+         });
+         cy.go('back'); 
        }
     }
 
     for(let index= 0; index < 2; index++)
     {
-        cy.findAllByRole('link', { name: 'Go to live demo' }).eq(index).click()
+        cy.findAllByRole('link', { name: 'Go to live demo' },{timeout: 10000}).eq(index).click()
     }
     cy.contains('Create free demo account').eq(0).click()
 }
@@ -39,14 +44,14 @@ describe('QATEST-1529 - should validate the dtrader page in desktop', () => {
     it('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
-        cy.findByText('Flagship options, accumulators, & multipliers trading platform.').should('be.visible').click();
+        cy.findAllByText('Deriv Trader').eq(0).should('be.visible').click();
         validate_dtraderpage('EU')
     })
 
     it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
-        cy.findByText('Flagship options, accumulators, & multipliers trading platform.').should('be.visible').click();
+        cy.findAllByText('Deriv Trader').eq(0).should('be.visible').click();
         validate_dtraderpage('ROW')
     })
 
