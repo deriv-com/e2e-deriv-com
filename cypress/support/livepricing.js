@@ -2,28 +2,28 @@ Cypress.Commands.add('c_validateMarkets', (site) => {
   if (site == 'row') {
     cy.findByText('AUD/USD').should('be.visible')
     cy.findByRole('tab', { name: 'Derived indices' }).click()
-    cy.findByText('Crash 1000 Index').should('be.visible')
+    cy.findByText('Crash 1000 Index').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'ETFs' }).click()
-    cy.findByText('Gold Miners (GDX)').should('be.visible')
+    cy.findByText('Gold Miners (GDX)').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Stocks & indices' }).click()
-    cy.findByText('Apple (APPL)').should('be.visible')
+    cy.findByText('Apple (APPL)').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Cryptocurrencies' }).click()
-    cy.findByText('BTC/USD').should('be.visible')
+    cy.findByText('BTC/USD').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Commodities' }).click()
-    cy.findByText('Silver/USD').should('be.visible')
+    cy.findByText('Silver/USD').scrollIntoView().should('be.visible')
   } 
   else{
     cy.findByText('AUD/USD').should('be.visible')
     cy.findByRole('tab', { name: 'Derived indices' }).click()
-    cy.findByText('Crash 300 Index').should('be.visible')
+    cy.findByText('Crash 300 Index').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'ETFs' }).click()
-    cy.findByText('Gold Miners (GDX)').should('be.visible')
+    cy.findByText('Gold Miners (GDX)').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Stocks & indices' }).click()
-    cy.findByText('Apple (APPL)').should('be.visible')
+    cy.findByText('Apple (APPL)').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Cryptocurrencies' }).click()
-    cy.findByText('BTC/USD').should('be.visible')
+    cy.findByText('BTC/USD').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Commodities' }).click()
-    cy.findByText('Silver/USD').should('be.visible')
+    cy.findByText('Silver/USD').scrollIntoView().should('be.visible')
 
   }
 

@@ -122,10 +122,13 @@ function validate_dmt5page(region)
     cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
     for (let index = 0; index < 4; index++) 
        {
-         cy.findAllByText('Learn more' , {timeout: 10000}).eq(index).click()
-         cy.wait(1000)
-         cy.go(-1)
-         cy.url().should('include', '/dmt5/')
+        cy.findAllByText('Learn more' , {timeout: 10000}).eq(index).click()
+        const urlPath = ['/dtrader/', '/deriv-go/', '/derivx/', '/dbot/'];
+
+        cy.url().should(url => {
+        expect(urlPath.some(path => url.includes(path))).to.be.true;
+        });
+        cy.go('back'); 
        }
     }
     cy.findByRole('link', { name: 'Deriv demo account' }).click()
@@ -139,14 +142,14 @@ describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
     it('should be able to navigate to dmt5 page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
         homeBanner.elements.tradeMenu().click()
-        cy.findByText('The most popular and comprehensive CFDs platform.').should('be.visible').click()
+        cy.findAllByText('Deriv MT5').eq(0).should('be.visible').click()
         validate_dmt5page('EU')
     })
 
     it('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
         homeBanner.elements.tradeMenu().click()
-        cy.findByText('The most popular and comprehensive CFDs platform.').should('be.visible').click()
+        cy.findAllByText('Deriv MT5').eq(0).should('be.visible').click()
         validate_dmt5page('ROW')
     })
 
