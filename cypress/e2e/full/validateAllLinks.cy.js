@@ -1,11 +1,5 @@
 import '@testing-library/cypress/add-commands'
 
-Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test on uncaught:exception
-    return false
-})
-
 let linkDetails = {
     validDomains: [
         'https://staging.deriv.com/',
