@@ -81,7 +81,6 @@ export class allLinks {
         'https://staging.deriv.com/help-centre/',
         'https://staging.deriv.com/payment-methods/',
         'https://staging.deriv.com/dtrader/',
-        'https://staging.deriv.com/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
         'https://staging.deriv.com/derivx/',
         'https://staging.deriv.com/deriv-go/',
         'https://staging.deriv.com/dbot/',
@@ -96,6 +95,7 @@ export class allLinks {
         'https://staging.deriv.com/our-principles/',
         'https://staging.deriv.com/regulatory/Deriv_(V)_Ltd.pdf',
         'https://www.youtube.com/@deriv',
+        'https://staging.deriv.com/tnc/risk-disclosure.pdf',
         'https://play.google.com/store/apps/details?id=com.deriv.app',
         'https://staging.deriv.com/markets/exchange-traded-funds/',
         'https://staging.deriv.com/trade-types/options/digital-options/up-and-down/',
@@ -108,7 +108,6 @@ export class allLinks {
         'https://appgallery.huawei.com/app/C103801913',
         'https://apps.apple.com/my/app/deriv-go-online-trading-app/id1550561298',
         'https://t.me/Derivchannelofficial',
-        'https://staging.deriv.com/regulatory/Deriv_Investments_(Europe)_Limited.pdf',
     ];
     static ExpectedLinks_EU = [
         'https://staging.deriv.com/?region=at',
