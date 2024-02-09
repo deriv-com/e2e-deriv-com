@@ -165,11 +165,13 @@ describe(`QATEST-101611 - Url redirection for all languages`, () => {
         cy.clearAllSessionStorage()
     })
     Object.entries(languageDetails).forEach((lang) => {
-        it(`should verify language redrection for ${lang[1].testLanguage} via link`, () => {
-            redirectionRules.forEach(rule => {
-                cy.c_visitResponsive(`/${lang[1].urlCode}${rule}`)
-                cy.get('[id="cta-container"]').within(() => {
-                    cy.get('h2').should('contain.text', lang[1].redirectionVerify)
+        screenSizes.forEach(screenSize=>{
+            it.only(`should verify language redrection for ${lang[1].testLanguage} via link for ${screenSize} size`, () => {
+                redirectionRules.forEach(rule => {
+                    cy.c_visitResponsive(`/${lang[1].urlCode}${rule}`,screenSize)
+                    cy.get('[id="cta-container"]').within(() => {
+                        cy.get('h2').should('contain.text', lang[1].redirectionVerify)
+                    })
                 })
             })
         })
