@@ -7,28 +7,28 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 var CurrentLinks= []
 var IinitialList= []
 var len
-beforeEach(() => {
-  cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop');
-  cy.get("a").each(link => {
-  const href = link.prop('href');
-  cy.wrap(IinitialList).invoke('push', href);
-  cy.log('array',IinitialList)
-  cy.wrap(IinitialList).then(a=>{
-  len = a.length
-  cy.log('the length is ',len)
-  .then(() => {
-    // Remove duplicates using a Set
-    CurrentLinks = Array.from(new Set(IinitialList));
-    cy.log('Unique Links:', CurrentLinks);
-    cy.log('Unique Array:', CurrentLinks.join(', '));
-  });
-})});
-});
+
 
 
 describe('QATEST-97047 - Compare URL in production and staging', () => {
-
-  it('visits all links for ROW countries in staging and compare links with pre-defined list', () => {
+  beforeEach(() => {
+    cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop');
+    cy.get("a").each(link => {
+    const href = link.prop('href');
+    cy.wrap(IinitialList).invoke('push', href);
+    cy.log('array',IinitialList)
+    cy.wrap(IinitialList).then(a=>{
+    len = a.length
+    cy.log('the length is ',len)
+    .then(() => {
+      // Remove duplicates using a Set
+      CurrentLinks = Array.from(new Set(IinitialList));
+      cy.log('Unique Links:', CurrentLinks);
+      cy.log('Unique Array:', CurrentLinks.join(', '));
+    });
+  })});
+  });
+  it('should visits all links for ROW countries in staging and compare links with pre-defined list', () => {
 
     if (CurrentLinks.length == allLinks.ExpectedLinks_ROW.length) {
       cy.log('Lengths are equal.');
