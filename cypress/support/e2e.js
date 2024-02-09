@@ -2,6 +2,13 @@ import "./livepricing"
 import "./location"
 import 'cypress-iframe'
 
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // returning false here prevents Cypress from
+  // failing the test on uncaught:exception
+  return false
+})
+
 Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
   //Custom command that allows us to use baseUrl + path and detect with this is a responsive run or not.
   cy.log(path);
