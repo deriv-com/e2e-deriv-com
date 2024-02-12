@@ -15,7 +15,7 @@ Cypress.Commands.add('c_validateMarkets', (site) => {
   else{
     cy.findByText('AUD/USD').should('be.visible')
     cy.findByRole('tab', { name: 'Derived indices' }).click()
-    cy.findByText('Crash 300 Index').scrollIntoView().should('be.visible')
+    cy.findByText('Boom 300 Index').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'ETFs' }).click()
     cy.findByText('Gold Miners (GDX)').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Stocks & indices' }).click()
