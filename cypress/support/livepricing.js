@@ -17,13 +17,13 @@ Cypress.Commands.add('c_validateMarkets', (site) => {
     cy.findByRole('tab', { name: 'Derived indices' }).click()
     cy.findByText('Boom 300 Index').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'ETFs' }).click()
-    cy.findByText('Gold Miners (GDX)').scrollIntoView().should('be.visible')
+    cy.findByText('MSCI Emerging Markets (EEM)').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Stocks & indices' }).click()
     cy.findByText('Apple (APPL)').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Cryptocurrencies' }).click()
-    cy.findByText('BTC/USD').scrollIntoView().should('be.visible')
+    cy.findByText('ADA/USD').scrollIntoView().should('be.visible')
     cy.findByRole('tab', { name: 'Commodities' }).click()
-    cy.findByText('Silver/USD').scrollIntoView().should('be.visible')
+    cy.findByText('West Texas Intermediate').scrollIntoView().should('be.visible')
 
   }
 
