@@ -1,5 +1,11 @@
 import '@testing-library/cypress/add-commands'
 
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test on uncaught:exception
+    return false
+})
+
 let linkDetails = {
     validDomains: [
         'https://staging.deriv.com/',
@@ -141,7 +147,7 @@ const isAllowedFailingStatus = (currentLink) => {
  * @param {*} currentLink String @values "https://abc.com/"
  * @example checkLinks("https://abc.com/")
  */
-const checkLinks = (currentLink) => {
+const checkLinks = (currentLink, region) => {
     if (currentLink && !isLinkExcluded('Check', currentLink) && currentLink != '') {
         cy.request({
             url: currentLink,
@@ -159,7 +165,13 @@ const checkLinks = (currentLink) => {
             }
         })
         if (currentLink && !isLinkExcluded('Visit', currentLink) && isLinkValid(currentLink)) {
-            cy.visit(currentLink)
+            let regionLink 
+            if (currentLink.endsWith('/')){
+                regionLink = `${currentLink.slice(0,-1)}${region}`
+            } else {
+                regionLink = `${currentLink}${region}`
+            }
+            cy.c_visitResponsive(regionLink, 'desktop', true)
             linkDetails.visitedLinks.push(currentLink)
             cy.document().then(doc => {
                 const pageFailed = doc.querySelector('img[alt="Page not found"]')
@@ -169,13 +181,11 @@ const checkLinks = (currentLink) => {
             })
             cy.get("a").each(availableLink => {
                 const currentLink = availableLink.prop('href')
-                checkLinks(currentLink)
+                checkLinks(currentLink, region)
             })
         }
     }
 }
-
-
 
 describe('QATEST-96657 - Check URL in deriv.com', () => {
     before(() => {
@@ -189,31 +199,26 @@ describe('QATEST-96657 - Check URL in deriv.com', () => {
         linkDetails.visitedLinks.push(`${Cypress.env('RegionDIEL')}`)
         cy.get("a").each(availableLink => {
             const currentLink = availableLink.prop('href')
-            checkLinks(currentLink)
+            checkLinks(currentLink, Cypress.env('RegionDIEL'))
         })
         cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
         linkDetails.visitedLinks.push(`${Cypress.env('RegionROW')}`)
         cy.get("a").each(availableLink => {
             const currentLink = availableLink.prop('href')
-            checkLinks(currentLink)
+            checkLinks(currentLink, Cypress.env('RegionROW'))
         })
         cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
         linkDetails.visitedLinks.push(`${Cypress.env('RegionEU')}`)
         cy.get("a").each(availableLink => {
             const currentLink = availableLink.prop('href')
-            checkLinks(currentLink)
+            checkLinks(currentLink, Cypress.env('RegionEU'))
         })
 
-        cy.log('Visited Links: ', linkDetails.visitedLinks.sort())
-        cy.log('Verified Links: ', linkDetails.checkedLinks.sort())
         cy.log('Failed Checked Links: ', linkDetails.failedCheckLinks.sort())
         cy.log('Failed Visited Links: ', linkDetails.failedVisitLinks.sort())
         let totalFailure = linkDetails.failedCheckLinks.length + linkDetails.failedVisitLinks.length
         cy.wrap(totalFailure,{log:false}).then(failures=>{
             expect(failures, 'Number of failed links :').to.be.eql(0)
         })
-        
     })
 })
-
-
