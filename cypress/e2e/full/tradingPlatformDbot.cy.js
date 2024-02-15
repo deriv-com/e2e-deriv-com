@@ -10,16 +10,15 @@ function Dbot_page()
     cy.findByRole('img', { name: 'dbot logo' }).should('be.visible')
 
     cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
-    for (let index = 0; index < 4; index++) 
-    {
-        cy.findAllByText('Learn more' , {timeout: 10000}).eq(index).click()
-        const urlPath = ['/dmt5/', '/dtrader/', '/deriv-go/', '/derivx/'];
+    
+    const urlPaths = ['/dmt5/', '/dtrader/', '/deriv-go/', '/derivx/'];
 
-        cy.url().should(url => {
-        expect(urlPath.some(path => url.includes(path))).to.be.true;
-        });
-        cy.c_go('back'); 
-    }
+    urlPaths.forEach(urlPath => {
+        cy.contains(`a[href="${urlPath}"]`,'Learn more').click()
+        cy.url().should('contain',urlPath)
+        cy.go('back')
+    });
+
     cy.findByRole('heading', { name: 'Build your strategy visually' }, { timeout: 5000 }).should('be.visible')
     cy.findByRole('img', { name: 'Build your bot using drag and drop' }).click()
     cy.findByRole('heading', { name: 'Automate your trading ideas without writing code' }, { timeout: 10000 }).should('be.visible')
@@ -28,13 +27,13 @@ function Dbot_page()
     {
         cy.findAllByText('Create free demo account', { timeout: 5000 }).eq(index).click();
         cy.url().should('include', '/signup/')
-        cy.c_go('back')
+        cy.go('back')
     }
 
     for (let index = 0; index < 2; index++) 
     {
         cy.findAllByRole('link', {name: 'Go to live demo'}, { timeout: 5000 }).eq(index).invoke('attr','target','_self').click()
-        cy.c_go('back')
+        cy.go('back')
     }
     cy.findByText('Build a trading robot in 5 easy steps').should('be.visible')
     cy.findByText('1. Select an asset').click()
@@ -50,7 +49,7 @@ function Dbot_page()
 
 describe('QATEST-1548 - should validate the Dbot page in responsive', () => {
 
-    it.only('should be able to navigate to Dbot page from home page and validate the page content and links in Mobile', () => {
+    it('should be able to navigate to Dbot page from home page and validate the page content and links in Mobile', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
@@ -60,7 +59,7 @@ describe('QATEST-1548 - should validate the Dbot page in responsive', () => {
 })
     describe('QATEST-1541 - should validate the Dbot page in desktop', () => {
 
-        it.only('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop', () => {
+        it('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop', () => {
             cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
             homeBanner.elements.tradeMenu().should('be.visible').click()
             cy.findAllByText('Deriv Bot').eq(0).should('be.visible').click()
