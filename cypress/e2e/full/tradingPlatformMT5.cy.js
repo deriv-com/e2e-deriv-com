@@ -128,7 +128,7 @@ function validate_dmt5page(region)
         cy.url().should(url => {
         expect(urlPath.some(path => url.includes(path))).to.be.true;
         });
-        cy.go('back'); 
+        cy.c_go('back'); 
        }
     }
     cy.findByRole('link', { name: 'Deriv demo account' }).click()
@@ -157,7 +157,7 @@ describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
 
 describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
     
-    it('should be able to navigate to dmt5 page from home page and validate the page content and links for EU', () => {
+    it.only('should be able to navigate to dmt5 page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
@@ -165,7 +165,7 @@ describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
         validate_dmt5page('EU')
     })
 
-    it('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
+    it.only('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()

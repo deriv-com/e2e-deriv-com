@@ -38,6 +38,16 @@ Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
 }
 });
 
+
+Cypress.Commands.add('c_go',(direction ,quickLoad)=>{
+  cy.go(direction)
+  if(quickLoad===undefined){
+    cy.findByRole("button", { name: "whatsapp icon" }).should("be.visible", {
+      timeout: 30000,
+    })
+  }
+})
+
 Cypress.Commands.add('c_generateRandomEmail', (domain) => {
   return `user${Math.floor(Math.random() * 100000)}${domain}`
 })

@@ -28,27 +28,28 @@ function validate_dtraderpage(region)
          cy.url().should(url => {
          expect(urlPath.some(path => url.includes(path))).to.be.true;
          });
-         cy.go('back'); 
+         cy.c_go('back'); 
        }
     }
 
     for(let index= 0; index < 2; index++)
     {
-        cy.findAllByRole('link', { name: 'Go to live demo' },{timeout: 10000}).eq(index).click()
+        cy.findAllByRole('link', { name: 'Go to live demo' },{timeout: 10000}).eq(index).invoke('attr','target','_self').click()
+        cy.c_go('back')
     }
     cy.contains('Create free demo account').eq(0).click()
 }
 
 describe('QATEST-1529 - should validate the dtrader page in desktop', () => {
 
-    it('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
+    it.only('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findAllByText('Deriv Trader').eq(0).should('be.visible').click();
         validate_dtraderpage('EU')
     })
 
-    it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW', () => {
+    it.only('should be able to navigate to dtrader page from home page and validate the page content and links for ROW', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findAllByText('Deriv Trader').eq(0).should('be.visible').click();
@@ -57,7 +58,7 @@ describe('QATEST-1529 - should validate the dtrader page in desktop', () => {
 
 })
 
-describe('QATEST-1536 - should validate the dtrader page in responsive', () => {
+describe.only('QATEST-1536 - should validate the dtrader page in responsive', () => {
     
     it('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'))

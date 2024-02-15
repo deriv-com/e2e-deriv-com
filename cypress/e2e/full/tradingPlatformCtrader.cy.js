@@ -26,7 +26,7 @@ function cTrader_page() {
         cy.url().should(url => {
         expect(urlPath.some(path => url.includes(path))).to.be.true;
         });
-        cy.go('back'); 
+        cy.c_go('back'); 
     }
 
     cy.findByRole('heading', { name: 'Browse our FAQ' }).should('be.visible')
@@ -50,7 +50,7 @@ function cTrader_page() {
 
 describe('QATEST-23425 - should validate the cTrader page in responsive', () => {
 
-    it('should be able to navigate to cTrader page from home page and validate the page content and links in Mobile', () => {
+    it.only('should be able to navigate to cTrader page from home page and validate the page content and links in Mobile', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
@@ -60,7 +60,7 @@ describe('QATEST-23425 - should validate the cTrader page in responsive', () => 
 })
 describe('QATEST-23425 - should validate the cTrader page in desktop', () => {
 
-    it('should be able to navigate to cTrader page from home page and validate the page content and links in Desktop', () => {
+    it.only('should be able to navigate to cTrader page from home page and validate the page content and links in Desktop', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findAllByText('Fast CFDs platform with inbuilt copy trading.').eq(0).should('be.visible').click()
