@@ -32,15 +32,9 @@ function Dbot_page()
             title:'Deriv X - a multi-asset CFD trading platform available on Deriv',
             content:'Get trading with Deriv X'
         }
-    ];
+    ]
 
-    urlDetails.forEach(details => {
-        cy.contains(`a[href="${details.url}"]`,'Learn more').click()
-        cy.title().should('equal', details.title)
-        cy.contains('h1',details.content)
-        cy.url().should('contain',details.url)
-        cy.c_go('back')
-    });
+    cy.c_checkAllPlatformLinks(urlDetails)
 
     cy.findByRole('heading', { name: 'Build your strategy visually' }, { timeout: 5000 }).should('be.visible')
     cy.findByRole('img', { name: 'Build your bot using drag and drop' }).click()

@@ -11,7 +11,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 
 Cypress.Commands.add('c_waitForPageLoad',()=>{
-  cy.findByRole("button", { name: "whatsapp icon" ,timeout:30000 }).should("be.visible", {timeout: 30000,})
+  cy.findByRole("button", { name: "whatsapp icon" ,timeout:30000 }).should("be.visible")
 })
 
 Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
@@ -76,6 +76,16 @@ Cypress.Commands.add('c_emailVerification', (verification_code, event_email_url,
         })
     }
   )
+})
+
+Cypress.Commands.add('c_checkAllPlatformLinks',(urlDetails)=>{
+  urlDetails.forEach(details => {
+    cy.contains(`a[href="${details.url}"]`,'Learn more').click()
+    cy.title().should('equal', details.title)
+    cy.contains('h1',details.content)
+    cy.url().should('contain',details.url)
+    cy.c_go('back')
+  })
 })
 
 

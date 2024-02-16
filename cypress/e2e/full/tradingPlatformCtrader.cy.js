@@ -17,17 +17,35 @@ function cTrader_page() {
      Verify('Demo account', 'Demo')
      Verify('Real account', 'Real')
 
-    cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
-    for (let index = 0; index < 4; index++) 
-    {
-        cy.findAllByText('Learn more' , {timeout: 10000}).eq(index).click()
-        const urlPath = ['/dmt5/', '/dtrader/', '/deriv-go/', '/derivx/', '/dbot/'];
+     const urlDetails = [
+        {
+            url:'/dmt5/',
+            title:'Deriv MT5 | MetaTrader 5 trading platform | Deriv',
+            content:'Get trading with Deriv MT5',
+        }, 
+        {
+            url:'/dtrader/',
+            title:'DTrader | Online trading platform | Deriv',
+            content:'Get into the Deriv Trader experience',
+        }, 
+        {
+            url:'/deriv-go/',
+            title:'Trade forex, synthetics, and cryptocurrencies with our app — Deriv GO.',
+            content:'Get trading with Deriv GO',
+        }, 
+        {
+            url:'/derivx/', 
+            title:'Deriv X - a multi-asset CFD trading platform available on Deriv',
+            content:'Get trading with Deriv X'
+        },
+        {
+            url:'/dbot/',
+            title:'DBot | Trading robot | Deriv',
+            content:'Get into the Deriv Bot experience',
+        }, 
+    ]
 
-        cy.url().should(url => {
-        expect(urlPath.some(path => url.includes(path))).to.be.true;
-        });
-        cy.c_go('back'); 
-    }
+    cy.c_checkAllPlatformLinks(urlDetails)
 
     cy.findByRole('heading', { name: 'Browse our FAQ' }).should('be.visible')
     const toggleAccordion = (buttonName) => {
@@ -50,7 +68,7 @@ function cTrader_page() {
 
 describe('QATEST-23425 - should validate the cTrader page in responsive', () => {
 
-    it.only('should be able to navigate to cTrader page from home page and validate the page content and links in Mobile', () => {
+    it('should be able to navigate to cTrader page from home page and validate the page content and links in Mobile', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
@@ -60,7 +78,7 @@ describe('QATEST-23425 - should validate the cTrader page in responsive', () => 
 })
 describe('QATEST-23425 - should validate the cTrader page in desktop', () => {
 
-    it.only('should be able to navigate to cTrader page from home page and validate the page content and links in Desktop', () => {
+    it('should be able to navigate to cTrader page from home page and validate the page content and links in Desktop', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findAllByText('Fast CFDs platform with inbuilt copy trading.').eq(0).should('be.visible').click()

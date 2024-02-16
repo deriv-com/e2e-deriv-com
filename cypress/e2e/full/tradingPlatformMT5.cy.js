@@ -119,19 +119,33 @@ function validate_dmt5page(region)
     cy.go('back')
 
     if (region === 'ROW') {   
-    cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
-    for (let index = 0; index < 4; index++) 
-       {
-        cy.findAllByText('Learn more' , {timeout: 10000}).eq(index).click()
-        const urlPath = ['/dtrader/', '/deriv-go/', '/derivx/', '/dbot/'];
-
-        cy.url().should(url => {
-        expect(urlPath.some(path => url.includes(path))).to.be.true;
-        });
-        cy.c_go('back'); 
-       }
+      cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
+      const urlDetails = [
+        {
+          url:'/dbot/',
+          title:'DBot | Trading robot | Deriv',
+          content:'Get into the Deriv Bot experience',
+        }, 
+        {
+            url:'/dtrader/',
+            title:'DTrader | Online trading platform | Deriv',
+            content:'Get into the Deriv Trader experience',
+        }, 
+        {
+            url:'/deriv-go/',
+            title:'Trade forex, synthetics, and cryptocurrencies with our app — Deriv GO.',
+            content:'Get trading with Deriv GO',
+        }, 
+        {
+            url:'/derivx/', 
+            title:'Deriv X - a multi-asset CFD trading platform available on Deriv',
+            content:'Get trading with Deriv X'
+        }
+      ]
+      cy.c_checkAllPlatformLinks(urlDetails)
     }
     cy.findByRole('link', { name: 'Deriv demo account' }).click()
+    cy.get('input[id="email_address"]').should('exist')
     cy.findByText('Join over 2.5 million traders').should('be.visible')
     cy.go('back')
     
@@ -157,7 +171,7 @@ describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
 
 describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
     
-    it.only('should be able to navigate to dmt5 page from home page and validate the page content and links for EU', () => {
+    it('should be able to navigate to dmt5 page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
@@ -165,7 +179,7 @@ describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
         validate_dmt5page('EU')
     })
 
-    it.only('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
+    it('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
