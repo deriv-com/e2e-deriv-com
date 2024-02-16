@@ -50,6 +50,7 @@ function Dbot_page()
     {
         cy.findAllByText('Create free demo account', { timeout: 5000 }).eq(index).click();
         cy.url().should('include', '/signup/')
+        cy.get('input[id="email_address"]').should('exist')
         cy.c_go('back')
     }
 
