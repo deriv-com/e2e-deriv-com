@@ -11,7 +11,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 
 Cypress.Commands.add('c_waitForPageLoad',()=>{
-  cy.get('button[name="whatsapp icon"]',{timeout:30000}).should("be.visible")
+  cy.get('img[alt="whatsapp icon"]',{timeout:30000}).should("be.visible")
 })
 
 Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
