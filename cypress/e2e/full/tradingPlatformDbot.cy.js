@@ -11,19 +11,36 @@ function Dbot_page()
 
     cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
     
-    const urlPaths = ['/dmt5/', '/dtrader/', '/deriv-go/', '/derivx/'];
+    const urlDetails = [
+        {
+            url:'/dmt5/',
+            title:'Deriv MT5 | MetaTrader 5 trading platform | Deriv',
+            content:'Get trading with Deriv MT5',
+        }, 
+        {
+            url:'/dtrader/',
+            title:'DTrader | Online trading platform | Deriv',
+            content:'Get into the Deriv Trader experience',
+        }, 
+        {
+            url:'/deriv-go/',
+            title:'Trade forex, synthetics, and cryptocurrencies with our app — Deriv GO.',
+            content:'Get trading with Deriv GO',
+        }, 
+        {
+            url:'/derivx/', 
+            title:'Deriv X - a multi-asset CFD trading platform available on Deriv',
+            content:'Get trading with Deriv X'
+        }
+    ];
 
-    // urlPaths.forEach(urlPath => {
-    //     if(urlPath=='/derivx/'){
-    //         cy.contains('div[direction="column"]','Check out our other platforms').next('div').within(()=>{
-    //             cy.get('.next-arrow').click()
-    //         })
-    //     }
-    //     cy.contains(`a[href="${urlPath}"]`,'Learn more').click()
-    //     cy.c_waitForPageLoad()
-    //     cy.url().should('contain',urlPath)
-    //     cy.c_go('back')
-    // });
+    urlDetails.forEach(details => {
+        cy.contains(`a[href="${details.url}"]`,'Learn more').click()
+        cy.title().should('equal', details.title)
+        cy.contains('h1',details.content)
+        cy.url().should('contain',details.url)
+        cy.c_go('back')
+    });
 
     cy.findByRole('heading', { name: 'Build your strategy visually' }, { timeout: 5000 }).should('be.visible')
     cy.findByRole('img', { name: 'Build your bot using drag and drop' }).click()
@@ -66,7 +83,7 @@ describe('QATEST-1548 - should validate the Dbot page in responsive', () => {
 })
     describe('QATEST-1541 - should validate the Dbot page in desktop', () => {
 
-        it.only('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop', () => {
+        it('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop', () => {
             cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
             homeBanner.elements.tradeMenu().should('be.visible').click()
             cy.findAllByText('Deriv Bot').eq(0).should('be.visible').click()
