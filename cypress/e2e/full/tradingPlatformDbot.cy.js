@@ -16,7 +16,7 @@ function Dbot_page()
     urlPaths.forEach(urlPath => {
         cy.contains(`a[href="${urlPath}"]`,'Learn more').click()
         cy.url().should('contain',urlPath)
-        cy.go('back')
+        cy.c_go('back')
     });
 
     cy.findByRole('heading', { name: 'Build your strategy visually' }, { timeout: 5000 }).should('be.visible')
@@ -27,14 +27,15 @@ function Dbot_page()
     {
         cy.findAllByText('Create free demo account', { timeout: 5000 }).eq(index).click();
         cy.url().should('include', '/signup/')
-        cy.go('back')
+        cy.c_go('back')
     }
 
     for (let index = 0; index < 2; index++) 
     {
         cy.findAllByRole('link', {name: 'Go to live demo'}, { timeout: 5000 }).eq(index).invoke('attr','target','_self').click()
-        cy.go('back')
+        cy.c_go('back')
     }
+
     cy.findByText('Build a trading robot in 5 easy steps').should('be.visible')
     cy.findByText('1. Select an asset').click()
     cy.findByText('2. Set the purchase conditions').click()
