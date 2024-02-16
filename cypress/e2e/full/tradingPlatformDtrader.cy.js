@@ -18,23 +18,38 @@ function validate_dtraderpage(region)
     cy.findAllByRole('listitem').contains('Place a trade').click();
     cy.findByRole('img', { name: 'Place a trade' }).scrollIntoView().should("be.visible", {timeout: 50000,})
 
+    
     if (region === 'ROW') {   
-    cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
-    for (let index = 0; index < 4; index++) 
-       {
-         cy.findAllByText('Learn more' , {timeout: 10000}).eq(index).click()
-         const urlPath = ['/dmt5/', '/deriv-go/', '/derivx/', '/dbot/'];
- 
-         cy.url().should(url => {
-         expect(urlPath.some(path => url.includes(path))).to.be.true;
-         });
-         cy.go('back'); 
-       }
+        const urlDetails = [
+            {
+                url:'/dmt5/',
+                title:'Deriv MT5 | MetaTrader 5 trading platform | Deriv',
+                content:'Get trading with Deriv MT5',
+            }, 
+            {
+                url:'/dbot/',
+                title:'DBot | Trading robot | Deriv',
+                content:'Get into the Deriv Bot experience',
+            }, 
+            {
+                url:'/deriv-go/',
+                title:'Trade forex, synthetics, and cryptocurrencies with our app — Deriv GO.',
+                content:'Get trading with Deriv GO',
+            }, 
+            {
+                url:'/derivx/', 
+                title:'Deriv X - a multi-asset CFD trading platform available on Deriv',
+                content:'Get trading with Deriv X'
+            }
+        ];
+        cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
+        cy.c_checkAllPlatformLinks(urlDetails)
     }
 
     for(let index= 0; index < 2; index++)
     {
-        cy.findAllByRole('link', { name: 'Go to live demo' },{timeout: 10000}).eq(index).click()
+        cy.findAllByRole('link', { name: 'Go to live demo' },{timeout: 10000}).eq(index).invoke('attr','target','_self').click()
+        cy.c_go('back')
     }
     cy.contains('Create free demo account').eq(0).click()
 }

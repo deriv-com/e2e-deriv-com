@@ -9,6 +9,11 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false
 })
 
+
+Cypress.Commands.add('c_waitForPageLoad',()=>{
+  cy.findByRole("button", { name: "whatsapp icon" ,timeout:30000 }).should("be.visible")
+})
+
 Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
   //Custom command that allows us to use baseUrl + path and detect with this is a responsive run or not.
   cy.log(path);
@@ -23,9 +28,7 @@ Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
   if (path.includes("region")) {
     //Wait for relevent elements to appear (based on page)
     cy.log("Home page Selected");
-    cy.findByRole("button", { name: "whatsapp icon" }).should("be.visible", {
-      timeout: 30000,
-    }); //For the home page, this seems to be the best indicator that a page has fully loaded. It may change in the future.
+    cy.c_waitForPageLoad() //For the home page, this seems to be the best indicator that a page has fully loaded. It may change in the future.
   }
 
   if (path.includes("help-centre")) {
@@ -37,6 +40,13 @@ Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
   }
 }
 });
+
+Cypress.Commands.add('c_go',(direction ,quickLoad)=>{
+  cy.go(direction)
+  if(quickLoad===undefined){
+    cy.c_waitForPageLoad()
+  }
+})
 
 Cypress.Commands.add('c_generateRandomEmail', (domain) => {
   return `user${Math.floor(Math.random() * 100000)}${domain}`
@@ -66,6 +76,16 @@ Cypress.Commands.add('c_emailVerification', (verification_code, event_email_url,
         })
     }
   )
+})
+
+Cypress.Commands.add('c_checkAllPlatformLinks',(urlDetails)=>{
+  urlDetails.forEach(details => {
+    cy.contains(`a[href="${details.url}"]`,'Learn more').click()
+    cy.title().should('equal', details.title)
+    cy.contains('h1',details.content)
+    cy.url().should('contain',details.url)
+    cy.c_go('back')
+  })
 })
 
 

@@ -119,19 +119,33 @@ function validate_dmt5page(region)
     cy.go('back')
 
     if (region === 'ROW') {   
-    cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
-    for (let index = 0; index < 4; index++) 
-       {
-        cy.findAllByText('Learn more' , {timeout: 10000}).eq(index).click()
-        const urlPath = ['/dtrader/', '/deriv-go/', '/derivx/', '/dbot/'];
-
-        cy.url().should(url => {
-        expect(urlPath.some(path => url.includes(path))).to.be.true;
-        });
-        cy.go('back'); 
-       }
+      cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
+      const urlDetails = [
+        {
+          url:'/dbot/',
+          title:'DBot | Trading robot | Deriv',
+          content:'Get into the Deriv Bot experience',
+        }, 
+        {
+            url:'/dtrader/',
+            title:'DTrader | Online trading platform | Deriv',
+            content:'Get into the Deriv Trader experience',
+        }, 
+        {
+            url:'/deriv-go/',
+            title:'Trade forex, synthetics, and cryptocurrencies with our app — Deriv GO.',
+            content:'Get trading with Deriv GO',
+        }, 
+        {
+            url:'/derivx/', 
+            title:'Deriv X - a multi-asset CFD trading platform available on Deriv',
+            content:'Get trading with Deriv X'
+        }
+      ]
+      cy.c_checkAllPlatformLinks(urlDetails)
     }
     cy.findByRole('link', { name: 'Deriv demo account' }).click()
+    cy.get('input[id="email_address"]').should('exist')
     cy.findByText('Join over 2.5 million traders').should('be.visible')
     cy.go('back')
     

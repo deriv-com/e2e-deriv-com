@@ -10,33 +10,50 @@ function Dbot_page()
     cy.findByRole('img', { name: 'dbot logo' }).should('be.visible')
 
     cy.findByRole('heading', { name: 'Check out our other platforms' }).should('be.visible')
-    for (let index = 0; index < 4; index++) 
-    {
-        cy.findAllByText('Learn more' , {timeout: 10000}).eq(index).click()
-        const urlPath = ['/dmt5/', '/dtrader/', '/deriv-go/', '/derivx/'];
+    
+    const urlDetails = [
+        {
+            url:'/dmt5/',
+            title:'Deriv MT5 | MetaTrader 5 trading platform | Deriv',
+            content:'Get trading with Deriv MT5',
+        }, 
+        {
+            url:'/dtrader/',
+            title:'DTrader | Online trading platform | Deriv',
+            content:'Get into the Deriv Trader experience',
+        }, 
+        {
+            url:'/deriv-go/',
+            title:'Trade forex, synthetics, and cryptocurrencies with our app — Deriv GO.',
+            content:'Get trading with Deriv GO',
+        }, 
+        {
+            url:'/derivx/', 
+            title:'Deriv X - a multi-asset CFD trading platform available on Deriv',
+            content:'Get trading with Deriv X'
+        }
+    ]
 
-        cy.url().should(url => {
-        expect(urlPath.some(path => url.includes(path))).to.be.true;
-        });
-        cy.go('back'); 
-    }
+    cy.c_checkAllPlatformLinks(urlDetails)
+
     cy.findByRole('heading', { name: 'Build your strategy visually' }, { timeout: 5000 }).should('be.visible')
     cy.findByRole('img', { name: 'Build your bot using drag and drop' }).click()
-
     cy.findByRole('heading', { name: 'Automate your trading ideas without writing code' }, { timeout: 10000 }).should('be.visible')
+
     for (let index = 0; index < 2; index++) 
     {
-        
         cy.findAllByText('Create free demo account', { timeout: 5000 }).eq(index).click();
         cy.url().should('include', '/signup/')
-        cy.go('back')
+        cy.get('input[id="email_address"]').should('exist')
+        cy.c_go('back')
     }
+
     for (let index = 0; index < 2; index++) 
     {
-        
-        cy.findAllByRole('link', {name: 'Go to live demo'}, { timeout: 5000 }).eq(index).click()
-       
+        cy.findAllByRole('link', {name: 'Go to live demo'}, { timeout: 5000 }).eq(index).invoke('attr','target','_self').click()
+        cy.c_go('back')
     }
+
     cy.findByText('Build a trading robot in 5 easy steps').should('be.visible')
     cy.findByText('1. Select an asset').click()
     cy.findByText('2. Set the purchase conditions').click()
