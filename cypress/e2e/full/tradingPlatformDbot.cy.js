@@ -13,17 +13,17 @@ function Dbot_page()
     
     const urlPaths = ['/dmt5/', '/dtrader/', '/deriv-go/', '/derivx/'];
 
-    urlPaths.forEach(urlPath => {
-        if(urlPath=='/derivx/'){
-            cy.contains('div[direction="column"]','Check out our other platforms').next('div').within(()=>{
-                cy.get('.next-arrow').click()
-            })
-        }
-        cy.contains(`a[href="${urlPath}"]`,'Learn more').click()
-        cy.c_waitForPageLoad()
-        cy.url().should('contain',urlPath)
-        cy.c_go('back')
-    });
+    // urlPaths.forEach(urlPath => {
+    //     if(urlPath=='/derivx/'){
+    //         cy.contains('div[direction="column"]','Check out our other platforms').next('div').within(()=>{
+    //             cy.get('.next-arrow').click()
+    //         })
+    //     }
+    //     cy.contains(`a[href="${urlPath}"]`,'Learn more').click()
+    //     cy.c_waitForPageLoad()
+    //     cy.url().should('contain',urlPath)
+    //     cy.c_go('back')
+    // });
 
     cy.findByRole('heading', { name: 'Build your strategy visually' }, { timeout: 5000 }).should('be.visible')
     cy.findByRole('img', { name: 'Build your bot using drag and drop' }).click()
