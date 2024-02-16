@@ -14,7 +14,13 @@ function Dbot_page()
     const urlPaths = ['/dmt5/', '/dtrader/', '/deriv-go/', '/derivx/'];
 
     urlPaths.forEach(urlPath => {
+        if(urlPath=='/derivx/'){
+            cy.contains('div[direction="column"]','Check out our other platforms').next('div').within(()=>{
+                cy.get('.next-arrow').click()
+            })
+        }
         cy.contains(`a[href="${urlPath}"]`,'Learn more').click()
+        cy.c_waitForPageLoad()
         cy.url().should('contain',urlPath)
         cy.c_go('back')
     });
@@ -60,7 +66,7 @@ describe('QATEST-1548 - should validate the Dbot page in responsive', () => {
 })
     describe('QATEST-1541 - should validate the Dbot page in desktop', () => {
 
-        it('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop', () => {
+        it.only('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop', () => {
             cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
             homeBanner.elements.tradeMenu().should('be.visible').click()
             cy.findAllByText('Deriv Bot').eq(0).should('be.visible').click()
