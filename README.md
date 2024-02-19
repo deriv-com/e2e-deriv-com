@@ -1,6 +1,15 @@
-# Cypress E2E Testing Project
+# Name
 
-This repository contains End-to-End (E2E) tests using Cypress for various features of the Deriv website in a staging environment.
+Cypress E2E Testing - End-to-End testing for deriv-com
+
+# Description
+
+This repository contains End-to-End (E2E) tests using Cypress for various features of the Deriv.com website in a staging environment.
+
+[![GitHub Actions Status](https://github.com/binary-com/deriv-com/actions/workflows/main.yml/badge.svg)](https://github.com/binary-com/deriv-com/blob/master/.github/workflows/smoketests.yml)
+![Cypress Version](https://img.shields.io/badge/cypress-13.2.0-brightgreen)
+![Cypress E2E Tests](https://img.shields.io/badge/E2E%20Tests-Cypress-brightgreen)
+
 
 ## Project Structure
 
@@ -11,7 +20,7 @@ The project structure includes the following files and directories:
 - `cypress/support/e2e.js`: Support file for common configurations and custom commands.
 - `cypress/e2e/`: Directory containing E2E test files for different features.
 
-## Getting Started
+# Installation
 
 To set up and run the E2E tests, follow these steps:
 
@@ -45,12 +54,17 @@ In `cypress.config.js`, the Cypress configuration includes settings such as:
 
 Make sure to adapt these settings according to your project's needs.
 
-## Contributing
+# Contributing
 
 Feel free to contribute to this project by submitting issues, pull requests, or adding new E2E tests for different features.
 
-## License
+# License
 
 This project is licensed under the [MIT License](LICENSE).
+
+# References
+
+[Deriv.com GitHub Repository](https://github.com/binary-com/deriv-com)
+
 
 
