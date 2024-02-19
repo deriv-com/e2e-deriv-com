@@ -20,7 +20,7 @@ The project structure includes the following files and directories:
 - `cypress/support/e2e.js`: Support file for common configurations and custom commands.
 - `cypress/e2e/`: Directory containing E2E test files for different features.
 
-## Getting Started
+# Installation
 
 To set up and run the E2E tests, follow these steps:
 
