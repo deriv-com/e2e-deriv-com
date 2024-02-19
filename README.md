@@ -6,7 +6,7 @@ Cypress E2E Testing - End-to-End testing for deriv-com
 
 This repository contains End-to-End (E2E) tests using Cypress for various features of the Deriv.com website in a staging environment.
 
-[![GitHub Actions Status](https://github.com/binary-com/deriv-com/actions/workflows/main.yml/badge.svg)](https://github.com/binary-com/deriv-com/blob/master/.github/workflows/smoketests.yml)
+[![GitHub Actions Status](https://github.com/binary-com/deriv-com/actions/workflows/smoketests.yml/badge.svg)](https://github.com/binary-com/deriv-com/blob/master/.github/workflows/smoketests.yml)
 ![Cypress Version](https://img.shields.io/badge/cypress-13.2.0-brightgreen)
 ![Cypress E2E Tests](https://img.shields.io/badge/E2E%20Tests-Cypress-brightgreen)
 
