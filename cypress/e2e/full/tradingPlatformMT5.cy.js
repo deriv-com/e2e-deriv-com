@@ -53,9 +53,8 @@ function validate_dmt5page(region)
     cy.url().should('include', '/dmt5/')
     cy.title().should('eq', 'Deriv MT5 | MetaTrader 5 trading platform | Deriv')
 
-    cy.findByRole('img', { name: 'Deriv MT5' }).should('be.visible')
+    cy.findAllByRole('img', { name: 'Deriv MT5' }).should('have.length','2').and('be.visible')
     cy.findByText('Get trading with Deriv MT5').should('be.visible')
-    cy.findByRole('img', { name: 'Deriv MT5 logo' }).should('be.visible')
 
     config.types.forEach((demoaccount,index) => {
     if(index === 0)
