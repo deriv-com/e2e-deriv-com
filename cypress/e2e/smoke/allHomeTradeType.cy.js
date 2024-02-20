@@ -26,13 +26,18 @@ function checkTradeTypes(region) {
   cy.findByText(`Trade ${config.heading}`).should('be.visible')
 
   config.types.forEach((trade, index) => {
-    cy.findByRole('heading', { name: trade.name }).should('exist')
-    cy.findByText(trade.text).should('be.visible')
-    cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink')
-    cy.get('@learnMoreLink').trigger('mouseover')
-    cy.get('@learnMoreLink').click()
-    cy.url().should('include', config.urls[index])
-    cy.go('back')
+    const headingElement = cy.findByRole('heading', { name: trade.name });
+    
+    headingElement.should('exist');
+  
+    headingElement.then(() => {
+      cy.findByText(trade.text).should('be.visible');
+      cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink');
+      cy.get('@learnMoreLink').trigger('mouseover');
+      cy.get('@learnMoreLink').click();
+      cy.url().should('include', config.urls[index]);
+      cy.go('back');
+    });
   });
 }
 
