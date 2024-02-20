@@ -9,15 +9,15 @@ const tradeTypeConfig = {
     ],
     urls: ['cfds', 'multiplier'],
   },
-  // ROW: {
-  //   heading: 'CFDs, options, and multipliers',
-  //   types: [
-  //     { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' },
-  //     { name: 'Options', text: 'Trade diverse vanilla and exotic options across platforms and markets without risking more than your initial stake.' , learnmore: 'options' },
-  //     { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multiplier' },
-  //   ],
-  //   urls: ['cfds', 'options', 'multiplier'],
-  // },
+  ROW: {
+    heading: 'CFDs, options, and multipliers',
+    types: [
+      { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' },
+      { name: 'Options', text: 'Trade diverse vanilla and exotic options across platforms and markets without risking more than your initial stake.' , learnmore: 'options' },
+      { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multiplier' },
+    ],
+    urls: ['cfds', 'options', 'multiplier'],
+  },
 };
 
 function checkTradeTypes(region) {
