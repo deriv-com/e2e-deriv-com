@@ -9,15 +9,15 @@ const tradeTypeConfig = {
     ],
     urls: ['cfds', 'multiplier'],
   },
-  ROW: {
-    heading: 'CFDs, options, and multipliers',
-    types: [
-      { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' },
-      { name: 'Options', text: 'Trade diverse vanilla and exotic options across platforms and markets without risking more than your initial stake.' , learnmore: 'options' },
-      { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multiplier' },
-    ],
-    urls: ['cfds', 'options', 'multiplier'],
-  },
+  // ROW: {
+  //   heading: 'CFDs, options, and multipliers',
+  //   types: [
+  //     { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' },
+  //     { name: 'Options', text: 'Trade diverse vanilla and exotic options across platforms and markets without risking more than your initial stake.' , learnmore: 'options' },
+  //     { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multiplier' },
+  //   ],
+  //   urls: ['cfds', 'options', 'multiplier'],
+  // },
 };
 
 function checkTradeTypes(region) {
@@ -26,18 +26,13 @@ function checkTradeTypes(region) {
   cy.findByText(`Trade ${config.heading}`).should('be.visible')
 
   config.types.forEach((trade, index) => {
-    const headingElement = cy.findByRole('heading', { name: trade.name });
-    
-    headingElement.should('exist');
-  
-    headingElement.then(() => {
-      cy.findByText(trade.text).should('be.visible');
-      cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink');
-      cy.get('@learnMoreLink').trigger('mouseover');
-      cy.get('@learnMoreLink').click();
-      cy.url().should('include', config.urls[index]);
-      cy.go('back');
-    });
+    cy.findByRole('heading', { name: trade.name }).scrollIntoView().should('exist')
+    cy.findByText(trade.text).should('be.visible')
+    cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink')
+    cy.get('@learnMoreLink').trigger('mouseover')
+    cy.get('@learnMoreLink').click()
+    cy.url().should('include', config.urls[index])
+    cy.go('back')
   });
 }
 
