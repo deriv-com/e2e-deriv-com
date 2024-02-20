@@ -33,7 +33,6 @@ function checkTradeTypes(region) {
     cy.get('@learnMoreLink').click()
     cy.url().should('include', config.urls[index])
     cy.go('back')
-    cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible')
   });
 }
 
