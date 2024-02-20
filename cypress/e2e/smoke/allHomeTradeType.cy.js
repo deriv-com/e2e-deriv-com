@@ -28,9 +28,12 @@ function checkTradeTypes(region) {
   config.types.forEach((trade, index) => {
     cy.findByRole('heading', { name: trade.name }).should('exist')
     cy.findByText(trade.text).should('be.visible')
-    cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).trigger('mouseover').click()
+    cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink')
+    cy.get('@learnMoreLink').trigger('mouseover')
+    cy.get('@learnMoreLink').click()
     cy.url().should('include', config.urls[index])
     cy.go(-1)
+    cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible')
   });
 }
 
