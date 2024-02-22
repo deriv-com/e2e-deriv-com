@@ -14,6 +14,13 @@ function checkHeroBanner(region)
     cy.findByRole('img', { name: 'Most trusted broker APAC 2023 by UF Awards' }).should('be.visible')
     }
 
+    else
+    {
+    cy.findByRole('img', { name: 'Best forex spreads APAC 2023 by UF Awards' }).should('not.exist')
+    cy.findByRole('img', { name: 'Broker of the year 2023 by FinanceFeeds' }).should('not.exist')
+    cy.findByRole('img', { name: 'Most trusted broker APAC 2023 by UF Awards' }).should('not.exist')
+    }
+
     cy.findByRole('heading', { name: '2.5M+' }).should('be.visible')
     cy.findByText('Users worldwide').should('be.visible')
     cy.findByRole('heading', { name: '$650B+' }).should('be.visible')
