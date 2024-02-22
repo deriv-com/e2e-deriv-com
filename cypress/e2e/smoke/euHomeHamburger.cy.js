@@ -201,17 +201,28 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
 
   it('Validate hamburger menu operation', () => {
     //Click on the hamburger menu, click on the X to close and the sub menuitems should no longer be visible (checking for the visibility of the Trade menu item should be good enough for this)
-  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.crossIcon().click()
     homeBanner.elements.hamBurgerMenu().should('be.visible')
 
     //Click on the hamburger menu, click on the EN link and the sub menuitems should no longer be visible
-  homeBanner.elements.hamBurgerMenu().click()
+    homeBanner.elements.hamBurgerMenu().click()
     cy.findByText('English').click()
     cy.contains('English').should('be.visible')
     homeBanner.elements.crossIcon().click()
-    
-  })
+
+    cy.findByText('Cookies help us to give you a better experience and personalised content on our site.').should('be.visible')
+    cy.contains("Don't accept").should('be.visible').click()
+    const middle = Cypress.$(cy.state('window')).height() / 2
+    const scrollOffset = 400
+    cy.scrollTo(0, middle + scrollOffset)
+    cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('be.visible')
+    cy.scrollTo(0, 0)
+    cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('not.be.visible')
+    cy.scrollTo('bottom')
+    cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('not.be.visible')
+
+ })
 })
 
 describe('Validate Footer and Popup Icons', () => {
