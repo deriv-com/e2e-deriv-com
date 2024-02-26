@@ -5,7 +5,7 @@ function checkHeroBanner(region)
     const baseUrl = Cypress.config('baseUrl').toLowerCase();
     const urlToMatch = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
     cy.findByRole('heading', { name: 'Trading for anyone. Anywhere. Anytime.' }).should('be.visible')
-    cy.findByRole('img', { name: 'Trustpilot' }).click();
+    cy.findByRole('img', { name: 'Trustpilot' }).click()
 
     if(region === 'ROW')
     {
