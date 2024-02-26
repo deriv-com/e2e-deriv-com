@@ -163,6 +163,20 @@ function commodities_eu() {
   cy.findByText('Energy').should('be.visible')
 }
 
+function etf_row(){
+  cy.findByRole('tab', { name: 'ETFs' }).click()
+  cy.findByRole('link', { name: 'See all ETFs' }).click()
+  cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
+  cy.findAllByText('ETFs').eq(0).should('be.visible')
+}
+
+function etf_eu(){
+  cy.findByRole('tab', { name: 'ETFs' }).click()
+  cy.findByRole('link', { name: 'See all ETFs' }).click()
+  cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
+  cy.findAllByText('ETFs').eq(0).should('be.visible')
+}
+
 Cypress.Commands.add('c_forexViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
@@ -259,6 +273,26 @@ Cypress.Commands.add('c_commoditiesViewall', (site, view) => {
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
       commodities_eu()
+    }
+  }
+})
+
+Cypress.Commands.add('c_etfViewall', (site, view) => {
+  if (site == 'row') {
+    if (view == 'desk') {
+      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      etf_row()
+    } else {
+      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      etf_row()
+    }
+  } else {
+    if (view == 'desk') {
+      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      etf_eu()
+    } else {
+      cy.c_visitResponsive(Cypress.env('RegionEU'))
+      etf_eu()
     }
   }
 })
