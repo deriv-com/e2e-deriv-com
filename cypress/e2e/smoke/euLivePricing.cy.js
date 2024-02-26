@@ -19,6 +19,7 @@ describe('QATEST-1328 - Live Pricing table EU', () => {
     cy.c_forexViewall('eu', 'mob')
     cy.c_derivedindicesViewall('eu', 'mob')
     cy.c_stockindicesViewall('eu', 'mob')
+    cy.c_commoditiesViewall('eu', 'mob')
     cy.c_cryptocurrenciesViewall('eu', 'mob')
     cy.c_etfViewall('eu', 'mob')
   })
