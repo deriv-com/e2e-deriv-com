@@ -40,7 +40,7 @@ const languageDetails = {
     '1488': {
         urlCode: 'th',
         testLanguage: 'THAI',
-        languageSelector: 'Thai',
+        languageSelector: 'ไทย',
         redirectionVerify: 'เข้าร่วมกับเทรดเดอร์ออนไลน์มากกว่า 2.5 ล้านคน',
         desktopVerify: 'TH',
     },
