@@ -23,7 +23,7 @@ module.exports = defineConfig({
     email: 'test@example.com',
     viewPortSize: 'small',
     loginEmail: process.env.DERIV_LOGIN,
-    loginPassword: process.env.E2E_DERIV_PASSWORD,
+    loginPassword: process.env.DERIV_PASSWORD,
     loginEmailProd: process.env.E2E_DERIV_LOGIN_PROD,
     loginPasswordProd: process.env.E2E_DERIV_PASSWORD_PROD,
     derivAppUrl: "https://staging-app.deriv.com",
