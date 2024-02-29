@@ -10,6 +10,17 @@ const derivedFXArray = ["GBP/USD DFX10 Index", "EUR/USD DFX10 Index", "AUD/USD D
 const cryptoCurrenciesArray = ["ALG/USD","ADA/USD","AVA/USD","BAT/USD","BCH/USD","BNB/USD","BTC/USD","BTC/ETH","BTC/LTC","DOG/USD","DOT/USD","DSH/USD","EOS/USD","ETC/USD","ETH/USD","FIL/USD","IOT/USD","LNK/USD","LTC/USD","MKR/USD","MTC/USD","NEO/USD","OMG/USD","SOL/USD","TRX/USD","UNI/USD","XMR/USD","XLM/USD","XRP/USD","XTZ/USD","ZEC/USD"]
 const commoditiesCFDArray = ["Aluminium/USD","Copper/USD","Gold/EUR","Gold/USD","Lead/USD","Nickel/USD","Palladium/USD","Oil/USD","Platinum/USD","Silver/EUR","Silver/USD","Zinc/USD","Brent crude oil","West Texas Intermediate"]
 
+function validateInstruments(array) {
+  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
+    const text = $p.text().trim()
+    if (array.includes(text)) {
+      cy.log(`Instrument: ${text}`)
+    } else {
+      throw new Error(`Element with text '${text}' not found in the Array`)
+    }
+  })
+}
+
 Cypress.Commands.add('c_validateMarkets', (site) => {
   if (site == 'row') {
     cy.findByText('AUD/USD').should('be.visible')
@@ -48,37 +59,16 @@ function forex_instruments_row() {
   cy.findByText('Minor pairs').should('be.visible')
   cy.findByText('Exotic pairs').should('be.visible')
   cy.findByText('Micro pairs').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (forexArray.includes(text)) {
-      cy.log(`Forex : ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in forexArray`)
-    }
-  })
+  validateInstruments(forexArray)
   
   cy.findByRole('heading', { name: 'Options' }).click()
   cy.findByText('Major pairs').should('be.visible')
   cy.findByText('Minor pairs').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (forexArray.includes(text)) {
-      cy.log(`Forex : ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in forexArray`)
-    }
-  })
-
+  validateInstruments(forexArray)
+  
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Major pairs').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (forexArray.includes(text)) {
-      cy.log(`Forex : ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in forexArray`)
-    }
-  })
+  validateInstruments(forexArray)
 }
 
 function forex_instruments_eu() {
@@ -86,25 +76,11 @@ function forex_instruments_eu() {
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Major pairs').should('be.visible')
   cy.findByText('Minor pairs').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (forexArray.includes(text)) {
-      cy.log(`Forex: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in forexArray`)
-    }
-  })
+  validateInstruments(forexArray)
 
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Major pairs').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (forexArray.includes(text)) {
-      cy.log(`Forex: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in forexArray`)
-    }
-  })
+  validateInstruments(forexArray)
 }
 
 function derivedindices_row() {
@@ -119,80 +95,36 @@ function derivedindices_row() {
   cy.findByText('Jump indices').should('be.visible')
   cy.findByText('Step indices').should('be.visible')
   cy.findByText('Range break indices').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text().trim()
-    if (derivedindicesSyntheticsCFDArray.includes(text)) {
-      cy.log(`Derivedindices-Synthtics-CFD: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in derivedindicesSyntheticsCFDArray`)
-    }
-})
-
-
+  validateInstruments(derivedindicesSyntheticsCFDArray)
+  
   cy.findByRole('heading', { name: 'Options' }).click()
   cy.findByText('Continuous indices').should('be.visible')
   cy.findByText('Jump indices').should('be.visible')
   cy.findByText('Daily reset indices').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (derivedindicesSyntheticsOptionsArray.includes(text)) {
-      cy.log(`derivedindices - Synthetics -Options: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in derivedindicesSyntheticsOptionsArray`)
-    }
-  })
-
+  validateInstruments(derivedindicesSyntheticsOptionsArray)
+  
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Continuous indices').should('be.visible')
   cy.findByText('Crash/Boom').should('be.visible')
   cy.findByText('Jump indices').should('be.visible')
   cy.findByText('Step indices').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (derivedindicesSyntheticsMultipliersArray.includes(text)) {
-      cy.log(`derivedindices -Synthetics - Multipliers: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in derivedindicesSyntheticsMultipliersArray`)
-    }
-  })
-
+  validateInstruments(derivedindicesSyntheticsMultipliersArray)
+  
   cy.findByRole('button', { name: 'Baskets' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Commodities Basket').should('be.visible')
   cy.findByText('Forex Basket').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (derivedindicesBasketArray.includes(text)) {
-      cy.log(`derivedindices -Basket: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in derivedindicesBasketArray`)
-    }
-  })
-
+  validateInstruments(derivedindicesBasketArray)
+ 
   cy.findByRole('heading', { name: 'Options' }).click()
   cy.findByText('Commodities Basket').should('be.visible')
   cy.findByText('Forex Basket').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (derivedindicesBasketArray.includes(text)) {
-      cy.log(`derivedindices -Basket: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in derivedindicesBasketArray`)
-    }
-  })
-
+  validateInstruments(derivedindicesBasketArray)
+  
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Commodities Basket').should('be.visible')
   cy.findByText('Forex Basket').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (derivedindicesBasketArray.includes(text)) {
-      cy.log(`derivedindices -Basket: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in derivedindicesBasketArray`)
-    }
-  })
-
+  validateInstruments(derivedindicesBasketArray)
   cy.findByRole('button', { name: 'Derived FX' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Derived FX').should('be.visible')
@@ -208,15 +140,7 @@ function derivedindices_eu() {
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Continuous indices').should('be.visible')
   cy.findByText('Crash/Boom').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (derivedSyntheticsEU.includes(text)) {
-      cy.log(`derivedSynthetics - EU: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in derivedSyntheticsEU`)
-    }
-  })
-
+  validateInstruments(derivedSyntheticsEU)
 }
 
 function stockindices_row() {
@@ -248,14 +172,7 @@ function cryptocurrencies_row() {
   cy.findByRole('link', { name: 'See all cryptocurrencies' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Crypto pairs').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text().trim()
-    if (cryptoCurrenciesArray.includes(text)) {
-      cy.log(`cryptoCurrencies: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in cryptoCurrenciesArray`)
-    }
-  })
+  validateInstruments(cryptoCurrenciesArray)
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Crypto pairs').should('be.visible')
 }
@@ -265,14 +182,7 @@ function cryptocurrencies_eu() {
   cy.findByRole('link', { name: 'See all cryptocurrencies' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Crypto pairs').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text().trim()
-    if (cryptoCurrenciesArray.includes(text)) {
-      cy.log(`cryptoCurrencies: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in cryptoCurrenciesArray`)
-    }
-  })
+  validateInstruments(cryptoCurrenciesArray)
   cy.findByRole('heading', { name: 'Multipliers' }).click()
   cy.findByText('Crypto pairs').should('be.visible')
 }
@@ -288,15 +198,7 @@ function commodities_row() {
   cy.findByRole('heading', { name: 'Options' }).click()
   cy.findByText('Metals').should('be.visible')
   cy.findByText('Energy').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (commoditiesCFDArray.includes(text)) {
-      cy.log(`commodities-CFD: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in commoditiesCFDArray`)
-    }
-  })
-
+  validateInstruments(commoditiesCFDArray)
 }
 
 function commodities_eu() {
@@ -305,15 +207,7 @@ function commodities_eu() {
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Metals').should('be.visible')
   cy.findByText('Energy').should('be.visible')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (commoditiesCFDArray.includes(text)) {
-      cy.log(`commodities-CFD: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in commoditiesCFDArray`)
-    }
-  })
-
+  validateInstruments(commoditiesCFDArray)
 }
 
 function etf_row(){
@@ -321,14 +215,7 @@ function etf_row(){
   cy.findByRole('link', { name: 'See all ETFs' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.get('[class^="at-flex instrumental-table-module--instrumental_left_item--"]').find('p').should('have.text', 'ETFs')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (etfArray.includes(text)) {
-      cy.log(`ETF: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in etfArray`)
-    }
-  })
+  validateInstruments(etfArray)
 }
 
 function etf_eu(){
@@ -336,14 +223,7 @@ function etf_eu(){
   cy.findByRole('link', { name: 'See all ETFs' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.get('[class^="at-flex instrumental-table-module--instrumental_left_item--"]').find('p').should('have.text', 'ETFs')
-  cy.findAllByRole('img', { name: 'symbol' }).siblings('p').each(($p) => {
-    const text = $p.text();
-    if (etfArray.includes(text)) {
-      cy.log(`ETF: ${text}`)
-    } else {
-      throw new Error(`Element with text '${text}' not found in etfArray`)
-    }
-  })
+  validateInstruments(etfArray)
 }
 
 Cypress.Commands.add('c_forexViewall', (site, view) => {
