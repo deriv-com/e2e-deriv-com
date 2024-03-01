@@ -72,9 +72,11 @@ jobs:
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
 
     - name: Print working directory
+      if: always()
       run: pwd
       
     - name: List files
+      if: always()
       run: ls -la 
       
     - name: Publish full_extended test result files
