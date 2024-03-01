@@ -60,7 +60,9 @@ let linkDetails = {
 }
 
 let failedLinks = {
-    failedCheckLinks: [],
+    failedCheckLinks: [
+        'failiure'
+    ],
     failedVisitLinks: [],
 }
 
