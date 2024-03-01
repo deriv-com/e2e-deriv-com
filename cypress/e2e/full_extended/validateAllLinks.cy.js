@@ -227,8 +227,8 @@ describe('QATEST-96657 - Check URL in deriv.com', () => {
             failedLinks.failedCheckLinks = uniqueFailedCheckedLinks
             failedLinks.failedVisitLinks = uniqueFailedVisitLinks
         })
-        cy.writeFile('cypress/results/validateAllLinksFailures.json',failedLinks)
-        cy.readFile('cypress/results/validateAllLinksFailures.json').then((failedLinks)=>{
+        cy.writeFile('cypress/full_extended_results/validateAllLinksFailures.json',failedLinks)
+        cy.readFile('cypress/full_extended_results/validateAllLinksFailures.json').then((failedLinks)=>{
             expect(failedLinks.failedVisitLinks.length + failedLinks.failedCheckLinks.length).to.be.eql(0)
         })       
     })
