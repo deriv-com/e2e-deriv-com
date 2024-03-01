@@ -8,7 +8,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 let linkDetails = {
     validDomains: [
-        'https://staging.deriv.com/'
+        Cypress.config('baseUrl')
     ],
     excludedVisitLinks: [
         '.exe',
@@ -27,6 +27,7 @@ let linkDetails = {
         'instagram',
         'youtube',
         'https://staging.deriv.com/trade-types/options/', // Bug raised as https://app.clickup.com/t/86bxbkfqm  will remove once the issue is fixed because till then test will keep on failing without verifying other links
+        'https://deriv.com/trade-types/options/',
     ],
     excludedCheckLinks: [
         'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg', //causing hang because takes a lot of time downloading pdf
