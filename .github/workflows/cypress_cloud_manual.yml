@@ -59,7 +59,7 @@ jobs:
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
     
     - name: Cypress run without record for full_extended
-      if: ${{ github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'full_and_full_extended' }}
+      if: ${{ github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'full_and_full_extended' || failure() }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
