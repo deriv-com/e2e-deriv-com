@@ -71,17 +71,6 @@ jobs:
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
 
-    - name: Print working directory
-      if: always()
-      run: pwd
-      
-    - name: List files
-      if: always()
-      run: ls -la cypress/full_extended_results
-    - name: List files
-      if: always()
-      run: ls -la cypress
-      
     - name: Publish full_extended test result files
       if: ${{ github.event.inputs.suite == 'full_extended' && failure()}}
       uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392  #v4.0.0
