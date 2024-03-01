@@ -77,7 +77,10 @@ jobs:
       
     - name: List files
       if: always()
-      run: ls -la 
+      run: ls -la cypress/full_extended_results
+    - name: List files
+      if: always()
+      run: ls -la cypress
       
     - name: Publish full_extended test result files
       if: ${{ github.event.inputs.suite == 'full_extended' && failure()}}
