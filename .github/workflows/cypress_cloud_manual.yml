@@ -75,5 +75,5 @@ jobs:
       if: ${{ github.event.inputs.suite == 'full_extended' && failure()}}
       uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392  #v4.0.0
       with:
-        name: validateAllLinksFailures
-        path: /cypress/results
+        name: validateAllLinksFailures.json
+        path: /cypress/full_extended_results
