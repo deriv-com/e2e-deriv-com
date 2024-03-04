@@ -52,37 +52,13 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
     })
   })
 
-  it('has valid licence links.', () => {
-    footer.elements.dfxLicenceLink().should('be.visible')
-    footer.elements.bviLicenceLink().should('be.visible')
-    footer.elements.vanuatuLicenceLink().should('be.visible')
-
-    footer.elements
-      .dfxLicenceLink()
-      .invoke('attr', 'href')
-      .and('include', footer.licencePdf.dfx)
-      .then((href) => {
-        cy.request(href).then((pdf) => {})
-        cy.request(href).its('status').should('eq', 200)
-      })
-
-    footer.elements
-      .bviLicenceLink()
-      .invoke('attr', 'href')
-      .and('include', footer.licencePdf.bvi)
-      .then((href) => {
-        cy.request(href).then((pdf) => {})
-        cy.request(href).its('status').should('eq', 200)
-      })
-
-    footer.elements
-      .vanuatuLicenceLink()
-      .invoke('attr', 'href')
-      .and('include', footer.licencePdf.vanuatu)
-      .then((href) => {
-        cy.request(href).then((pdf) => {})
-        cy.request(href).its('status').should('eq', 200)
-      })
+  it('has each licence information', () => {
+    footer.elements.dfxLicenceText().should('be.visible')
+    footer.elements.bviLicenceText().should('be.visible')
+    footer.elements.vanuatuLicenceText().should('be.visible')
+    footer.elements.svgLicenceText().should('be.visible')
+    footer.elements.derivLimitedLicenceText().should('be.visible')
+    footer.elements.dielLicenceText().should('not.exist')
   })
 
   it('has valid tnc, risk disclosure and secure and responsibility links.', () => {

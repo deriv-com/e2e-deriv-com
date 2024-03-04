@@ -7,6 +7,13 @@ class footer {
     riskDisclosureLink: () =>
       cy.findByRole('link', { name: 'Risk disclosure' }),
 
+    dielLicenceText: () => cy.findByText('Deriv Investments (Europe) Limited is licensed and regulated by the Malta Financial Services Authority under the Investment Services Act.'),
+    dfxLicenceText: () => cy.findByText('Deriv (FX) Ltd is licensed by the Labuan Financial Services Authority.'),
+    bviLicenceText: () => cy.findByText('Deriv (BVI) Ltd is licensed by the British Virgin Islands Financial Services Commission.'),
+    vanuatuLicenceText: () => cy.findByText('Deriv (V) Ltd is licensed and regulated by the Vanuatu Financial Services Commission.'),
+    svgLicenceText: () => cy.findByText('Deriv (SVG) LLC has a registered office at First Floor, SVG Teachers Credit Union Uptown Building, Corner of James and Middle Street, Kingstown P.O., St Vincent and the Grenadines.'),
+    derivLimitedLicenceText: () => cy.findByText('Deriv.com Limited, a company registered in Guernsey, is the holding company for these entities.'),
+
     dfxLicenceLink: () => cy.findAllByRole('link', { name: '(licence)' }).first(),
     bviLicenceLink: () => cy.findAllByRole('link', { name: '(licence)' }).eq(1),
     vanuatuLicenceLink: () =>
