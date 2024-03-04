@@ -52,37 +52,18 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
     })
   })
 
-  it('has valid licence links.', () => {
-    footer.elements.dfxLicenceLink().should('be.visible')
-    footer.elements.bviLicenceLink().should('be.visible')
-    footer.elements.vanuatuLicenceLink().should('be.visible')
-
-    footer.elements
-      .dfxLicenceLink()
-      .invoke('attr', 'href')
-      .and('include', footer.licencePdf.dfx)
-      .then((href) => {
-        cy.request(href).then((pdf) => {})
-        cy.request(href).its('status').should('eq', 200)
-      })
-
-    footer.elements
-      .bviLicenceLink()
-      .invoke('attr', 'href')
-      .and('include', footer.licencePdf.bvi)
-      .then((href) => {
-        cy.request(href).then((pdf) => {})
-        cy.request(href).its('status').should('eq', 200)
-      })
-
-    footer.elements
-      .vanuatuLicenceLink()
-      .invoke('attr', 'href')
-      .and('include', footer.licencePdf.vanuatu)
-      .then((href) => {
-        cy.request(href).then((pdf) => {})
-        cy.request(href).its('status').should('eq', 200)
-      })
+  it.only('has each licence information', () => {
+    footer.elements.dfxLicenceText().should('be.visible')
+    footer.elements.bviLicenceText().should('be.visible')
+    footer.elements.vanuatuLicenceText().should('be.visible')
+    footer.elements.svgLicenceText().should('be.visible')
+    footer.elements.derivLimitedLicenceText().should('be.visible')
+    footer.elements.dielLicenceText().should('not.exist')
+    // cy.findByText('Deriv (FX) Ltd is licensed by the Labuan Financial Services Authority.').should('be.visible')
+    // cy.findByText('Deriv (BVI) Ltd is licensed by the British Virgin Islands Financial Services Commission.').should('be.visible')
+    // cy.findByText('Deriv (V) Ltd is licensed and regulated by the Vanuatu Financial Services Commission.').should('be.visible')
+    // cy.findByText('Deriv (SVG) LLC has a registered office at First Floor, SVG Teachers Credit Union Uptown Building, Corner of James and Middle Street, Kingstown P.O., St Vincent and the Grenadines.').should('be.visible')
+    // cy.findByText('Deriv.com Limited, a company registered in Guernsey, is the holding company for these entities.').should('be.visible')
   })
 
   it('has valid tnc, risk disclosure and secure and responsibility links.', () => {

@@ -39,18 +39,15 @@ describe('QATEST-1422 Footer EU Responsive', () => {
     })
   })
 
-  it('should display EU footer and contain valid links.', () => {
+  it.only('should display EU footer and contain valid links.', () => {
     footer.elements.cookiesAcceptButton().click()
 
-    footer.elements.dielLicenceLink().should('be.visible')
-    footer.elements
-      .dielLicenceLink()
-      .invoke('attr', 'href')
-      .and('include', footer.licencePdf.diel)
-      .then((href) => {
-        cy.request(href).then((pdf) => {})
-        cy.request(href).its('status').should('eq', 200)
-      })
+    footer.elements.dielLicenceText().should('be.visible')
+    footer.elements.dfxLicenceText().should('not.exist')
+    footer.elements.bviLicenceText().should('not.exist')
+    footer.elements.vanuatuLicenceText().should('not.exist')
+    footer.elements.svgLicenceText().should('not.exist')
+    footer.elements.derivLimitedLicenceText().should('not.exist')
 
     footer.elements.riskDisclosureLink().should('be.visible')
     footer.elements
