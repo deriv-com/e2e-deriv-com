@@ -34,6 +34,7 @@ let linkDetails = {
         'https://www.instagram.com/derivcareers/',
         'javascript:;',
         'mailto:'
+        `${Cypress.config('baseUrl')}trade-types/options/`
     ],
     linksAllowedFailingVisits: [
     
