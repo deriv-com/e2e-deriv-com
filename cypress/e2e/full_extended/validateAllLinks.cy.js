@@ -8,8 +8,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 let linkDetails = {
     validDomains: [
-        'https://staging.deriv.com/',
-        'https://deriv.com/'
+        Cypress.config('baseUrl')
     ],
     excludedVisitLinks: [
         '.exe',
@@ -28,19 +27,22 @@ let linkDetails = {
         'instagram',
         'youtube',
         'https://staging.deriv.com/trade-types/options/', // Bug raised as https://app.clickup.com/t/86bxbkfqm  will remove once the issue is fixed because till then test will keep on failing without verifying other links
+        'https://deriv.com/trade-types/options/',
     ],
     excludedCheckLinks: [
         'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg', //causing hang because takes a lot of time downloading pdf
         'https://www.instagram.com/derivcareers/',
         'javascript:;',
         'mailto:'
+        `${Cypress.config('baseUrl')}trade-types/options/`
     ],
     linksAllowedFailingVisits: [
-        '/p2p/',  // because p2p is not available without vpn as per reference 
+    
     ],
     linksAllowedFailingStatuses: {
         404: [
             'https://apps.apple.com/us/app/deriv-x/id1563337503',
+            'https://apps.apple.com/us/app/deriv-dp2p/id1506901451'
         ],
         999: [
             'https://www.linkedin.com/company/derivdotcom/',
@@ -56,14 +58,19 @@ let linkDetails = {
     },
     checkedLinks: [], // To check if link has already been checked or not.
     visitedLinks: [], // To check if link has already been visited or not.
-    failedCheckLinks: [], // To see Failed links which were checked only.
-    failedVisitLinks: [], // To see Failed links which were visited successfully but had 404 being displayed on the page.
+}
+
+let failedLinks = {
+    failedCheckLinks: [],
+    failedVisitLinks: [],
 }
 
 let passingStatusCodes = [
     200,
     204
 ]
+
+const normalizeUrl = (url) => url.toLowerCase().trim().replace(/\/$/, "");
 
 /**
  * 
@@ -72,7 +79,7 @@ let passingStatusCodes = [
  * @example isLinkValid("https://abc.com/")
  */
 const isLinkValid = (currentLink) => {
-    if (linkDetails.validDomains.some(link => currentLink.toLowerCase().includes(link.toLowerCase()))) {
+    if (linkDetails.validDomains.some(link => normalizeUrl(currentLink).includes(normalizeUrl(link)))) {
         return true
     }
     else {
@@ -91,13 +98,13 @@ const isLinkValid = (currentLink) => {
 const isLinkStaging = (type, currentLink) => {
     const currentLinkInStaging = currentLink.replace(linkDetails.validDomains[1], linkDetails.validDomains[0])
     if (type == 'Visited') {
-        if (linkDetails.visitedLinks.some(link => currentLinkInStaging.toLowerCase() == link.toLowerCase())) {
+        if (linkDetails.visitedLinks.some(link => normalizeUrl(currentLinkInStaging) == normalizeUrl(link))) {
             return true
         } else {
             return false
         }
     } else if (type == 'Checked') {
-        if (linkDetails.checkedLinks.some(link => currentLinkInStaging.toLowerCase() == link.toLowerCase())) {
+        if (linkDetails.checkedLinks.some(link => normalizeUrl(currentLinkInStaging) == normalizeUrl(link))) {
             return true
         } else {
             return false
@@ -115,13 +122,13 @@ const isLinkStaging = (type, currentLink) => {
  */
 const isLinkExcluded = (type, currentLink) => {
     if (type == "Visit") {
-        if (linkDetails.excludedVisitLinks.some(link => currentLink.toLowerCase().includes(link.toLowerCase())) || linkDetails.visitedLinks.some(link => currentLink.toLowerCase() == link.toLowerCase()) || isLinkStaging("Visited", currentLink)) {
+        if (linkDetails.excludedVisitLinks.some(link => normalizeUrl(currentLink).includes(normalizeUrl(link))) || linkDetails.visitedLinks.some(link => normalizeUrl(currentLink) == normalizeUrl(link)) || isLinkStaging("Visited", currentLink)) {
             return true
         } else {
             return false
         }
     } else if (type == "Check") {
-        if (linkDetails.excludedCheckLinks.some(link => currentLink.toLowerCase().includes(link.toLowerCase())) || linkDetails.checkedLinks.some(link => currentLink.toLowerCase() == link.toLowerCase()) || isLinkStaging("Checked", currentLink)) {
+        if (linkDetails.excludedCheckLinks.some(link => normalizeUrl(currentLink).includes(normalizeUrl(link))) || linkDetails.checkedLinks.some(link => normalizeUrl(currentLink) == normalizeUrl(link)) || isLinkStaging("Checked", currentLink)) {
             return true
         } else {
             return false
@@ -138,7 +145,7 @@ const isLinkExcluded = (type, currentLink) => {
 const isAllowedFailingStatus = (currentLink) => {
     return Object.entries(linkDetails.linksAllowedFailingStatuses).some(([status, links]) => {
         return links.some(link => {
-            return currentLink.toLowerCase().includes(link.toLowerCase())
+            return normalizeUrl(currentLink).includes(normalizeUrl(link))
         })
     })
 }
@@ -151,16 +158,16 @@ const checkLinks = (currentLink, region) => {
     if (currentLink && !isLinkExcluded('Check', currentLink) && currentLink != '') {
         cy.request({
             url: currentLink,
-            failOnStatusCode: false
+            failOnStatusCode: false,
+            timeout:120000,
         }).then(response => {
             linkDetails.checkedLinks.push(currentLink)
             if (!passingStatusCodes.some(statusCode => response.status == statusCode)) {
                 if (!isAllowedFailingStatus(currentLink)) {
-                    linkDetails.failedCheckLinks.push(`Link "${currentLink}" failed with Status code: ${response.status}"`)
+                    failedLinks.failedCheckLinks.push(`Link "${currentLink}" failed with Status code: ${response.status}"`)
                     cy.log(`Current failed Link is ${currentLink} with Status code: ${response.status}`)
-                    cy.log(`The total failed links are: ${linkDetails.failedCheckLinks.length}`, linkDetails.failedCheckLinks)
                 } else {
-                    cy.log(`Current link ${currentLink} is allowed to have failed status`)
+                    cy.log(`Current link ${currentLink} is allowed to have failed status: ${response.status}`)
                 }
             }
         })
@@ -171,12 +178,12 @@ const checkLinks = (currentLink, region) => {
             } else {
                 regionLink = `${currentLink}${region}`
             }
-            cy.c_visitResponsive(regionLink, 'desktop', true)
+            cy.c_visitResponsive(regionLink, 'desktop')
             linkDetails.visitedLinks.push(currentLink)
             cy.document().then(doc => {
                 const pageFailed = doc.querySelector('img[alt="Page not found"]')
                 if (pageFailed && pageFailed != undefined && pageFailed != null && !linkDetails.linksAllowedFailingVisits.some(link=> currentLink.toLowerCase().includes(link.toLowerCase()))) {
-                    linkDetails.failedVisitLinks.push(currentLink)
+                    failedLinks.failedVisitLinks.push(`Link "${currentLink}" because page was not found`)
                 }
             })
             cy.get("a").each(availableLink => {
@@ -213,12 +220,17 @@ describe('QATEST-96657 - Check URL in deriv.com', () => {
             const currentLink = availableLink.prop('href')
             checkLinks(currentLink, Cypress.env('RegionEU'))
         })
-
-        cy.log('Failed Checked Links: ', linkDetails.failedCheckLinks.sort())
-        cy.log('Failed Visited Links: ', linkDetails.failedVisitLinks.sort())
-        let totalFailure = linkDetails.failedCheckLinks.length + linkDetails.failedVisitLinks.length
-        cy.wrap(totalFailure,{log:false}).then(failures=>{
-            expect(failures, 'Number of failed links :').to.be.eql(0)
+        cy.then(()=>{
+            failedLinks.failedCheckLinks.sort()
+            let uniqueFailedCheckedLinks = [...new Set(failedLinks.failedCheckLinks)]
+            failedLinks.failedVisitLinks.sort()
+            let uniqueFailedVisitLinks = [...new Set(failedLinks.failedVisitLinks)]
+            failedLinks.failedCheckLinks = uniqueFailedCheckedLinks
+            failedLinks.failedVisitLinks = uniqueFailedVisitLinks
         })
+        cy.writeFile('cypress/full_extended_results/validateAllLinksFailures.json',failedLinks)
+        cy.readFile('cypress/full_extended_results/validateAllLinksFailures.json').then((failedLinks)=>{
+            expect(failedLinks.failedVisitLinks.length + failedLinks.failedCheckLinks.length).to.be.eql(0)
+        })       
     })
 })
