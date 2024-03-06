@@ -9,7 +9,7 @@ function checkHeroBanner(region)
 
     if(region === 'ROW')
     {
-      cy.findByRole('img', { name: 'Best forex spreads APAC 2023 by UF Awards' }).should('be.visible')
+      cy.findByRole('img', { name: 'Most Innovative Broker, UF Awards 2023' }).should('be.visible')
       cy.findByRole('img', { name: 'Broker of the year 2023 by FinanceFeeds' }).should('be.visible')
       cy.findByRole('img', { name: 'Most trusted broker APAC 2023 by UF Awards' }).should('be.visible')
     }
