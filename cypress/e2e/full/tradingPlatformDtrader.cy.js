@@ -4,7 +4,7 @@ import homeBanner from '../../support/POM/homePage'
 function validate_dtraderpage(region)
 {   
     cy.url().should('include', '/dtrader/')
-    cy.title().should('eq', 'DTrader | Online trading platform | Deriv')
+    cy.title().should('eq', 'Deriv Trader | Online trading platform | Deriv')
 
     cy.findByRole('img', { name: 'Deriv Trader' }).should('be.visible')
     cy.findByText('Get into the Deriv Trader experience')
