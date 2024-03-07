@@ -62,6 +62,7 @@ module.exports = defineConfig({
     youtubeDeriv: 'https://www.youtube.com/@deriv',
     linkedInDeriv: 'https://www.linkedin.com/company/derivdotcom/',
     twitterRow: 'https://twitter.com/derivdotcom/',
+    telegramDeriv: 'https://t.me/Derivchannelofficial',
   },
 
   appMarketUrl: {

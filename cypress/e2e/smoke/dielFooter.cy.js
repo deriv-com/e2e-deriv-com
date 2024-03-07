@@ -1,16 +1,13 @@
 import '@testing-library/cypress/add-commands'
-import footer, {
-  areLegalLinksVisible,
-  socialMediaLinks,
-} from '../../support/POM/commonPage'
+import footer, { socialMediaLinks } from '../../support/POM/commonPage'
 import tncPage from '../../support/POM/tncPage'
-
 import responsiblePage from '../../support/POM/responsiblePage'
 
-describe('QATEST-1399 - Footer ROW Responsive', () => {
+describe('QATEST Footer DIEL Responsive', () => {
   beforeEach(() => {
-    cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionDIEL'), 'small')
   })
+
   const externalSocialUrls = Cypress.config('externalSocialUrls')
   const { googlePlay, appStore, appGallery } = Cypress.config().appMarketUrl;
 
@@ -56,16 +53,16 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
       })
     })
   })
-
+  
   it('has each licence information', () => {
     footer.elements.dfxLicenceText().should('be.visible')
     footer.elements.bviLicenceText().should('be.visible')
     footer.elements.vanuatuLicenceText().should('be.visible')
     footer.elements.svgLicenceText().should('be.visible')
     footer.elements.derivLimitedLicenceText().should('be.visible')
-    footer.elements.dielLicenceText().should('not.exist')
+    footer.elements.dielLicenceText().should('be.visible')
   })
-
+  
   it('has valid tnc, risk disclosure and secure and responsibility links.', () => {
     // tnc
     footer.elements.termsAndConditionLink().click()
@@ -78,7 +75,7 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
     footer.elements
       .riskDisclosureLink()
       .invoke('attr', 'href')
-      .and('include', footer.riskDisclosurePdf.row)
+      .and('include', footer.riskDisclosurePdf.eu)
       .then((href) => {
         cy.request(href).then((pdf) => {})
         cy.request(href).its('status').should('eq', 200)
@@ -105,4 +102,5 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
       .find('img[alt="explore it on appgallery"]')
       .should('exist')
   })
+
 })
