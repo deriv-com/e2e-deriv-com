@@ -28,9 +28,10 @@ jobs:
         # wait-on: 'http://localhost:3000' # Waits for above
         # Records to Cypress Cloud 
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        command: cypress/e2e/smoke/${{ matrix.containers }}/*.js --record --parallel --key ${{ secrets.CYPRESS_CRON_RECORD_KEY }}  
+        # command: cypress/e2e/smoke/${{ matrix.containers }}/*.js --record --parallel --key ${{ secrets.CYPRESS_CRON_RECORD_KEY }}  
         record: true
         parallel: true # Runs test in parallel using settings above
+        spec: cypress/e2e/smoke/*.js
         group: 'e2e Tests'
         
       env:
