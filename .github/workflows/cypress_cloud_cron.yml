@@ -18,8 +18,8 @@ jobs:
       with:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
-    # - name: Install npm
-    #   run: npm install
+    - name: Install npm
+      run: npm install
 
     - name: Cypress run
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
@@ -31,7 +31,7 @@ jobs:
         # wait-on: 'http://localhost:3000' # Waits for above
         # Records to Cypress Cloud 
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        command: npm cypress run --spec cypress/e2e/smoke/*.js --record --parallel --config-file cypress.cron.config.js --key ${{ secrets.CYPRESS_CRON_RECORD_KEY }}  
+        command: npx cypress run --spec cypress/e2e/smoke/*.js --record --parallel --config-file cypress.cron.config.js --key ${{ secrets.CYPRESS_CRON_RECORD_KEY }}  
         record: true
         parallel: true # Runs test in parallel using settings above
         group: 'e2e Tests'
