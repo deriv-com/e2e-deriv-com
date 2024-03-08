@@ -20,20 +20,23 @@ const tradeTypeConfig = {
   },
 };
 
-function checkTradeTypes(region) {
-  const config = tradeTypeConfig[region]
+function checkTradeTypes(region, index = 0) {
+  const config = tradeTypeConfig[region];
+  const trade = config.types[index];
 
-  cy.findByText(`Trade ${config.heading}`).should('be.visible')
+  cy.findByText(`Trade ${config.heading}`).should('be.visible');
 
-  config.types.forEach((trade, index) => {
-    cy.findByRole('heading', { name: trade.name }).scrollIntoView().should('exist')
-    cy.findByText(trade.text).should('be.visible')
-    cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink')
-    cy.get('@learnMoreLink').trigger('mouseover')
-    cy.get('@learnMoreLink').click()
-    cy.url().should('include', config.urls[index])
-    cy.go('back')
-  });
+  cy.findByRole('heading', { name: trade.name }).scrollIntoView().should('exist');
+  cy.findByText(trade.text).should('be.visible');
+  cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink');
+  cy.get('@learnMoreLink').trigger('mouseover');
+  cy.get('@learnMoreLink').click();
+  cy.url().should('include', config.urls[index]);
+  cy.go('back');
+
+  if (index + 1 < config.types.length) {
+    checkTradeTypes(region, index + 1);
+  }
 }
 
 describe('QATEST-1342 Trade Types - EU', () => {
