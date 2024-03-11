@@ -1,8 +1,8 @@
 name: Daily Cron for Smoke Tests
 
-on:
-  schedule:
-    - cron: '0 0 * * 1-5' # Runs every day (Monday to Friday) at 0:00 GMT
+on: [push]
+  # schedule:
+  #   - cron: '0 0 * * 1-5' # Runs every day (Monday to Friday) at 0:00 GMT
 
 jobs:
   cypress-run:
