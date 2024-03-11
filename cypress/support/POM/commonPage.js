@@ -51,6 +51,7 @@ class footer {
       twitterLogo: () => cy.get('[data-cy="twitter"]'),
       youtubeLogo: () => cy.get('[data-cy="youtube"]'),
       linkedInLogo: () => cy.get('[data-cy="linkedin"]'),
+      telegramLogo: () => cy.get('[data-cy="telegram"]'),
     }
 
   areSocialLinksVisible() {
@@ -59,6 +60,7 @@ class footer {
     this.socialMediaLinks.twitterLogo().should('be.visible')
     this.socialMediaLinks.youtubeLogo().should('be.visible')
     this.socialMediaLinks.linkedInLogo().should('be.visible')
+    this.socialMediaLinks.telegramLogo().should('be.visible')
   }
 
   areSocialLinksCorrect(socialLink, socialWebsiteUrl) {
