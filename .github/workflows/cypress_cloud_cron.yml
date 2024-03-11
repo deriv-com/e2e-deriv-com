@@ -32,7 +32,7 @@ jobs:
         # Records to Cypress Cloud 
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
         command: |
-          export CYPRESS_PROJECT_ID=c4ss4g
+          export CYPRESS_PROJECT_ID="c4ss4g"
           npx cypress run --spec cypress/e2e/smoke/euFooter.cy.js --record --parallel --key ${{ secrets.CYPRESS_CRON_RECORD_KEY }}  
         record: true
         parallel: true # Runs test in parallel using settings above
