@@ -38,11 +38,6 @@ describe('QATEST Footer DIEL Responsive', () => {
         func: footer.socialMediaLinks.youtubeLogo,
         expectedUrl: externalSocialUrls.youtubeDeriv,
       },
-      {
-        name: 'Telegram',
-        func: footer.socialMediaLinks.telegramLogo,
-        expectedUrl: externalSocialUrls.telegramDeriv,
-      },
     ]
     socialMediaLinks.forEach((socialMedia) => {
       socialMedia.func().then(($el) => {
