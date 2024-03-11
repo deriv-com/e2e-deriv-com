@@ -21,9 +21,6 @@ jobs:
     - name: Install npm
       run: npm install
 
-    - name: Export Project ID
-      run: export CYPRESS_PROJECT_ID="c4ss4g"
-
     - name: Cypress run
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
@@ -49,4 +46,5 @@ jobs:
         CYPRESS_BASE_URL: "https://staging.deriv.com/"
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Daily cron for smoke tests on https://staging.deriv.com/
+        CYPRESS_PROJECT_ID: "c4ss4g"
           
