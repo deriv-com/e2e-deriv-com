@@ -18,24 +18,24 @@ const tradeTypeConfig = {
     ],
     urls: ['cfds', 'options', 'multiplier'],
   },
-};
+}
 
 function checkTradeTypes(region, index = 0) {
-  const config = tradeTypeConfig[region];
-  const trade = config.types[index];
+  const config = tradeTypeConfig[region]
+  const trade = config.types[index]
 
   cy.findByText(`Trade ${config.heading}`).should('be.visible');
 
-  cy.findByRole('heading', { name: trade.name }).scrollIntoView().should('exist');
-  cy.findByText(trade.text).should('be.visible');
-  cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink');
-  cy.get('@learnMoreLink').trigger('mouseover');
-  cy.get('@learnMoreLink').click();
-  cy.url().should('include', config.urls[index]);
-  cy.go('back');
+  cy.findByRole('heading', { name: trade.name }).scrollIntoView().should('exist')
+  cy.findByText(trade.text).should('be.visible')
+  cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink')
+  cy.get('@learnMoreLink').trigger('mouseover')
+  cy.get('@learnMoreLink').click()
+  cy.url().should('include', config.urls[index])
+  cy.go('back')
 
   if (index + 1 < config.types.length) {
-    checkTradeTypes(region, index + 1);
+    checkTradeTypes(region, index + 1)
   }
 }
 
