@@ -11,10 +11,9 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) { },
     //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
-    baseUrl: 'https://staging.deriv.com/', 
+    baseUrl: 'https://staging.deriv.com', 
     defaultCommandTimeout: 10000,
-    supportFile: "cypress/support/e2e.js",
-    
+    supportFile: "cypress/support/e2e.js",    
   },
   env: {
     RegionEU: '/?region=at',
@@ -25,7 +24,10 @@ module.exports = defineConfig({
     viewPortSize: 'small',
     loginEmail: process.env.DERIV_LOGIN,
     loginPassword: process.env.DERIV_PASSWORD,
+    loginEmailProd: process.env.E2E_DERIV_LOGIN_PROD,
+    loginPasswordProd: process.env.E2E_DERIV_PASSWORD_PROD,
     derivAppUrl: "https://staging-app.deriv.com",
+    derivAppProdUrl: "https://app.deriv.com",
     configServer: process.env.CONFIG_SERVER,
     configAppId: process.env.CONFIG_APPID,
     emailUser: process.env.AUTH_EMAIL_USER,
@@ -60,6 +62,7 @@ module.exports = defineConfig({
     youtubeDeriv: 'https://www.youtube.com/@deriv',
     linkedInDeriv: 'https://www.linkedin.com/company/derivdotcom/',
     twitterRow: 'https://twitter.com/derivdotcom/',
+    telegramDeriv: 'https://t.me/Derivchannelofficial',
   },
 
   appMarketUrl: {

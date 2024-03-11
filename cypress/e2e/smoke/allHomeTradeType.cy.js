@@ -4,36 +4,40 @@ const tradeTypeConfig = {
   EU: {
     heading: 'CFDs and multipliers',
     types: [
-      { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' },
-      { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multipliers'},
+      { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' , learnmorecontent: 'CFD trading' },
+      { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multipliers' , learnmorecontent: 'Multipliers'},
     ],
     urls: ['cfds', 'multiplier'],
   },
   ROW: {
     heading: 'CFDs, options, and multipliers',
     types: [
-      { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' },
-      { name: 'Options', text: 'Trade diverse vanilla and exotic options across platforms and markets without risking more than your initial stake.' , learnmore: 'options' },
-      { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multiplier' },
+      { name: 'CFDs', text: 'Trade with leverage, unbeatable spreads, and fast execution on the widest range of markets.' , learnmore: 'CFDs' , learnmorecontent: 'CFD trading' },
+      { name: 'Options', text: 'Trade diverse vanilla and exotic options across platforms and markets without risking more than your initial stake.' , learnmore: 'options' , learnmorecontent: 'What are digital options?' },
+      { name: 'Multipliers', text: 'Trade on global financial markets and multiply your potential profit without losing more than your stake.' , learnmore: 'multiplier' , learnmorecontent: 'Multipliers' },
     ],
     urls: ['cfds', 'options', 'multiplier'],
   },
-};
+}
 
-function checkTradeTypes(region) {
+function checkTradeTypes(region, index = 0) {
   const config = tradeTypeConfig[region]
+  const trade = config.types[index]
 
-  cy.findByText(`Trade ${config.heading}`).should('be.visible')
+  cy.findByText(`Trade ${config.heading}`).should('be.visible');
 
-  config.types.forEach((trade, index) => {
-    cy.findByRole('heading', { name: trade.name }).scrollIntoView().should('exist')
-    cy.findByText(trade.text).should('be.visible')
-    cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink')
-    cy.get('@learnMoreLink').trigger('mouseover')
-    cy.get('@learnMoreLink').click()
-    cy.url().should('include', config.urls[index])
-    cy.go('back')
-  });
+  cy.findByRole('heading', { name: trade.name }).scrollIntoView().should('exist')
+  cy.findByText(trade.text).should('be.visible')
+  cy.findByRole('link', { name: `Learn more about ${trade.learnmore}` }).as('learnMoreLink')
+  cy.get('@learnMoreLink').trigger('mouseover')
+  cy.get('@learnMoreLink').click()
+  cy.url().should('include', config.urls[index])
+  cy.findByRole('heading', { name: trade.learnmorecontent }).should('exist')
+  cy.go('back')
+
+  if (index + 1 < config.types.length) {
+    checkTradeTypes(region, index + 1)
+  }
 }
 
 describe('QATEST-1342 Trade Types - EU', () => {

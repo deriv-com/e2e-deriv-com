@@ -33,7 +33,7 @@ let linkDetails = {
         'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg', //causing hang because takes a lot of time downloading pdf
         'https://www.instagram.com/derivcareers/',
         'javascript:;',
-        'mailto:'
+        'mailto:',
         `${Cypress.config('baseUrl')}trade-types/options/`
     ],
     linksAllowedFailingVisits: [
