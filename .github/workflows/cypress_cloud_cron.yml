@@ -1,8 +1,8 @@
 name: Daily Cron for Smoke Tests
 
-on: [push]
-  # schedule:
-  #   - cron: '0 0 * * 1-5' # Runs every day (Monday to Friday) at 0:00 GMT
+on:
+  schedule:
+    - cron: '0 0 * * 1-5' # Runs every day (Monday to Friday) at 0:00 GMT
 
 jobs:
   cypress-run:
@@ -31,7 +31,7 @@ jobs:
         # wait-on: 'http://localhost:3000' # Waits for above
         # Records to Cypress Cloud 
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        command: npx cypress run --spec cypress/e2e/smoke/euFooter.cy.js --record --parallel --key ${{ secrets.CYPRESS_CRON_RECORD_KEY }}  
+        command: npx cypress run --spec cypress/e2e/smoke/*.js --record --parallel --key ${{ secrets.CYPRESS_CRON_RECORD_KEY }}  
         record: true
         parallel: true # Runs test in parallel using settings above
         group: 'e2e Tests'
