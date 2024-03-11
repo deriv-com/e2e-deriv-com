@@ -21,6 +21,9 @@ jobs:
     - name: Install npm
       run: npm install
 
+    - name: Export Project ID
+      run: export CYPRESS_PROJECT_ID="c4ss4g"
+
     - name: Cypress run
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
@@ -31,9 +34,7 @@ jobs:
         # wait-on: 'http://localhost:3000' # Waits for above
         # Records to Cypress Cloud 
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        command: |
-          bash -c "export CYPRESS_PROJECT_ID="c4ss4g" && \
-          npx cypress run --spec cypress/e2e/smoke/euFooter.cy.js --record --parallel --key ${{ secrets.CYPRESS_CRON_RECORD_KEY }}  
+        command: npx cypress run --spec cypress/e2e/smoke/euFooter.cy.js --record --parallel --key ${{ secrets.CYPRESS_CRON_RECORD_KEY }}  
         record: true
         parallel: true # Runs test in parallel using settings above
         group: 'e2e Tests'
