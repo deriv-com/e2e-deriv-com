@@ -1,11 +1,11 @@
 class footer {
   elements = {
     termsAndConditionLink: () =>
-      cy.findByRole('link', { name: 'Terms and conditions' }),
+      cy.findByRole('link', { name: 'Terms and Conditions' }),
     secureAndRespTradingLink: () =>
-      cy.findByRole('link', { name: 'Secure and responsible trading' }),
+      cy.findByRole('link', { name: 'Secure and Responsible Trading' }),
     riskDisclosureLink: () =>
-      cy.findByRole('link', { name: 'Risk disclosure' }),
+      cy.findByRole('link', { name: 'Risk Disclosure' }),
 
     dielLicenceText: () => cy.findByText('Deriv Investments (Europe) Limited is licensed and regulated by the Malta Financial Services Authority under the Investment Services Act.'),
     dfxLicenceText: () => cy.findByText('Deriv (FX) Ltd is licensed by the Labuan Financial Services Authority.'),
