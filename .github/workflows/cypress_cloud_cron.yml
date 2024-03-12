@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false # https://github.com/cypress-io/github-action/issues/48
       matrix:
-        containers: [1,2,3] # Uses 3 instance
+        containers: [1,2,3,4,5] # Uses 5 instance
 
     steps:
     - name: Checkout external repository with Cypress tests
