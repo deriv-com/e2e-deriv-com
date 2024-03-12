@@ -35,26 +35,46 @@ function loading_check() {
     });
 }
 
+function login () {
+  cy.findByRole("button", { name: "Log in" }).click({ force: true })
+  cy.findByLabelText("Email").type(username)
+  cy.findByLabelText("Password").type(password, { log: false })
+  cy.findByRole("button", { name: "Log in" }).click()
+  loading_check()
+}
+
 describe("QATEST-1330 Add scenario on clicking buy/sell will redirect to Trader's Hub for logged in user", () => {
   
-  beforeEach(() => {
-    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"desktop")
-    cy.findByRole("button", { name: "Log in" }).click({ force: true })
-    cy.findByLabelText("Email").type(username)
-    cy.findByLabelText("Password").type(password, { log: false })
-    cy.findByRole("button", { name: "Log in" }).click()
-    loading_check()
-  })
-
   it("Should able to redirect to Trader's Hub upon clicking on buy button", () => {
+    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"desktop")
+    login()
     verify_buy_sell('buy')
     cy.get(".traders-hub-header__setting").click()
     cy.findByTestId("dt_logout_tab").click()
   })
 
   it("Should able to redirect to Trader's Hub upon clicking on sell button", () => {
+    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"desktop")
+    login()
     verify_buy_sell('sell')
     cy.get(".traders-hub-header__setting").click()
     cy.findByTestId("dt_logout_tab").click()
   })
+
+  it("Should able to redirect to Trader's Hub upon clicking on buy button responsive", () => {
+    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"small")
+    login()
+    verify_buy_sell('buy')
+    cy.get('.dc-icon.header__mobile-drawer-icon').click()
+    cy.contains('div', 'Log out').first().click();
+  })
+
+  it("Should able to redirect to Trader's Hub upon clicking on sell button responsive", () => {
+    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"small")
+    login()
+    verify_buy_sell('sell')
+    cy.get('.dc-icon.header__mobile-drawer-icon').click()
+    cy.contains('div', 'Log out').first().click();
+  })
+
 })

@@ -39,4 +39,9 @@ jobs:
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Set Base Url from client_payload.
           CYPRESS_BASE_URL: ${{ github.event.client_payload.baseurl }}
+
+          # Set test env variables
+
+        E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
+        E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
           

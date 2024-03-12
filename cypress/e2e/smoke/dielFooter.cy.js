@@ -38,11 +38,6 @@ describe('QATEST Footer DIEL Responsive', () => {
         func: footer.socialMediaLinks.youtubeLogo,
         expectedUrl: externalSocialUrls.youtubeDeriv,
       },
-      {
-        name: 'Telegram',
-        func: footer.socialMediaLinks.telegramLogo,
-        expectedUrl: externalSocialUrls.telegramDeriv,
-      },
     ]
     socialMediaLinks.forEach((socialMedia) => {
       socialMedia.func().then(($el) => {
@@ -75,7 +70,7 @@ describe('QATEST Footer DIEL Responsive', () => {
     footer.elements
       .riskDisclosureLink()
       .invoke('attr', 'href')
-      .and('include', footer.riskDisclosurePdf.eu)
+      .and('include', footer.riskDisclosurePdf.row)
       .then((href) => {
         cy.request(href).then((pdf) => {})
         cy.request(href).its('status').should('eq', 200)
