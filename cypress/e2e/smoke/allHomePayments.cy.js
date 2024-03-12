@@ -21,6 +21,7 @@ function c_validatePaymentSection(region)
   }
     cy.findByTestId('fast-payment-link').click()
     cy.url().should('include', '/payment-methods/')
+    cy.findByRole('heading', { name: 'Payment methods' }).should('be.visible')
 }
 
 describe('Validate payment methods section in home page', () => {
