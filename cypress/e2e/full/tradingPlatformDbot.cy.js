@@ -19,7 +19,7 @@ function Dbot_page()
         }, 
         {
             url:'/dtrader/',
-            title:'DTrader | Online trading platform | Deriv',
+            title:'Deriv Trader | Online trading platform | Deriv',
             content:'Get into the Deriv Trader experience',
         }, 
         {
