@@ -24,19 +24,16 @@ function c_validatePaymentSection(region)
     cy.findByRole('heading', { name: 'Payment methods' }).should('be.visible')
 }
 
-describe('Validate payment methods section in home page', () => {
-    it('should check whether the payment method section is visible and learn more link is working in EU.', () => {
-      cy.c_visitResponsive(Cypress.env('RegionEU'))
-      c_validatePaymentSection('EU')
-
-    })
-
+describe('QATEST-118896 - Validate Homepage Payment methods for ROW', () => {
     it('should check whether the payment method section is visible and learn more link is working in ROW.', () => {
         cy.c_visitResponsive(Cypress.env('RegionROW'))
         c_validatePaymentSection('ROW')
-
       })
-
-
   })
 
+describe('QATEST-118897 - Validate Homepage Payment methods for EU', () => {
+    it('should check whether the payment method section is visible and learn more link is working in EU.', () => {
+      cy.c_visitResponsive(Cypress.env('RegionEU'))
+      c_validatePaymentSection('EU')
+    })
+  })
