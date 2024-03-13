@@ -11,7 +11,7 @@ export class allLinks {
         'https://staging.deriv.com/who-we-are/',
         'https://staging.deriv.com/why-choose-us/',
         'https://staging.deriv.com/partners/',
-        'https://staging.deriv.com/contact_us/',
+        'https://staging.deriv.com/contact-us/',
         'https://staging.deriv.com/careers/',
         'https://staging.deriv.com/markets/forex/',
         'https://staging.deriv.com/markets/synthetic/',
@@ -50,6 +50,7 @@ export class allLinks {
         'https://appgallery.huawei.com/app/C103801913',
         'https://apps.apple.com/my/app/deriv-go-online-trading-app/id1550561298',
         'https://t.me/Derivchannelofficial',
+        'https://staging.deriv.com/tnc/risk-disclosure.pdf'
 
     ];
     static ExpectedLinks_ROW = [
@@ -62,7 +63,7 @@ export class allLinks {
         'https://staging.deriv.com/who-we-are/',
         'https://staging.deriv.com/why-choose-us/',
         'https://staging.deriv.com/partners/',
-        'https://staging.deriv.com/contact_us/',
+        'https://staging.deriv.com/contact-us/',
         'https://staging.deriv.com/careers/',
         'https://staging.deriv.com/markets/forex/',
         'https://staging.deriv.com/markets/synthetic/',
@@ -91,8 +92,7 @@ export class allLinks {
         'https://staging.deriv.com/our-principles/',
         'https://staging.deriv.com/regulatory/Deriv_(V)_Ltd.pdf',
         'https://www.youtube.com/@deriv',
-        // temp solution till the FE fix the issue 
-        // 'https://staging.deriv.com/tnc/risk-disclosure.pdf',
+        'https://staging.deriv.com/tnc/risk-disclosure.pdf',
         'https://play.google.com/store/apps/details?id=com.deriv.app',
         'https://staging.deriv.com/markets/exchange-traded-funds/',
         'https://staging.deriv.com/trade-types/options/digital-options/up-and-down/',
@@ -117,7 +117,7 @@ export class allLinks {
         'https://staging.deriv.com/who-we-are/',
         'https://staging.deriv.com/why-choose-us/',
         'https://staging.deriv.com/partners/',
-        'https://staging.deriv.com/contact_us/',   
+        'https://staging.deriv.com/contact-us/',   
         'https://staging.deriv.com/careers/',
         'https://staging.deriv.com/markets/forex/',
         'https://staging.deriv.com/markets/synthetic/',
@@ -138,6 +138,7 @@ export class allLinks {
         'https://staging.deriv.com/tnc/eu/risk-disclosure.pdf',
         'https://staging.deriv.com/partners/deriv-prime/',
         'https://blog.deriv.com/',
+        'https://staging.deriv.com/tnc/risk-disclosure.pdf'
     ];
   }
 
