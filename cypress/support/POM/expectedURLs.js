@@ -49,7 +49,6 @@ export class allLinks {
         'https://bot.deriv.com/',
         'https://appgallery.huawei.com/app/C103801913',
         'https://apps.apple.com/my/app/deriv-go-online-trading-app/id1550561298',
-        'https://t.me/Derivchannelofficial',
         'https://staging.deriv.com/tnc/risk-disclosure.pdf'
 
     ];
