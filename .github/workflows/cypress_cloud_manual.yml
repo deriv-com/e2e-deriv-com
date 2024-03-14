@@ -56,7 +56,7 @@ jobs:
         CYPRESS_BASE_URL: "${{ github.event.inputs.environment }}"
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
-        CYPRESS_PROJECT_ID: "c4ss4g"
+        CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_CRON_PROJECT_ID}}
         # Set test env variables
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
