@@ -81,15 +81,12 @@ export class allLinks {
         'https://staging.deriv.com/deriv-go/',
         'https://staging.deriv.com/dbot/',
         'https://deriv.statuspage.io/',
-        'https://staging.deriv.com/regulatory/Deriv_(FX)_Ltd.pdf',
-        'https://staging.deriv.com/regulatory/Deriv_(BVI)_Ltd.pdf',
         'https://www.facebook.com/derivdotcom',
         'https://twitter.com/derivdotcom/',
         'https://www.instagram.com/deriv_official',
         'https://www.linkedin.com/company/derivdotcom/',
         'https://derivlife.com/',
         'https://staging.deriv.com/our-principles/',
-        'https://staging.deriv.com/regulatory/Deriv_(V)_Ltd.pdf',
         'https://www.youtube.com/@deriv',
         'https://staging.deriv.com/tnc/risk-disclosure.pdf',
         'https://play.google.com/store/apps/details?id=com.deriv.app',
@@ -104,6 +101,7 @@ export class allLinks {
         'https://appgallery.huawei.com/app/C103801913',
         'https://apps.apple.com/my/app/deriv-go-online-trading-app/id1550561298',
         'https://t.me/Derivchannelofficial',
+    
     ];
     static ExpectedLinks_EU = [
         'https://staging.deriv.com/?region=at',
@@ -137,7 +135,6 @@ export class allLinks {
         'https://staging.deriv.com/tnc/eu/risk-disclosure.pdf',
         'https://staging.deriv.com/partners/deriv-prime/',
         'https://blog.deriv.com/',
-        'https://staging.deriv.com/tnc/risk-disclosure.pdf'
     ];
   }
 
