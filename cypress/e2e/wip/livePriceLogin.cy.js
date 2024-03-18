@@ -43,7 +43,7 @@ function login () {
   loading_check()
 }
 
-describe("QATEST-1330 Add scenario on clicking buy/sell will redirect to Trader's Hub for logged in user", () => {
+describe("QATEST-1330 Live Price: Check on Buy/Sell buttons as a logged in user", () => {
   
   it("Should able to redirect to Trader's Hub upon clicking on buy button", () => {
     cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"desktop")
