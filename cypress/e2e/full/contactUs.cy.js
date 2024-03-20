@@ -89,7 +89,8 @@ describe('QATEST-1659 - should validate the Career Home page in desktop', () => 
             cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
             homeBanner.elements.aboutUsMenu().should('be.visible').click()
             homeBanner.elements.careers().should('be.visible').first().click()
-            careersHomepage('desktop','EU')
+            careersHomepage('desktop','EU'
+            test test
     
  })
 })
