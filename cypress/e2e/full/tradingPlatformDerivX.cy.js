@@ -46,7 +46,6 @@ function validate_derivxpage(region)
     cy.findByRole('link', { name: 'Google Play', exact: true }).click()
     cy.findByRole('link', { name: 'App Store', exact: true }).click()
     cy.findByRole('link', { name: 'Use it on your Web Browser' }).click()
-      
 
     if (region === 'ROW') {   
         const urlDetails = [
