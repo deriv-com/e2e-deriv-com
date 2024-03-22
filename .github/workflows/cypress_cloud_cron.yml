@@ -3,9 +3,10 @@ name: Daily Cron for Smoke Tests
 on:
   schedule:
     - cron: '0 0 * * 1-5' # Runs every day (Monday to Friday) at 0:00 GMT
+    - cron: '15 0 * * 1-5' # Runs every day (Monday to Friday) at 0:15 GMT
 
 jobs:
-  cypress-run:
+  smoke-run:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false # https://github.com/cypress-io/github-action/issues/48
@@ -15,6 +16,21 @@ jobs:
     steps:
     - name: Checkout external repository with Cypress tests
       uses: actions/checkout@v4
+      if: github.event.schedule == '0 0 * * 1-5'
+      with:
+        repository: deriv-com/e2e-deriv-com # Replace with your repository name
+
+  full-run:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
+      matrix:
+        containers: [1,2,3,4,5] # Uses 5 instance
+
+    steps:
+    - name: Checkout external repository with Cypress tests
+      uses: actions/checkout@v4
+      if: github.event.schedule != '0 0 * * 1-5'
       with:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
