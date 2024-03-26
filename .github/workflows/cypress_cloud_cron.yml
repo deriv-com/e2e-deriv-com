@@ -7,6 +7,7 @@ on:
 
 jobs:
   smoke-run:
+    if: github.event.schedule == '0 0 * * 1-5'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false # https://github.com/cypress-io/github-action/issues/48
@@ -16,7 +17,6 @@ jobs:
     steps:
     - name: Checkout external repository with Cypress tests
       uses: actions/checkout@v4
-      if: github.event.schedule == '0 0 * * 1-5'
       with:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
@@ -54,6 +54,7 @@ jobs:
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
 
   full-run:
+    if: github.event.schedule != '0 0 * * 1-5'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false # https://github.com/cypress-io/github-action/issues/48
@@ -63,7 +64,6 @@ jobs:
     steps:
     - name: Checkout external repository with Cypress tests
       uses: actions/checkout@v4
-      if: github.event.schedule != '0 0 * * 1-5'
       with:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
