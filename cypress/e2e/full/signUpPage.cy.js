@@ -1,5 +1,4 @@
 import '@testing-library/cypress/add-commands'
-import signUpPage from '../../support/POM/signUpPage'
 
 function checkSignUpPage () {
     cy.findByRole('heading', { name: 'Join over 2.5 million traders' }).should('be.visible')
