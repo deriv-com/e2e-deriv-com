@@ -26,7 +26,7 @@ function verificationIsSent () {
     cy.findByRole('link', { name: 'Didn\'t receive your email?' }).should('be.visible')
 }
 
-describe('QATEST-1613 - should validate the Sign Up page on for ROW on desktop', () => {
+describe('QATEST-1613 - should validate the Sign Up page on desktop', () => {
 
     it('should be able to navigate to Sign Up page for ROW', () => {
         cy.c_visitResponsive(`signup/${Cypress.env('RegionROW')}`,'desktop')
@@ -35,10 +35,6 @@ describe('QATEST-1613 - should validate the Sign Up page on for ROW on desktop',
         enterEmail(email)
         verificationIsSent ()
     })
-})
-})
-
-describe('QATEST-1613 - should validate the Sign Up page on for EU on desktop', () => {
 
     it('should be able to navigate to Sign Up page for EU', () => {
         cy.c_visitResponsive(`signup/${Cypress.env('RegionEU')}`,'desktop')
@@ -49,8 +45,9 @@ describe('QATEST-1613 - should validate the Sign Up page on for EU on desktop', 
     })
 })
 })
+})
 
-describe('QATEST-1613 - should validate the Sign Up page for ROW on mobile', () => {
+describe('QATEST-1613 - should validate the Sign Up page on mobile', () => {
 
     it('should be able to navigate to Sign Up page for ROW', () => {
         cy.c_visitResponsive(`signup/${Cypress.env('RegionROW')}`)
@@ -62,8 +59,6 @@ describe('QATEST-1613 - should validate the Sign Up page for ROW on mobile', () 
     })
 })
 
-describe('QATEST-1613 - should validate the Sign Up page for EU on mobile', () => {
-
     it('should be able to navigate to Sign Up page for EU', () => {
         cy.c_visitResponsive(`signup/${Cypress.env('RegionEU')}`)
         checkSignUpPage ()
@@ -71,5 +66,4 @@ describe('QATEST-1613 - should validate the Sign Up page for EU on mobile', () =
         enterEmail(email)
         verificationIsSent ()
     })
-})
 })
