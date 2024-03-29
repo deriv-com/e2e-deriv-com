@@ -3,7 +3,3 @@ node_modules
 cypress/.DS_Store
 screenshots
 .env
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
