@@ -98,7 +98,6 @@ export class allLinks {
         'https://staging.deriv.com/trade-types/options/',
         'https://smarttrader.deriv.com/',
         'https://bot.deriv.com/',
-        'https://appgallery.huawei.com/app/C103801913',
         'https://apps.apple.com/my/app/deriv-go-online-trading-app/id1550561298',
         'https://t.me/Derivchannelofficial',
     

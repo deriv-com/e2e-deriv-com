@@ -82,6 +82,7 @@ describe('QATEST-97047 - should Compare URL in production and staging', () => {
     cy.clearAllLocalStorage()
     CurrentLinks = []
     cy.c_visitResponsive('', 'desktop');
+    cy.c_waitForPageLoad()
     cy.get("a").each(link => {
       const href = link.prop('href');
       cy.wrap(IinitialList).invoke('push', href);
