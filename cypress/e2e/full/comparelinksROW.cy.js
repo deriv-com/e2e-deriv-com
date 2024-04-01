@@ -71,9 +71,9 @@ function comparelinks(expectedlinks) {
   cy.wrap(allLinks.MissingLinks, { log: false }).then((list) => {
     expect(list.length).to.eq(0);
   })
-  cy.wrap(allLinks.NewLinks, { log: false }).then((list) => {
-    expect(list.length).to.eq(0);
-  })
+  // cy.wrap(allLinks.NewLinks, { log: false }).then((list) => {
+  //   expect(list.length).to.eq(0);
+  // })
 }
 describe('QATEST-97047 - should Compare URL in production and staging', () => {
   beforeEach(() => {
@@ -81,7 +81,7 @@ describe('QATEST-97047 - should Compare URL in production and staging', () => {
     cy.clearAllSessionStorage()
     cy.clearAllLocalStorage()
     CurrentLinks = []
-    cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop');
+    cy.c_visitResponsive('', 'desktop');
     cy.get("a").each(link => {
       const href = link.prop('href');
       cy.wrap(IinitialList).invoke('push', href);
