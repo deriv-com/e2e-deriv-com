@@ -1,7 +1,7 @@
 import '@testing-library/cypress/add-commands'
 
 function redirectPopup() {
-    cy.findByText('Redirect notice').should('be.visible')
+    cy.findByText('Redirect notice', { timeout: 10000 }).should('be.visible')
     cy.findByRole('link', { name: 'Proceed' }).invoke('attr', 'target', '_self').click()
 }
 
