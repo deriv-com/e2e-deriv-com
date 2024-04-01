@@ -36,7 +36,7 @@ function checkHeroBanner(region)
 
 describe('QATEST-1315 & 1310 - Validate Hero banner message', () => {
   it('should have correct home banner content', () => {
-    cy.c_visitResponsive(Cypress.env('RegionROW'))
+    cy.c_visitResponsive('')
     cy.findByText('Trade CFDs and options on global financial markets, all in one place with 24/7 trading and worldwide support.').click()
     checkHeroBanner('ROW')
     cy.c_visitResponsive(Cypress.env('RegionEU'))
