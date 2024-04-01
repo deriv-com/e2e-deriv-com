@@ -80,7 +80,7 @@ function validate_derivxpage(region)
 describe('QATEST-1571 - validate the derivx page', () => {
 
     it('should be able to navigate to derivx page from home page and validate the page content and links for ROW in desktop', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+        cy.c_visitResponsive('', 'desktop')
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findAllByText('Deriv X').eq(0).should('be.visible').click()
         validate_derivxpage('ROW')
@@ -88,7 +88,7 @@ describe('QATEST-1571 - validate the derivx page', () => {
     
    
     it('should be able to navigate to derivx page from home page and validate the page content and links for ROW in mobile', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'))
+        cy.c_visitResponsive('')
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.derivxLink().should('be.visible').click()
