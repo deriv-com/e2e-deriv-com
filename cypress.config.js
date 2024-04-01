@@ -17,7 +17,6 @@ module.exports = defineConfig({
   },
   env: {
     RegionEU: 'https://staging.eu-deriv-com-pages.pages.dev',
-    RegionROW: 'https://staging.row-deriv-com-pages.pages.dev',
     RegionDIEL: '/?region=za',
     skipROWTests: false,
     email: 'test@example.com',
