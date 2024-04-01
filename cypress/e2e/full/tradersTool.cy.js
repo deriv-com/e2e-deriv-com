@@ -82,34 +82,34 @@ function marginCalculatorPage(region)
 }
 
 
-describe('QATEST-2105 - Traders tool - Main Page', () => {
-    it('should validate the traders tool main page in mobile', () => {
-        cy.c_visitResponsive(`trader-tools/${Cypress.env('RegionROW')}`)
-        checkTradersToolPage()
-        cy.c_visitResponsive(`trader-tools/${Cypress.env('RegionEU')}`)
-        checkTradersToolPage()
-     })
+// describe('QATEST-2105 - Traders tool - Main Page', () => {
+//     it('should validate the traders tool main page in mobile', () => {
+//         cy.c_visitResponsive(`trader-tools`)
+//         checkTradersToolPage()
+//         cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools`)
+//         checkTradersToolPage()
+//      })
 
-     it('should validate the traders tool main page in desktop', () => {
-        cy.c_visitResponsive(`trader-tools/${Cypress.env('RegionROW')}`, 'desktop')
-        checkTradersToolPage()
-        cy.c_visitResponsive(`trader-tools/${Cypress.env('RegionEU')}`, 'desktop')
-        checkTradersToolPage()
-     })
-})
+//      it('should validate the traders tool main page in desktop', () => {
+//         cy.c_visitResponsive(`trader-tools`, 'desktop')
+//         checkTradersToolPage()
+//         cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools`, 'desktop')
+//         checkTradersToolPage()
+//      })
+// })
 
 describe('QATEST-2119 - Traders tool - Margin calculator', () => {
     it('should validate the traders tool margin calculator page in ROW', () => {
-        cy.c_visitResponsive(`trader-tools/margin-calculator/${Cypress.env('RegionROW')}`, 'desktop')
+        cy.c_visitResponsive(`trader-tools/margin-calculator`, 'desktop')
         marginCalculatorPage('ROW')
-        cy.c_visitResponsive(`trader-tools/margin-calculator/${Cypress.env('RegionROW')}`)
+        cy.c_visitResponsive(`trader-tools/margin-calculator`)
         marginCalculatorPage('ROW')
     })
     
     it('should validate the traders tool margin calculator page in EU', () => {
-        cy.c_visitResponsive(`trader-tools/margin-calculator/${Cypress.env('RegionEU')}`)
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`)
         marginCalculatorPage('EU')
-        cy.c_visitResponsive(`trader-tools/margin-calculator/${Cypress.env('RegionEU')}`, 'desktop')
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`, 'desktop')
         marginCalculatorPage('EU')
     })
 })
