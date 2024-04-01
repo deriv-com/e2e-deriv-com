@@ -243,17 +243,3 @@ describe('Validate Footer and Popup Icons', () => {
   // })
 })
 
-//Remove this test for now, as the Vercel Url doesn't support it.
-
-// describe('QATEST-1453 - Validate Spanish Language Change', () => {
-//   beforeEach(() => {
-//     cy.c_visitResponsive(Cypress.env('RegionEU'))
-
-//   })
-
-//   it('Select Spanish and check with header changed', () => {
-//     cy.findByText('EN', { exact: true }).click()
-//     cy.findByText('Español').click()
-//     cy.findByRole('heading', { name: 'Un bróker, innumerables oportunidades de operación' })
-//   })
-// })
