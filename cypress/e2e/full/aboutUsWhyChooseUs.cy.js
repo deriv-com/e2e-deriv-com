@@ -1,5 +1,4 @@
 import '@testing-library/cypress/add-commands'
-import homeBanner from '../../support/POM/homePage'
 
 function validate_AboutUs_whyChooseUs()
 {
@@ -58,13 +57,13 @@ describe('QATEST-1647 - should validate the About Us - Why choose us', () =>
 {
 
     it('should validate Why Choose Us page for EU', () => {
-        cy.c_visitResponsive(`/why-choose-us/${Cypress.env('RegionEU')}`, 'desktop')
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/why-choose-us`, 'desktop')
 
         validate_AboutUs_whyChooseUs()
     })
 
     it('should validate Why Choose Us page for ROW', () => {
-        cy.c_visitResponsive(`/why-choose-us/${Cypress.env('RegionROW')}`, 'desktop')
+        cy.c_visitResponsive(`/why-choose-us`, 'desktop')
        
         validate_AboutUs_whyChooseUs()
     })
@@ -75,13 +74,13 @@ describe('QATEST-1647- Responsive - should validate the About Us - Why choose us
 {
     
     it('should validate Why Choose Us page for EU', () => {
-        cy.c_visitResponsive(`/why-choose-us/${Cypress.env('RegionEU')}`)
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/why-choose-us`)
        
         validate_AboutUs_whyChooseUs()
     })
 
     it('should validate Why Choose Us page for ROW', () => {
-        cy.c_visitResponsive(`/why-choose-us/${Cypress.env('RegionROW')}`)
+        cy.c_visitResponsive(`/why-choose-us`)
        
         validate_AboutUs_whyChooseUs()
     })
