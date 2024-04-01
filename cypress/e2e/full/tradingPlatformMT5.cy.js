@@ -41,7 +41,7 @@ const demotradetype = {
 
 function proceedEU(region)
     {
-      if (region === 'RegionEU'){
+      if (region === 'EU'){
         cy.findByText('Redirect notice').should('be.visible')
         cy.findByRole('link', { name: 'Proceed' }).click()
       }
@@ -81,6 +81,8 @@ function validate_dmt5page(region)
       cy.findByRole('img', {name: `${realaccount.realimg}`}).scrollIntoView().should('be.visible')
     }})
 
+    cy.findByText('Real account').click()
+
     cy.findByRole('link', { name: 'sign in' }).click()
     cy.findByText('Welcome!').should('be.visible')
     cy.go('back')
@@ -95,12 +97,13 @@ function validate_dmt5page(region)
     
 
     cy.findByRole('img', { name: 'DMT5 margin trading calculator' }).scrollIntoView().should("be.visible", {timeout: 50000,})
-    cy.get('.carousel-style__StyledChevron-sc-tq0hsb-5.carousel-style__ChevronRight-sc-tq0hsb-8.cxwUxz.idFIDL').click()
+    // TODO: `.carousel-style__StyledChevron-sc-1wwuyp8-5.carousel-style__ChevronRight-sc-1wwuyp8-8.kDISbi.jVDjEi` need to be changed
+    cy.get('.carousel-style__StyledChevron-sc-1wwuyp8-5.carousel-style__ChevronRight-sc-1wwuyp8-8.kDISbi.jVDjEi').click()
     cy.findByRole('img', {name: 'DMT5 swap trading calculator'}).should('be.visible')
     cy.findByRole('link', {name: 'Try our swap calculator'}).click()
     cy.url().should('include', 'swap')
     cy.go('back')
-    cy.get('.typography__Text-sc-10mkw78-0.typography__LinkText-sc-10mkw78-2.gYcoeS.lkBhkX').click()
+
     cy.findByRole('link', {name: 'Trade without commission'}).click()
 
     cy.findByRole('link', {name: 'Google Play'}).click()
@@ -158,7 +161,7 @@ describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
     })
 
     it('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+        cy.c_visitResponsive('', 'desktop')
         homeBanner.elements.tradeMenu().click()
         cy.findAllByText('Deriv MT5').eq(0).should('be.visible').click()
         validate_dmt5page('ROW')
@@ -177,7 +180,7 @@ describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
     })
 
     it('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'))
+        cy.c_visitResponsive('')
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.mt5Link().should('be.visible').click()
