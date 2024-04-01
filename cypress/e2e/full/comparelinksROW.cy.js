@@ -71,9 +71,9 @@ function comparelinks(expectedlinks) {
   cy.wrap(allLinks.MissingLinks, { log: false }).then((list) => {
     expect(list.length).to.eq(0);
   })
-  // cy.wrap(allLinks.NewLinks, { log: false }).then((list) => {
-  //   expect(list.length).to.eq(0);
-  // })
+  cy.wrap(allLinks.NewLinks, { log: false }).then((list) => {
+    expect(list.length).to.eq(0);
+  })
 }
 describe('QATEST-97047 - should Compare URL in production and staging', () => {
   beforeEach(() => {
