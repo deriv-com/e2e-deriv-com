@@ -4,7 +4,8 @@ describe('QATEST-1266 - deriv.com ROW home page should be opened with the url as
     const checkDerivComROWLayout = (layout) => {
         cy.c_visitResponsive('', layout , true) 
         const baseUrl = Cypress.config('baseUrl').toLowerCase();
-        const urlToMatch = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
+        cy.log('baseUrl', baseUrl)
+        const urlToMatch = baseUrl.endsWith('/') ? baseUrl : baseUrl + "/"
         cy.url().should('eq', urlToMatch)
         cy.findByText('Trade CFDs and options on global financial markets, all in one place with 24/7 trading and worldwide support.').should('be.visible')
     }

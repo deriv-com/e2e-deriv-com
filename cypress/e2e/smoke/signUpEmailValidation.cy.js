@@ -20,6 +20,7 @@ function enterValidEmail(email)
 describe('QATEST-1395 - Sign up Section: Email validation', () => {
   it('should validate the behavior when invalid and valid email id is entered in signup section.', () => {
   cy.c_visitResponsive('')
+  cy.c_waitForPageLoad()
   cy.contains('Open demo account').click({force: true})
   cy.c_generateRandomEmail('@.com').then((email) => {
     enterInvalidEmail(email)

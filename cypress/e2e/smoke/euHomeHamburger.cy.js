@@ -6,6 +6,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
   //Click through menu-items and ensure links are valid and load the next page.
   it('should have the correct hamburger menu', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_waitForPageLoad()
 
     // Trade Types
   homeBanner.elements.hamBurgerMenu().click()
@@ -122,6 +123,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
     // Resources
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_waitForPageLoad()
 
   homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.resourcesMenu().should('be.visible').click()
@@ -154,9 +156,10 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
     // Legal
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_waitForPageLoad()
 
   homeBanner.elements.hamBurgerMenu().click()
-    homeBanner.elements.legalMenu().click()
+    homeBanner.elements.legalMenu().should('be.visible').click()
     homeBanner.elements.regulatoryInfo().click()
     cy.findByRole('heading', { name: 'Regulatory information' }).should(
       'be.visible'
@@ -197,6 +200,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
   beforeEach(() => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_waitForPageLoad()
   })
 
   it('Validate hamburger menu operation', () => {
