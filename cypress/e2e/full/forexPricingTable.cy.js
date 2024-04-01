@@ -67,7 +67,7 @@ for (let itr = 1; itr <= 3; itr++) {
 describe('QATEST1320 - Validating the updates of pricing table - ROW & EU', () => {
 
 it('should navigate to forex pricing table and check whether the values are getting updated - ROW.', () => {
-    cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+    cy.c_visitResponsive('', 'desktop')
     checkForexPricing()
 })
 
