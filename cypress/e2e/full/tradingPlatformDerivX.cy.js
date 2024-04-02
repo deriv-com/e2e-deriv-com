@@ -89,8 +89,8 @@ describe('QATEST-1571 - validate the derivx page', () => {
    
     it('should be able to navigate to derivx page from home page and validate the page content and links for ROW in mobile', () => {
         cy.c_visitResponsive('')
-        cy.c_waitForPageLoad()
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
+        cy.c_waitForPageLoad()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.derivxLink().should('be.visible').click()
         validate_derivxpage('ROW')

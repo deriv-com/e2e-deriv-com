@@ -108,6 +108,7 @@ function check_partner_menu(region) {
 function check_hamburger_menu()
  {
     homeBanner.elements.hamBurgerMenu().should('be.visible').click()
+    cy.c_waitForPageLoad()
     homeBanner.elements.tradeMenu().should('be.visible')
     homeBanner.elements.marketsMenu().should('be.visible')
     homeBanner.elements.aboutUsMenu().should('be.visible')
