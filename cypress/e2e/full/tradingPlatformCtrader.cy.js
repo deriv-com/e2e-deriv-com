@@ -70,6 +70,7 @@ describe('QATEST-23425 - should validate the cTrader page in responsive', () => 
 
     it('should be able to navigate to cTrader page from home page and validate the page content and links in Mobile', () => {
         cy.c_visitResponsive('')
+        cy.c_waitForPageLoad()
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         cy.c_waitForPageLoad()
         homeBanner.elements.tradeMenu().should('be.visible').click()
