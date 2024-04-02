@@ -107,6 +107,7 @@ function check_partner_menu(region) {
 
 function check_hamburger_menu()
  {
+    cy.c_waitForPageLoad()
     homeBanner.elements.hamBurgerMenu().should('be.visible').click()
     cy.c_waitForPageLoad()
     homeBanner.elements.tradeMenu().should('be.visible')
