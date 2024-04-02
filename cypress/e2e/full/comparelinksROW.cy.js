@@ -11,6 +11,7 @@ var IinitialList = []
 var len
 
 function comparelinks(expectedlinks) {
+  cy.clearAllCookies()
   if (CurrentLinks.length == expectedlinks.length) {
     cy.log('Lengths are equal.');
     try {
