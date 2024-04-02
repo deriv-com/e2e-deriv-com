@@ -8,6 +8,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
     if (Cypress.env('skipROWTests') == false) {
       cy.c_visitResponsive('', 'small')
       //Trade Types
+      cy.c_waitForPageLoad()
       homeBanner.elements.hamBurgerMenu().click()
       homeBanner.elements.tradeMenu().click()
       homeBanner.elements.optionsMenu().click()

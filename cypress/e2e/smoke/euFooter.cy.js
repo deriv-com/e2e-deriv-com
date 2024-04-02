@@ -41,7 +41,6 @@ describe('QATEST-1422 Footer EU Responsive', () => {
 
   it('should display EU footer and contain valid links.', () => {
     footer.elements.cookiesAcceptButton().click()
-
     footer.elements.dielLicenceText().should('be.visible')
     footer.elements.dfxLicenceText().should('not.exist')
     footer.elements.bviLicenceText().should('not.exist')
