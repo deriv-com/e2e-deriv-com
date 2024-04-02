@@ -9,6 +9,7 @@ on:
         options:
         - https://staging.deriv.com/
         - https://deriv.com/
+        - https://webflow.deriv.com/
       suite:
         type: choice
         description: Run smoke or full test suite
