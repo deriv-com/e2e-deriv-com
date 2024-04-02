@@ -98,7 +98,7 @@ export class allLinks {
         'https://staging.deriv.com/trade-types/options/',
         'https://smarttrader.deriv.com/',
         'https://bot.deriv.com/',
-        'https://appgallery.huawei.com/app/C103801913',
+        // 'https://appgallery.huawei.com/app/C103801913',    ## enable this line if checking cypress/e2e/full/comparelinksROW.cy.js locally. 
         'https://apps.apple.com/my/app/deriv-go-online-trading-app/id1550561298',
         'https://t.me/Derivchannelofficial',
     
