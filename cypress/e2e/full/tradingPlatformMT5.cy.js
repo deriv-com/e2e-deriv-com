@@ -176,7 +176,6 @@ describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
     it('should be able to navigate to dmt5 page from home page and validate the page content and links for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
-        cy.c_waitForPageLoad()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.mt5Link().should('be.visible').click()
         validate_dmt5page('EU')
@@ -185,7 +184,6 @@ describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
     it('should be able to navigate to dmt5 page from home page and validate the page content and links for ROW', () => {
         cy.c_visitResponsive('')
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
-        cy.c_waitForPageLoad()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.mt5Link().should('be.visible').click()
         validate_dmt5page('ROW')
