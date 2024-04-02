@@ -11,7 +11,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 
 Cypress.Commands.add('c_waitForPageLoad',()=>{
-  cy.findByRole("button", { name: "whatsapp icon" ,timeout:30000 }).should("be.visible")
+  cy.findByRole("button", { name: "whatsapp icon" ,timeout:35000 }).should("be.visible")
 })
 
 Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
