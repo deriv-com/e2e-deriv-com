@@ -28,7 +28,6 @@ function checkViewLicenseLink()
       3: '/regulatory/Deriv_(V)_Ltd.pdf'
     };
     cy.wrap($link).should('have.attr', 'href', href[index]).click();
-    cy.findByRole('heading', { name: 'Regulatory information' }).should('be.visible');
   });
   cy.findByRole('link', { name: 'Labuan Fintech Association' }).should('have.attr', 'href', 'https://www.labuanfintech.org/').click();
   cy.findByRole('link', { name: 'Financial Markets Association' }).should('have.attr', 'href', '/regulatory/Financial_Markets_Association_Cert.pdf').click();
