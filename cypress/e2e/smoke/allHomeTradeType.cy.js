@@ -42,24 +42,24 @@ function checkTradeTypes(region, index = 0) {
 
 describe('QATEST-1342 Trade Types - EU', () => {
   it('should check trade type section is visible and validate the navigation of learn more link in mobile for EU', () => {
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU') )
     checkTradeTypes('EU')
   });
 
   it('should check trade type section is visible and validate the navigation of learn more link in desktop for EU', () => {
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+    cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
     checkTradeTypes('EU')
   });
 });
 
 describe('QATEST-1336 Trade Types - ROW', () => {
   it('should check trade type section is visible and validate the navigation of learn more link in mobile for ROW', () => {
-    cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
+    cy.c_visitResponsive('')
     checkTradeTypes('ROW')
   });
 
   it('should check trade type section is visible and validate the navigation of learn more link in desktop for ROW', () => {
-    cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+    cy.c_visitResponsive('', {size:'desktop'})
     checkTradeTypes('ROW')
   });
 });

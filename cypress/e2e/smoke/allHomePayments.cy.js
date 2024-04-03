@@ -26,7 +26,7 @@ function c_validatePaymentSection(region)
 
 describe('QATEST-118896 - Validate Homepage Payment methods for ROW', () => {
     it('should check whether the payment method section is visible and learn more link is working in ROW.', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'))
+        cy.c_visitResponsive('')
         c_validatePaymentSection('ROW')
       })
   })

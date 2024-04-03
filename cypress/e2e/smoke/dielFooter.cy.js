@@ -5,7 +5,7 @@ import responsiblePage from '../../support/POM/responsiblePage'
 
 describe('QATEST-71237 Footer DIEL Responsive', () => {
   beforeEach(() => {
-    cy.c_visitResponsive(Cypress.env('RegionDIEL'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionDIEL'))
   })
 
   const externalSocialUrls = Cypress.config('externalSocialUrls')

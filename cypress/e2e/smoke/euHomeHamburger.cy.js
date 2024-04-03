@@ -5,7 +5,7 @@ import footer from '../../support/POM/commonPage'
 describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Including Trade Types)', () => {
   //Click through menu-items and ensure links are valid and load the next page.
   it('should have the correct hamburger menu', () => {
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'), {waitLoad: true})
 
     // Trade Types
   homeBanner.elements.hamBurgerMenu().click()
@@ -121,7 +121,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
     homeBanner.elements.crossIcon().click() 
 
     // Resources
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'), {waitLoad: true})
 
   homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.resourcesMenu().should('be.visible').click()
@@ -153,10 +153,10 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
     homeBanner.elements.statusPage().should('be.visible')
 
     // Legal
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'),  {waitLoad: true})
 
   homeBanner.elements.hamBurgerMenu().click()
-    homeBanner.elements.legalMenu().click()
+    homeBanner.elements.legalMenu().should('be.visible').click()
     homeBanner.elements.regulatoryInfo().click()
     cy.findByRole('heading', { name: 'Regulatory information' }).should(
       'be.visible'
@@ -196,7 +196,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
 describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
   beforeEach(() => {
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'),{waitLoad: true})
   })
 
   it('Validate hamburger menu operation', () => {

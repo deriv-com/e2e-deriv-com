@@ -107,6 +107,7 @@ function check_partner_menu(region) {
 
 function check_hamburger_menu()
  {
+    cy.c_waitForPageLoad()
     homeBanner.elements.hamBurgerMenu().should('be.visible').click()
     homeBanner.elements.tradeMenu().should('be.visible')
     homeBanner.elements.marketsMenu().should('be.visible')
@@ -118,7 +119,7 @@ function check_hamburger_menu()
 
 describe('QATEST-1298 - should validate home page header menu', () => {
     it('should be able to validate homepage header for ROW website', () => {
-        cy.c_visitResponsive(`/${Cypress.env('RegionROW')}`)
+        cy.c_visitResponsive('')
         check_homepage_header()
         check_hamburger_menu()
         check_trade_menu('ROW')
@@ -131,7 +132,7 @@ describe('QATEST-1298 - should validate home page header menu', () => {
     })
 
     it('should be able to validate homepage header for EU website', () => {
-        cy.c_visitResponsive(`/${Cypress.env('RegionEU')}`)
+        cy.c_visitResponsive(Cypress.env('RegionEU'))
         check_homepage_header()
         check_hamburger_menu()
         check_trade_menu('EU')

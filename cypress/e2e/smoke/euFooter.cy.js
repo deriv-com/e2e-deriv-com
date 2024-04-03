@@ -5,7 +5,7 @@ import responsiblePage from '../../support/POM/responsiblePage'
 
 describe('QATEST-1422 Footer EU Responsive', () => {
   beforeEach(() => {
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'))
   })
 
   const externalSocialUrls = Cypress.config('externalSocialUrls')
@@ -41,7 +41,6 @@ describe('QATEST-1422 Footer EU Responsive', () => {
 
   it('should display EU footer and contain valid links.', () => {
     footer.elements.cookiesAcceptButton().click()
-
     footer.elements.dielLicenceText().should('be.visible')
     footer.elements.dfxLicenceText().should('not.exist')
     footer.elements.bviLicenceText().should('not.exist')

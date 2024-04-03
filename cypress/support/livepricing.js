@@ -229,15 +229,15 @@ function etf_eu(){
 Cypress.Commands.add('c_forexViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       forex_instruments_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       forex_instruments_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       forex_instruments_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -249,15 +249,15 @@ Cypress.Commands.add('c_forexViewall', (site, view) => {
 Cypress.Commands.add('c_derivedindicesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       derivedindices_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       derivedindices_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       derivedindices_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -269,15 +269,15 @@ Cypress.Commands.add('c_derivedindicesViewall', (site, view) => {
 Cypress.Commands.add('c_stockindicesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       stockindices_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       stockindices_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       stockindices_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -289,15 +289,15 @@ Cypress.Commands.add('c_stockindicesViewall', (site, view) => {
 Cypress.Commands.add('c_cryptocurrenciesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       cryptocurrencies_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       cryptocurrencies_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       cryptocurrencies_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -309,15 +309,15 @@ Cypress.Commands.add('c_cryptocurrenciesViewall', (site, view) => {
 Cypress.Commands.add('c_commoditiesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', 'desktop')
       commodities_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       commodities_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       commodities_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -329,15 +329,15 @@ Cypress.Commands.add('c_commoditiesViewall', (site, view) => {
 Cypress.Commands.add('c_etfViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       etf_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       etf_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       etf_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))

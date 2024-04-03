@@ -64,6 +64,7 @@ class footer {
   }
 
   areSocialLinksCorrect(socialLink, socialWebsiteUrl) {
+    cy.c_waitForPageLoad()
     socialLink().click()
     this.elements.alertDialog().should('be.visible')
     this.elements.alertRedirectMessage().should('be.visible')

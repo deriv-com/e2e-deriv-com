@@ -178,7 +178,7 @@ const checkLinks = (currentLink, region) => {
             } else {
                 regionLink = `${currentLink}${region}`
             }
-            cy.c_visitResponsive(regionLink, 'desktop')
+            cy.c_visitResponsive(regionLink, {size:'desktop'})
             linkDetails.visitedLinks.push(currentLink)
             cy.document().then(doc => {
                 const pageFailed = doc.querySelector('img[alt="Page not found"]')
@@ -202,19 +202,19 @@ describe('QATEST-96657 - Check URL in deriv.com', () => {
         cy.intercept({ resourceType: /xhr|fetch/ }, { log: false }) // to have cleaner logs for this test 
     })
     it('should validate each Url in deriv.com', () => {
-        cy.c_visitResponsive(Cypress.env('RegionDIEL'), 'desktop')
+        cy.c_visitResponsive(Cypress.env('RegionDIEL'), {size:'desktop'})
         linkDetails.visitedLinks.push(`${Cypress.env('RegionDIEL')}`)
         cy.get("a").each(availableLink => {
             const currentLink = availableLink.prop('href')
             checkLinks(currentLink, Cypress.env('RegionDIEL'))
         })
-        cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+        cy.c_visitResponsive(Cypress.env('RegionROW'), {size:'desktop'})
         linkDetails.visitedLinks.push(`${Cypress.env('RegionROW')}`)
         cy.get("a").each(availableLink => {
             const currentLink = availableLink.prop('href')
             checkLinks(currentLink, Cypress.env('RegionROW'))
         })
-        cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+        cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
         linkDetails.visitedLinks.push(`${Cypress.env('RegionEU')}`)
         cy.get("a").each(availableLink => {
             const currentLink = availableLink.prop('href')

@@ -11,6 +11,7 @@ var IinitialList = []
 var len
 
 function comparelinks(expectedlinks) {
+  cy.clearAllCookies()
   if (CurrentLinks.length == expectedlinks.length) {
     cy.log('Lengths are equal.');
     try {
@@ -81,7 +82,7 @@ describe('QATEST-97047 - should Compare URL in production and staging', () => {
     cy.clearAllSessionStorage()
     cy.clearAllLocalStorage()
     CurrentLinks = []
-    cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop');
+    cy.c_visitResponsive('', {waitLoad: true, size:'desktop'});
     cy.get("a").each(link => {
       const href = link.prop('href');
       cy.wrap(IinitialList).invoke('push', href);

@@ -6,7 +6,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
   it('should have correct menu items for ROW', () => {
     //NB. The region switch doesn't work on the EU site at the moment.
     if (Cypress.env('skipROWTests') == false) {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
+      cy.c_visitResponsive('', {waitLoad: true})
       //Trade Types
       homeBanner.elements.hamBurgerMenu().click()
       homeBanner.elements.tradeMenu().click()

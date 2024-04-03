@@ -30,7 +30,7 @@ function checkViewLicenseLink()
 
 describe('QATEST-1644 - Regulatory page', () => {
     it('should validate the content and links in regulatory page for ROW', () => {
-       cy.c_visitResponsive(`/regulatory/${Cypress.env('RegionROW')}`)
+       cy.c_visitResponsive(`/regulatory`)
        cy.findByRole('heading', { name: 'Regulatory information' }).should('be.visible')
        checkRegulatorySection()
        checkViewLicenseLink()
