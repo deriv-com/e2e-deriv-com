@@ -210,6 +210,7 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
     cy.findByText('English').click()
     cy.contains('English').should('be.visible')
     homeBanner.elements.crossIcon().click()
+    
     cy.findByText('Cookies help us to give you a better experience and personalised content on our site.').should('be.visible')
     cy.contains("Don't accept").should('be.visible').click()
     cy.get('[data-testid="warning-pop-up"]').then(($warningPopUp) => $warningPopUp.length > 0 && cy.get('[data-testid="warning-pop-up"] [alt="Close"]').click())
@@ -221,7 +222,6 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
     cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('not.be.visible')
     cy.scrollTo('bottom')
     cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('not.be.visible')
-  
 
  })
 })
