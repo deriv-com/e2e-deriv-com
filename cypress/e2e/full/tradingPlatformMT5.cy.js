@@ -97,7 +97,6 @@ function validate_dmt5page(region)
     
 
     cy.findByRole('img', { name: 'DMT5 margin trading calculator' }).scrollIntoView().should("be.visible", {timeout: 50000,})
-    // TODO: `.carousel-style__StyledChevron-sc-1wwuyp8-5.carousel-style__ChevronRight-sc-1wwuyp8-8.kDISbi.jVDjEi` need to be changed
     cy.get('.carousel-style__StyledChevron-sc-1wwuyp8-5.carousel-style__ChevronRight-sc-1wwuyp8-8.kDISbi.jVDjEi').click()
     cy.findByRole('img', {name: 'DMT5 swap trading calculator'}).should('be.visible')
     cy.findByRole('link', {name: 'Try our swap calculator'}).click()

@@ -18,7 +18,6 @@ function careersHomepage(size, region)
     {
         cy.findByRole('link', { name: 'Locations'}).click()
         cy.findByRole('link', {name: 'Home'}).click()
-        // TODO: `.carousel-style__ChevronRight-sc-1wwuyp8-8` selector also need to be chnaged
         cy.get('.carousel-style__ChevronRight-sc-1wwuyp8-8').click() 
     }
     
@@ -100,7 +99,6 @@ describe('QATEST-1659 - should validate the Career Home page in desktop', () => 
         cy.c_visitResponsive('')
         cy.c_waitForPageLoad()
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
-        cy.c_waitForPageLoad()
         homeBanner.elements.aboutUsMenu().click()
         homeBanner.elements.careers().should('be.visible').click()
         careersHomepage('mobile','ROW')
@@ -110,7 +108,6 @@ describe('QATEST-1659 - should validate the Career Home page in desktop', () => 
         cy.c_visitResponsive(Cypress.env('RegionEU'))
         cy.c_waitForPageLoad()
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
-        cy.c_waitForPageLoad()
         homeBanner.elements.aboutUsMenu().click()
         homeBanner.elements.careers().should('be.visible').click()
         careersHomepage('mobile','EU')

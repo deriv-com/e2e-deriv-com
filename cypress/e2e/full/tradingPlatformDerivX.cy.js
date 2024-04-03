@@ -91,7 +91,6 @@ describe('QATEST-1571 - validate the derivx page', () => {
         cy.c_visitResponsive('')
         cy.c_waitForPageLoad()
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
-        cy.c_waitForPageLoad()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.derivxLink().should('be.visible').click()
         validate_derivxpage('ROW')
