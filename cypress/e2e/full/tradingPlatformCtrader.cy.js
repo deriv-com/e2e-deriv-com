@@ -80,7 +80,7 @@ describe('QATEST-23425 - should validate the cTrader page in responsive', () => 
 describe('QATEST-23425 - should validate the cTrader page in desktop', () => {
 
     it('should be able to navigate to cTrader page from home page and validate the page content and links in Desktop', () => {
-        cy.c_visitResponsive('', {size:'desktop'})
+        cy.c_visitResponsive('', {size:'desktop', waitLoad:true})
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findAllByText('Fast CFDs platform with inbuilt copy trading.').eq(0).should('be.visible').click()
         cTrader_page()
