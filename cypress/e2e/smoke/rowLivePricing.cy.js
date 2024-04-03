@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 describe('QATEST-1320 - Live Pricing table ROW', () => {
   it('should click on all the 6 different markets and check whether the live pricing table for each is displayed.', () => {
-    cy.c_visitResponsive('', 'desktop', undefined, {waitLoad: true})
+    cy.c_visitResponsive('', {waitLoad: true, size:'desktop'})
     cy.c_validateMarkets('row')
     cy.c_checkBuySellButton()
   })

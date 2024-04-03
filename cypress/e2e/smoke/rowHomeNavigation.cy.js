@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 describe('QATEST-1266 - deriv.com ROW home page should be opened with the url as same as deriv.com', () => {
     const checkDerivComROWLayout = (layout) => {
-        cy.c_visitResponsive('', layout , true) 
+        cy.c_visitResponsive('', {size:layout, quickLoad:true}) 
         const baseUrl = Cypress.config('baseUrl').toLowerCase();
         cy.log('baseUrl', baseUrl)
         const urlToMatch = baseUrl.endsWith('/') ? baseUrl : baseUrl + "/"

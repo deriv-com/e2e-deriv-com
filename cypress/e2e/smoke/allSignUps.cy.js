@@ -27,12 +27,12 @@ describe('QATEST-1378 - should validate signup page', () => {
   })
 
   it('should be able to sign up on a ROW desktop', () => {
-    cy.c_visitResponsive('/signup/', 'desktop');
+    cy.c_visitResponsive('/signup/', {size:'desktop'});
     validateSignUpPage()
   })
 
   it('should be able to sign up on a EU desktop', () => {
-    cy.c_visitResponsive(Cypress.env('RegionEU') + '/signup/' , 'desktop');
+    cy.c_visitResponsive(Cypress.env('RegionEU') + '/signup/' , {size:'desktop'});
     validateSignUpPage()
     footer.elements.cfdFloatingBannerLink().should('exist')
   })

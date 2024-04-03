@@ -29,7 +29,7 @@ function verificationIsSent () {
 describe('QATEST-1613 - should validate the Sign Up page on desktop', () => {
 
     it('should be able to navigate to Sign Up page for ROW', () => {
-        cy.c_visitResponsive(`signup`,'desktop')
+        cy.c_visitResponsive(`/signup`,{size:'desktop'})
         checkSignUpPage ()
         cy.c_generateRandomEmail('@test.com').then((email) => {
         enterEmail(email)
@@ -37,7 +37,7 @@ describe('QATEST-1613 - should validate the Sign Up page on desktop', () => {
     })
 
     it('should be able to navigate to Sign Up page for EU', () => {
-        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/signup`,'desktop')
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/signup`,{size:'desktop'})
         checkSignUpPage ()
         cy.c_generateRandomEmail('@test.com').then((email) => {
         enterEmail(email)
@@ -50,7 +50,7 @@ describe('QATEST-1613 - should validate the Sign Up page on desktop', () => {
 describe('QATEST-1613 - should validate the Sign Up page on mobile', () => {
 
     it('should be able to navigate to Sign Up page for ROW', () => {
-        cy.c_visitResponsive(`signup`)
+        cy.c_visitResponsive(`/signup`)
         checkSignUpPage ()
         cy.c_generateRandomEmail('@test.com').then((email) => {
         enterEmail(email)

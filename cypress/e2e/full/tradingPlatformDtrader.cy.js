@@ -57,14 +57,14 @@ function validate_dtraderpage(region)
 describe('QATEST-1529 - should validate the dtrader page in desktop', () => {
 
     it('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
-        cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+        cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findAllByText('Deriv Trader').eq(0).should('be.visible').click();
         validate_dtraderpage('EU')
     })
 
     it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW', () => {
-        cy.c_visitResponsive('', 'desktop')
+        cy.c_visitResponsive('', {size:'desktop'})
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findAllByText('Deriv Trader').eq(0).should('be.visible').click();
         validate_dtraderpage('ROW')
@@ -75,7 +75,7 @@ describe('QATEST-1529 - should validate the dtrader page in desktop', () => {
 describe('QATEST-1536 - should validate the dtrader page in responsive', () => {
     
     it('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
-        cy.c_visitResponsive(Cypress.env('RegionEU'), undefined, undefined, {waitLoad: true})
+        cy.c_visitResponsive(Cypress.env('RegionEU'),{waitLoad: true})
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.dtraderLink().should('be.visible').click()
@@ -83,7 +83,7 @@ describe('QATEST-1536 - should validate the dtrader page in responsive', () => {
     })
 
     it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW', () => {
-        cy.c_visitResponsive('', undefined, undefined, {waitLoad: true})
+        cy.c_visitResponsive('', {waitLoad: true})
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.dtraderLink().should('be.visible').click()

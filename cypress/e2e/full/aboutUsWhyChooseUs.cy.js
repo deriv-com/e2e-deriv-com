@@ -59,13 +59,13 @@ describe('QATEST-1647 - should validate the About Us - Why choose us', () =>
 {
 
     it('should validate Why Choose Us page for EU', () => {
-        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/why-choose-us`, 'desktop')
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/why-choose-us`, {size:'desktop'})
 
         validate_AboutUs_whyChooseUs()
     })
 
     it('should validate Why Choose Us page for ROW', () => {
-        cy.c_visitResponsive(`/why-choose-us`, 'desktop')
+        cy.c_visitResponsive(`/why-choose-us`, {size:'desktop'})
        
         validate_AboutUs_whyChooseUs()
     })
