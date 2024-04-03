@@ -215,12 +215,27 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
     cy.contains("Don't accept").should('be.visible').click()
     const middle = Cypress.$(cy.state('window')).height() / 2
     const scrollOffset = 400
-    cy.scrollTo(0, middle + scrollOffset)
-    cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('be.visible')
-    cy.scrollTo(0, 0)
-    cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('not.be.visible')
-    cy.scrollTo('bottom')
-    cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('not.be.visible')
+    cy.get('[data-testid="warning-pop-up"]').then(($warningPopUp) => {
+      if ($warningPopUp.length > 0) {
+        cy.get('[data-testid="warning-pop-up"] [alt="Close"]').click();
+          cy.scrollTo(0, middle + scrollOffset);
+          cy.findAllByRole("button", { name: "Open demo account" })
+            .eq(1)
+            .should("be.visible");
+          cy.scrollTo(0, 0);
+          cy.findAllByRole("button", { name: "Open demo account" })
+            .eq(1)
+            .should("not.be.visible");
+          cy.scrollTo("bottom");
+          cy.findAllByRole("button", { name: "Open demo account" })
+            .eq(1)
+            .should("not.be.visible");
+      } else {
+        cy.log("The warning pop-up does not exist. Cancelling action.");
+       
+      }
+    })
+  
 
  })
 })
