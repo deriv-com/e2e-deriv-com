@@ -2,6 +2,8 @@ import '@testing-library/cypress/add-commands'
 
 const paymentMethodListRow = ["Oxxo","Zing Pay", "Mastercard", "MTN", "Vodafone", "PayLivre", "StickPay", "BitcoinCash", "BNB", "paysafecard", "Maestro", "M-Pesa", "AirTm", "Skrill 1-Tap", "etherium", "DogeCoin", "SPEI", "Visa", "AstroPay", "Jeton", "bitcoin", "Cardano", "Pago Efectivo", "ozow", "Visa Electron", "MiFinity", "derivP2P", "Pix", "Pago Efectivo", "Maestro"]
 const paymentMethodListEU = ["giropay", "iDeal", "Rapid Transfer", "eps", "przelewy24", "Jeton", "Mastercard", "Maestro", "Visa", "Visa Electron", "Netteler", "Skrill"]
+const paymentMethodListNotExistRow = ["giropay","eps","Rapid Transfer","iDeal"]
+const paymentMethodListNotExistEU = ["Pix","Zing Pay","MTN","Oxxo"]
 
 function c_validatePaymentSection(region)
 {
@@ -13,11 +15,18 @@ function c_validatePaymentSection(region)
     paymentMethodListRow.forEach((method) => {
       cy.findAllByRole('img', { name: method }).first().should('exist')
     })
+    paymentMethodListNotExistRow.forEach((method) => {
+      cy.get('img[alt="' + method + '"]').should('not.exist')
+    })
   }
     else{
-      paymentMethodListEU.forEach((method) => {
+     paymentMethodListEU.forEach((method) => {
       cy.findAllByRole('img', { name: method }).first().should('exist')
-    }) 
+    })
+      paymentMethodListNotExistEU.forEach((method) => {
+        cy.get('img[alt="' + method + '"]').should('not.exist')
+      })
+    
   }
     cy.findByTestId('fast-payment-link').click()
     cy.url().should('include', '/payment-methods/')
