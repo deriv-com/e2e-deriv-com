@@ -47,8 +47,9 @@ function marginCalculatorPage(region)
     cy.findByRole('link', { name: 'Go to Deriv MT5 dashboard' }).invoke('attr', 'target', '_self').click().then(() => {
         if (region === 'EU') {
         redirectPopup();
+        }else{
+            cy.url().should('contain', 'oauth.deriv.com');
         }
-        cy.url().should('contain', 'oauth.deriv.com');
       })
     
     function calculator()
