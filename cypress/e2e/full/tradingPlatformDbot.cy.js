@@ -69,8 +69,7 @@ function Dbot_page()
 describe('QATEST-1548 - should validate the Dbot page in responsive', () => {
 
     it('should be able to navigate to Dbot page from home page and validate the page content and links in Mobile', () => {
-        cy.c_visitResponsive('')
-        cy.c_waitForPageLoad()
+        cy.c_visitResponsive('', undefined, undefined, {waitLoad: true})
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.derivBot().should('be.visible').click()

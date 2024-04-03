@@ -107,11 +107,9 @@ describe('QATEST-2119 - Traders tool - Margin calculator', () => {
     })
     
     it('should validate the traders tool margin calculator page in EU', () => {
-        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`)
-        cy.c_waitForPageLoad()
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`, undefined, undefined, {waitLoad: true})
         marginCalculatorPage('EU')
-        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`, 'desktop')
-        cy.c_waitForPageLoad()
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`, 'desktop', undefined, {waitLoad: true})
         marginCalculatorPage('EU')
     })
 })

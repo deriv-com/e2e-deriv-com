@@ -75,8 +75,7 @@ describe('QATEST-1529 - should validate the dtrader page in desktop', () => {
 describe('QATEST-1536 - should validate the dtrader page in responsive', () => {
     
     it('should be able to navigate to dtrader page from home page and validate the page content and links for EU', () => {
-        cy.c_visitResponsive(Cypress.env('RegionEU'))
-        cy.c_waitForPageLoad()
+        cy.c_visitResponsive(Cypress.env('RegionEU'), undefined, undefined, {waitLoad: true})
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.dtraderLink().should('be.visible').click()
@@ -84,8 +83,7 @@ describe('QATEST-1536 - should validate the dtrader page in responsive', () => {
     })
 
     it('should be able to navigate to dtrader page from home page and validate the page content and links for ROW', () => {
-        cy.c_visitResponsive('')
-        cy.c_waitForPageLoad()
+        cy.c_visitResponsive('', undefined, undefined, {waitLoad: true})
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.dtraderLink().should('be.visible').click()

@@ -14,8 +14,11 @@ Cypress.Commands.add('c_waitForPageLoad',()=>{
   cy.findByRole("button", { name: "whatsapp icon" ,timeout:35000 }).should("be.visible")
 })
 
-Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
+Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad, options={} ) => {
   //Custom command that allows us to use baseUrl + path and detect with this is a responsive run or not.
+  const{
+    waitLoad = false
+    } = options
   cy.log(path);
   if (size === undefined) size = Cypress.env("viewPortSize");
 
@@ -25,6 +28,9 @@ Cypress.Commands.add("c_visitResponsive", (path, size, quickLoad ) => {
 
   cy.visit(path);
   if (quickLoad === undefined){
+    if (waitLoad == true) {
+      cy.c_waitForPageLoad() 
+    }
   if (path.includes("region")) {
     //Wait for relevent elements to appear (based on page)
     cy.log("Home page Selected");
