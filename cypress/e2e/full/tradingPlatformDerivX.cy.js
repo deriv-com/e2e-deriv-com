@@ -22,8 +22,8 @@ function validate_derivxpage(region)
     cy.findByRole('img', { name: 'Multiple charts to view your online trading' }).scrollIntoView().should('be.visible')
     
     cy.findByRole('heading', { name: 'How to get started with a Deriv X account' }).scrollIntoView().should('be.visible')
-    cy.findByText('1. Sign in to your Deriv account. If you don’t have one, sign up for free.').click()
     cy.c_waitForPageLoad()
+    cy.findByText('1. Sign in to your Deriv account. If you don’t have one, sign up for free.').click()
     cy.findByRole('img', { name: 'Deriv X demo account signup page' }).scrollIntoView().should('be.visible')
     cy.findByText('2. Add a Deriv X demo account.').click();
     cy.findByRole('img', { name: 'Deriv X dashboard showing demo account comparison' }).scrollIntoView().should('be.visible')
