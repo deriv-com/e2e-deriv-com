@@ -4,14 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        type: choice
-        description: Select the environment
-        options:
-        - https://staging.deriv.com/
-        - https://deriv.com/
-        - https://pr-3931-update-row-t.deriv-com-preview-links.pages.dev
-        - https://row-pr-3679-update-eu-tr.deriv-com-preview-links.pages.dev/trading-specification/
-        - https://eu-pr-3679-update-eu-tr.deriv-com-preview-links.pages.dev/trading-specification/
+        # type: choice
+        type: string
+        # description: Select the environment
+        description: Paste the testlink
+        # options:
+        # - https://staging.deriv.com/
+        # - https://deriv.com/
       suite:
         type: choice
         description: Run smoke or full test suite
