@@ -4,6 +4,7 @@ describe('QATEST-1328 - Live Pricing table EU', () => {
   it('should click on all the 6 different markets and check whether the live pricing table for each is displayed.', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'))
     cy.c_validateMarkets('eu')
+    cy.c_checkBuySellButton()
   })
 
   it('should click on View All link on all the 6 markets and check whether all instruments for the particular market is displayed - EU desktop.', () => {
