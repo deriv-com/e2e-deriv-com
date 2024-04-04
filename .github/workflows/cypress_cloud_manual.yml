@@ -9,6 +9,9 @@ on:
         options:
         - https://staging.deriv.com/
         - https://deriv.com/
+        - https://pr-3931-update-row-t.deriv-com-preview-links.pages.dev
+        - https://row-pr-3679-update-eu-tr.deriv-com-preview-links.pages.dev/trading-specification/
+        - https://eu-pr-3679-update-eu-tr.deriv-com-preview-links.pages.dev/trading-specification/
       suite:
         type: choice
         description: Run smoke or full test suite
