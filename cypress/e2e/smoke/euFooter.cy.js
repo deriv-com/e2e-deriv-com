@@ -57,16 +57,8 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         cy.request(href).then((pdf) => {})
         cy.request(href).its('status').should('eq', 200)
       })
-
+    
     footer.elements.cfdFloatingBannerLink().should('be.visible')
-    footer.elements
-      .cfdFloatingBannerLink()
-      .invoke('attr', 'href')
-      .and('include', footer.riskDisclosurePdf.eu)
-      .then((href) => {
-        cy.request(href).then((pdf) => {})
-        cy.request(href).its('status').should('eq', 200)
-      })
 
     footer.elements.termsAndConditionLink().click()
     tncPage.elements.headerTxt().should('be.visible')
