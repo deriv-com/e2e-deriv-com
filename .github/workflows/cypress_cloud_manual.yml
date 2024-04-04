@@ -1,4 +1,4 @@
-name: Run Tests Manually
+name: Run Tests Manually on ${{ github.event.inputs.environment }}
 
 on:
   workflow_dispatch:
