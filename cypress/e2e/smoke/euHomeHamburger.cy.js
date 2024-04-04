@@ -210,10 +210,9 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
     cy.findByText('English').click()
     cy.contains('English').should('be.visible')
     homeBanner.elements.crossIcon().click()
-    
     cy.findByText('Cookies help us to give you a better experience and personalised content on our site.').should('be.visible')
     cy.contains("Don't accept").should('be.visible').click()
-    cy.get('[data-testid="warning-pop-up"]').then(($warningPopUp) => $warningPopUp.length > 0 && cy.get('[data-testid="warning-pop-up"] [alt="Close"]').click())
+    cy.findByTestId("warning-pop-up").then(($warningPopUp) => $warningPopUp.length > 0 && cy.findByTestId("warning-pop-up-close-button").click());
     const middle = Cypress.$(cy.state('window')).height() / 2
     const scrollOffset = 400
     cy.scrollTo(0, middle + scrollOffset)
