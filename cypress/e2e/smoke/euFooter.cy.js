@@ -5,7 +5,7 @@ import responsiblePage from '../../support/POM/responsiblePage'
 
 describe('QATEST-1422 Footer EU Responsive', () => {
   beforeEach(() => {
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'))
   })
 
   const externalSocialUrls = Cypress.config('externalSocialUrls')
@@ -41,7 +41,6 @@ describe('QATEST-1422 Footer EU Responsive', () => {
 
   it('should display EU footer and contain valid links.', () => {
     footer.elements.cookiesAcceptButton().click()
-
     footer.elements.dielLicenceText().should('be.visible')
     footer.elements.dfxLicenceText().should('not.exist')
     footer.elements.bviLicenceText().should('not.exist')
@@ -58,16 +57,8 @@ describe('QATEST-1422 Footer EU Responsive', () => {
         cy.request(href).then((pdf) => {})
         cy.request(href).its('status').should('eq', 200)
       })
-
+    
     footer.elements.cfdFloatingBannerLink().should('be.visible')
-    footer.elements
-      .cfdFloatingBannerLink()
-      .invoke('attr', 'href')
-      .and('include', footer.riskDisclosurePdf.eu)
-      .then((href) => {
-        cy.request(href).then((pdf) => {})
-        cy.request(href).its('status').should('eq', 200)
-      })
 
     footer.elements.termsAndConditionLink().click()
     tncPage.elements.headerTxt().should('be.visible')

@@ -137,7 +137,7 @@ Object.entries(languageDetails).forEach((lang) => {
         })
         screenSizes.forEach(screenSize => {
             it(`it should verify language selection from UI on ${screenSize} size`, () => {
-                cy.c_visitResponsive(`${Cypress.env('RegionDIEL')}`, screenSize)
+                cy.c_visitResponsive(`${Cypress.env('RegionDIEL')}`, {size:screenSize})
                 if (screenSize == 'small') {
                     homePage.elements.hamBurgerMenu().click()
                     cy.contains('English').click()
@@ -168,7 +168,7 @@ describe(`QATEST-101611 - Url redirection for all languages`, () => {
         screenSizes.forEach(screenSize=>{
             it(`should verify language redrection for ${lang[1].testLanguage} via link for ${screenSize} size`, () => {
                 redirectionRules.forEach(rule => {
-                    cy.c_visitResponsive(`/${lang[1].urlCode}${rule}`,screenSize)
+                    cy.c_visitResponsive(`/${lang[1].urlCode}${rule}`,{size:screenSize})
                     cy.get('[id="cta-container"]').within(() => {
                         cy.get('h2').should('contain.text', lang[1].redirectionVerify)
                     })

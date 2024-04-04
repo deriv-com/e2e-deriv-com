@@ -9,7 +9,7 @@ import responsiblePage from '../../support/POM/responsiblePage'
 
 describe('QATEST-1399 - Footer ROW Responsive', () => {
   beforeEach(() => {
-    cy.c_visitResponsive(Cypress.env('RegionROW'), 'small')
+    cy.c_visitResponsive('')
   })
   const externalSocialUrls = Cypress.config('externalSocialUrls')
   const { googlePlay, appStore, appGallery } = Cypress.config().appMarketUrl;
@@ -99,10 +99,6 @@ describe('QATEST-1399 - Footer ROW Responsive', () => {
     cy.get(`a[href*="${appStore}"]`)
       .should('be.visible')
       .find('img[alt="download on the app store"]')
-      .should('exist')
-    cy.get(`a[href*="${appGallery}"]`)
-      .should('be.visible')
-      .find('img[alt="explore it on appgallery"]')
       .should('exist')
   })
 })

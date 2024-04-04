@@ -1,5 +1,12 @@
 import '@testing-library/cypress/add-commands'
 
+function redirectPopup() {
+    cy.findByText('Redirect notice', { timeout: 10000 }).should('be.visible')
+    cy.findByRole('link', { name: 'Proceed' }).should('exist')
+    //Todo check as visit causes crashing due to super domain being different.
+    //cy.findByRole('link', { name: 'Proceed' }).invoke('attr', 'target', '_self').click()
+}
+
 function checkTradersToolPage()
 {
     cy.findByRole('heading',{ name: 'Traders’ tools' }).should('be.visible')
@@ -20,21 +27,31 @@ function checkTradersToolPage()
     cy.findByRole('link', { name: 'Traders\' tools' }).click()  
 }
 
-function marginCalculatorPage()
+function marginCalculatorPage(region)
 {
     cy.title().should('eq', 'Margin Calculator')
+    cy.findByRole('link', { name: 'Learn more about margin' }).click()
+    cy.findByRole('heading', { name: 'CFD trading' }).should('be.visible')
+    cy.go(-1)
+    cy.c_waitForPageLoad()
     cy.findByText('Synthetic').click({force: true})
     calculator()
     cy.findByText('Financial').click({force: true})
     calculator()
     cy.findByRole('img', {name: 'Plus'}).click()
     cy.get('[class^="accordion__AccordionHeaderItem"]').should('be.visible')
-    cy.findByRole('img', {name: 'Minus'}).click()
+    cy.findByText('Let’s say you want to trade two lots of EUR/USD with an asset price of 1.10 USD and leverage of 100.').should('be.visible')
+    cy.findByRole('img', {name: 'Minus'}).should('be.visible').click()
     cy.get('[class^="accordion__AccordionHeaderItem"]').should('not.be.visible')
-    cy.findByRole('link', {name: 'Go to Deriv MT5 dashboard'}).click()
     calculatorValidation()
-    cy.findByRole('link', {name: 'Learn more about margin'}).click()
-
+    cy.findByRole('link', { name: 'Go to Deriv MT5 dashboard' }).invoke('attr', 'target', '_self').click().then(() => {
+        if (region === 'EU') {
+        redirectPopup();
+        }else{
+            cy.url().should('contain', 'oauth.deriv.com');
+        }
+      })
+    
     function calculator()
     {
      cy.get('[placeholder="Symbol"]').click()
@@ -63,6 +80,7 @@ function marginCalculatorPage()
      cy.findByRole('img', { name: 'error icon' }).click({force: true})
      cy.get('#assetPrice').click().type('abc')
      cy.contains('Please enter a valid amount, including the decimal point (.), in this format: ####.#').should('be.visible')
+     cy.findByRole('img', { name: 'error icon' }).click({force: true})
 
     }
 }
@@ -70,32 +88,32 @@ function marginCalculatorPage()
 
 describe('QATEST-2105 - Traders tool - Main Page', () => {
     it('should validate the traders tool main page in mobile', () => {
-        cy.c_visitResponsive(`trader-tools/${Cypress.env('RegionROW')}`)
+        cy.c_visitResponsive(`trader-tools`)
         checkTradersToolPage()
-        cy.c_visitResponsive(`trader-tools/${Cypress.env('RegionEU')}`)
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools`)
         checkTradersToolPage()
      })
 
      it('should validate the traders tool main page in desktop', () => {
-        cy.c_visitResponsive(`trader-tools/${Cypress.env('RegionROW')}`, 'desktop')
+        cy.c_visitResponsive(`trader-tools`, {size:'desktop'})
         checkTradersToolPage()
-        cy.c_visitResponsive(`trader-tools/${Cypress.env('RegionEU')}`, 'desktop')
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools`, {size:'desktop'})
         checkTradersToolPage()
      })
 })
 
 describe('QATEST-2119 - Traders tool - Margin calculator', () => {
-    it('should validate the traders tool margin calculator page in mobile', () => {
-        cy.c_visitResponsive(`trader-tools/margin-calculator/${Cypress.env('RegionROW')}`)
-        marginCalculatorPage()
-        cy.c_visitResponsive(`trader-tools/margin-calculator/${Cypress.env('RegionEU')}`)
-        marginCalculatorPage()
+    it('should validate the traders tool margin calculator page in ROW', () => {
+        cy.c_visitResponsive(`trader-tools/margin-calculator`, {size:'desktop'})
+        marginCalculatorPage('ROW')
+        cy.c_visitResponsive(`trader-tools/margin-calculator`)
+        marginCalculatorPage('ROW')
     })
     
-    it('should validate the traders tool margin calculator page in desktop', () => {
-        cy.c_visitResponsive(`trader-tools/margin-calculator/${Cypress.env('RegionROW')}`, 'desktop')
-        marginCalculatorPage()
-        cy.c_visitResponsive(`trader-tools/margin-calculator/${Cypress.env('RegionEU')}`, 'desktop')
-        marginCalculatorPage()
+    it('should validate the traders tool margin calculator page in EU', () => {
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`, {waitLoad: true})
+        marginCalculatorPage('EU')
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`,{waitLoad: true, size:'desktop'})
+        marginCalculatorPage('EU')
     })
 })

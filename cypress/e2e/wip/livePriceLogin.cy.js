@@ -43,10 +43,10 @@ function login () {
   loading_check()
 }
 
-describe("QATEST-1330 Add scenario on clicking buy/sell will redirect to Trader's Hub for logged in user", () => {
+describe("QATEST-1330 Live Price: Check on Buy/Sell buttons as a logged in user", () => {
   
   it("Should able to redirect to Trader's Hub upon clicking on buy button", () => {
-    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"desktop")
+    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,{size:'desktop'})
     login()
     verify_buy_sell('buy')
     cy.get(".traders-hub-header__setting").click()
@@ -54,7 +54,7 @@ describe("QATEST-1330 Add scenario on clicking buy/sell will redirect to Trader'
   })
 
   it("Should able to redirect to Trader's Hub upon clicking on sell button", () => {
-    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"desktop")
+    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,{size:'desktop'})
     login()
     verify_buy_sell('sell')
     cy.get(".traders-hub-header__setting").click()
@@ -62,7 +62,7 @@ describe("QATEST-1330 Add scenario on clicking buy/sell will redirect to Trader'
   })
 
   it("Should able to redirect to Trader's Hub upon clicking on buy button responsive", () => {
-    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"small")
+    cy.c_visitResponsive(Cypress.env("derivAppProdUrl"))
     login()
     verify_buy_sell('buy')
     cy.get('.dc-icon.header__mobile-drawer-icon').click()
@@ -70,7 +70,7 @@ describe("QATEST-1330 Add scenario on clicking buy/sell will redirect to Trader'
   })
 
   it("Should able to redirect to Trader's Hub upon clicking on sell button responsive", () => {
-    cy.c_visitResponsive(Cypress.env("derivAppProdUrl") ,"small")
+    cy.c_visitResponsive(Cypress.env("derivAppProdUrl"))
     login()
     verify_buy_sell('sell')
     cy.get('.dc-icon.header__mobile-drawer-icon').click()

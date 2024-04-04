@@ -46,7 +46,6 @@ function validate_derivxpage(region)
     cy.findByRole('link', { name: 'Google Play', exact: true }).click()
     cy.findByRole('link', { name: 'App Store', exact: true }).click()
     cy.findByRole('link', { name: 'Use it on your Web Browser' }).click()
-      
 
     if (region === 'ROW') {   
         const urlDetails = [
@@ -81,18 +80,20 @@ function validate_derivxpage(region)
 describe('QATEST-1571 - validate the derivx page', () => {
 
     it('should be able to navigate to derivx page from home page and validate the page content and links for ROW in desktop', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+        cy.c_visitResponsive('', {size:'desktop'})
         homeBanner.elements.tradeMenu().should('be.visible').click()
         cy.findAllByText('Deriv X').eq(0).should('be.visible').click()
+        cy.c_waitForPageLoad()
         validate_derivxpage('ROW')
     })
     
    
     it('should be able to navigate to derivx page from home page and validate the page content and links for ROW in mobile', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'))
+        cy.c_visitResponsive('', {waitLoad: true})
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.tradeMenu().should('be.visible').click()
         homeBanner.elements.derivxLink().should('be.visible').click()
+        cy.c_waitForPageLoad()
         validate_derivxpage('ROW')
     })
 })

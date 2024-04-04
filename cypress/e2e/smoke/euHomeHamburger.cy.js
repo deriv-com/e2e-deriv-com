@@ -5,7 +5,7 @@ import footer from '../../support/POM/commonPage'
 describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Including Trade Types)', () => {
   //Click through menu-items and ensure links are valid and load the next page.
   it('should have the correct hamburger menu', () => {
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'), {waitLoad: true})
 
     // Trade Types
   homeBanner.elements.hamBurgerMenu().click()
@@ -121,7 +121,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
     homeBanner.elements.crossIcon().click() 
 
     // Resources
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'), {waitLoad: true})
 
   homeBanner.elements.hamBurgerMenu().click()
     homeBanner.elements.resourcesMenu().should('be.visible').click()
@@ -153,10 +153,10 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
     homeBanner.elements.statusPage().should('be.visible')
 
     // Legal
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'),  {waitLoad: true})
 
   homeBanner.elements.hamBurgerMenu().click()
-    homeBanner.elements.legalMenu().click()
+    homeBanner.elements.legalMenu().should('be.visible').click()
     homeBanner.elements.regulatoryInfo().click()
     cy.findByRole('heading', { name: 'Regulatory information' }).should(
       'be.visible'
@@ -196,7 +196,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
 
 describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
   beforeEach(() => {
-    cy.c_visitResponsive(Cypress.env('RegionEU'), 'small')
+    cy.c_visitResponsive(Cypress.env('RegionEU'),{waitLoad: true})
   })
 
   it('Validate hamburger menu operation', () => {
@@ -210,9 +210,12 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
     cy.findByText('English').click()
     cy.contains('English').should('be.visible')
     homeBanner.elements.crossIcon().click()
-
     cy.findByText('Cookies help us to give you a better experience and personalised content on our site.').should('be.visible')
     cy.contains("Don't accept").should('be.visible').click()
+    cy.document().then(doc => {
+      const popup = doc.querySelector('[data-testid="warning-pop-up"]')
+      if (popup) { cy.findByTestId("warning-pop-up-close-button").click() }
+  }) 
     const middle = Cypress.$(cy.state('window')).height() / 2
     const scrollOffset = 400
     cy.scrollTo(0, middle + scrollOffset)

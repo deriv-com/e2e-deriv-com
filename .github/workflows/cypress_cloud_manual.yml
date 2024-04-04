@@ -22,7 +22,7 @@ jobs:
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
         matrix:
-          containers: ${{ fromJson(github.event.inputs.suite == 'full_extended' && '[1]' || '[1,2,3]') }} 
+          containers: ${{ fromJson(github.event.inputs.suite == 'full_extended' && '[1]' || '[1,2,3,4,5]') }} 
           # because maximum number of containers should be equal to number of tests else same test will be executed in multiple containers
 
     steps:
@@ -44,9 +44,10 @@ jobs:
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
         record: true
         parallel: true # Runs test in parallel using settings above
-        spec: cypress/e2e/${{ github.event.inputs.suite }}/*.js
+        spec: cypress/e2e/${{ env.TEST_SUITE }}/*.js
         group: 'e2e Tests'
       env:
+        TEST_SUITE: ${{ github.event.inputs.suite }}
         # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
         # in GitHub repo → Settings → Secrets → Actions
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -67,8 +68,9 @@ jobs:
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
-        spec: cypress/e2e/${{ github.event.inputs.suite }}/*.js
+        spec: cypress/e2e/${{ env.TEST_SUITE }}/*.js
       env:
+        TEST_SUITE: ${{ github.event.inputs.suite }}
         # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # Set Base Url from client_payload.

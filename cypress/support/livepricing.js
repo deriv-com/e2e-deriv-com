@@ -1,6 +1,6 @@
 const etfArray = ["AGG.US", "IWM.US", "IEMG.US", "ARRK.US", "DIA.US", "EEM.US", "EFA.US", "ERX.US", "GDX.US", "GLD.US", "HYG.US", "IEMG.US", "IJR.US", "IVV.US", "IVW.US", "LQD.US", "QID.US", "SDS.US", "SLV.US", "SPXS.US", "SPY.US", "TBT.US", "TQQQ.US", "UNG.US", "VEA.US", "VNQ.US", "VOO.US", "VTI.US", "VWO.US", "XLE.US", "XLF.US","XLK.US"]
 const forexArray = ["AUD/JPY", "AUD/USD", "EUR/AUD", "EUR/CAD", "EUR/CHF", "EUR/GBP", "EUR/JPY", "EUR/USD", "GBP/AUD", "GBP/JPY", "GBP/USD", "USD/CAD", "USD/CHF", "USD/JPY", "AUD/CAD", "AUD/CHF", "AUD/NZD", "CAD/CHF", "CAD/JPY", "CHF/JPY", "EUR/NOK", "EUR/NZD", "EUR/PLN", "EUR/SEK", "GBP/CAD", "GBP/CHF", "GBP/NOK", "GBP/NZD", "GBP/SEK", "NZD/CAD", "NZD/JPY", "NZD/USD", "USD/CNH", "USD/MXN", "USD/NOK", "USD/PLN", "USD/SEK", "USD/ZAR", "AUD/SGD", "EUR/HKD", "EUR/ILS", "EUR/MXN", "EUR/SGD", "EUR/ZAR", "GBP/SGD", "HKD/JPY", "NZD/CHF", "NZD/SGD", "SGD/JPY", "USD/HKD", "USD/ILS", "USD/RUB", "USD/SGD", "USD/THB"]
-const derivedindicesSyntheticsCFDArray = ["DSI10", "DSI20", "DSI30", "DEX 600UP", "DEX 900UP", "DEX 1500UP", "DEX 600DN", "DEX 900DN", "DEX 1500DN","Volatility 10 (1s) Index", "Volatility 25 (1s) Index", "Volatility 50 (1s) Index", "Volatility 75 (1s) Index", "Volatility 100 (1s) Index", "Volatility 150 (1s) Index", "Volatility 250 (1s) Index", "Volatility 10 Index", "Volatility 25 Index", "Volatility 50 Index", "Volatility 75 Index", "Volatility 100 Index", "Volatility 15 (1s) Index", "Volatility 30 (1s) Index", "Volatility 90 (1s) Index","Crash 300 Index", "Crash 500 Index", "Crash 1000 Index", "Boom 300 Index", "Boom 500 Index", "Boom 1000 Index", "Crash 600 Index", "Crash 900 Index", "Boom 600 Index", "Boom 900 Index","Jump 10 Index", "Jump 25 Index", "Jump 50 Index", "Jump 75 Index", "Jump 100 Index","Step Index","Range Break 100 Index", "Range Break 200 Index"]
+const derivedindicesSyntheticsCFDArray = ["DSI10", "DSI20", "DSI30", "DEX 600UP", "DEX 900UP", "DEX 1500UP", "DEX 600DN", "DEX 900DN", "DEX 1500DN","Volatility 10 (1s) Index", "Volatility 25 (1s) Index", "Volatility 50 (1s) Index", "Volatility 75 (1s) Index", "Volatility 100 (1s) Index", "Volatility 150 (1s) Index", "Volatility 250 (1s) Index", "Volatility 10 Index", "Volatility 25 Index", "Volatility 50 Index", "Volatility 75 Index", "Volatility 100 Index", "Volatility 15 (1s) Index", "Volatility 30 (1s) Index", "Volatility 90 (1s) Index","Crash 300 Index", "Crash 500 Index", "Crash 1000 Index", "Boom 300 Index", "Boom 500 Index", "Boom 1000 Index", "Crash 600 Index", "Crash 900 Index", "Boom 600 Index", "Boom 900 Index","Jump 10 Index", "Jump 25 Index", "Jump 50 Index", "Jump 75 Index", "Jump 100 Index","Step Index","Range Break 100 Index", "Range Break 200 Index","Step 100","Step 200","Step 300","Step 400","Step 500"]
 const derivedindicesSyntheticsOptionsArray = ["Volatility 10 (1s) Index", "Volatility 25 (1s) Index", "Volatility 50 (1s) Index", "Volatility 75 (1s) Index", "Volatility 100 (1s) Index", "Volatility 150 (1s) Index", "Volatility 250 (1s) Index", "Volatility 10 Index", "Volatility 25 Index", "Volatility 50 Index", "Volatility 75 Index", "Volatility 100 Index", "Jump 10 Index", "Jump 25 Index", "Jump 50 Index", "Jump 75 Index", "Jump 100 Index" , "Bear Market Index", "Bull Market Index"]
 const derivedindicesSyntheticsMultipliersArray = ["Volatility 10 (1s) Index", "Volatility 25 (1s) Index", "Volatility 50 (1s) Index", "Volatility 75 (1s) Index", "Volatility 100 (1s) Index", "Volatility 150 (1s) Index", "Volatility 250 (1s) Index", "Volatility 10 Index", "Volatility 25 Index", "Volatility 50 Index", "Volatility 75 Index", "Volatility 100 Index", "Volatility 15 (1s) Index", "Volatility 30 (1s) Index", "Volatility 90 (1s) Index","Boom 500 Index", "Boom 1000 Index","Crash 500 Index", "Crash 1000 Index","Jump 10 Index", "Jump 25 Index", "Jump 50 Index", "Jump 75 Index", "Jump 100 Index","Step Index"]
 const derivedSyntheticsEU = ["Volatility 150 (1s) Index","Volatility 250 (1s) Index","Crash 300 Index","Boom 300 Index"]
@@ -229,15 +229,15 @@ function etf_eu(){
 Cypress.Commands.add('c_forexViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       forex_instruments_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       forex_instruments_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       forex_instruments_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -249,15 +249,15 @@ Cypress.Commands.add('c_forexViewall', (site, view) => {
 Cypress.Commands.add('c_derivedindicesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       derivedindices_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       derivedindices_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       derivedindices_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -269,15 +269,15 @@ Cypress.Commands.add('c_derivedindicesViewall', (site, view) => {
 Cypress.Commands.add('c_stockindicesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       stockindices_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       stockindices_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       stockindices_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -289,15 +289,15 @@ Cypress.Commands.add('c_stockindicesViewall', (site, view) => {
 Cypress.Commands.add('c_cryptocurrenciesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       cryptocurrencies_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       cryptocurrencies_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       cryptocurrencies_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -309,15 +309,15 @@ Cypress.Commands.add('c_cryptocurrenciesViewall', (site, view) => {
 Cypress.Commands.add('c_commoditiesViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', 'desktop')
       commodities_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       commodities_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       commodities_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
@@ -329,15 +329,15 @@ Cypress.Commands.add('c_commoditiesViewall', (site, view) => {
 Cypress.Commands.add('c_etfViewall', (site, view) => {
   if (site == 'row') {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+      cy.c_visitResponsive('', {size:'desktop'})
       etf_row()
     } else {
-      cy.c_visitResponsive(Cypress.env('RegionROW'))
+      cy.c_visitResponsive('')
       etf_row()
     }
   } else {
     if (view == 'desk') {
-      cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+      cy.c_visitResponsive(Cypress.env('RegionEU'), {size:'desktop'})
       etf_eu()
     } else {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
