@@ -18,7 +18,7 @@ function checkContentandImages() {
 
 describe('QATEST-1395 - Validate the section "We are 25 years strong" in homepage', () => {
     it('should validate the content and images of "We are 25 years strong" section in homepage ', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'))
+        cy.c_visitResponsive('')
         checkContentandImages()
         cy.c_visitResponsive(Cypress.env('RegionEU'))
         checkContentandImages()
