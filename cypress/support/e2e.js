@@ -92,4 +92,13 @@ Cypress.Commands.add('c_checkAllPlatformLinks',(urlDetails)=>{
   })
 })
 
+Cypress.Commands.add('c_checkAllPartnerLinks', (urlDetails) => {
+  urlDetails.forEach(details => {
+    cy.get(`a[href="${details.url}"]`).eq(2).invoke('removeAttr', 'target').click({force: true}) 
+    cy.title().should('equal', details.title);
+    cy.get('h1').should('contain', details.content);
+    cy.url().should('contain', details.url);
+    cy.go('back');
+  });
+});
 
