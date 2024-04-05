@@ -39,6 +39,5 @@ describe('QATEST-1644 - Regulatory page', () => {
        cy.findByRole('heading', { name: 'Regulatory information' }).should('be.visible')
        checkRegulatorySection()
        checkViewLicenseLink()
-       
     })
 })
