@@ -1,7 +1,6 @@
 import '@testing-library/cypress/add-commands'
 import homeBanner from '../../support/POM/homePage'
 
-
 function Partner_page(region) {
 
     cy.url().should('include', '/partners/')
@@ -11,7 +10,6 @@ function Partner_page(region) {
     cy.findByRole('heading', { name: 'About Deriv' }).should('be.visible')
     cy.findByRole('heading', { name: 'Deriv in numbers' }).should('be.visible')
     cy.findByRole('heading', { name: 'Why choose us' }).should('be.visible')
-    // cy.findByRole('heading', { name: 'Partnership opportunity' }).should('be.visible')
     const partnershipHeading = region === 'EU' ? 'Partnership opportunity' : 'Partnership opportunities';
     cy.findByRole('heading', { name: partnershipHeading }).should('be.visible');
 
@@ -61,9 +59,6 @@ function Partner_page(region) {
         }
     ];
 
-
-    
-    // cy.findByText('Partnership opportunities').scrollIntoView()
     cy.findByText(partnershipHeading).scrollIntoView()
 
     cy.c_checkAllPartnerLinks(urlDetails)
@@ -74,14 +69,14 @@ function Partner_page(region) {
 describe('QATEST-2036 - should validate the Partners main page', () => {
 
     it('should be able to navigate to Partners main page from home page and validate the page content in responsive for ROW', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'))
+        cy.c_visitResponsive('/')
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
         homeBanner.elements.aboutUsMenu().should('be.visible').click()
         homeBanner.elements.partnershipProgrammes().should('be.visible').click()
         Partner_page('ROW')
     })
-
-
+    
+    
     it('should be able to navigate to Partners main page from home page and validate the page content in responsive for EU', () => {
         cy.c_visitResponsive(Cypress.env('RegionEU'))
         homeBanner.elements.hamBurgerMenu().should('be.visible').click()
@@ -96,7 +91,7 @@ describe('QATEST-2036 - should validate the Partners main page', () => {
 describe('QATEST-2036 - should validate the Partners main page', () => {
 
     it('should be able to navigate to Partners main page from home page and validate the page content in desktop for ROW', () => {
-        cy.c_visitResponsive(Cypress.env('RegionROW'), 'desktop')
+        cy.c_visitResponsive('/', {size: 'desktop'})
         homeBanner.elements.aboutUsMenu().should('be.visible').click()
         cy.findAllByText('Partnership programmes').eq(0).should('be.visible').click()
         Partner_page('ROW')
@@ -104,7 +99,7 @@ describe('QATEST-2036 - should validate the Partners main page', () => {
 
 
     it('should be able to navigate to Partners main page from home page and validate the page content in desktop for EU', () => {
-        cy.c_visitResponsive(Cypress.env('RegionEU'), 'desktop')
+        cy.c_visitResponsive(Cypress.env('RegionEU'), {size: 'desktop'})
         homeBanner.elements.aboutUsMenu().should('be.visible').click()
         cy.findAllByText('Partnership programmes').eq(0).should('be.visible').click()
         Partner_page('EU')
