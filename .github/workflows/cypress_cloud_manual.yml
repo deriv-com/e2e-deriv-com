@@ -94,7 +94,7 @@ jobs:
           E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
     
     - name: Cypress run without record
-      if: ${{ github.event.inputs.suite == 'full_extended' }}
+      if: ${{github.event.inputs.suite == 'full_extended'}}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
