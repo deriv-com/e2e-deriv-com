@@ -16,7 +16,6 @@ on:
         - smoke
         - full
         - full_extended
-        - regression 
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
@@ -33,7 +32,7 @@ jobs:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
     - name: Cypress run with record
-      if: ${{ (github.event.inputs.suite != 'full_extended' || github.event.inputs.suite != 'regression') }}
+      if: ${{ github.event.inputs.suite != 'full_extended' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
@@ -45,7 +44,10 @@ jobs:
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
         record: true
         parallel: true # Runs test in parallel using settings above
-        spec: cypress/e2e/${{ env.TEST_SUITE }}/*.js
+        # spec: cypress/e2e/${{ env.TEST_SUITE }}/*.js
+        spec: |
+          cypress/e2e/smoke/*.js
+          cypress/e2e/full/*.js
         group: 'e2e Tests'
       env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
