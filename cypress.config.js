@@ -16,7 +16,7 @@ module.exports = defineConfig({
     supportFile: "cypress/support/e2e.js",    
   },
   env: {
-    RegionEU: 'https://staging.eu-deriv-com-pages.pages.dev',
+    RegionEU: process.env.EU_TEST_LINK ||'https://staging.eu-deriv-com-pages.pages.dev',
     RegionDIEL: '/?region=za',
     skipROWTests: false,
     email: 'test@example.com',
