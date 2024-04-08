@@ -12,7 +12,7 @@ describe('Test Suite', () => {
     ['desktop', ''].forEach(size => {
       it(`should visit responsive page with ${size === '' ? 'default' : size} size`, () => {
         visitResponsive(size);
-        cy.findByText("User-friendly trading platforms, on any device").click()
+        cy.findByText("User-friendly trading platforms, on any device").should('be.visible')
         cy.findByText("All").click();
 
         // //Check CFDs tab
