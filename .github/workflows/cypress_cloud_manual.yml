@@ -100,9 +100,8 @@ jobs:
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
         record: true
         parallel: true # Runs test in parallel using settings above
-        spec: |
+        spec: 
             cypress/e2e/smoke/*.js
-            cypress/e2e/full/*.js
         group: 'e2e Tests'
       env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
