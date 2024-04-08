@@ -15,22 +15,21 @@ describe('QATEST-1350 - Our Platform ROW', () =>
         cy.findByText("The most popular and comprehensive CFDs platform.").should('be.visible')
         cy.findByRole('link', { name: 'Learn more About Deriv MT5' }).click();
         cy.findByText("Why trade with Deriv MT5").should('be.visible')
-        cy.findByRole('link', { name: 'deriv logo label' }).click(); 
+        cy.findByRole('link', { name: 'deriv logo label' }).should('be.visible').click(); 
         //Check Ctrader
         cy.findByRole("heading", { name: "Deriv cTrader" }).should('be.visible');
         cy.get('img[alt="deriv ctrader"]').should('be.visible')//need to update later
         cy.findByText("Fast CFDs platform with inbuilt copy trading.").should('be.visible')
         cy.findByRole('link', { name: 'Learn more About Deriv cTrader' }).click();
         cy.findByRole('img', { name: '_t_Deriv ctrader logo_t_' }).click();
-        cy.findByRole('link', { name: 'deriv logo label' }).click(); 
+        cy.findByRole('link', { name: 'deriv logo label' }).should('be.visible').click(); 
         //Check Deriv X
         cy.findByRole("heading", { name: "Deriv X" }).should('be.visible');
         cy.get('img[alt="deriv x"]').should('be.visible').click(); //need to update later
         cy.findByText("User-friendly and customisable CFDs platform.").should('be.visible')
         cy.findByRole('link', { name: 'Learn more About Deriv X' }).click();
         cy.get('img[alt="Deriv X"]').first().click(); //need to update later
-        cy.findByRole('link', { name: 'deriv logo label' }).click(); 
-
+        cy.findByRole('link', { name: 'deriv logo label' }).should('be.visible').click(); 
         // Check Options tab
         cy.contains('[role="tab"][id="platformtab-trigger-2"]', 'Options').click();
         // Find an element by its label containing "Options"
@@ -48,15 +47,15 @@ describe('QATEST-1350 - Our Platform ROW', () =>
         //Check DerivGo
         cy.findByRole('link', { name: 'Learn more About Deriv GO' }).click();
         cy.findByRole('img', { name: 'Deriv Go', exact: true }).first().click();
-        cy.findByRole('link', { name: 'deriv logo label' }).click(); 
+        cy.findByRole('link', { name: 'deriv logo label' }).should('be.visible').click(); 
         //Check Dtrader
         cy.findByRole('link', { name: 'Learn more About Deriv Trader' }).click();
         cy.findByRole('img', { name: 'Deriv Trader' }).should('be.visible')
-        cy.findByRole('link', { name: 'deriv logo label' }).click(); 
+        cy.findByRole('link', { name: 'deriv logo label' }).should('be.visible').click(); 
         //Check Bot
         cy.findByRole('link', { name: 'Learn more About Deriv Bot' }).click();
         cy.findByRole('img', { name: 'Deriv Bot' }).should('be.visible')
-        cy.findByRole('link', { name: 'deriv logo label' }).click(); 
+        cy.findByRole('link', { name: 'deriv logo label' }).should('be.visible').click(); 
 
         // Check Bot tab
         cy.findByRole('tab', { name: 'Bots' })
@@ -65,7 +64,7 @@ describe('QATEST-1350 - Our Platform ROW', () =>
         cy.findByText("Automated trading. No coding required.").should('be.visible')
         cy.findByRole('link', { name: 'Learn more About Deriv Bot' }).click();
         cy.findByRole('img', { name: 'Deriv Bot' }).should('be.visible');
-        cy.findByRole('link', { name: 'deriv logo label' }).click(); 
+        cy.findByRole('link', { name: 'deriv logo label' }).should('be.visible').click(); 
         
         // Check Social tab
         cy.findByRole('tab', { name: 'Social' })
@@ -74,6 +73,6 @@ describe('QATEST-1350 - Our Platform ROW', () =>
         cy.findByText("Fast CFDs platform with inbuilt copy trading.").should('be.visible')
         cy.findByRole('link', { name: 'Learn more About Deriv cTrader' }).click();
         cy.findByRole('img', { name: '_t_Deriv ctrader logo_t_' }).should('be.visible')
-        cy.findByRole('link', { name: 'deriv logo label' }).click(); 
+        cy.findByRole('link', { name: 'deriv logo label' }).should('be.visible').click(); 
 })
 })
