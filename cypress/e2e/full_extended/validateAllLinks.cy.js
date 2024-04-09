@@ -174,7 +174,7 @@ const isAllowedFailingStatus = (currentLink) => {
       })
     }
   )
-};
+}
 
 /**
  * @param {*} currentLink String @values "https://abc.com/"
