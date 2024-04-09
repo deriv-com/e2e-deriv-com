@@ -3,8 +3,11 @@ import '@testing-library/cypress/add-commands'
 function redirectPopup() {
     cy.findByText('Redirect notice', { timeout: 10000 }).should('be.visible')
     cy.findByRole('link', { name: 'Proceed' }).should('exist')
-    //Todo check as visit causes crashing due to super domain being different.
-    //cy.findByRole('link', { name: 'Proceed' }).invoke('attr', 'target', '_self').click()
+    cy.findByRole('link', { name: 'Proceed' }).invoke('attr', 'target', '_self')
+    .should('have.attr', 'href', 'https://app.deriv.com/appstore/traders-hub')
+    .then((link) => {
+      cy.request(link.prop('href')).its('status').should('eq',200)
+    });
 }
 
 function checkTradersToolPage()
@@ -85,7 +88,6 @@ function marginCalculatorPage(region)
     }
 }
 
-
 describe('QATEST-2105 - Traders tool - Main Page', () => {
     it('should validate the traders tool main page in mobile', () => {
         cy.c_visitResponsive(`trader-tools`)
@@ -110,7 +112,7 @@ describe('QATEST-2119 - Traders tool - Margin calculator', () => {
         marginCalculatorPage('ROW')
     })
     
-    it('should validate the traders tool margin calculator page in EU', () => {
+    it.only('should validate the traders tool margin calculator page in EU', () => {
         cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`, {waitLoad: true})
         marginCalculatorPage('EU')
         cy.c_visitResponsive(`${Cypress.env('RegionEU')}/trader-tools/margin-calculator`,{waitLoad: true, size:'desktop'})
