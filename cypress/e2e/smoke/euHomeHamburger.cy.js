@@ -195,7 +195,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
   })
 })
 
-describe.only('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
+describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
   beforeEach(() => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), { waitLoad: true })
   })
