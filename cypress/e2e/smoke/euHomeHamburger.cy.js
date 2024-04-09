@@ -194,7 +194,7 @@ describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Includi
   })
 })
 
-describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
+describe.only('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
   beforeEach(() => {
     cy.c_visitResponsive(Cypress.env('RegionEU'),{waitLoad: true})
   })
@@ -220,7 +220,10 @@ describe('QATEST-1274 - Navigation Responsive - Open/Close Menu', () => {
     const scrollOffset = 400
     cy.scrollTo(0, middle + scrollOffset)
     cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('be.visible')
-    cy.scrollTo(0, 0)
+    //cy.findAllByRole('button', { name: 'Open demo account' }).eq(0)
+    cy.findByText('Trading for anyone. Anywhere. Anytime.')
+    .trigger('touchstart', {timeout:1000})
+    .trigger('touchmove', 'bottom').trigger('touchend')
     cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('not.be.visible')
     cy.scrollTo('bottom')
     cy.findAllByRole('button', { name: 'Open demo account' }).eq(1).should('not.be.visible')

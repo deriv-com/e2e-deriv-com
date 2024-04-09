@@ -18,7 +18,7 @@ function checkRegulatorySection()
 function checkViewLicenseLink()
 {
   for (let index = 0; index < 4; index++) {
-    cy.findAllByRole("link", { name: "(view licence)" }).eq(index).click()
+    cy.findAllByRole("link", { name: "view licence" }).eq(index).click()
   }
 }
 
