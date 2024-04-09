@@ -2,8 +2,8 @@ import '@testing-library/cypress/add-commands'
 
 function redirectPopup() {
     cy.findByText('Redirect notice', { timeout: 10000 }).should('be.visible')
-    cy.findByRole('link', { name: 'Proceed' }).should('exist')
-    cy.findByRole('link', { name: 'Proceed' }).invoke('attr', 'target', '_self')
+    cy.findByRole('link', { name: 'Proceed' })
+    .should('exist')
     .should('have.attr', 'href', 'https://app.deriv.com/appstore/traders-hub')
     .then((link) => {
       cy.request(link.prop('href')).its('status').should('eq',200)
