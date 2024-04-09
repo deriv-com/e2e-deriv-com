@@ -100,7 +100,7 @@ jobs:
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
         record: false
-        parallel: false
+        parallel: true 
         spec: cypress/e2e/full_extended/*.js
       env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
