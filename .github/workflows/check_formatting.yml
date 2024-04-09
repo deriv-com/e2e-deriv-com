@@ -16,7 +16,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
           with:
-            repository: deriv-com/e2e-deriv-app
+            repository: deriv-com/e2e-deriv-com
             ref: ${{ github.head_ref }}
             fetch-depth: 0
         - name: Get changed files
