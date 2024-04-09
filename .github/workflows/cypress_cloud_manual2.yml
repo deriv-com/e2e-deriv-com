@@ -23,8 +23,7 @@ jobs:
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
         matrix:
-            containers: [1, 2, 3, 4, 5]
-        #   containers: ${{ fromJson(github.event.inputs.suite == 'full_extended' && '[1]' || '[1,2,3,4,5]') }} 
+          containers: ${{ fromJson(github.event.inputs.suite == 'full_extended' && '[1]' || '[1,2,3,4,5]') }} 
           # because maximum number of containers should be equal to number of tests else same test will be executed in multiple containers
 
     steps:
@@ -63,17 +62,7 @@ jobs:
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
   
-  run_cypress_tests_without_record:
-    runs-on: ubuntu-latest
-    strategy:
-        matrix:
-            containers: [1] 
-    steps:
-    - name: Checkout external repository with Cypress tests
-      uses: actions/checkout@v4
-      with:
-        repository: deriv-com/e2e-deriv-com # Replace with your repository name
-            
+    
     - name: Cypress run without record
       if: ${{ (github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'regression') }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
@@ -89,17 +78,14 @@ jobs:
         CYPRESS_BASE_URL: "${{ github.event.inputs.environment }}"
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
-
-  run_cypress_tests_regression:
-    runs-on: ubuntu-latest
-    strategy:
-        matrix:
-            containers: [1,2,3,4,5,6,7,8] 
-    steps:
-    - name: Checkout external repository with Cypress tests
-      uses: actions/checkout@v4
+        
+    - name: Publish full_extended test result files
+      if: ${{ github.event.inputs.suite == 'full_extended' && failure()}}
+      uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392  #v4.0.0
       with:
-        repository: deriv-com/e2e-deriv-com # Replace with your repository name
+        name: validateAllLinksFailures.json
+        path: cypress/full_extended_results/
+
     - name: Cypress run for regression
       if: ${{ github.event.inputs.suite == 'regression' }}
           # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
@@ -111,13 +97,13 @@ jobs:
             # wait-on: 'http://localhost:3000' # Waits for above
             # Records to Cypress Cloud 
             # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        record: true
-        parallel: true # Runs test in parallel using settings above
-        spec: |
+            record: true
+            parallel: true # Runs test in parallel using settings above
+            spec: |
               cypress/e2e/smoke/*.js
               cypress/e2e/full/*.js
-        group: 'e2e Tests'
-    env:
+            group: 'e2e Tests'
+      env:
             TEST_SUITE: ${{ github.event.inputs.suite }}
             # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
             # in GitHub repo → Settings → Secrets → Actions
