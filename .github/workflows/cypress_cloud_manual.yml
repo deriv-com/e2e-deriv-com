@@ -23,7 +23,7 @@ jobs:
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
         matrix:
-          containers: ${{ fromJson(github.event.inputs.suite == 'full_extended' && '[1]' || '[1,2,3,4,5,6,7,8]') }} 
+          containers: ${{ fromJson(github.event.inputs.suite == 'full_extended' && '[1]' || '[1,2,3,4,5]') }} 
           # because maximum number of containers should be equal to number of tests else same test will be executed in multiple containers
 
     steps:
