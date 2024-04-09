@@ -62,7 +62,7 @@ let failedLinks = {
   failedVisitLinks: [],
 };
 
-let passingStatusCodes = [200, 204];
+let passingStatusCodes = [200, 204]
 
 const normalizeUrl = (url) => url.toLowerCase().trim().replace(/\/$/, "")
 
