@@ -33,10 +33,10 @@ jobs:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
     - name: Cypress run with record
-    strategy:
-      matrix:
-        containers:
-          - 5
+    # strategy:
+    #   matrix:
+    #     containers:
+    #       - 5
       if: ${{ (github.event.inputs.suite != 'full_extended' && github.event.inputs.suite != 'regression') }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
@@ -67,10 +67,10 @@ jobs:
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
   
     - name: Cypress run for regression
-    strategy:
-      matrix:
-        containers:
-          - 8
+    # strategy:
+    #   matrix:
+    #     containers:
+    #       - 8
       if: ${{ github.event.inputs.suite == 'regression' }}
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
@@ -102,10 +102,10 @@ jobs:
           E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
     
     - name: Cypress run without record
-    strategy:
-      matrix:
-        containers:
-          - 1
+    # strategy:
+    #   matrix:
+    #     containers:
+    #       - 1
       if: ${{ (github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'regression') }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
