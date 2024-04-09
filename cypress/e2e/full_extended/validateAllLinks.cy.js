@@ -55,7 +55,7 @@ let linkDetails = {
   },
   checkedLinks: [], // To check if link has already been checked or not.
   visitedLinks: [], // To check if link has already been visited or not.
-};
+}
 
 let failedLinks = {
   failedCheckLinks: [],
