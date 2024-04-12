@@ -32,7 +32,6 @@ jobs:
 
     - name: Cypress run with record
       env:
-        TEST_SUITE_ENV : ${{ env.TEST_SUITE }}
         TEST_SUITE: ${{ github.event.inputs.suite }}
          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
          # in GitHub repo → Settings → Secrets → Actions
@@ -60,13 +59,12 @@ jobs:
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
         record: true
         parallel: true # Runs test in parallel using settings above
-        command: npx cypress run --spec cypress/e2e/"$TEST_SUITE_ENV"/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
+        command: npx cypress run --spec cypress/e2e/"$TEST_SUITE"/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
         group: 'e2e Tests'
 
     
     - name: Cypress run without record
       env:
-        TEST_SUITE_ENV : ${{ env.TEST_SUITE }}
         TEST_SUITE: ${{ github.event.inputs.suite }}
         # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -78,7 +76,7 @@ jobs:
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
-        spec: cypress/e2e/"$TEST_SUITE_ENV"/*.js
+        spec: cypress/e2e/"$TEST_SUITE"/*.js
 
         
     - name: Publish full_extended test result files
