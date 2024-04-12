@@ -5,13 +5,9 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        # type: choice
         type: string
-        # description: Select the environment
         description: Paste the testlink
-        # options:
-        # - https://staging.deriv.com/
-        # - https://deriv.com/
+        default: "https://staging.deriv.com/"
       suite:
         type: choice
         description: Run smoke or full test suite
@@ -47,7 +43,7 @@ jobs:
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
         record: true
         parallel: true # Runs test in parallel using settings above
-        spec: cypress/e2e/${{ env.TEST_SUITE }}/*.js
+        spec: cypress/e2e/$TEST_SUITE/*.js
         group: 'e2e Tests'
       env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
