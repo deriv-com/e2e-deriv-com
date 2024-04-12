@@ -11,11 +11,19 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) { },
     //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
-    baseUrl: 'https://staging.deriv.com', 
+    baseUrl: process.env.BASE_URL || 'https://staging.deriv.com', 
     defaultCommandTimeout: 10000,
-    supportFile: "cypress/support/e2e.js",    
+    supportFile: "cypress/support/e2e.js",
+    setupNodeEvents(on, config) {
+      require('@bahmutov/cy-grep/src/plugin')(config);
+      // IMPORTANT: return the config object
+      return config;
+    } 
   },
   env: {
+    grepTags: process.env.GREP_TAGS || false,
+    grepOmitFiltered:  process.env.GREP_TAGS ? true : false,
+    grepFilterSpecs: process.env.GREP_TAGS ? true : false,
     RegionEU: process.env.EU_TEST_LINK ||'https://staging.eu-deriv-com-pages.pages.dev',
     RegionDIEL: '/?region=za',
     skipROWTests: false,
