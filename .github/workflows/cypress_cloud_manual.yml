@@ -31,25 +31,11 @@ jobs:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
     - name: Cypress run with record
-      if: ${{ github.event.inputs.suite != 'full_extended' }}
-      # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
-      uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
-      with:
-        # Starts web server for E2E tests - replace with your own server invocation
-        # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
-        # start: npm start
-        # wait-on: 'http://localhost:3000' # Waits for above
-        # Records to Cypress Cloud 
-        # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        record: true
-        parallel: true # Runs test in parallel using settings above
-        command: npx cypress run --spec cypress/e2e/$TEST_SUITE_ENV/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
-        group: 'e2e Tests'
       env:
         TEST_SUITE_ENV : ${{ env.TEST_SUITE }}
         TEST_SUITE: ${{ github.event.inputs.suite }}
-        # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-        # in GitHub repo → Settings → Secrets → Actions
+         # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
+         # in GitHub repo → Settings → Secrets → Actions
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}
         CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_MANUAL_PROJECT_ID }}
 
@@ -62,13 +48,23 @@ jobs:
         # Set test env variables
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
-    
-    - name: Cypress run without record
-      if: ${{ github.event.inputs.suite == 'full_extended' }}
-      # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
+        if: ${{ github.event.inputs.suite != 'full_extended' }}
+       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
-        spec: cypress/e2e/$TEST_SUITE_ENV/*.js
+        # Starts web server for E2E tests - replace with your own server invocation
+        # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
+        # start: npm start
+        # wait-on: 'http://localhost:3000' # Waits for above
+        # Records to Cypress Cloud 
+        # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
+        record: true
+        parallel: true # Runs test in parallel using settings above
+        command: npx cypress run --spec cypress/e2e/$TEST_SUITE_ENV/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
+        group: 'e2e Tests'
+
+    
+    - name: Cypress run without record
       env:
         TEST_SUITE_ENV : ${{ env.TEST_SUITE }}
         TEST_SUITE: ${{ github.event.inputs.suite }}
@@ -78,6 +74,12 @@ jobs:
         CYPRESS_BASE_URL: "${{ github.event.inputs.environment }}"
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
+      if: ${{ github.event.inputs.suite == 'full_extended' }}
+      # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
+      uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
+      with:
+        spec: cypress/e2e/$TEST_SUITE_ENV/*.js
+
         
     - name: Publish full_extended test result files
       if: ${{ github.event.inputs.suite == 'full_extended' && failure()}}
