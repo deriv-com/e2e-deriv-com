@@ -1,6 +1,7 @@
 import "./livepricing"
 import "./location"
 import 'cypress-iframe'
+import '@percy/cypress'
 
 
 Cypress.on('uncaught:exception', (err, runnable) => {
