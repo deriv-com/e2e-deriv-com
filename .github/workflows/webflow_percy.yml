@@ -37,7 +37,7 @@ jobs:
           npm i @percy/cli@1.27.3
           echo "Installed Percy CLI version: $(npx percy --version)"
     - name: Install percy cypress
-      run: |
+       run: |
           npm install --save-dev @percy/cypress
           npm install cypress --save-dev
           echo "Percy Cypress version: $(npx percy --version)"
