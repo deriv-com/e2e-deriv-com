@@ -1,6 +1,6 @@
 import '@testing-library/cypress/add-commands'
 
-describe('Test Suite', () => {
+describe('QATEST-1350 - Our Platform ROW', () => {
   const visitResponsive = (size) => {
     if (size === 'desktop') {
       return cy.c_visitResponsive('', { size: 'desktop' })
