@@ -1,3 +1,21 @@
+// TODO remove if not needed
+export const logger = (counter, linkDetails) => {
+  cy.then(() => {
+    cy.log(
+      `${counter}. Links to visit: `,
+      filterLinks(linkDetails.toVerify.visitLinks)
+    )
+    // cy.log(`${counter}. Links to request: `, filterLinks(linkDetails.toVerify.requestLinks))
+  })
+  cy.then(() => {
+    cy.log(
+      `${counter}. Links visited: `,
+      filterLinks(linkDetails.verified.visitLinks)
+    )
+    // cy.log(`${counter}. Links requested: `, filterLinks(linkDetails.verified.requestLinks))
+  })
+}
+
 export const validDomains = [Cypress.config('baseUrl'), Cypress.env('RegionEU')]
 export const passingStatusCodes = [200, 204]
 
@@ -31,9 +49,9 @@ export const linksNotToRequest = [
   'mailto:',
 ]
 
-export const linkAllowedToFailOnVisit = []
+export const linksAllowedToFailOnVisit = []
 
-export const linkAllowedToFailOnRequestWithStatus = {
+export const linksAllowedToFailOnRequestWithStatus = {
   404: [
     'https://apps.apple.com/us/app/deriv-x/id1563337503',
     'https://apps.apple.com/us/app/deriv-dp2p/id1506901451',
@@ -54,8 +72,9 @@ export const linkAllowedToFailOnRequestWithStatus = {
 
 export const normalizeUrl = (url) => url.toLowerCase().trim().replace(/\/$/, '')
 
-export const filterLinks = (links) =>
-  links.filter((value, index, self) => self.indexOf(value) === index)
+export const filterLinks = (links) => {
+  return links.filter((value, index, self) => self.indexOf(value) === index)
+}
 
 export const getAllLinks = (visitLinks, requestLinks, options = {}) => {
   const { appendRegion = false, region = Cypress.env('RegionDIEL') } = options
@@ -77,66 +96,6 @@ export const getAllLinks = (visitLinks, requestLinks, options = {}) => {
   return { visitLinks, requestLinks }
 }
 
-export const verifyVisitLink = (linkToVisit, linkDetails, options = {}) => {
-  const {
-    appendRegion = false,
-    region = Cypress.env('RegionDIEL'),
-    counter = 1,
-  } = options
-  if (appendRegion == true && !linkToVisit.includes(region)) {
-    linkToVisit = linkToVisit + region
-  }
-  cy.c_visitResponsive(linkToVisit, { size: 'desktop', waitLoad: true })
-
-  cy.then(() => {
-    cy.log('before here: ', linkDetails.verified.visitLinks)
-  })
-  linkDetails.verified.visitLinks.push(linkToVisit)
-  cy.then(() => {
-    cy.log('after here: ', linkDetails.verified.visitLinks)
-  })
-
-  // logger(counter, linkDetails)
-
-  linkDetails.toVerify = getAllLinks(
-    linkDetails.toVerify.visitLinks,
-    linkDetails.toVerify.requestLinks,
-    { ...options }
-  )
-  cy.then(() => {
-    cy.log('hello here: ', linkDetails.verified.visitLinks)
-  })
-  // logger(counter, linkDetails)
-
-  cy.then(() => {
-    cy.log('here now: ', linkDetails.verified.visitLinks)
-    linkDetails.toVerify.visitLinks.forEach((visitLink) => {
-      cy.log('Visiting ', visitLink)
-      cy.log(
-        `${counter}. The link is already visited`,
-        isVisitedLink(visitLink, linkDetails.verified.visitLinks)
-      )
-      cy.log('hey here: ', linkDetails.verified.visitLinks)
-      if (
-        isLinkValid(visitLink) == true &&
-        isVisitedLink(visitLink, linkDetails.verified.visitLinks) == false
-      ) {
-        cy.log('over here: ', linkDetails.verified.visitLinks)
-        verifyVisitLink(visitLink, linkDetails, {
-          ...options,
-          counter: counter + 1,
-        })
-      }
-    })
-  })
-}
-
-/**
- *
- * @param {*} link String @values "https://abc.com/"
- * @returns Boolean : true (if link is a valid Deriv domain) || false (if link is not a valid Deriv domain)
- * @example isLinkValid("https://abc.com/")
- */
 export const isLinkValid = (link) => {
   if (
     validDomains.some((validDomain) =>
@@ -155,19 +114,59 @@ export const isVisitedLink = (visitLink, visitedLinks) => {
     : false
 }
 
-export const logger = (counter, linkDetails) => {
-  cy.then(() => {
-    cy.log(
-      `${counter}. Links to visit: `,
-      filterLinks(linkDetails.toVerify.visitLinks)
-    )
-    // cy.log(`${counter}. Links to request: `, filterLinks(linkDetails.toVerify.requestLinks))
+export const isLinkVisitAllowed = (visitLink) => {
+  return linksNotToVisit.some((link) => visitLink.includes(link))
+}
+export const isLinkVisitAllowedFailure = (visitLink) => {
+  return linksAllowedToFailOnVisit.some((link) => visitLink.includes(link))
+}
+export const isLinkRequestAllowed = (visitLink) => {
+  return linksNotToRequest.some((link) => visitLink.includes(link))
+}
+export const isLinkRequestAllowedFailiure = (visitLink) => {
+  return Object.entries(linksAllowedToFailOnRequestWithStatus).some(
+    ([status, links]) => {
+      return links.some((link) => {
+        return normalizeUrl(visitLink).includes(normalizeUrl(link))
+      })
+    }
+  )
+}
+
+export const verifyVisitLink = (linkToVisit, linkDetails, options = {}) => {
+  const {
+    appendRegion = false,
+    region = Cypress.env('RegionDIEL'),
+    counter = 1,
+  } = options
+  if (appendRegion == true && !linkToVisit.includes(region)) {
+    linkToVisit = linkToVisit + region
+  }
+  cy.c_visitResponsive(linkToVisit, {
+    size: 'desktop',
+    waitLoad: true,
+    logging: false,
+    failNotAllowed: false,
   })
+  cy.get('body')
+  linkDetails.verified.visitLinks.push(linkToVisit)
+  linkDetails.toVerify = getAllLinks(
+    linkDetails.toVerify.visitLinks,
+    linkDetails.toVerify.requestLinks,
+    { ...options }
+  )
   cy.then(() => {
-    cy.log(
-      `${counter}. Links visited: `,
-      filterLinks(linkDetails.verified.visitLinks)
-    )
-    // cy.log(`${counter}. Links requested: `, filterLinks(linkDetails.verified.requestLinks))
+    linkDetails.toVerify.visitLinks.forEach((visitLink) => {
+      if (
+        isLinkValid(visitLink) == true &&
+        isVisitedLink(visitLink, linkDetails.verified.visitLinks) == false &&
+        isLinkVisitAllowed(visitLink) == false
+      ) {
+        verifyVisitLink(visitLink, linkDetails, {
+          ...options,
+          counter: counter + 1,
+        })
+      }
+    })
   })
 }
