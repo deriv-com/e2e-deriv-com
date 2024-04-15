@@ -117,7 +117,7 @@ function check_hamburger_menu() {
 describe('QATEST-1298 - should validate home page header menu', () => {
   it(
     'should be able to validate homepage header for ROW website',
-    { tags: ['@smoke-test', '@row-tests'] },
+    { tags: ['@smoke-tests', '@row-tests'] },
     () => {
       cy.c_visitResponsive('')
       check_homepage_header()
@@ -134,7 +134,7 @@ describe('QATEST-1298 - should validate home page header menu', () => {
 
   it(
     'should be able to validate homepage header for EU website',
-    { tags: ['@smoke-test', '@eu-tests'] },
+    { tags: ['@smoke-tests', '@eu-tests'] },
     () => {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
       check_homepage_header()

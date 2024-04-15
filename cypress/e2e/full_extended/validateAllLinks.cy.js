@@ -255,44 +255,50 @@ describe('QATEST-96657 - Check URL in deriv.com', () => {
     cy.clearAllCookies()
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false }) // to have cleaner logs for this test
   })
-  it('should validate each Url in deriv.com', () => {
-    cy.c_visitResponsive(Cypress.env('RegionDIEL'), { size: 'desktop' })
-    linkDetails.visitedLinks.push(`${Cypress.env('RegionDIEL')}`)
-    cy.get('a').each((availableLink) => {
-      const currentLink = availableLink.prop('href')
-      checkLinks(currentLink, Cypress.env('RegionDIEL'))
-    })
-    cy.c_visitResponsive('', { size: 'desktop' })
-    linkDetails.visitedLinks.push(`${Cypress.env('RegionROW')}`)
-    cy.get('a').each((availableLink) => {
-      const currentLink = availableLink.prop('href')
-      checkLinks(currentLink)
-    })
-    cy.c_visitResponsive(Cypress.env('RegionEU'), { size: 'desktop' })
-    linkDetails.visitedLinks.push(`${Cypress.env('RegionEU')}`)
-    cy.get('a').each((availableLink) => {
-      const currentLink = availableLink.prop('href')
-      checkLinks(currentLink)
-    })
-    cy.then(() => {
-      failedLinks.failedCheckLinks.sort()
-      let uniqueFailedCheckedLinks = [...new Set(failedLinks.failedCheckLinks)]
-      failedLinks.failedVisitLinks.sort()
-      let uniqueFailedVisitLinks = [...new Set(failedLinks.failedVisitLinks)]
-      failedLinks.failedCheckLinks = uniqueFailedCheckedLinks
-      failedLinks.failedVisitLinks = uniqueFailedVisitLinks
-    })
-    cy.writeFile(
-      'cypress/full_extended_results/validateAllLinksFailures.json',
-      failedLinks
-    )
-    cy.readFile(
-      'cypress/full_extended_results/validateAllLinksFailures.json'
-    ).then((failedLinks) => {
-      expect(
-        failedLinks.failedVisitLinks.length +
-          failedLinks.failedCheckLinks.length
-      ).to.be.eql(0)
-    })
-  })
+  it(
+    'should validate each Url in deriv.com',
+    { tags: ['@full-extended-tests', '@eu-tests', '@row-tests'] },
+    () => {
+      cy.c_visitResponsive(Cypress.env('RegionDIEL'), { size: 'desktop' })
+      linkDetails.visitedLinks.push(`${Cypress.env('RegionDIEL')}`)
+      cy.get('a').each((availableLink) => {
+        const currentLink = availableLink.prop('href')
+        checkLinks(currentLink, Cypress.env('RegionDIEL'))
+      })
+      cy.c_visitResponsive('', { size: 'desktop' })
+      linkDetails.visitedLinks.push(`${Cypress.env('RegionROW')}`)
+      cy.get('a').each((availableLink) => {
+        const currentLink = availableLink.prop('href')
+        checkLinks(currentLink)
+      })
+      cy.c_visitResponsive(Cypress.env('RegionEU'), { size: 'desktop' })
+      linkDetails.visitedLinks.push(`${Cypress.env('RegionEU')}`)
+      cy.get('a').each((availableLink) => {
+        const currentLink = availableLink.prop('href')
+        checkLinks(currentLink)
+      })
+      cy.then(() => {
+        failedLinks.failedCheckLinks.sort()
+        let uniqueFailedCheckedLinks = [
+          ...new Set(failedLinks.failedCheckLinks),
+        ]
+        failedLinks.failedVisitLinks.sort()
+        let uniqueFailedVisitLinks = [...new Set(failedLinks.failedVisitLinks)]
+        failedLinks.failedCheckLinks = uniqueFailedCheckedLinks
+        failedLinks.failedVisitLinks = uniqueFailedVisitLinks
+      })
+      cy.writeFile(
+        'cypress/full_extended_results/validateAllLinksFailures.json',
+        failedLinks
+      )
+      cy.readFile(
+        'cypress/full_extended_results/validateAllLinksFailures.json'
+      ).then((failedLinks) => {
+        expect(
+          failedLinks.failedVisitLinks.length +
+            failedLinks.failedCheckLinks.length
+        ).to.be.eql(0)
+      })
+    }
+  )
 })
