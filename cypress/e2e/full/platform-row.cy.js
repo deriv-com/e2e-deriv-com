@@ -8,8 +8,7 @@ describe('QATEST-1350 - Our Platform ROW', () => {
       return cy.c_visitResponsive('')
     }
   }
-
-  ;['desktop', ''].forEach((size) => {
+['desktop', ''].forEach((size) => {
     it(
       `should visit responsive page with ${size === '' ? 'default' : size} size`,
       { tags: ['@full-tests', '@row-tests'] },
