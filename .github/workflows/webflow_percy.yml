@@ -22,7 +22,7 @@ on:
         options:
         - webflow/homePage
 jobs:
-  webflow-percy-run:
+  percy-run:
     runs-on: ubuntu-latest
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
