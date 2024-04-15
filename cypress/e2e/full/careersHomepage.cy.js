@@ -36,13 +36,13 @@ function careersHomepage(size, region) {
   cy.findByRole('link', { name: 'See our open positions' }).click()
   redirectPopup(region)
   cy.findByRole('button', { name: 'Explore jobs' }).click()
+  cy.c_waitForPageLoad()
   cy.findByRole('heading', { name: "Who we're looking for" }).should(
     'be.visible'
   )
   cy.findByRole('heading', {
     name: 'What’s different about working at Deriv?',
   }).should('be.visible')
-  cy.c_waitForPageLoad()
   cy.findByRole('img', { name: 'Team discussing ideas' }).should('be.visible')
 
   cy.findByRole('heading', { name: 'Join your team' }).should('be.visible')
