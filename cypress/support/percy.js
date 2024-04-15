@@ -1,4 +1,4 @@
-Cypress.Commands.add('snapshot', (pageName, viewport) => {
+Cypress.Commands.add('c_captureScreenshot', (pageName, viewport) => {
     if (viewport === 'mobile') {
         cy.percySnapshot(pageName, { widths: [400] })
     } else if (viewport === 'medium') {
