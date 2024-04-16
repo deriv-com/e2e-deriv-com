@@ -36,7 +36,7 @@ module.exports = defineConfig({
     country_of_residence: process.env.COUNTRY_OF_RESIDENCE,
     citizenship: process.env.CITIZENSHIP,
     user_password: process.env.USERPASSWORD,
-    diel_country_list: ['Ecuador', 'South Africa', 'Brazil', 'Sri Lanka', 'Uruguay', 'Switzerland'],
+    diel_country_list: ['Ecuador', 'South Africa', 'Brazil', 'Sri Lanka', 'Uruguay', 'Switzerland']
   },
   retries: {
     "runMode": 2,
