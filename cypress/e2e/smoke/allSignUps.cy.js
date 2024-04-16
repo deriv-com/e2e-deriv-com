@@ -15,25 +15,43 @@ describe('QATEST-1378 - should validate signup page', () => {
     signUpPage.elements.logInTxt().should('be.visible')
   }
 
-  it('should be able to sign up on a ROW mobile', () => {
-    cy.c_visitResponsive('/signup')
-    validateSignUpPage()
-  })
+  it(
+    'should be able to sign up on a ROW mobile',
+    { tags: ['@smoke-tests', '@row-tests'] },
+    () => {
+      cy.c_visitResponsive('/signup')
+      validateSignUpPage()
+    }
+  )
 
-  it('should be able to sign up on a EU mobile', () => {
-    cy.c_visitResponsive(Cypress.env('RegionEU') + '/signup')
-    validateSignUpPage()
-    footer.elements.cfdFloatingBannerLink().should('exist')
-  })
+  it(
+    'should be able to sign up on a EU mobile',
+    { tags: ['@smoke-tests', '@eu-tests'] },
+    () => {
+      cy.c_visitResponsive(Cypress.env('RegionEU') + '/signup')
+      validateSignUpPage()
+      footer.elements.cfdFloatingBannerLink().should('exist')
+    }
+  )
 
-  it('should be able to sign up on a ROW desktop', () => {
-    cy.c_visitResponsive('/signup/', {size:'desktop'});
-    validateSignUpPage()
-  })
+  it(
+    'should be able to sign up on a ROW desktop',
+    { tags: ['@smoke-tests', '@row-tests'] },
+    () => {
+      cy.c_visitResponsive('/signup/', { size: 'desktop' })
+      validateSignUpPage()
+    }
+  )
 
-  it('should be able to sign up on a EU desktop', () => {
-    cy.c_visitResponsive(Cypress.env('RegionEU') + '/signup/' , {size:'desktop'});
-    validateSignUpPage()
-    footer.elements.cfdFloatingBannerLink().should('exist')
-  })
+  it(
+    'should be able to sign up on a EU desktop',
+    { tags: ['@smoke-tests', '@eu-tests'] },
+    () => {
+      cy.c_visitResponsive(Cypress.env('RegionEU') + '/signup/', {
+        size: 'desktop',
+      })
+      validateSignUpPage()
+      footer.elements.cfdFloatingBannerLink().should('exist')
+    }
+  )
 })
