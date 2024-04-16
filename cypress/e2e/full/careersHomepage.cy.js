@@ -127,4 +127,50 @@ describe('QATEST-1659 - should validate the Career Home page in Responsive', () 
     homeBanner.elements.careers().should('be.visible').click()
     careersHomepage('mobile', 'EU')
   })
+  it(
+    'should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for ROW',
+    { tags: ['@full-tests', '@row-tests'] },
+    () => {
+      cy.c_visitResponsive('', { size: 'desktop' })
+      homeBanner.elements.aboutUsMenu().should('be.visible').click()
+      homeBanner.elements.careers().should('be.visible').first().click()
+      careersHomepage('desktop', 'ROW')
+    }
+  )
+
+  it(
+    'should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for EU',
+    { tags: ['@full-tests', '@eu-tests'] },
+    () => {
+      cy.c_visitResponsive(Cypress.env('RegionEU'), { size: 'desktop' })
+      homeBanner.elements.aboutUsMenu().should('be.visible').click()
+      homeBanner.elements.careers().should('be.visible').first().click()
+      careersHomepage('desktop', 'EU')
+    }
+  )
+})
+describe('QATEST-1659 - should validate the Career Home page in Responsive', () => {
+  it(
+    'should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for ROW',
+    { tags: ['@full-tests', '@row-tests'] },
+    () => {
+      cy.c_visitResponsive('', { waitLoad: true })
+      homeBanner.elements.hamBurgerMenu().should('be.visible').click()
+      homeBanner.elements.aboutUsMenu().click()
+      homeBanner.elements.careers().should('be.visible').click()
+      careersHomepage('mobile', 'ROW')
+    }
+  )
+
+  it(
+    'should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for EU',
+    { tags: ['@full-tests', '@eu-tests'] },
+    () => {
+      cy.c_visitResponsive(Cypress.env('RegionEU'), { waitLoad: true })
+      homeBanner.elements.hamBurgerMenu().should('be.visible').click()
+      homeBanner.elements.aboutUsMenu().click()
+      homeBanner.elements.careers().should('be.visible').click()
+      careersHomepage('mobile', 'EU')
+    }
+  )
 })
