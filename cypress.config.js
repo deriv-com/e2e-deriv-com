@@ -37,7 +37,6 @@ module.exports = defineConfig({
     citizenship: process.env.CITIZENSHIP,
     user_password: process.env.USERPASSWORD,
     diel_country_list: ['Ecuador', 'South Africa', 'Brazil', 'Sri Lanka', 'Uruguay', 'Switzerland'],
-    webflow_URL: 'https://webflow.deriv.com/' 
   },
   retries: {
     "runMode": 2,
