@@ -44,7 +44,7 @@ Cypress.Commands.add('c_visitResponsive', (path, options = {}) => {
     }
     if (path.includes('help-centre')) {
       //Wait for relevent elements to appear (based on page)
-      if ((logging = true)) cy.log('Help Centre Selected')
+      if (logging == true) cy.log('Help Centre Selected')
       cy.findByRole('heading', {
         name: 'Didn’t find your answer? We can help.',
         log: logging,

@@ -144,7 +144,8 @@ export const verifyVisitLink = (linkToVisit, linkDetails, options = {}) => {
   }
   cy.c_visitResponsive(linkToVisit, {
     size: 'desktop',
-    waitLoad: true,
+    waitLoad: false,
+    quickLoad: true,
     logging: false,
     failNotAllowed: false,
   })
@@ -155,7 +156,9 @@ export const verifyVisitLink = (linkToVisit, linkDetails, options = {}) => {
     linkDetails.toVerify.requestLinks,
     { ...options }
   )
+  logger(counter, linkDetails)
   cy.then(() => {
+    logger(counter, linkDetails)
     linkDetails.toVerify.visitLinks.forEach((visitLink) => {
       if (
         isLinkValid(visitLink) == true &&
