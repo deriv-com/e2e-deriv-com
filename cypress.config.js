@@ -24,7 +24,7 @@ module.exports = defineConfig({
     grepTags: process.env.GREP_TAGS || false,
     grepOmitFiltered:  process.env.GREP_TAGS ? true : false,
     grepFilterSpecs: process.env.GREP_TAGS ? true : false,
-    RegionEU: process.env.EU_TEST_LINK ||'https://staging.eu-deriv-com-pages.pages.dev',
+    RegionEU: 'https://staging.eu-deriv-com-pages.pages.dev',
     RegionDIEL: '/?region=za',
     skipROWTests: false,
     email: 'test@example.com',

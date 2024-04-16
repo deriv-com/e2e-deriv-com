@@ -99,23 +99,27 @@ locations.forEach((location) => {
       `should validate the ${location.name} location page in EU`,
       { tags: ['@full-tests', '@eu-tests'] },
       () => {
+        const baseUrl =
+          Cypress.env('grepTags') == true
+            ? Cypress.config('baseUrl').replace(/\/$/, '')
+            : Cypress.env('RegionEU')
         cy.c_visitResponsive(
-          `${Cypress.env('RegionEU')}/careers/locations/${location.urlAppend}`,
+          `${baseUrl}/careers/locations/${location.urlAppend}`,
           { waitLoad: true }
         )
         cy.c_checkPageContent(location.place)
-        if (Cypress.config('baseUrl').includes('deriv.com')) {
+        if (baseUrl.includes('deriv.com')) {
           cy.c_checkMap()
         }
         cy.c_visitResponsive(
-          `${Cypress.env('RegionEU')}/careers/locations/${location.urlAppend}`,
+          `${baseUrl}/careers/locations/${location.urlAppend}`,
           {
             waitLoad: true,
             size: 'desktop',
           }
         )
         cy.c_checkPageContent(location.place)
-        if (Cypress.config('baseUrl').includes('deriv.com')) {
+        if (baseUrl.includes('deriv.com')) {
           cy.c_checkMap()
         }
       }
