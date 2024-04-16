@@ -79,7 +79,7 @@ describe('QATEST-2036 - should validate the Partners main page', () => {
     'should be able to navigate to Partners main page from home page and validate the page content in responsive for ROW',
     { tags: ['@full-tests', '@row-tests'] },
     () => {
-      cy.c_visitResponsive('/')
+      cy.c_visitResponsive('/', { waitLoad: true })
       homeBanner.elements.hamBurgerMenu().should('be.visible').click()
       homeBanner.elements.aboutUsMenu().should('be.visible').click()
       homeBanner.elements.partnershipProgrammes().should('be.visible').click()
@@ -91,7 +91,7 @@ describe('QATEST-2036 - should validate the Partners main page', () => {
     'should be able to navigate to Partners main page from home page and validate the page content in responsive for EU',
     { tags: ['@full-tests', '@eu-tests'] },
     () => {
-      cy.c_visitResponsive(Cypress.env('RegionEU'))
+      cy.c_visitResponsive(Cypress.env('RegionEU', { waitLoad: true }))
       homeBanner.elements.hamBurgerMenu().should('be.visible').click()
       homeBanner.elements.aboutUsMenu().should('be.visible').click()
       homeBanner.elements.partnershipProgrammes().should('be.visible').click()
