@@ -36,6 +36,7 @@ function careersHomepage(size, region) {
   cy.findByRole('link', { name: 'See our open positions' }).click()
   redirectPopup(region)
   cy.findByRole('button', { name: 'Explore jobs' }).click()
+  cy.c_waitForPageLoad()
   cy.findByRole('heading', { name: "Who we're looking for" }).should(
     'be.visible'
   )
@@ -96,6 +97,36 @@ function careersHomepage(size, region) {
 }
 
 describe('QATEST-1659 - should validate the Career Home page in desktop', () => {
+  it('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for ROW', () => {
+    cy.c_visitResponsive('', { size: 'desktop' })
+    homeBanner.elements.aboutUsMenu().should('be.visible').click()
+    homeBanner.elements.careers().should('be.visible').first().click()
+    careersHomepage('desktop', 'ROW')
+  })
+
+  it('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for EU', () => {
+    cy.c_visitResponsive(Cypress.env('RegionEU'), { size: 'desktop' })
+    homeBanner.elements.aboutUsMenu().should('be.visible').click()
+    homeBanner.elements.careers().should('be.visible').first().click()
+    careersHomepage('desktop', 'EU')
+  })
+})
+describe('QATEST-1659 - should validate the Career Home page in Responsive', () => {
+  it('should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for ROW', () => {
+    cy.c_visitResponsive('', { waitLoad: true })
+    homeBanner.elements.hamBurgerMenu().should('be.visible').click()
+    homeBanner.elements.aboutUsMenu().click()
+    homeBanner.elements.careers().should('be.visible').click()
+    careersHomepage('mobile', 'ROW')
+  })
+
+  it('should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for EU', () => {
+    cy.c_visitResponsive(Cypress.env('RegionEU'), { waitLoad: true })
+    homeBanner.elements.hamBurgerMenu().should('be.visible').click()
+    homeBanner.elements.aboutUsMenu().click()
+    homeBanner.elements.careers().should('be.visible').click()
+    careersHomepage('mobile', 'EU')
+  })
   it(
     'should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for ROW',
     { tags: ['@full-tests', '@row-tests'] },
