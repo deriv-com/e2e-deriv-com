@@ -47,7 +47,7 @@ jobs:
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
-        spec: cypress/e2e/webflow/*.js
+        spec: cypress/e2e/webflow/percy.cy.js
       env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
         # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
