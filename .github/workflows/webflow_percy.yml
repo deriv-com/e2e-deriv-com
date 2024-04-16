@@ -8,7 +8,7 @@ on:
         description: Select the environment
         options:
         - https://deriv-staged.webflow.io/
-        - https://webflow.deriv.com/ 
+        - https://deriv.com/
       suite:
         type: choice
         description: Run full or rerun
@@ -29,7 +29,7 @@ jobs:
 
     steps:
     - name: Checkout external repository with Cypress tests
-      uses: actions/checkout@v4
+      uses: actions/checkout@97d526c9027e1b1eedde4f37196aebe8834005ef
       with:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
     - name: Install percy cli
@@ -37,7 +37,7 @@ jobs:
           npm i @percy/cli@1.27.3
           echo "Installed Percy CLI version: $(npx percy --version)"
     - name: Install percy cypress
-       run: |
+      run: |
           npm install --save-dev @percy/cypress
           npm install cypress --save-dev
           echo "Percy Cypress version: $(npx percy --version)"
