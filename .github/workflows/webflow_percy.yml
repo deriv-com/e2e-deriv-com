@@ -42,14 +42,25 @@ jobs:
           npm install cypress --save-dev
           echo "Percy Cypress version: $(npx percy --version)"
           echo "Cypress version: $(npx cypress --version)" 
+    - name: Set Webflow Environment Variable
+      run: |
+          if [[ "${{ github.event.inputs.environment }}" == "https://deriv-staged.webflow.io/" ]]; then
+            echo "Setting WEBFLOW_ENV to staging"
+            echo "WEBFLOW_ENV=stage" >> $GITHUB_ENV
+          else
+            echo "Setting WEBFLOW_ENV to prod"
+            echo "WEBFLOW_ENV=prod" >> $GITHUB_ENV
+          fi
     - name: Run Percy  
-      if: ${{ github.event.inputs.suite = 'full' && github.event.inputs.rerun = '' }}
+      if: ${{ github.event.inputs.suite == 'full' && github.event.inputs.rerun == '' }}
+      export PERCY_TOKEN=${{ secrets.e2e_percy_token }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
-        spec: cypress/e2e/webflow/*.js
+        spec: cypress/e2e/webflow/Percy/percy.cy.js
       env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
+        #CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }}
         # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # Set Base Url from client_payload.
@@ -62,7 +73,7 @@ jobs:
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
-        spec: cypress/e2e/${{ env.TEST_SUITE }}/*.js
+        spec: cypress/e2e/webflow/Percy/percy.cy.js
       env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
         # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
