@@ -59,7 +59,7 @@ jobs:
         record: true
         parallel: true # Runs test in parallel using settings above
         spec: cypress/e2e/webflow/Percy/percy.cy.js
-        command: npx cypress run --spec cypress/e2e/webflow/Percy/percy.cy.js --record --key ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }}  
+        command: npx cypress run --spec cypress/e2e/webflow/Percy/percy.cy.js --record --key ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }} --env projectId=${{ secrets.CYPRESS_WEBFLOW_PROJECT_ID }}
       env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
         WEBFLOW_ENV: ${{ env.WEBFLOW_ENV }}
