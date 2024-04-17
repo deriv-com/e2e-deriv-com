@@ -5,7 +5,7 @@ let urls
 if (Cypress.env('webflow_env') === 'staging') {
   //urls = require('cypress/e2e/webflow/Percy/staging_urls.json') // Load stage URLs
   //urls = require('/Users/indu/webflow-e2e-deriv-com/e2e-deriv-com/cypress/e2e/webflow/Percy/staging_urls.json')
-  urls = require('./stage_urls.json')
+  urls = require('./staging_urls.json')
 } else {
   // Default to 'prod' URLs if 'stage' is not specified or if 'env' is not set
  // urls = require('/Users/indu/webflow-e2e-deriv-com/e2e-deriv-com/cypress/e2e/webflow/Percy/prod_urls.json') // Load prod URLs
