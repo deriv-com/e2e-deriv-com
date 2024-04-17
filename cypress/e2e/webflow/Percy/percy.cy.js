@@ -27,13 +27,13 @@ describe('Visit URLs and Capture Percy Snapshots', () => {
   urls.urls.forEach((url) => {
     it(`Visits ${url} and captures Percy snapshot`, () => {
       cy.log('WEBFLOW_ENV value:', Cypress.env('webflow_env'))
-      // Visit the URL
       cy.visit(url)
-      cy.c_waitForPageLoad()
-     // cy.wait(2000)
-   //   cy.get('.loader').should('not.exist') 
-
-      // Take a Percy snapshot
+     // if (Cypress.env('webflow_env') === 'staging') {
+     //  cy.get('.contact-social_embed.is-whatsapp').should('be.visible', { timeout: 30000 })
+     // } else {
+     //   cy.c_waitForPageLoad()
+     // }
+      cy.wait(3000)
       snapshot(url)
     })
   })
