@@ -11,6 +11,7 @@ if (Cypress.env('webflow_env') === 'staging') {
  // urls = require('/Users/indu/webflow-e2e-deriv-com/e2e-deriv-com/cypress/e2e/webflow/Percy/prod_urls.json') // Load prod URLs
   urls = require('./prod_urls.json')
 }
+cy.log('Environment is ' + Cypress.env('webflow_env'))
 function snapshot(url) {
   cy.viewport(400, 1024)
   cy.scrollTo('bottom', { ensureScrollable: false })
