@@ -61,7 +61,7 @@ jobs:
         spec: cypress/e2e/webflow/Percy/percy.cy.js
         command: npx percy exec -- cypress run --spec cypress/e2e/webflow/Percy/percy.cy.js --record --key ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }} 
       env:
-        PERCY_TOKEN: ${{ secrets.PERCY_TEST_TOKEN }}
+        PERCY_TOKEN: ${{ secrets.E2E_PERCY_TOKEN }}
         TEST_SUITE: ${{ github.event.inputs.suite }}
         WEBFLOW_ENV: ${{ env.WEBFLOW_ENV }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }}
