@@ -53,7 +53,6 @@ jobs:
           fi
     - name: Run Percy  
       if: ${{ github.event.inputs.suite == 'full' && github.event.inputs.rerun == '' }}
-      export PERCY_TOKEN=${{ secrets.e2e_percy_token }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
