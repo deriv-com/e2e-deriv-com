@@ -29,7 +29,7 @@ jobs:
 
     steps:
     - name: Checkout external repository with Cypress tests
-      uses: actions/checkout@97d526c9027e1b1eedde4f37196aebe8834005ef
+      uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
       with:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
     - name: Install percy cli
