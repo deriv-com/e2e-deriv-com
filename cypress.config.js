@@ -7,7 +7,7 @@ require('dotenv').config()
 module.exports = defineConfig({
   chromeWebSecurity: false,
   e2e: {
-   // projectId: '16kef2',
+    projectId: '16kef2',
     setupNodeEvents(on, config) { },
     //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
@@ -19,6 +19,7 @@ module.exports = defineConfig({
       // IMPORTANT: return the config object
       return config;
     } 
+    
   },
   env: {
     grepTags: process.env.GREP_TAGS || false,
@@ -79,4 +80,18 @@ module.exports = defineConfig({
     appStore: 'https://apps.apple.com/my/app/deriv-go-online-trading-app/',
     appGallery: 'https://appgallery.huawei.com/app/C103801913',
   },
+  plugins: (on, config) => {
+    on('file:preprocessor', (file) => {
+      // Get the relative path of the test file
+      const filePath = file.filePath
+
+      // Check if the test file is in folder1 or folder2
+      if (filePath.includes('/cypress/e2e/webflow/')) {
+        // Set projectId for tests in folder1
+        config.e2e.projectId = '8svgxm'
+      }
+
+      return config;
+    })}
+
 })
