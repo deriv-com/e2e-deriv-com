@@ -1,4 +1,4 @@
-// cypress/integration/visit_and_capture.spec.js
+import '@testing-library/cypress/add-commands'
 
 // Load URLs from the JSON file
 let urls
@@ -29,8 +29,9 @@ describe('Visit URLs and Capture Percy Snapshots', () => {
       cy.log('WEBFLOW_ENV value:', Cypress.env('webflow_env'))
       // Visit the URL
       cy.visit(url)
-      cy.wait(2000)
-      cy.get('.loader').should('not.exist') 
+      cy.c_waitForPageLoad()
+     // cy.wait(2000)
+   //   cy.get('.loader').should('not.exist') 
 
       // Take a Percy snapshot
       snapshot(url)
