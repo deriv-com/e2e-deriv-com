@@ -1,5 +1,4 @@
 name: Webflow Percy
-
 on:
   workflow_dispatch:
     inputs:
