@@ -46,7 +46,7 @@ jobs:
       run: |
           if [[ "${{ github.event.inputs.environment }}" == "https://deriv-staged.webflow.io/" ]]; then
             echo "Setting WEBFLOW_ENV to staging"
-            echo "WEBFLOW_ENV=stage" >> $GITHUB_ENV
+            echo "WEBFLOW_ENV=staging" >> $GITHUB_ENV
           else
             echo "Setting WEBFLOW_ENV to prod"
             echo "WEBFLOW_ENV=prod" >> $GITHUB_ENV
