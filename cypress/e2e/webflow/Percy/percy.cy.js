@@ -11,7 +11,6 @@ if (Cypress.env('webflow_env') === 'staging') {
  // urls = require('/Users/indu/webflow-e2e-deriv-com/e2e-deriv-com/cypress/e2e/webflow/Percy/prod_urls.json') // Load prod URLs
   urls = require('./prod_urls.json')
 }
-cy.log('Environment is ' + Cypress.env('webflow_env'))
 function snapshot(url) {
   cy.viewport(400, 1024)
   cy.scrollTo('bottom', { ensureScrollable: false })
@@ -25,6 +24,7 @@ function snapshot(url) {
 
 
 describe('Visit URLs and Capture Percy Snapshots', () => {
+  cy.log('Environment is ' + Cypress.env('webflow_env'))
   urls.urls.forEach((url) => {
     it(`Visits ${url} and captures Percy snapshot`, () => {
       // Visit the URL
