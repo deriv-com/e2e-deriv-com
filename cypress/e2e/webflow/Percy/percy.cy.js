@@ -26,6 +26,7 @@ function snapshot(url) {
 describe('Visit URLs and Capture Percy Snapshots', () => {
   urls.urls.forEach((url) => {
     it(`Visits ${url} and captures Percy snapshot`, () => {
+      cy.log('WEBFLOW_ENV value:', Cypress.env('webflow_env'))
       // Visit the URL
       cy.visit(url)
       cy.wait(2000)
