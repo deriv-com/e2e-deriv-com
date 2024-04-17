@@ -7,7 +7,7 @@ require('dotenv').config()
 module.exports = defineConfig({
   chromeWebSecurity: false,
   e2e: {
-    projectId: '16kef2',
+   // projectId: '16kef2',
     setupNodeEvents(on, config) { },
     //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
