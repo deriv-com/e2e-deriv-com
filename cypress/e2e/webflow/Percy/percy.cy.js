@@ -1,7 +1,7 @@
 import '@testing-library/cypress/add-commands'
 
 // Load URLs from the JSON file
-const urls = require('./url_paths.json')
+const urls = require('./redirect-paths.json')
 const webflowbaseUrl = Cypress.env('webflow_env')
 
 function snapshot(fullUrl) {
