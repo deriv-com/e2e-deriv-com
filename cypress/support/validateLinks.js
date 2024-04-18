@@ -279,7 +279,7 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
       { log: false }
     )
     cy.writeFile(
-      `cypress/full_extended_results/failedRequestLinks${testRegion}.json`,
+      `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`,
       JSON.stringify(filterLinks(failedLinks.onRequest)),
       { log: false }
     )
@@ -384,7 +384,7 @@ export const verifyRequestLink = (testRegion, options = {}) => {
         //   { log: false }
         // )
         cy.writeFile(
-          `cypress/full_extended_results/failedRequestLinks${testRegion}.json`,
+          `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`,
           JSON.stringify(filterLinks(failedLinks.onRequest)),
           { log: false }
         )
