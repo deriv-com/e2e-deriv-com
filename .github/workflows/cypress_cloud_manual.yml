@@ -31,7 +31,7 @@ jobs:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
     - name: Cypress run full tests
-      if: ${{ github.event.inputs.suite != 'full' }}
+      if: ${{ github.event.inputs.suite != 'full_extended' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
@@ -93,4 +93,4 @@ jobs:
       uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392  #v4.0.0
       with:
         name: full_extended_results
-        path: cypress/
+        path: cypress/full_extended_results/
