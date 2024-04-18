@@ -4,11 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        type: choice
+        type: string
         description: Select the environment
         options:
-        - https://deriv-staged.webflow.io/
-        - https://deriv.com/
+        - prod
+        - webflow
+        - staging-webflow
       suite:
         type: choice
         description: Run full or rerun
@@ -42,15 +43,6 @@ jobs:
           npm install cypress --save-dev
           echo "Percy Cypress version: $(npx percy --version)"
           echo "Cypress version: $(npx cypress --version)" 
-    - name: Set Webflow Environment Variable
-      run: |
-          if [[ "${{ github.event.inputs.environment }}" == "https://deriv-staged.webflow.io/" ]]; then
-            echo "Setting WEBFLOW_ENV to staging"
-            echo "WEBFLOW_ENV=staging" >> $GITHUB_ENV
-          else
-            echo "Setting WEBFLOW_ENV to prod"
-            echo "WEBFLOW_ENV=prod" >> $GITHUB_ENV
-          fi
     - name: Run Percy  
       if: ${{ github.event.inputs.suite == 'full' && github.event.inputs.rerun == '' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
@@ -63,7 +55,7 @@ jobs:
       env:
         PERCY_TOKEN: ${{ secrets.E2E_PERCY_TOKEN }}
         TEST_SUITE: ${{ github.event.inputs.suite }}
-        WEBFLOW_ENV: ${{ env.WEBFLOW_ENV }}
+        WEBFLOW_ENV: ${{ github.event.inputs.environment }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }}
         CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_WEBFLOW_PROJECT_ID }}
         # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token

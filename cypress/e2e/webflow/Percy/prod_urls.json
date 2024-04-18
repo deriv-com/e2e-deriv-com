@@ -1,16 +1,15 @@
 {
-  "urls": [
-    "https://deriv.com/",
-    "https://deriv.com/who-we-are/",
-    "https://deriv.com/responsible/",
-    "https://deriv.com/regulatory/",
-    "https://deriv.com/our-principles",
-    "https://deriv.com/why-choose-us",
-    "https://deriv.com/contact-us",
-    "https://deriv.com/help-centre/",
-    "https://deriv.com/payment-methods",
-    "https://deriv.com/careers/",
-    "https://deriv.com/terms-and-conditions/"
-
+  "paths": [
+    "/",
+    "/who-we-are",
+    "/responsible",
+    "/regulatory",
+    "/our-principles",
+    "/why-choose-us",
+    "/contact-us",
+    "/help-centre",
+    "/payment-methods",
+    "/careers",
+    "/terms-and-conditions"
   ]
 }
