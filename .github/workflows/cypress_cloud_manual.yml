@@ -69,10 +69,9 @@ jobs:
       with:
         record: true
         parallel: true # Runs test in parallel using settings above
-        command: npx cypress run --spec cypress/e2e/${{ env.TEST_SUITE }}/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
+        command: npx cypress run --spec cypress/e2e/full_extended/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
         group: 'e2e Tests'
       env:
-        TEST_SUITE: ${{ github.event.inputs.suite }}
         # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
         # in GitHub repo → Settings → Secrets → Actions
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}
