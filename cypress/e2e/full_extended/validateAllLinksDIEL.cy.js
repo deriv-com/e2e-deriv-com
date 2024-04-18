@@ -32,7 +32,7 @@ describe('QATEST-96657 - Check URL in deriv.com for DIEL', () => {
       expect(result).to.have.length(0)
     })
   })
-  it.only('should request for all  Links for region DIEL', () => {
+  it('should request for all  Links for region DIEL', () => {
     verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })
     cy.readFile(
       `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`
