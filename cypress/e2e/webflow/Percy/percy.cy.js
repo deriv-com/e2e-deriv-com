@@ -37,12 +37,11 @@ function snapshot(url) {
 
 describe('Visit URLs based on environment', () => {
   it('Visits URLs based on environment', () => {
-    const environment = Cypress.env('WEBFLOW_ENV')
-    const baseUrl = getBaseUrl(environment) // Function to get base URL based on environment
-
+    const webflowbaseUrl = Cypress.env('WEBFLOW_ENV') // Function to get base URL based on environment
+    cy.log(webflowbaseUrl)+'is the base url'
     cy.readFile('percy_urls.json').then((data) => {
       data.paths.forEach((path) => {
-        const url = `${baseUrl}/${path}`
+        const url = `${webflowbaseUrl}/${path}`
         cy.visit(url)
         cy.wait(3000)
         snapshot(url)
@@ -51,17 +50,3 @@ describe('Visit URLs based on environment', () => {
     })
   })
 })
-
-function getBaseUrl(environment) {
-  switch (environment) {
-    case 'prod':
-      return 'https://deriv.com'
-    case 'staging-webflow':
-      return 'https://deriv-staged.webflow.io'
-    case 'webflow':
-      return 'https://webflow.deriv.com/ '
-    default:
-      throw new Error(`Unsupported environment: ${environment}`)
-  }
-}
-

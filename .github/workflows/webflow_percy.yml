@@ -7,9 +7,9 @@ on:
         type: string
         description: Select the environment
         options:
-        - prod
-        - webflow
-        - staging-webflow
+        - https://deriv.com
+        - https://deriv-staged.webflow.io
+        - https://webflow.deriv.com
       suite:
         type: choice
         description: Run full or rerun
