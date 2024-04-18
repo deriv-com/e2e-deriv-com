@@ -89,7 +89,7 @@ jobs:
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
         
     - name: Publish full_extended test result files for Visit Tests
-      if: ${{ (github.event.inputs.suite == 'full_extended' || github.event.inputs.suite = 'full') && failure()}}
+      if: ${{ (github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'full') && failure()}}
       uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392  #v4.0.0
       with:
         name: full_extended_results
