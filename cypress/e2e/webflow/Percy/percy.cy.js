@@ -22,11 +22,6 @@ describe('Visit URLs and Capture Percy Snapshots', () => {
     it(`Visits ${fullUrl} and captures Percy snapshot`, () => {
       cy.log('WEBFLOW_ENV value:', Cypress.env('webflow_env'))
       cy.visit(fullUrl)
-     // if (Cypress.env('webflow_env') === 'staging') {
-     //  cy.get('.contact-social_embed.is-whatsapp').should('be.visible', { timeout: 30000 })
-     // } else {
-     //   cy.c_waitForPageLoad()
-     // }
       cy.wait(3000)
       snapshot(fullUrl)
     })
