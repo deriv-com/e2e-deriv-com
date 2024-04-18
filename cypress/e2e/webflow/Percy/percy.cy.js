@@ -38,7 +38,7 @@ function snapshot(url) {
 describe('Visit URLs based on environment', () => {
   it('Visits URLs based on environment', () => {
     const webflowbaseUrl = Cypress.env('WEBFLOW_ENV') // Function to get base URL based on environment
-    cy.log(webflowbaseUrl)+'is the base url'
+    cy.log(webflowbaseUrl+'is the base url')
     cy.readFile('cypress/e2e/webflow/percy/urls.json').then((data) => {
       data.paths.forEach((path) => {
         const url = `${webflowbaseUrl}/${path}`
