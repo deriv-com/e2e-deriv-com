@@ -6,22 +6,13 @@ on:
       environment:
         type: string
         description: Select the environment
-        options:
-        - https://deriv.com
-        - https://deriv-staged.webflow.io
-        - https://webflow.deriv.com
+        default: https://deriv.com
       suite:
         type: choice
         description: Run full or rerun
         options:
         - full
         - rerun
-      rerun from :
-        type: string
-        required: false
-        description: In case of rerun select test cases (Optional)
-        options:
-        - webflow/homePage
 jobs:
   percy-run:
     runs-on: ubuntu-latest
@@ -65,7 +56,7 @@ jobs:
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
     
-    - name: Run Percy rerun 
+    - name: Run Percy rerun # Not in use, yet to confirm on this flow
       if: ${{ github.event.inputs.suite == 'rerun' && github.event.inputs.rerun != '' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
