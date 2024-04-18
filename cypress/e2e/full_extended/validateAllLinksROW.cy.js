@@ -22,21 +22,29 @@ describe('QATEST-96657 - Check URL in deriv.com for ROW', () => {
     // The following is for cleaner logs in test
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
   })
-  it('should visit all deriv Links for region ROW', () => {
-    verifyVisitLink(rowUrl, testRegion)
-    visitTestComplete = true
-    cy.readFile(
-      `cypress/full_extended_results/failedVisitLinks/${testRegion}.json`
-    ).then((result) => {
-      expect(result).to.have.length(0)
-    })
-  })
-  it('should request for all  Links for region ROW', () => {
-    verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })
-    cy.readFile(
-      `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`
-    ).then((result) => {
-      expect(result).to.have.length(0)
-    })
-  })
+  it(
+    'should visit all deriv Links for region ROW',
+    { retries: { runMode: 0, openMode: 0 } },
+    () => {
+      verifyVisitLink(rowUrl, testRegion)
+      visitTestComplete = true
+      cy.readFile(
+        `cypress/full_extended_results/failedVisitLinks/${testRegion}.json`
+      ).then((result) => {
+        expect(result).to.have.length(0)
+      })
+    }
+  )
+  it(
+    'should request for all  Links for region ROW',
+    { retries: { runMode: 0, openMode: 0 } },
+    () => {
+      verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })
+      cy.readFile(
+        `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`
+      ).then((result) => {
+        expect(result).to.have.length(0)
+      })
+    }
+  )
 })
