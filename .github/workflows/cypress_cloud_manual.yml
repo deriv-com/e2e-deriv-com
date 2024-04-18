@@ -92,5 +92,5 @@ jobs:
       if: ${{ (github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'full') && failure()}}
       uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392  #v4.0.0
       with:
-        name: full_extended_results-${{ matrix.os }}-${{ matrix.version }}
+        name: full_extended_results-${{ github.run_number }}-${{ github.run_attempt }}-${{ github.run_id }}-$(date +%s)
         path: cypress/full_extended_results/
