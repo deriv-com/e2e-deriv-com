@@ -4,16 +4,15 @@ import '@testing-library/cypress/add-commands'
 const urls = require('./url_paths.json')
 const webflowbaseUrl = Cypress.env('webflow_env')
 
-
 function snapshot(fullUrl) {
-  cy.viewport(400, 1024)
+  cy.viewport('iphone-xr')
   cy.scrollTo('bottom', { ensureScrollable: false })
   cy.wait(1000)
-  cy.percySnapshot(fullUrl, { width: 400 })
-  cy.viewport(1024, 1024)
+  cy.percySnapshot(fullUrl)
+  cy.viewport('macbook-16')
   cy.scrollTo('bottom', { ensureScrollable: false })
   cy.wait(1000)
-  cy.percySnapshot(fullUrl, { width: 1024 })
+  cy.percySnapshot(fullUrl)
 }
 
 
