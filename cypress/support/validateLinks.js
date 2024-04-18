@@ -245,9 +245,10 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
             cy.log(
               `Link "${linkToVisit}" failed but is allowed failure due to known issue`
             )
-            failedLinks.onVisit.push(
-              `Link "${linkToVisit}" failed but is allowed failure due to known issue`
-            )
+            // Commented to make sure known failures dont cause test failure
+            // failedLinks.onVisit.push(
+            //   `Link "${linkToVisit}" failed but is allowed failure due to known issue`
+            // )
           })
         }
       } else {
@@ -322,7 +323,7 @@ export const verifyRequestLink = (testRegion, options = {}) => {
       cy.readFile(`cypress/fixtures/requestedLinks/${testRegion}.json`).then(
         (requestedLinks) => {
           cy.readFile(
-            `cypress/full_extended_results/failedRequestLinks${testRegion}.json`
+            `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`
           ).then((failedRequestLinks) => {
             toVerifyLinkDetails.requestLinks = toRequestLinks
             if (visitTestPass == true) {

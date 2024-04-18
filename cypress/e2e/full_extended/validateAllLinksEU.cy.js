@@ -26,8 +26,18 @@ describe('QATEST-96657 - Check URL in deriv.com for EU', () => {
   it('should visit all deriv Links for region EU', () => {
     verifyVisitLink(euUrl, testRegion)
     visitTestComplete = true
+    cy.readFile(
+      `cypress/full_extended_results/failedVisitLinks/${testRegion}.json`
+    ).then((result) => {
+      expect(result).to.have.length(0)
+    })
   })
   it('should request for all  Links for region EU', () => {
     verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })
+    cy.readFile(
+      `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`
+    ).then((result) => {
+      expect(result).to.have.length(0)
+    })
   })
 })

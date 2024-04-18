@@ -30,8 +30,8 @@ jobs:
       with:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
-    - name: Cypress run with record
-      if: ${{ github.event.inputs.suite != 'full_extended' }}
+    - name: Cypress run full tests
+      if: ${{ github.event.inputs.suite != 'full' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
@@ -62,8 +62,8 @@ jobs:
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
     
-    - name: Cypress run without record
-      if: ${{ github.event.inputs.suite == 'full_extended' }}
+    - name: Cypress run full_extended tests
+      if: ${{ github.event.inputs.suite == 'full_extended' ||  github.event.inputs.suite = 'full' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
@@ -88,9 +88,9 @@ jobs:
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
         
-    - name: Publish full_extended test result files
-      if: ${{ github.event.inputs.suite == 'full_extended' && failure()}}
+    - name: Publish full_extended test result files for Visit Tests
+      if: ${{ (github.event.inputs.suite == 'full_extended' || github.event.inputs.suite = 'full') && failure()}}
       uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392  #v4.0.0
       with:
-        name: validateAllLinksFailures.json
-        path: cypress/full_extended_results/
+        name: full_extended_results
+        path: cypress/
