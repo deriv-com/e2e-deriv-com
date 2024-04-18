@@ -12,7 +12,7 @@ on:
         description: Run full or rerun
         options:
         - full
-        - rerun
+        - rerun(not in use)
 jobs:
   percy-run:
     runs-on: ubuntu-latest
