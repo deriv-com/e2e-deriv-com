@@ -32,7 +32,7 @@ jobs:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
 
     - name: Smoke test without record
-      if: ${{ 'github.event.inputs.suite == smoke' }}
+      if: ${{ github.event.inputs.suite == 'smoke' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
@@ -64,7 +64,7 @@ jobs:
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
 
     - name: Full test without record
-      if: ${{ 'github.event.inputs.suite == full' }}
+      if: ${{ github.event.inputs.suite == 'full' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
