@@ -17,36 +17,30 @@ on:
         - full_extended
         - regression 
 jobs:
-  cypress-run:
+
+  Smoke:  
+    if: ${{ github.event.inputs.suite == 'smoke' }}
     runs-on: ubuntu-latest
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
         matrix:
-            containers: ${{ fromJson(github.event.inputs.suite == 'full_extended' && '[1]' || '[1,2,3,4,5]') }} 
-          # because maximum number of containers should be equal to number of tests else same test will be executed in multiple containers
-
+            containers: [1,2,3,4,5]
     steps:
-    - name: Checkout external repository with Cypress tests
-      uses: actions/checkout@v4
-      with:
-        repository: deriv-com/e2e-deriv-com # Replace with your repository name
-
-    - name: Smoke test
-      if: ${{ github.event.inputs.suite == 'smoke' }}
+      - name: cypress-run
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
-      uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
-      with:
+        uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
+        with:
         # Starts web server for E2E tests - replace with your own server invocation
         # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
         # start: npm start
         # wait-on: 'http://localhost:3000' # Waits for above
         # Records to Cypress Cloud 
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        record: true
-        parallel: true # Runs test in parallel using settings above
-        command: npx cypress run --spec cypress/e2e/smoke/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
-        group: 'e2e Tests'
-      env:
+          record: true
+          parallel: true # Runs test in parallel using settings above
+          command: npx cypress run --spec cypress/e2e/smoke/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
+          group: 'e2e Tests'
+    env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
         # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
         # in GitHub repo → Settings → Secrets → Actions
@@ -63,45 +57,22 @@ jobs:
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
 
-    - name: Full test
-      if: ${{ github.event.inputs.suite == 'full' }}
+    # - name: Full test
+ 
+  FullExtended :
+     if: ${{ github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'regression' }}
+     runs-on: ubuntu-latest
+     strategy:
+        fail-fast: false # https://github.com/cypress-io/github-action/issues/48
+        matrix:
+            containers: [1]    
+     steps:
+     - name: cypress-run
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
-      uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
-      with:
-        # Starts web server for E2E tests - replace with your own server invocation
-        # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
-        # start: npm start
-        # wait-on: 'http://localhost:3000' # Waits for above
-        # Records to Cypress Cloud 
-        # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        record: true
-        parallel: true # Runs test in parallel using settings above
-        command: npx cypress run --spec cypress/e2e/full/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
-        group: 'e2e Tests'
-      env:
-        TEST_SUITE: ${{ github.event.inputs.suite }}
-        # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-        # in GitHub repo → Settings → Secrets → Actions
-        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}
-        CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_MANUAL_PROJECT_ID }}
-
-        # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # Set Base Url from client_payload.
-        CYPRESS_BASE_URL: "${{ github.event.inputs.environment }}"
-        # Send PR details to Cypress test run
-        COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
-        # Set test env variables
-        E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
-        E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
-
-    - name: Full extended 
-      if: ${{ github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'regression' }}
-      # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
-      uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
-      with:
+       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
+       with:
         spec: cypress/e2e/full_extended/*.js
-      env:
+     env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
         # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -109,17 +80,32 @@ jobs:
         CYPRESS_BASE_URL: "${{ github.event.inputs.environment }}"
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
-        
-    - name: Publish full_extended test result files
-      if: ${{ github.event.inputs.suite == 'full_extended' && failure()}}
-      uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392  #v4.0.0
-      with:
-        name: validateAllLinksFailures.json
-        path: cypress/full_extended_results/
 
-    - name: Regression 
-      if: ${{ github.event.inputs.suite == 'regression' }}
+     
+    # - name: Publish full_extended test result files
+
+
+    # - name: Regression 
+
+  PublishFullExtendedResult: 
+    if: ${{ github.event.inputs.suite == 'full_extended' && failure()}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: publish logs
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392  #v4.0.0
+        with:
+          name: validateAllLinksFailures.json
+          path: cypress/full_extended_results/  
+  Regression : 
+    if: ${{ github.event.inputs.suite == 'regression' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
+      matrix:
+          containers: [1,2,3,4,5]
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
+    steps:
+    - name: cypress-run 
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
         # Starts web server for E2E tests - replace with your own server invocation
@@ -128,13 +114,13 @@ jobs:
         # wait-on: 'http://localhost:3000' # Waits for above
         # Records to Cypress Cloud 
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-        record: true
-        parallel: true # Runs test in parallel using settings above
-        command: 
+         record: true
+         parallel: true # Runs test in parallel using settings above
+         command: 
           npx cypress run --spec cypress/e2e/smoke/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
           npx cypress run --spec cypress/e2e/full/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
-        group: 'e2e Tests'
-      env:
+         group: 'e2e Tests'
+    env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
         # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
         # in GitHub repo → Settings → Secrets → Actions
@@ -150,5 +136,47 @@ jobs:
         # Set test env variables
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
+
+  full : 
+          if: ${{ github.event.inputs.suite == 'full' }}
+          runs-on: ubuntu-latest
+          strategy:
+            fail-fast: false # https://github.com/cypress-io/github-action/issues/48
+            matrix:
+                containers: [1,2,3,4,5]
+            # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
+          steps:
+          - name: cypress-run 
+            uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
+            with:
+              # Starts web server for E2E tests - replace with your own server invocation
+              # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
+              # start: npm start
+              # wait-on: 'http://localhost:3000' # Waits for above
+              # Records to Cypress Cloud 
+              # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
+               record: true
+               parallel: true # Runs test in parallel using settings above
+               command: 
+                npx cypress run --spec cypress/e2e/smoke/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
+                npx cypress run --spec cypress/e2e/full/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
+               group: 'e2e Tests'
+          env:
+              TEST_SUITE: ${{ github.event.inputs.suite }}
+              # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
+              # in GitHub repo → Settings → Secrets → Actions
+              CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}
+              CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_MANUAL_PROJECT_ID }}
+      
+              # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              # Set Base Url from client_payload.
+              CYPRESS_BASE_URL: "${{ github.event.inputs.environment }}"
+              # Send PR details to Cypress test run
+              COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
+              # Set test env variables
+              E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
+              E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
+      
 
 
