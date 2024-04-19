@@ -1,5 +1,5 @@
 import '@testing-library/cypress/add-commands'
-import homeBanner, { elements } from '../../support/POM/homePage'
+import homeBanner, { elements } from '../../../support/POM/homePage'
 
 describe('QATEST-1279 - Navigation Responsive - Menu items - EU and ROW (Including Trade Types)', () => {
   //Click through menu-items and ensure links are valid and load the next page.

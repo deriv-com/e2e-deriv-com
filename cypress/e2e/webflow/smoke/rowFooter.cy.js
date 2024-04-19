@@ -2,10 +2,10 @@ import '@testing-library/cypress/add-commands'
 import footer, {
   areLegalLinksVisible,
   socialMediaLinks,
-} from '../../support/POM/commonPage'
-import tncPage from '../../support/POM/tncPage'
+} from '../../../support/POM/commonPage'
+import tncPage from '../../../support/POM/tncPage'
 
-import responsiblePage from '../../support/POM/responsiblePage'
+import responsiblePage from '../../../support/POM/responsiblePage'
 
 describe('QATEST-1399 - Footer ROW Responsive', () => {
   beforeEach(() => {

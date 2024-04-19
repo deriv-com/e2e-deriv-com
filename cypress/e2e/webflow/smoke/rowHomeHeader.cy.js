@@ -1,5 +1,5 @@
 import '@testing-library/cypress/add-commands'
-import homeBanner from '../../support/POM/homePage'
+import homeBanner from '../../../support/POM/homePage'
 
 function check_homepage_header() {
   homeBanner.elements.hamBurgerMenu().should('be.visible')

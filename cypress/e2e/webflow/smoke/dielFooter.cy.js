@@ -1,7 +1,7 @@
 import '@testing-library/cypress/add-commands'
-import footer, { socialMediaLinks } from '../../support/POM/commonPage'
-import tncPage from '../../support/POM/tncPage'
-import responsiblePage from '../../support/POM/responsiblePage'
+import footer, { socialMediaLinks } from '../../../support/POM/commonPage'
+import tncPage from '../../../support/POM/tncPage'
+import responsiblePage from '../../../support/POM/responsiblePage'
 
 describe('QATEST-71237 Footer DIEL Responsive', () => {
   beforeEach(() => {
