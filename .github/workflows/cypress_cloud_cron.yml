@@ -95,7 +95,7 @@ jobs:
         CYPRESS_BASE_URL: "https://staging.deriv.com/"
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Daily cron for full tests on https://staging.deriv.com/
-        CYPRESS_PROJECT_ID: "c4ss4g"
+        CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_CRON_PROJECT_ID }}
         # Set test env variables
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}

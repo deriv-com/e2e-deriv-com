@@ -39,7 +39,6 @@ export class allLinks {
         'https://www.youtube.com/@deriv',
         'https://play.google.com/store/apps/details?id=com.deriv.app',
         'https://staging.deriv.com/markets/exchange-traded-funds/',
-        'https://staging.deriv.com/tnc/eu/risk-disclosure.pdf',
         'https://staging.deriv.com/trade-types/options/digital-options/up-and-down/',
         'https://staging.deriv.com/partners/deriv-prime/',
         'https://blog.deriv.com/',
