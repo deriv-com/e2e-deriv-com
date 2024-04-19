@@ -157,6 +157,7 @@ jobs:
  
   FullExtended :
      if: ${{ github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'regression' }}
+    #  if: ${{ github.event.inputs.suite == 'full_extended' }}
      runs-on: ubuntu-latest
      strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
