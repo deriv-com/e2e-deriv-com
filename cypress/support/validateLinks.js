@@ -90,10 +90,10 @@ export const isDuplicateRegion = (url) => {
 }
 
 export const isLinkNotAllowedCaseChange = (url) =>
-  linksNotAllowedCaseChange.some((link) => link == url)
+  linksNotAllowedCaseChange.some((link) => url.includes(link))
 
 export const isLinkNotAllowedRegion = (url) =>
-  linksNotAllowedRegion.some((link) => link == url)
+  linksNotAllowedRegion.some((link) => url.includes(link))
 
 export const isPassingStatusCode = (code) => {
   return passingStatusCodes.some((statusCode) => code == statusCode)
