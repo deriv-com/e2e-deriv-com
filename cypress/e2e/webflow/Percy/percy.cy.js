@@ -23,7 +23,6 @@ function snapshot(pageName) {
   cy.percySnapshot(pageName)
 }
 
-
 describe('Visit URLs and Capture Percy Snapshots', () => {
   urls.urls.forEach((url) => {
     let pageName
