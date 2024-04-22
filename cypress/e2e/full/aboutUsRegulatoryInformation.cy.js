@@ -5,25 +5,71 @@ import { elements } from '../../support/POM/commonPage'
 
 function validate_AboutUs_regulatoryInformation()
 {
+    //check that the disclaimer is visible
+    cy.get('div').contains('67.28% of retail investor accounts')
+
+    //check on the page content
     cy.findByRole('heading', { name: 'Regulatory information' }).should('be.visible')
+    cy.contains('Since 1999').should('be.visible')
 
     cy.findByRole('heading', { name: 'Deriv Investments (Europe) Limited' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'Europe map' }).should('be.visible')
-    cy.findByText('Italy' ).should('be.visible')
+    cy.contains('Here are the EU countries').should('be.visible')
+
+    cy.findByRole('link', {name: 'Austria'}).invoke("removeAttr", "target").click()
+    cy.url().should('include', 'countries/Austria')
+    cy.go('back')
+
+    cy.findByRole('link', {name: 'Spain'}).invoke("removeAttr", "target").click()
+    cy.url().should('include', 'countries/Spain')
+    cy.go('back')
 
     cy.contains('Financial disclosure report').first().click()
-    cy.findByText('Financial Disclosures Annual Report 2022').should('be.visible')
+    cy.findByText('Financial Disclosures Annual Report 2022').should('be.visible').click()
+    //check on pdf file WIP
+    //cy.findByRole('link',{name:'Financial Disclosures Annual Report 2022'}).invoke("removeAttr", "target")
+    //cy.go('back')
 
     cy.contains('Key information documents').first().click()
-    cy.findByText('Multipliers - Synthetics: Crash 300 Index').should('be.visible').click()
+    cy.findByText('Multipliers - Forex').should('be.visible').click()
+    //cy.go('back')
 
     cy.contains('RTS').first().click()
     cy.findByText('RTS28 2022').should('be.visible').click()
+    //cy.go('back')
 
-    cy.findByRole('img', { name: 'Labuan Fintech Association' }).should('be.visible')
     cy.findByRole('heading', { name: 'Deriv (FX) Ltd' }).should('be.visible')
-    //view link 
+    
+
+    cy.findByRole('heading', {name: 'Deriv (BVI) Ltd'}).should('be.visible')
+
+
+    cy.findByRole('heading', {name: 'Deriv (V) Ltd'}).should('be.visible')
+    cy.findByRole('link', {name: 'member', exact: 'true'}).invoke("removeAttr", "target").click()
+    cy.url().should('include', '/Financial_Markets_Association_Cert')
+    cy.go('back')
+
+
+    cy.findByRole('heading', {name: 'Deriv (SVG) LLC'}).should('be.visible')
+
+
+    cy.findByRole('heading', {name: 'Deriv.com Limited'}).should('be.visible')
+
+
+    cy.findByRole('heading', {name: 'The Financial Commission'}).should('be.visible')
+    //view membership
+    cy.findByRole('link', { name: 'view membership' }).invoke("removeAttr", "target").click()
+    cy.url().should('include', '/regulatory/deriv-com-ltd-membership')
+    cy.go('back')
+
+
+
+
+
+
+
+/*
+    //view license link 
     cy.findByRole('link', { name: 'Labuan Fintech Association' }).invoke("removeAttr", "target").click()
     cy.url().should('include', 'labuanfintech')
     cy.go('back')
@@ -31,7 +77,6 @@ function validate_AboutUs_regulatoryInformation()
     cy.findByRole('img', { name: 'British Virgin Islands Financial Services Commission' }).should('be.visible')
     cy.findByRole('heading', { name: 'Deriv (BVI) Ltd' }).should('be.visible')
 
-    cy.findByRole('img', { name: 'Vanuata Financial Services Commission' }).should('be.visible')
     cy.findByRole('img', { name: 'Vanuatu Financial Markets Association' }).should('be.visible')
     cy.findByRole('heading', { name: 'Deriv (V) Ltd' }).should('be.visible')
     //view link
@@ -52,7 +97,7 @@ function validate_AboutUs_regulatoryInformation()
     cy.url().should('include', '/regulatory/deriv-com-ltd-membership')
     cy.go('back')
     
-    
+    */
     
 }
 
