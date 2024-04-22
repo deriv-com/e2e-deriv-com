@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 // Load URLs from the JSON file
 const urls = require('./redirect-paths.json')
-const webflowbaseUrl = 'https://webflow.deriv.com/'
+const webflowbaseUrl = Cypress.env('webflow_env')
 
 function mapUrlForSnapshot(url) {
   if (url === '/') {
