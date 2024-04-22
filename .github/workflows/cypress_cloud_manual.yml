@@ -189,7 +189,7 @@ jobs:
             # Send PR details to Cypress test run
             COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
       
-  FullExtended-regression :
+  FullExtendedRegression :
      if: ${{ github.event.inputs.suite == 'regression' }}
      needs : regression 
      runs-on: ubuntu-latest
