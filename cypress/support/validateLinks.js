@@ -76,11 +76,6 @@ export const linksAllowedToFailOnRequestWithStatus = {
   403: ['https://ark-funds.com/funds/arkk/'],
 }
 
-export const linksNotAllowedCaseChange = [
-  '.pdf',
-  'goo.gl/maps/',
-  '/maps.app.goo.gl',
-]
 export const linksNotAllowedRegion = ['.pdf']
 
 export const isDuplicateRegion = (url) => {
@@ -89,9 +84,6 @@ export const isDuplicateRegion = (url) => {
   )
 }
 
-export const isLinkNotAllowedCaseChange = (url) =>
-  linksNotAllowedCaseChange.some((link) => url.includes(link))
-
 export const isLinkNotAllowedRegion = (url) =>
   linksNotAllowedRegion.some((link) => url.includes(link))
 
@@ -99,13 +91,7 @@ export const isPassingStatusCode = (code) => {
   return passingStatusCodes.some((statusCode) => code == statusCode)
 }
 
-export const normalizeUrl = (url) => {
-  if (isLinkNotAllowedCaseChange(url)) {
-    return url.trim().replace(/\/$/, '')
-  } else {
-    return url.toLowerCase().trim().replace(/\/$/, '')
-  }
-}
+export const normalizeUrl = (url) => url.trim().replace(/\/$/, '')
 
 export const filterLinks = (links) => {
   return links.filter(
