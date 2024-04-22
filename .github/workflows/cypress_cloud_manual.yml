@@ -109,8 +109,8 @@ jobs:
     # - name: Full test
  
   regression:  
-    if: ${{ github.event.inputs.suite == 'regression' }}
     needs : FullExtended
+    if: ${{ github.event.inputs.suite == 'regression' || always() }}
     runs-on: ubuntu-latest
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
