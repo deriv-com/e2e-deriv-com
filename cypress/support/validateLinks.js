@@ -41,12 +41,14 @@ export const linksNotToVisit = [
   'youtube',
   `${Cypress.env('RegionDIEL')}#`,
 ]
+
 export const linksNotToRequest = [
   'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg', //causing hang because takes a lot of time downloading pdf
   'https://www.instagram.com/derivcareers/',
   'javascript:;',
   'mailto:',
 ]
+
 export const linksAllowedToFailOnVisit = [
   // Bug raised for following links as https://app.clickup.com/t/86bxbkfqm
   // Need to remove once the issue is fixed because till then test will keep on failing without verifying other links
@@ -74,17 +76,36 @@ export const linksAllowedToFailOnRequestWithStatus = {
   403: ['https://ark-funds.com/funds/arkk/'],
 }
 
+export const linksNotAllowedCaseChange = [
+  '.pdf',
+  'goo.gl/maps/',
+  '/maps.app.goo.gl',
+]
+export const linksNotAllowedRegion = ['.pdf']
+
 export const isDuplicateRegion = (url) => {
   return url.includes(
     `${Cypress.env('RegionDIEL')}${Cypress.env('RegionDIEL')}`
   )
 }
 
+export const isLinkNotAllowedCaseChange = (url) =>
+  linksNotAllowedCaseChange.some((link) => link == url)
+
+export const isLinkNotAllowedRegion = (url) =>
+  linksNotAllowedRegion.some((link) => link == url)
+
 export const isPassingStatusCode = (code) => {
   return passingStatusCodes.some((statusCode) => code == statusCode)
 }
 
-export const normalizeUrl = (url) => url.toLowerCase().trim().replace(/\/$/, '')
+export const normalizeUrl = (url) => {
+  if (isLinkNotAllowedCaseChange(url)) {
+    return url.trim().replace(/\/$/, '')
+  } else {
+    return url.toLowerCase().trim().replace(/\/$/, '')
+  }
+}
 
 export const filterLinks = (links) => {
   return links.filter(
@@ -96,13 +117,18 @@ export const getAllLinks = (options = {}) => {
   const { appendRegion = false, region = Cypress.env('RegionDIEL') } = options
   cy.get('a').each((foundLink) => {
     let link = foundLink.prop('href')
+    // left for Debugging purpose
     // cy.log(link)
     // cy.log('is valid: ', isLinkValid(link))
     // cy.log('is visit Allowed: ', isLinkVisitAllowed(link))
     // cy.log('is request Allowed: ', isLinkRequestAllowed(link))
     cy.then(() => {
       if (isLinkValid(link) && isLinkVisitAllowed(link)) {
-        if (appendRegion == true && !link.includes(region)) {
+        if (
+          appendRegion == true &&
+          !link.includes(region) &&
+          !isLinkNotAllowedRegion(link)
+        ) {
           toVerifyLinkDetails.visitLinks.push(normalizeUrl(link) + region)
           toVerifyLinkDetails.requestLinks.push(normalizeUrl(link) + region)
         } else {
@@ -110,7 +136,11 @@ export const getAllLinks = (options = {}) => {
           toVerifyLinkDetails.requestLinks.push(normalizeUrl(link))
         }
       } else if (isLinkValid(link) && isLinkRequestAllowed(link)) {
-        if (appendRegion == true && !link.includes(region)) {
+        if (
+          appendRegion == true &&
+          !link.includes(region) &&
+          !isLinkNotAllowedRegion(link)
+        ) {
           toVerifyLinkDetails.requestLinks.push(normalizeUrl(link) + region)
         } else {
           toVerifyLinkDetails.requestLinks.push(normalizeUrl(link))
