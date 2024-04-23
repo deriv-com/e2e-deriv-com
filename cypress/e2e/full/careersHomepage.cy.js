@@ -114,7 +114,7 @@ describe('QATEST-1659 - should validate the Career Home page in desktop', () => 
     careersHomepage('desktop', 'ROW')
   })
 
-  it.only('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for EU', () => {
+  it('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for EU', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), { size: 'desktop' })
     homeBanner.elements.aboutUsMenu().should('be.visible').click()
     homeBanner.elements.careers().should('be.visible').first().click()
@@ -130,7 +130,7 @@ describe('QATEST-1659 - should validate the Career Home page in Responsive', () 
     careersHomepage('mobile', 'ROW')
   })
 
-  it.only('should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for EU', () => {
+  it('should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for EU', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), { waitLoad: true })
     homeBanner.elements.hamBurgerMenu().should('be.visible').click()
     homeBanner.elements.aboutUsMenu().click()
@@ -148,7 +148,7 @@ describe('QATEST-1659 - should validate the Career Home page in Responsive', () 
     }
   )
 
-  it.only(
+  it(
     'should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for EU',
     { tags: ['@full-tests', '@eu-tests'] },
     () => {
@@ -172,7 +172,7 @@ describe('QATEST-1659 - should validate the Career Home page in Responsive', () 
     }
   )
 
-  it.only(
+  it(
     'should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for EU',
     { tags: ['@full-tests', '@eu-tests'] },
     () => {
