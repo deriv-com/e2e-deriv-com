@@ -47,6 +47,11 @@ function validate_dtraderpage(region) {
           'Deriv X - a multi-asset CFD trading platform available on Deriv',
         content: 'Get trading with Deriv X',
       },
+      {
+        url: '/deriv-ctrader/',
+        title: 'cTrader | CFD copy trading platform | Deriv',
+        content: 'Get trading with Deriv cTrader',
+      },
     ]
     cy.findByRole('heading', { name: 'Check out our other platforms' }).should(
       'be.visible'

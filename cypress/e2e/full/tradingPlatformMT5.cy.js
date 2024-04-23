@@ -82,13 +82,6 @@ const demotradetype = {
   },
 }
 
-function proceedEU(region) {
-  if (region === 'EU') {
-    cy.findByText('Redirect notice').should('be.visible')
-    cy.findByRole('link', { name: 'Proceed' }).click()
-  }
-}
-
 function validate_dmt5page(region) {
   const config = demotradetype[region]
   const configreal = realtradetype[region]
@@ -174,14 +167,6 @@ function validate_dmt5page(region) {
 
   cy.findByRole('link', { name: 'Trade without commission' }).click()
 
-  cy.findByRole('link', { name: 'Google Play' }).click()
-  proceedEU(region)
-  cy.findByRole('link', { name: 'App Store' }).click()
-  proceedEU(region)
-  cy.findByRole('link', { name: 'AppGallery' }).click()
-  proceedEU(region)
-  cy.findByRole('link', { name: 'Linux' }).click()
-  proceedEU(region)
   cy.contains('Create free demo account').click()
   cy.findByText('Join over 2.5 million traders').should('be.visible')
   cy.go('back')
@@ -213,6 +198,11 @@ function validate_dmt5page(region) {
           'Deriv X - a multi-asset CFD trading platform available on Deriv',
         content: 'Get trading with Deriv X',
       },
+      {
+        url: '/deriv-ctrader/',
+        title: 'cTrader | CFD copy trading platform | Deriv',
+        content: 'Get trading with Deriv cTrader',
+      },
     ]
     cy.c_checkAllPlatformLinks(urlDetails)
   }
@@ -220,6 +210,25 @@ function validate_dmt5page(region) {
   cy.get('input[id="email_address"]').should('exist')
   cy.findByText('Join over 2.5 million traders').should('be.visible')
   cy.go('back')
+}
+
+function validateBladeBanner(region) {
+  cy.findByRole('heading', { name: 'Get trading with Deriv MT5' }).should(
+    'be.visible'
+  )
+  cy.findByRole('img', { name: 'Deriv GO QR' }).should('be.visible')
+  cy.findByRole('link', { name: 'Google Play' }).click()
+  cy.c_proceedEU(region)
+  cy.findByRole('link', { name: 'App Store' }).click()
+  cy.c_proceedEU(region)
+  cy.findByRole('link', { name: 'AppGallery' }).click()
+  cy.c_proceedEU(region)
+  cy.findByRole('link', { name: 'Linux' }).click()
+  cy.c_proceedEU(region)
+  cy.findByRole('link', { name: 'Windows' }).click()
+  cy.c_proceedEU(region)
+  cy.findByRole('link', { name: 'macOS' }).click()
+  cy.c_proceedEU(region)
 }
 
 describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
@@ -234,6 +243,7 @@ describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
       homeBanner.elements.tradeMenu().click()
       cy.findAllByText('Deriv MT5').eq(0).should('be.visible').click()
       validate_dmt5page('EU')
+      validateBladeBanner('EU')
     }
   )
 
@@ -245,6 +255,7 @@ describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
       homeBanner.elements.tradeMenu().click()
       cy.findAllByText('Deriv MT5').eq(0).should('be.visible').click()
       validate_dmt5page('ROW')
+      validateBladeBanner('ROW')
     }
   )
 })
@@ -259,6 +270,7 @@ describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
       homeBanner.elements.tradeMenu().should('be.visible').click()
       homeBanner.elements.mt5Link().should('be.visible').click()
       validate_dmt5page('EU')
+      validateBladeBanner('EU')
     }
   )
 
@@ -271,6 +283,7 @@ describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
       homeBanner.elements.tradeMenu().should('be.visible').click()
       homeBanner.elements.mt5Link().should('be.visible').click()
       validate_dmt5page('ROW')
+      validateBladeBanner('ROW')
     }
   )
 })

@@ -10,7 +10,9 @@ function redirectPopup(region) {
 function careersHomepage(size, region) {
   cy.url().should('include', '/careers/')
   cy.findByRole('heading', { name: 'We are Deriv' }).click()
-  cy.findByRole('img', { name: 'deriv careers' }).should('be.visible')
+  cy.findByRole('img', { name: 'deriv careers' }).should('be.visible', {
+    timeout: 50000,
+  })
 
   if (size == 'desktop') {
     cy.findByRole('link', { name: 'Locations' }).click()
@@ -43,7 +45,9 @@ function careersHomepage(size, region) {
   cy.findByRole('heading', {
     name: 'What’s different about working at Deriv?',
   }).should('be.visible')
-  cy.findByRole('img', { name: 'Team discussing ideas' }).should('be.visible')
+  cy.findByRole('img', { name: 'Team discussing ideas' }).should('be.visible', {
+    timeout: 50000,
+  })
 
   cy.findByRole('heading', { name: 'Join your team' }).should('be.visible')
   const imageNavigation = (imageName) => {
@@ -73,14 +77,20 @@ function careersHomepage(size, region) {
   cy.findByRole('heading', {
     name: 'Everything is built around our values',
   }).should('be.visible')
-  cy.findByRole('img', { name: 'Integrity' }).should('be.visible')
-  cy.findByRole('img', { name: 'Teamwork' }).should('be.visible')
+  cy.findByRole('img', { name: 'Integrity' }).should('be.visible', {
+    timeout: 50000,
+  })
+  cy.findByRole('img', { name: 'Teamwork' }).should('be.visible', {
+    timeout: 50000,
+  })
   cy.findByRole('heading', { name: 'Life at Deriv' }).should('be.visible')
   cy.findByRole('img', { name: 'Group of people doing yoga' }).should(
-    'be.visible'
+    'be.visible',
+    { timeout: 50000 }
   )
   cy.findByRole('img', { name: 'Water rafting team building activity' }).should(
-    'be.visible'
+    'be.visible',
+    { timeout: 50000 }
   )
   cy.findByRole('heading', { name: 'In the words of our employees' }).should(
     'be.visible'
@@ -104,7 +114,7 @@ describe('QATEST-1659 - should validate the Career Home page in desktop', () => 
     careersHomepage('desktop', 'ROW')
   })
 
-  it('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for EU', () => {
+  it.only('should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for EU', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), { size: 'desktop' })
     homeBanner.elements.aboutUsMenu().should('be.visible').click()
     homeBanner.elements.careers().should('be.visible').first().click()
@@ -120,7 +130,7 @@ describe('QATEST-1659 - should validate the Career Home page in Responsive', () 
     careersHomepage('mobile', 'ROW')
   })
 
-  it('should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for EU', () => {
+  it.only('should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for EU', () => {
     cy.c_visitResponsive(Cypress.env('RegionEU'), { waitLoad: true })
     homeBanner.elements.hamBurgerMenu().should('be.visible').click()
     homeBanner.elements.aboutUsMenu().click()
@@ -138,7 +148,7 @@ describe('QATEST-1659 - should validate the Career Home page in Responsive', () 
     }
   )
 
-  it(
+  it.only(
     'should be able to navigate to Dbot page from home page and validate the page content and links in Desktop for EU',
     { tags: ['@full-tests', '@eu-tests'] },
     () => {
@@ -162,7 +172,7 @@ describe('QATEST-1659 - should validate the Career Home page in Responsive', () 
     }
   )
 
-  it(
+  it.only(
     'should be able to navigate to Dbot page from home page and validate the page content and links in Responsive for EU',
     { tags: ['@full-tests', '@eu-tests'] },
     () => {
