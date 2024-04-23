@@ -180,7 +180,6 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
     region = Cypress.env('RegionDIEL'),
     level = 1,
   } = options
-  //cy.log('_________________________________________')
   if (appendRegion == true && !linkToVisit.includes(region)) {
     linkToVisit = linkToVisit + region
   }
@@ -313,7 +312,6 @@ export const verifyRequestLink = (testRegion, options = {}) => {
   cy.then(() => {
     toVerifyLinkDetails.requestLinks.forEach((requestLink) => {
       if (!isRequestedLink(requestLink)) {
-        //cy.log('_________________________________________')
         cy.request({
           url: requestLink,
           failOnStatusCode: false,

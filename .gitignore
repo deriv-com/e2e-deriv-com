@@ -5,3 +5,4 @@ screenshots
 .env
 full_extended_results
 cypress/fixtures/requestedLinks/
+cypress/fixtures/toRequestLinks/
