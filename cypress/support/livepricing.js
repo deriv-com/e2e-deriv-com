@@ -86,7 +86,7 @@ function forex_instruments_eu() {
 function derivedindices_row() {
   cy.findByRole('tab', { name: 'Derived indices' }).click()
   cy.findByRole('link', { name: 'See all derived indices' }).click()
-  cy.findByRole('button', { name: 'Synthetics' }).should('be.visible')
+  cy.findByRole('button', { name: 'Synthetic indices' }).should('be.visible')
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Drift switching indices').should('be.visible')
   cy.findByText('DEX indices').should('be.visible')
@@ -110,7 +110,7 @@ function derivedindices_row() {
   cy.findByText('Step indices').should('be.visible')
   validateInstruments(derivedindicesSyntheticsMultipliersArray)
   
-  cy.findByRole('button', { name: 'Baskets' }).click()
+  cy.findByRole('button', { name: 'Basket indices' }).click()
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Commodities Basket').should('be.visible')
   cy.findByText('Forex Basket').should('be.visible')
@@ -133,7 +133,7 @@ function derivedindices_row() {
 function derivedindices_eu() {
   cy.findByRole('tab', { name: 'Derived indices' }).click()
   cy.findByRole('link', { name: 'See all derived indices' }).click()
-  cy.findByRole('button', { name: 'Synthetics' }).should('be.visible')
+  cy.findByRole('button', { name: 'Synthetic indices' }).should('be.visible')
   cy.findByRole('heading', { name: 'CFDs' }).should('be.visible')
   cy.findByText('Volatility indices').should('be.visible')
   cy.findByText('Crash/Boom').should('be.visible')
