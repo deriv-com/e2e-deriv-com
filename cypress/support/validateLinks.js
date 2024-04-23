@@ -193,7 +193,7 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
 
     verifiedLinkDetails.visitLinks.push(normalizeUrl(linkToVisit))
 
-    cy.wait(1000, { log: false })
+    cy.wait(1000, { log: false }) // This is needed as I am running test with quickload we still need to wait for approximately a second to make sure that 404 is displayed on the page
     cy.then(() => {
       cy.request({
         url: linkToVisit,
@@ -254,7 +254,7 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
       requestSuccesful = false
     }
     cy.writeFile(
-      `cypress/fixtures/toRequestLinks/${testRegion}.json`,
+      `cypress/fixtures/toRequestLinks/temp${testRegion}.json`,
       JSON.stringify(filterLinks(toVerifyLinkDetails.requestLinks)),
       { log: false }
     )
@@ -292,25 +292,35 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
 
 export const verifyRequestLink = (testRegion, options = {}) => {
   const { visitTestPass = false } = options
-  cy.readFile(`cypress/fixtures/toRequestLinks/${testRegion}.json`).then(
-    (toRequestLinks) => {
-      cy.readFile(`cypress/fixtures/requestedLinks/${testRegion}.json`).then(
-        (requestedLinks) => {
-          cy.readFile(
-            `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`
-          ).then((failedRequestLinks) => {
-            toVerifyLinkDetails.requestLinks = toRequestLinks
-            if (visitTestPass == true) {
+  if (visitTestPass == true) {
+    cy.readFile(`cypress/fixtures/toRequestLinks/temp${testRegion}.json`).then(
+      (toRequestLinks) => {
+        cy.readFile(`cypress/fixtures/requestedLinks/${testRegion}.json`).then(
+          (requestedLinks) => {
+            cy.readFile(
+              `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`
+            ).then((failedRequestLinks) => {
+              toVerifyLinkDetails.requestLinks = toRequestLinks
               verifiedLinkDetails.requestLinks = requestedLinks
               failedLinks.onRequest = failedRequestLinks
-            }
-          })
-        }
-      )
-    }
-  )
+            })
+          }
+        )
+      }
+    )
+  } else {
+    cy.readFile(`cypress/fixtures/toRequestLinks/${testRegion}.json`).then(
+      (toRequestLinks) => {
+        cy.then(() => {
+          toVerifyLinkDetails.requestLinks = toRequestLinks
+        })
+      }
+    )
+  }
+
   cy.then(() => {
     toVerifyLinkDetails.requestLinks.forEach((requestLink) => {
+      // The below condition is used for optimization and a fail safe.
       if (!isRequestedLink(requestLink)) {
         cy.request({
           url: requestLink,
