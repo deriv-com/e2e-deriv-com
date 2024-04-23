@@ -27,9 +27,9 @@ jobs:
             containers: [1,2,3,4,5]
     steps:
       - name: Checkout external repository with Cypress tests
-        uses: actions/checkout@v4
+        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
         with:
-          repository: deriv-com/e2e-deriv-com # Replace with your repository name
+          repository: deriv-com/e2e-deriv-com 
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       - name: Cypress run with record  
         uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
@@ -70,9 +70,9 @@ jobs:
             containers: [1,2,3,4,5]
     steps:
       - name: Checkout external repository with Cypress tests
-        uses: actions/checkout@v4
+        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
         with:
-          repository: deriv-com/e2e-deriv-com # Replace with your repository name
+          repository: deriv-com/e2e-deriv-com 
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       - name: Cypress run with record  
         uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
@@ -114,9 +114,9 @@ jobs:
             containers: [1,2,3,4,5,6,7,8]
     steps:
       - name: Checkout external repository with Cypress tests
-        uses: actions/checkout@v4
+        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
         with:
-          repository: deriv-com/e2e-deriv-com # Replace with your repository name
+          repository: deriv-com/e2e-deriv-com 
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       - name: Cypress run with record  
         uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
@@ -132,9 +132,6 @@ jobs:
           spec: |
               cypress/e2e/smoke/*.js
               cypress/e2e/full/*.js
-          # command: 
-          #   npx cypress run --spec cypress/e2e/smoke/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
-          #   npx cypress run --spec cypress/e2e/full/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
           group: 'e2e Tests'
     env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
@@ -152,8 +149,6 @@ jobs:
         # Set test env variables
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
-
-    # - name: Full test
  
   FullExtended :
      if: ${{ (github.event.inputs.suite == 'full_extended' || github.event.inputs.suite == 'regression') }}
@@ -164,9 +159,9 @@ jobs:
             containers: [1]    
      steps:
        - name: Checkout external repository with Cypress tests
-         uses: actions/checkout@v4
+         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633
          with:
-           repository: deriv-com/e2e-deriv-com # Replace with your repository name
+           repository: deriv-com/e2e-deriv-com 
            # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
        - name: Cypress run without record
          uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
