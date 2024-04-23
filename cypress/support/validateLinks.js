@@ -1,5 +1,5 @@
 let visitSuccesful = false
-let requestSuccesful = false
+let requestSuccesful = true
 let toVerifyLinkDetails = {
   requestLinks: [],
   visitLinks: [],
