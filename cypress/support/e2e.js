@@ -34,7 +34,7 @@ Cypress.Commands.add('c_visitResponsive', (path, options = {}) => {
   else if (size == 'medium') cy.viewport('ipad-2', { log: logging })
   else if (size == 'desktop') cy.viewport('macbook-16', { log: logging })
 
-  cy.visit(path, { failOnStatusCode: failNotAllowed })
+  cy.visit(path, { failOnStatusCode: failNotAllowed, log: logging })
   if (quickLoad === false) {
     if (waitLoad == true || path.includes('region')) {
       if (path.includes('region')) {

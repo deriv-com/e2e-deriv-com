@@ -94,7 +94,7 @@ export const filterLinks = (links) => {
 
 export const getAllLinks = (options = {}) => {
   const { appendRegion = false, region = Cypress.env('RegionDIEL') } = options
-  cy.get('a').each((foundLink) => {
+  cy.get('a', { log: false }).each((foundLink) => {
     let link = foundLink.prop('href')
     cy.then(() => {
       if (isLinkValid(link) && isLinkVisitAllowed(link)) {
@@ -193,69 +193,72 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
 
     verifiedLinkDetails.visitLinks.push(normalizeUrl(linkToVisit))
 
-    //cy.wait(750, { log: false })
-
-    cy.request({
-      url: linkToVisit,
-      failOnStatusCode: false,
-      timeout: 120000,
-      log: false,
-    }).then((response) => {
-      verifiedLinkDetails.requestLinks.push(linkToVisit)
-      if (!isPassingStatusCode(response.status)) {
-        if (!isLinkRequestAllowedFailiure(linkToVisit)) {
-          cy.then(() => {
-            requestSuccesful = false
-            cy.log(
-              `Link "${linkToVisit}" because error code: ${response.status}`
-            )
-            failedLinks.onRequest.push(
-              `Link "${linkToVisit}" because error code: ${response.status}`
-            )
-          })
-        } else if (isLinkRequestAllowedFailiure(linkToVisit)) {
-          cy.then(() => {
-            requestSuccesful = false
-            cy.log(
-              `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
-            )
-            // Commented to make sure known failures dont cause test failure
-            // failedLinks.onRequest.push(
-            //   `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
-            // )
-          })
+    cy.wait(1000, { log: false })
+    cy.then(() => {
+      cy.request({
+        url: linkToVisit,
+        failOnStatusCode: false,
+        timeout: 120000,
+        log: false,
+      }).then((response) => {
+        verifiedLinkDetails.requestLinks.push(linkToVisit)
+        if (!isPassingStatusCode(response.status)) {
+          if (!isLinkRequestAllowedFailiure(linkToVisit)) {
+            cy.then(() => {
+              requestSuccesful = false
+              cy.log(
+                `Link "${linkToVisit}" because error code: ${response.status}`
+              )
+              failedLinks.onRequest.push(
+                `Link "${linkToVisit}" because error code: ${response.status}`
+              )
+            })
+          } else if (isLinkRequestAllowedFailiure(linkToVisit)) {
+            cy.then(() => {
+              requestSuccesful = false
+              cy.log(
+                `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
+              )
+              // Commented to make sure known failures dont cause test failure
+              // failedLinks.onRequest.push(
+              //   `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
+              // )
+            })
+          }
+        } else {
+          requestSuccesful = true
         }
-      } else {
-        requestSuccesful = true
-      }
+      })
     })
 
-    cy.document({ log: false }).then((doc) => {
-      const pageFailed = doc.querySelector('img[alt="Page not found"]')
-      if (pageFailed && pageFailed != null) {
-        if (!isLinkVisitAllowedFailure(linkToVisit)) {
-          cy.then(() => {
-            visitSuccesful = false
-            cy.log(`Link "${linkToVisit}" failed because page was not found`)
-            failedLinks.onVisit.push(
-              `Link "${linkToVisit}" failed because page was not found`
-            )
-          })
-        } else if (isLinkVisitAllowedFailure(linkToVisit)) {
-          cy.then(() => {
-            visitSuccesful = false
-            cy.log(
-              `Link "${linkToVisit}" failed but is allowed failure due to known issue`
-            )
-            // Commented to make sure known failures dont cause test failure
-            // failedLinks.onVisit.push(
-            //   `Link "${linkToVisit}" failed but is allowed failure due to known issue`
-            // )
-          })
+    cy.then(() => {
+      cy.document({ log: false }).then((doc) => {
+        const pageFailed = doc.querySelector('img[alt="Page not found"]')
+        if (pageFailed && pageFailed != null) {
+          if (!isLinkVisitAllowedFailure(linkToVisit)) {
+            cy.then(() => {
+              visitSuccesful = false
+              cy.log(`Link "${linkToVisit}" failed because page was not found`)
+              failedLinks.onVisit.push(
+                `Link "${linkToVisit}" failed because page was not found`
+              )
+            })
+          } else if (isLinkVisitAllowedFailure(linkToVisit)) {
+            cy.then(() => {
+              visitSuccesful = false
+              cy.log(
+                `Link "${linkToVisit}" failed but is allowed failure due to known issue`
+              )
+              // Commented to make sure known failures dont cause test failure
+              // failedLinks.onVisit.push(
+              //   `Link "${linkToVisit}" failed but is allowed failure due to known issue`
+              // )
+            })
+          }
+        } else {
+          visitSuccesful = true
         }
-      } else {
-        visitSuccesful = true
-      }
+      })
     })
   }
   cy.then(() => {
@@ -328,6 +331,7 @@ export const verifyRequestLink = (testRegion, options = {}) => {
           url: requestLink,
           failOnStatusCode: false,
           timeout: 120000,
+          log: false,
         }).then((response) => {
           verifiedLinkDetails.requestLinks.push(requestLink)
           if (!isPassingStatusCode(response.status)) {
