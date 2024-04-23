@@ -206,7 +206,7 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
     verifiedLinkDetails.visitLinks.push(normalizeUrl(linkToVisit))
     // Left for debugging
     // addUrlToLinkTree(level, normalizeUrl(linkToVisit))
-    cy.wait(1000, { log: false })
+    cy.wait(750, { log: false })
 
     cy.request({
       url: linkToVisit,
