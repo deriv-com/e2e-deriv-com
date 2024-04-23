@@ -47,7 +47,7 @@ export const linksAllowedToFailOnVisit = [
   'https://staging.deriv.com/trade-types/options/',
   'https://staging.eu-deriv-com-pages.pages.dev/trade-types/options/',
   'https://deriv.com/trade-types/options/',
-  'https://staging.deriv.com/p2p/', //because of ip restriction p2p is only available to ip for certain countries
+  'https://staging.deriv.com/p2p', // because of ip restriction p2p is only available to ip for certain countries
 ]
 
 export const linksAllowedToFailOnRequestWithStatus = {
@@ -67,6 +67,7 @@ export const linksAllowedToFailOnRequestWithStatus = {
   ],
   429: ['https://blog.deriv.com/'],
   403: ['https://ark-funds.com/funds/arkk/'],
+  524: ['https://www.proshares.com/our-etfs/leveraged-and-inverse/tqqq'],
 }
 
 export const linksNotAllowedRegion = ['.pdf']
@@ -216,13 +217,6 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
           } else if (isLinkRequestAllowedFailiure(linkToVisit)) {
             cy.then(() => {
               requestSuccesful = false
-              cy.log(
-                `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
-              )
-              // Commented to make sure known failures dont cause test failure
-              // failedLinks.onRequest.push(
-              //   `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
-              // )
             })
           }
         } else {
@@ -246,13 +240,6 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
           } else if (isLinkVisitAllowedFailure(linkToVisit)) {
             cy.then(() => {
               visitSuccesful = false
-              cy.log(
-                `Link "${linkToVisit}" failed but is allowed failure due to known issue`
-              )
-              // Commented to make sure known failures dont cause test failure
-              // failedLinks.onVisit.push(
-              //   `Link "${linkToVisit}" failed but is allowed failure due to known issue`
-              // )
             })
           }
         } else {
@@ -343,16 +330,6 @@ export const verifyRequestLink = (testRegion, options = {}) => {
                 failedLinks.onRequest.push(
                   `Link "${requestLink}" because error code: ${response.status}`
                 )
-              })
-            } else if (isLinkRequestAllowedFailiure(requestLink)) {
-              cy.then(() => {
-                cy.log(
-                  `Link "${requestLink}" failed with status: ${response.status} but is allowed failure due to known issue`
-                )
-                // Commented to avoid failures due to known issues
-                // failedLinks.onRequest.push(
-                //   `Link "${requestLink}" failed with status: ${response.status} but is allowed failure due to known issue`
-                // )
               })
             }
           }
