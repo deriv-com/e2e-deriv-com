@@ -12,14 +12,6 @@ let failedLinks = {
   onVisit: [],
   onRequest: [],
 }
-// // Left for debugging purposes
-// let linkTree = {}
-// export const addUrlToLinkTree = (level, linkToVisit) => {
-//   if (!linkTree[level]) {
-//     linkTree[level] = []
-//   }
-//   linkTree[level].push(linkToVisit)
-// }
 
 export const validDomains = [Cypress.config('baseUrl'), Cypress.env('RegionEU')]
 export const passingStatusCodes = [200, 204]
@@ -55,6 +47,7 @@ export const linksAllowedToFailOnVisit = [
   'https://staging.deriv.com/trade-types/options/',
   'https://staging.eu-deriv-com-pages.pages.dev/trade-types/options/',
   'https://deriv.com/trade-types/options/',
+  'https://staging.deriv.com/p2p/', //because of ip restriction p2p is only available to ip for certain countries
 ]
 
 export const linksAllowedToFailOnRequestWithStatus = {
@@ -103,11 +96,6 @@ export const getAllLinks = (options = {}) => {
   const { appendRegion = false, region = Cypress.env('RegionDIEL') } = options
   cy.get('a').each((foundLink) => {
     let link = foundLink.prop('href')
-    // left for Debugging purpose
-    // cy.log(link)
-    // cy.log('is valid: ', isLinkValid(link))
-    // cy.log('is visit Allowed: ', isLinkVisitAllowed(link))
-    // cy.log('is request Allowed: ', isLinkRequestAllowed(link))
     cy.then(() => {
       if (isLinkValid(link) && isLinkVisitAllowed(link)) {
         if (
@@ -204,45 +192,43 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
     })
 
     verifiedLinkDetails.visitLinks.push(normalizeUrl(linkToVisit))
-    // Left for debugging
-    // addUrlToLinkTree(level, normalizeUrl(linkToVisit))
-    cy.wait(750, { log: false })
 
-    // cy.request({
-    //   url: linkToVisit,
-    //   failOnStatusCode: false,
-    //   timeout: 120000,
-    //   log: false,
-    // }).then((response) => {
-    //   verifiedLinkDetails.requestLinks.push(linkToVisit)
-    //   if (!isPassingStatusCode(response.status)) {
-    //     if (!isLinkRequestAllowedFailiure(linkToVisit)) {
-    //       cy.then(() => {
-    //         requestSuccesful = false
-    //         cy.log(
-    //           `Link "${linkToVisit}" because error code: ${response.status}`
-    //         )
-    //         failedLinks.onRequest.push(
-    //           `Link "${linkToVisit}" because error code: ${response.status}`
-    //         )
-    //       })
-    //     } else if (isLinkRequestAllowedFailiure(linkToVisit)) {
-    //       cy.then(() => {
-    //         requestSuccesful = false
-    //         cy.log(
-    //           `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
-    //         )
-    //         // Commented to make sure known failures dont cause test failure
-    //         // failedLinks.onRequest.push(
-    //         //   `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
-    //         // )
-    //       })
-    //     }
-    //   } else {
-    //     requestSuccesful = true
-    //     //cy.log('Visit via Request Succesful')
-    //   }
-    // })
+    //cy.wait(750, { log: false })
+
+    cy.request({
+      url: linkToVisit,
+      failOnStatusCode: false,
+      timeout: 120000,
+      log: false,
+    }).then((response) => {
+      verifiedLinkDetails.requestLinks.push(linkToVisit)
+      if (!isPassingStatusCode(response.status)) {
+        if (!isLinkRequestAllowedFailiure(linkToVisit)) {
+          cy.then(() => {
+            requestSuccesful = false
+            cy.log(
+              `Link "${linkToVisit}" because error code: ${response.status}`
+            )
+            failedLinks.onRequest.push(
+              `Link "${linkToVisit}" because error code: ${response.status}`
+            )
+          })
+        } else if (isLinkRequestAllowedFailiure(linkToVisit)) {
+          cy.then(() => {
+            requestSuccesful = false
+            cy.log(
+              `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
+            )
+            // Commented to make sure known failures dont cause test failure
+            // failedLinks.onRequest.push(
+            //   `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
+            // )
+          })
+        }
+      } else {
+        requestSuccesful = true
+      }
+    })
 
     cy.document({ log: false }).then((doc) => {
       const pageFailed = doc.querySelector('img[alt="Page not found"]')
@@ -269,7 +255,6 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
         }
       } else {
         visitSuccesful = true
-        //cy.log('Visit Succesful')
       }
     })
   }
@@ -277,7 +262,7 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
     if (visitSuccesful == true && requestSuccesful == true) {
       getAllLinks({ ...options })
       visitSuccesful = false
-      //requestSuccesful = false
+      requestSuccesful = false
     }
     cy.writeFile(
       `cypress/fixtures/toRequestLinks/${testRegion}.json`,
@@ -299,22 +284,6 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
       JSON.stringify(filterLinks(failedLinks.onRequest)),
       { log: false }
     )
-    // // Left for Debugging purposes
-    // cy.writeFile(
-    //   `cypress/fixtures/linkTree${testRegion}.json`,
-    //   JSON.stringify(linkTree),
-    //   { log: false }
-    // )
-    // cy.writeFile(
-    //   `cypress/fixtures/toVisitLinks/${testRegion}.json`,
-    //   JSON.stringify(filterLinks(toVerifyLinkDetails.visitLinks)),
-    //   { log: false }
-    // )
-    // cy.writeFile(
-    //   `cypress/fixtures/visitedLinks/${testRegion}.json`,
-    //   JSON.stringify(filterLinks(verifiedLinkDetails.visitLinks)),
-    //   { log: false }
-    // )
   })
   cy.then(() => {
     filterLinks(toVerifyLinkDetails.visitLinks).forEach((visitLink) => {
@@ -382,23 +351,10 @@ export const verifyRequestLink = (testRegion, options = {}) => {
                 // )
               })
             }
-          } else {
-            cy.log('Visit via Request Succesful')
           }
         })
       }
       cy.then(() => {
-        // // Left for Debugging purposes
-        // cy.writeFile(
-        //   `cypress/fixtures/toRequestLinks/${testRegion}.json`,
-        //   JSON.stringify(filterLinks(toVerifyLinkDetails.requestLinks)),
-        //   { log: false }
-        // )
-        // cy.writeFile(
-        //   `cypress/fixtures/requestedLinks/${testRegion}.json`,
-        //   JSON.stringify(filterLinks(verifiedLinkDetails.requestLinks)),
-        //   { log: false }
-        // )
         cy.writeFile(
           `cypress/full_extended_results/failedRequestLinks/${testRegion}.json`,
           JSON.stringify(filterLinks(failedLinks.onRequest)),
