@@ -106,7 +106,7 @@ jobs:
  
   regression:  
     needs : FullExtended
-    if: ${{ github.event.inputs.suite == 'regression' || always() }}
+    if: ${{ github.event.inputs.suite == 'regression' || github.event.inputs.suite != 'smoke' && github.event.inputs.suite != 'full' && github.event.inputs.suite != 'FullExtended' || always() }}
     runs-on: ubuntu-latest
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
