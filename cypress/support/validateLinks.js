@@ -277,7 +277,7 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
     if (visitSuccesful == true && requestSuccesful == true) {
       getAllLinks({ ...options })
       visitSuccesful = false
-      requestSuccesful = false
+      //requestSuccesful = false
     }
     cy.writeFile(
       `cypress/fixtures/toRequestLinks/${testRegion}.json`,
