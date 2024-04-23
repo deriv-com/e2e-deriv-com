@@ -3,6 +3,7 @@ import './location'
 import 'cypress-iframe'
 import registerCypressGrep from '@bahmutov/cy-grep/src/support'
 import '@percy/cypress'
+import 'scroll-to-bottomjs'
 registerCypressGrep()
 
 Cypress.on('uncaught:exception', (err, runnable) => {
