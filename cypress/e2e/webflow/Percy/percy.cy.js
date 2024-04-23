@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 // Load URLs from the JSON file
 const urls = require('./redirect-paths.json')
-const webflowbaseUrl = Cypress.env('webflow_env')
+const webflowbaseUrl = 'https://deriv.com/'
 
 function mapUrlForSnapshot(url) {
   if (url === '/') {
@@ -14,10 +14,10 @@ function mapUrlForSnapshot(url) {
 }
 function snapshot(pageName) {
   cy.viewport('iphone-xr')
-  cy.scrollTo('bottom', { ensureScrollable: false , duration: 2000})
+  cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
   cy.percySnapshot(pageName)
   cy.viewport('macbook-16')
-  cy.scrollTo('bottom', { ensureScrollable: false , duration: 2000 })
+  cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
   cy.percySnapshot(pageName)
 }
 
