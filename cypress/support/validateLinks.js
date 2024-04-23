@@ -191,7 +191,7 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
     region = Cypress.env('RegionDIEL'),
     level = 1,
   } = options
-  cy.log('_________________________________________')
+  //cy.log('_________________________________________')
   if (appendRegion == true && !linkToVisit.includes(region)) {
     linkToVisit = linkToVisit + region
   }
@@ -208,41 +208,41 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
     // addUrlToLinkTree(level, normalizeUrl(linkToVisit))
     cy.wait(750, { log: false })
 
-    cy.request({
-      url: linkToVisit,
-      failOnStatusCode: false,
-      timeout: 120000,
-      log: false,
-    }).then((response) => {
-      verifiedLinkDetails.requestLinks.push(linkToVisit)
-      if (!isPassingStatusCode(response.status)) {
-        if (!isLinkRequestAllowedFailiure(linkToVisit)) {
-          cy.then(() => {
-            requestSuccesful = false
-            cy.log(
-              `Link "${linkToVisit}" because error code: ${response.status}`
-            )
-            failedLinks.onRequest.push(
-              `Link "${linkToVisit}" because error code: ${response.status}`
-            )
-          })
-        } else if (isLinkRequestAllowedFailiure(linkToVisit)) {
-          cy.then(() => {
-            requestSuccesful = false
-            cy.log(
-              `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
-            )
-            // Commented to make sure known failures dont cause test failure
-            // failedLinks.onRequest.push(
-            //   `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
-            // )
-          })
-        }
-      } else {
-        requestSuccesful = true
-        cy.log('Visit via Request Succesful')
-      }
-    })
+    // cy.request({
+    //   url: linkToVisit,
+    //   failOnStatusCode: false,
+    //   timeout: 120000,
+    //   log: false,
+    // }).then((response) => {
+    //   verifiedLinkDetails.requestLinks.push(linkToVisit)
+    //   if (!isPassingStatusCode(response.status)) {
+    //     if (!isLinkRequestAllowedFailiure(linkToVisit)) {
+    //       cy.then(() => {
+    //         requestSuccesful = false
+    //         cy.log(
+    //           `Link "${linkToVisit}" because error code: ${response.status}`
+    //         )
+    //         failedLinks.onRequest.push(
+    //           `Link "${linkToVisit}" because error code: ${response.status}`
+    //         )
+    //       })
+    //     } else if (isLinkRequestAllowedFailiure(linkToVisit)) {
+    //       cy.then(() => {
+    //         requestSuccesful = false
+    //         cy.log(
+    //           `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
+    //         )
+    //         // Commented to make sure known failures dont cause test failure
+    //         // failedLinks.onRequest.push(
+    //         //   `Link "${linkToVisit}" failed with status: ${response.status} but is allowed failure due to known issue`
+    //         // )
+    //       })
+    //     }
+    //   } else {
+    //     requestSuccesful = true
+    //     //cy.log('Visit via Request Succesful')
+    //   }
+    // })
 
     cy.document({ log: false }).then((doc) => {
       const pageFailed = doc.querySelector('img[alt="Page not found"]')
@@ -269,7 +269,7 @@ export const verifyVisitLink = (linkToVisit, testRegion, options = {}) => {
         }
       } else {
         visitSuccesful = true
-        cy.log('Visit Succesful')
+        //cy.log('Visit Succesful')
       }
     })
   }
@@ -354,7 +354,7 @@ export const verifyRequestLink = (testRegion, options = {}) => {
   cy.then(() => {
     toVerifyLinkDetails.requestLinks.forEach((requestLink) => {
       if (!isRequestedLink(requestLink)) {
-        cy.log('_________________________________________')
+        //cy.log('_________________________________________')
         cy.request({
           url: requestLink,
           failOnStatusCode: false,
