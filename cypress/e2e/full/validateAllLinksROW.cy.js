@@ -24,7 +24,10 @@ describe('QATEST-96657 - Check URL in deriv.com for ROW', () => {
   })
   it(
     'should visit all deriv Links for region ROW',
-    { retries: { runMode: 0, openMode: 0 } },
+    {
+      retries: { runMode: 0, openMode: 0 },
+      tags: ['@full-tests', '@row-tests'],
+    },
     () => {
       verifyVisitLink(rowUrl, testRegion)
       visitTestComplete = true
@@ -37,7 +40,10 @@ describe('QATEST-96657 - Check URL in deriv.com for ROW', () => {
   )
   it(
     'should request for all  Links for region ROW',
-    { retries: { runMode: 0, openMode: 0 } },
+    {
+      retries: { runMode: 0, openMode: 0 },
+      tags: ['@full-tests', '@row-tests'],
+    },
     () => {
       verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })
       cy.readFile(

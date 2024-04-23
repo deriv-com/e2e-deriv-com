@@ -25,7 +25,11 @@ describe('QATEST-96657 - Check URL in deriv.com for EU', () => {
   })
   it(
     'should visit all deriv Links for region EU',
-    { retries: { runMode: 0, openMode: 0 } },
+    {
+      retries: { runMode: 0, openMode: 0 },
+      tags: ['@full-tests', '@eu-tests'],
+    },
+
     () => {
       verifyVisitLink(euUrl, testRegion)
       visitTestComplete = true
@@ -38,7 +42,10 @@ describe('QATEST-96657 - Check URL in deriv.com for EU', () => {
   )
   it(
     'should request for all  Links for region EU',
-    { retries: { runMode: 0, openMode: 0 } },
+    {
+      retries: { runMode: 0, openMode: 0 },
+      tags: ['@full-tests', '@eu-tests'],
+    },
     () => {
       verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })
       cy.readFile(

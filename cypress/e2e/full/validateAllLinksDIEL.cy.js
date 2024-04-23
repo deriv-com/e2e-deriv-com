@@ -25,7 +25,10 @@ describe('QATEST-96657 - Check URL in deriv.com for DIEL', () => {
   })
   it(
     'should visit all deriv Links for region DIEL',
-    { retries: { runMode: 0, openMode: 0 } },
+    {
+      retries: { runMode: 0, openMode: 0 },
+      tags: ['@full-tests', '@row-tests'],
+    },
     () => {
       verifyVisitLink(dielUrl, testRegion, { appendRegion: true })
       visitTestComplete = true
@@ -38,7 +41,10 @@ describe('QATEST-96657 - Check URL in deriv.com for DIEL', () => {
   )
   it(
     'should request for all  Links for region DIEL',
-    { retries: { runMode: 0, openMode: 0 } },
+    {
+      retries: { runMode: 0, openMode: 0 },
+      tags: ['@full-tests', '@row-tests'],
+    },
     () => {
       verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })
       cy.readFile(
