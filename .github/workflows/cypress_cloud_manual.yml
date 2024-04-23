@@ -105,9 +105,9 @@ jobs:
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
  
   regression:  
-    needs : FullExtended
-    if: ${{ github.event.inputs.suite == 'regression' || github.event.inputs.suite != 'smoke' && github.event.inputs.suite != 'full' && github.event.inputs.suite != 'FullExtended' || always() }}
+    if: ${{ github.event.inputs.suite == 'regression' }}
     runs-on: ubuntu-latest
+    needs: FullExtended
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
         matrix:
