@@ -2,7 +2,7 @@ import '@testing-library/cypress/add-commands'
 
 // Load URLs from the JSON file
 const urls = require('./redirect-paths.json')
-const webflowbaseUrl = Cypress.env('webflow_env')
+const webflowbaseUrl = 'https://webflow.deriv.com/'
 
 function mapUrlForSnapshot(url) {
   if (url === '/') {
@@ -12,12 +12,21 @@ function mapUrlForSnapshot(url) {
     return trimmedUrl
   }
 }
+
 function snapshot(pageName) {
   cy.viewport('iphone-xr')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
+  // cy.get('div.new-navbar_logo.is-red.w-embed').scrollIntoView({duration: 2000})
+  cy.get('.new-navbar_component-wrapper')
+    .eq(0)
+    .scrollIntoView({ duration: 2000 })
   cy.percySnapshot(pageName)
   cy.viewport('macbook-16')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
+  //cy.get('div.new-navbar_logo.is-red.w-embed').scrollIntoView({duration: 2000})
+  cy.get('.new-navbar_component-wrapper')
+    .eq(0)
+    .scrollIntoView({ duration: 2000 })
   cy.percySnapshot(pageName)
 }
 
@@ -28,7 +37,6 @@ describe('Visit URLs and Capture Percy Snapshots', () => {
     it(`Visits ${fullUrl} and captures Percy snapshot`, () => {
       cy.log('WEBFLOW_ENV value:', Cypress.env('webflow_env'))
       cy.visit(fullUrl)
-      cy.wait(3000)
       pageName = mapUrlForSnapshot(url)
       snapshot(pageName)
     })
