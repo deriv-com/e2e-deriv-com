@@ -3,6 +3,7 @@ import '@testing-library/cypress/add-commands'
 // Load URLs from the JSON file
 const urls = require('./redirect-paths.json')
 const webflowbaseUrl = Cypress.env('webflow_env')
+const webflow = 'webflow'
 
 function mapUrlForSnapshot(url) {
   if (url === '/') {
@@ -16,15 +17,19 @@ function mapUrlForSnapshot(url) {
 function snapshot(pageName) {
   cy.viewport('iphone-xr')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
-  cy.get('.new-navbar_component-wrapper')
-    .eq(0)
-    .scrollIntoView({ duration: 2000 })
+  if (webflowbaseUrl.includes(webflow)) {
+    cy.get('.new-navbar_component-wrapper')
+      .eq(0)
+      .scrollIntoView({ duration: 2000 })
+  }
   cy.percySnapshot(pageName)
   cy.viewport('macbook-16')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
-  cy.get('.new-navbar_component-wrapper')
-    .eq(0)
-    .scrollIntoView({ duration: 2000 })
+  if (webflowbaseUrl.includes(webflow)) {
+    cy.get('.new-navbar_component-wrapper')
+      .eq(0)
+      .scrollIntoView({ duration: 2000 })
+  }
   cy.percySnapshot(pageName)
 }
 
