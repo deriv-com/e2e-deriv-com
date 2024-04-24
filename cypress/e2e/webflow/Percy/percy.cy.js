@@ -16,11 +16,15 @@ function mapUrlForSnapshot(url) {
 function snapshot(pageName) {
   cy.viewport('iphone-xr')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
-  cy.get('.new-navbar_component-wrapper').eq(0).scrollIntoView({duration: 2000})
+  cy.get('.new-navbar_component-wrapper')
+    .eq(0)
+    .scrollIntoView({ duration: 2000 })
   cy.percySnapshot(pageName)
   cy.viewport('macbook-16')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
-  cy.get('.new-navbar_component-wrapper').eq(0).scrollIntoView({duration: 2000})
+  cy.get('.new-navbar_component-wrapper')
+    .eq(0)
+    .scrollIntoView({ duration: 2000 })
   cy.percySnapshot(pageName)
 }
 
