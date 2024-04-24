@@ -19,8 +19,5 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
-  },
-  "dependencies": {
-    "scroll-to-bottomjs": "^1.1.0"
   }
 }
