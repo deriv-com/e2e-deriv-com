@@ -34,6 +34,11 @@ function Dbot_page() {
       title: 'Deriv X - a multi-asset CFD trading platform available on Deriv',
       content: 'Get trading with Deriv X',
     },
+    {
+      url: '/deriv-ctrader/',
+      title: 'cTrader | CFD copy trading platform | Deriv',
+      content: 'Get trading with Deriv cTrader',
+    },
   ]
 
   cy.c_checkAllPlatformLinks(urlDetails)

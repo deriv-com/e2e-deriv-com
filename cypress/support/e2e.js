@@ -112,3 +112,10 @@ Cypress.Commands.add('c_checkAllPartnerLinks', (urlDetails) => {
     cy.go('back')
   })
 })
+
+Cypress.Commands.add('c_proceedEU', (region) => {
+  if (region === 'EU') {
+    cy.findByText('Redirect notice').should('be.visible')
+    cy.findByRole('link', { name: 'Proceed' }).click()
+  }
+})

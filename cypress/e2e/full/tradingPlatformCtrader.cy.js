@@ -75,6 +75,16 @@ function cTrader_page() {
   toggleAccordion('How do I get started as a copier?')
 }
 
+function validateBladeBanner() {
+  cy.findByRole('heading', { name: 'Get trading with Deriv cTrader' }).should(
+    'be.visible'
+  )
+  cy.findByRole('img', { name: 'Deriv GO QR' }).should('be.visible')
+  cy.findByRole('link', { name: 'Google Play' }).click()
+  cy.findByRole('link', { name: 'Windows' }).click()
+  cy.findByRole('link', { name: "Via Trader's Hub Web Browser" }).click()
+}
+
 describe('QATEST-23425 - should validate the cTrader page in responsive', () => {
   it(
     'should be able to navigate to cTrader page from home page and validate the page content and links in Mobile',
@@ -86,6 +96,7 @@ describe('QATEST-23425 - should validate the cTrader page in responsive', () => 
       homeBanner.elements.tradeMenu().should('be.visible').click()
       homeBanner.elements.cTraderLink().should('be.visible').click()
       cTrader_page()
+      validateBladeBanner()
     }
   )
 })
@@ -96,11 +107,9 @@ describe('QATEST-23425 - should validate the cTrader page in desktop', () => {
     () => {
       cy.c_visitResponsive('', { size: 'desktop', waitLoad: true })
       homeBanner.elements.tradeMenu().should('be.visible').click()
-      cy.findAllByText('Fast CFDs platform with inbuilt copy trading.')
-        .eq(0)
-        .should('be.visible')
-        .click()
+      cy.findAllByText('Deriv cTrader').eq(0).should('be.visible').click()
       cTrader_page()
+      validateBladeBanner()
     }
   )
 })

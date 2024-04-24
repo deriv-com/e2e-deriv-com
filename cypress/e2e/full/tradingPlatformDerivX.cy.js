@@ -114,6 +114,11 @@ function validate_derivxpage(region) {
         title: 'DBot | Trading robot | Deriv',
         content: 'Get into the Deriv Bot experience',
       },
+      {
+        url: '/deriv-ctrader/',
+        title: 'cTrader | CFD copy trading platform | Deriv',
+        content: 'Get trading with Deriv cTrader',
+      },
     ]
     cy.findByRole('heading', { name: 'Check out our other platforms' }).should(
       'be.visible'
@@ -121,6 +126,15 @@ function validate_derivxpage(region) {
     cy.c_checkAllPlatformLinks(urlDetails)
   }
   cy.contains('Create free demo account').eq(0).click()
+}
+
+function validateBladeBanner() {
+  cy.findByRole('heading', { name: 'Get trading with Deriv X' }).should(
+    'be.visible'
+  )
+  cy.findByRole('img', { name: 'Deriv GO QR' }).should('be.visible')
+  cy.findByRole('link', { name: 'Google Play' }).click()
+  cy.findByRole('link', { name: 'App Store' }).click()
 }
 
 describe('QATEST-1571 - validate the derivx page', () => {
@@ -133,6 +147,7 @@ describe('QATEST-1571 - validate the derivx page', () => {
       cy.findAllByText('Deriv X').eq(0).should('be.visible').click()
       cy.c_waitForPageLoad()
       validate_derivxpage('ROW')
+      validateBladeBanner()
     }
   )
 
@@ -146,6 +161,7 @@ describe('QATEST-1571 - validate the derivx page', () => {
       homeBanner.elements.derivxLink().should('be.visible').click()
       cy.c_waitForPageLoad()
       validate_derivxpage('ROW')
+      validateBladeBanner()
     }
   )
 })
