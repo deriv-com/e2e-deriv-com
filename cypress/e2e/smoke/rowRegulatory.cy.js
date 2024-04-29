@@ -38,6 +38,8 @@ describe('QATEST-1644 - Regulatory page', () => {
         'include',
         '/regulatory/Financial_Markets_Association_Cert.pdf'
       )
+
+      cy.go('back')
       cy.findByRole('link', { name: 'view membership' })
         .invoke('attr', 'target', '_self')
         .click()
