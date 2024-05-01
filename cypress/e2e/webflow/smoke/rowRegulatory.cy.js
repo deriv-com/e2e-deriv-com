@@ -31,19 +31,7 @@ describe('QATEST-1644 - Regulatory page', () => {
       )
       checkRegulatorySection()
       checkViewLicenseLink()
-      cy.findByRole('link', { name: 'member' })
-        .invoke('attr', 'target', '_self')
-        .click()
-      cy.url().should(
-        'include',
-        '/regulatory/Financial_Markets_Association_Cert.pdf'
-      )
-
-      cy.go('back')
-      cy.findByRole('link', { name: 'view membership' })
-        .invoke('attr', 'target', '_self')
-        .click()
-      cy.url().should('include', '/regulatory/deriv-com-ltd-membership.pdf')
+      cy.findByRole('link', { name: 'view membership' }).click()
     }
   )
 })

@@ -11,10 +11,13 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false
 })
 
-Cypress.Commands.add('c_waitForPageLoad', () => {
-  cy.findByRole('button', { name: 'whatsapp icon', timeout: 35000 }).should(
-    'be.visible'
-  )
+Cypress.Commands.add('c_waitForPageLoad', (options = {}) => {
+  const { logging = true } = options
+  cy.findByRole('button', {
+    name: 'whatsapp icon',
+    timeout: 35000,
+    log: logging,
+  }).should('be.visible', { log: logging })
 })
 
 Cypress.Commands.add('c_visitResponsive', (path, options = {}) => {
@@ -23,26 +26,29 @@ Cypress.Commands.add('c_visitResponsive', (path, options = {}) => {
     size = Cypress.env('viewPortSize'),
     waitLoad = false,
     quickLoad = false,
+    logging = true,
+    failNotAllowed = true,
   } = options
-  cy.log(path)
+  if (logging == true) cy.log(path)
 
-  if (size == 'small') cy.viewport('iphone-xr')
-  else if (size == 'medium') cy.viewport('ipad-2')
-  else if (size == 'desktop') cy.viewport('macbook-16')
+  if (size == 'small') cy.viewport('iphone-xr', { log: logging })
+  else if (size == 'medium') cy.viewport('ipad-2', { log: logging })
+  else if (size == 'desktop') cy.viewport('macbook-16', { log: logging })
 
-  cy.visit(path)
+  cy.visit(path, { failOnStatusCode: failNotAllowed, log: logging })
   if (quickLoad === false) {
     if (waitLoad == true || path.includes('region')) {
       if (path.includes('region')) {
-        cy.log('Home page Selected')
+        if (logging == true) cy.log('Home page Selected')
       }
-      cy.c_waitForPageLoad()
+      cy.c_waitForPageLoad({ logging: logging })
     }
     if (path.includes('help-centre')) {
       //Wait for relevent elements to appear (based on page)
-      cy.log('Help Centre Selected')
+      if (logging == true) cy.log('Help Centre Selected')
       cy.findByRole('heading', {
         name: 'Didn’t find your answer? We can help.',
+        log: logging,
       }).should('be.visible', { timeout: 30000 })
     }
   }
@@ -111,4 +117,11 @@ Cypress.Commands.add('c_checkAllPartnerLinks', (urlDetails) => {
     cy.url().should('contain', details.url)
     cy.go('back')
   })
+})
+
+Cypress.Commands.add('c_proceedEU', (region) => {
+  if (region === 'EU') {
+    cy.findByText('Redirect notice').should('be.visible')
+    cy.findByRole('link', { name: 'Proceed' }).click()
+  }
 })
