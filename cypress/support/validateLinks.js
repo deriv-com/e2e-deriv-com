@@ -39,6 +39,7 @@ export const linksNotToRequest = [
   'https://www.instagram.com/derivcareers/',
   'javascript:;',
   'mailto:',
+  '.dmg',
 ]
 
 export const linksAllowedToFailOnVisit = [
