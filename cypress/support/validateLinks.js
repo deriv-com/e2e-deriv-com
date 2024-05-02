@@ -35,7 +35,8 @@ export const linksNotToVisit = [
 ]
 
 export const linksNotToRequest = [
-  'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg', //causing hang because takes a lot of time downloading pdf
+  'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg', //causing hang because takes a lot of time downloading
+  'https://getctradermac.com/deriv/ctrader-deriv-setup.dmg', //causing hang because takes a lot of time downloading
   'https://www.instagram.com/derivcareers/',
   'javascript:;',
   'mailto:',
@@ -327,7 +328,7 @@ export const verifyRequestLink = (testRegion, options = {}) => {
           url: requestLink,
           failOnStatusCode: false,
           timeout: 120000,
-          log: false,
+          log: true,
         }).then((response) => {
           verifiedLinkDetails.requestLinks.push(requestLink)
           if (!isPassingStatusCode(response.status)) {
