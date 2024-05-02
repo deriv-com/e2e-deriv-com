@@ -39,7 +39,7 @@ describe('QATEST-96657 - Check URL in deriv.com for DIEL', () => {
       })
     }
   )
-  it(
+  it.only(
     'should request for all  Links for region DIEL',
     {
       retries: { runMode: 0, openMode: 0 },

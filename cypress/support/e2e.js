@@ -99,6 +99,7 @@ Cypress.Commands.add(
 Cypress.Commands.add('c_checkAllPlatformLinks', (urlDetails) => {
   urlDetails.forEach((details) => {
     cy.contains(`a[href="${details.url}"]`, 'Learn more').click()
+    cy.c_waitForPageLoad()
     cy.title().should('equal', details.title)
     cy.contains('h1', details.content)
     cy.url().should('contain', details.url)

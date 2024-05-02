@@ -141,6 +141,7 @@ function validate_dmt5page(region) {
   cy.findByRole('link', { name: 'sign in' }).click()
   cy.findByText('Welcome!').should('be.visible')
   cy.go('back')
+  cy.c_waitForPageLoad()
   cy.url().should('include', '/dmt5/')
 
   cy.findByText('Demo account').click()
@@ -151,6 +152,7 @@ function validate_dmt5page(region) {
   cy.findByRole('link', { name: 'Try our margin calculator' }).click()
   cy.url().should('include', 'margin')
   cy.go('back')
+  cy.c_waitForPageLoad()
 
   cy.findByRole('img', { name: 'DMT5 margin trading calculator' })
     .scrollIntoView()
@@ -164,12 +166,14 @@ function validate_dmt5page(region) {
   cy.findByRole('link', { name: 'Try our swap calculator' }).click()
   cy.url().should('include', 'swap')
   cy.go('back')
+  cy.c_waitForPageLoad()
 
   cy.findByRole('link', { name: 'Trade without commission' }).click()
 
   cy.contains('Create free demo account').click()
   cy.findByText('Join over 2.5 million traders').should('be.visible')
   cy.go('back')
+  cy.c_waitForPageLoad()
 
   if (region === 'ROW') {
     cy.findByRole('heading', { name: 'Check out our other platforms' }).should(
@@ -210,6 +214,7 @@ function validate_dmt5page(region) {
   cy.get('input[id="email_address"]').should('exist')
   cy.findByText('Join over 2.5 million traders').should('be.visible')
   cy.go('back')
+  cy.c_waitForPageLoad()
 }
 
 function validateBladeBanner(region) {
@@ -242,6 +247,7 @@ describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
       })
       homeBanner.elements.tradeMenu().click()
       cy.findAllByText('Deriv MT5').eq(0).should('be.visible').click()
+      cy.c_waitForPageLoad()
       validate_dmt5page('EU')
       validateBladeBanner('EU')
     }
@@ -254,6 +260,7 @@ describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
       cy.c_visitResponsive('', { waitLoad: true, size: 'desktop' })
       homeBanner.elements.tradeMenu().click()
       cy.findAllByText('Deriv MT5').eq(0).should('be.visible').click()
+      cy.c_waitForPageLoad()
       validate_dmt5page('ROW')
       validateBladeBanner('ROW')
     }
@@ -269,6 +276,7 @@ describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
       homeBanner.elements.hamBurgerMenu().should('be.visible').click()
       homeBanner.elements.tradeMenu().should('be.visible').click()
       homeBanner.elements.mt5Link().should('be.visible').click()
+      cy.c_waitForPageLoad()
       validate_dmt5page('EU')
       validateBladeBanner('EU')
     }
@@ -282,6 +290,7 @@ describe('QATEST-1563 - should validate the dmt5 page in responsive', () => {
       homeBanner.elements.hamBurgerMenu().should('be.visible').click()
       homeBanner.elements.tradeMenu().should('be.visible').click()
       homeBanner.elements.mt5Link().should('be.visible').click()
+      cy.c_waitForPageLoad()
       validate_dmt5page('ROW')
       validateBladeBanner('ROW')
     }
