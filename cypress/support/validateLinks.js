@@ -39,7 +39,6 @@ export const linksNotToRequest = [
   'https://www.instagram.com/derivcareers/',
   'javascript:;',
   'mailto:',
-  '/us/app/deriv-ctrader/',
 ]
 
 export const linksAllowedToFailOnVisit = [
@@ -55,6 +54,7 @@ export const linksAllowedToFailOnRequestWithStatus = {
   404: [
     'https://apps.apple.com/us/app/deriv-x/id1563337503',
     'https://apps.apple.com/us/app/deriv-dp2p/id1506901451',
+    'https://apps.apple.com/us/app/deriv-ctrader/id6466996509',
     // Bug raised for following links as https://app.clickup.com/t/86bxbkfqm
     // Need to remove once the issue is fixed because till then test will keep on failing without verifying other links
     'https://staging.deriv.com/trade-types/options/',
