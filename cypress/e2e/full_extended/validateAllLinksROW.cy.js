@@ -26,7 +26,7 @@ describe('QATEST-96657 - Check URL in deriv.com for ROW', () => {
     'should visit all deriv Links for region ROW',
     {
       retries: { runMode: 0, openMode: 0 },
-      tags: ['@full-tests', '@row-tests'],
+      tags: ['@full_extended-tests', '@row-tests'],
     },
     () => {
       verifyVisitLink(rowUrl, testRegion)
@@ -42,7 +42,7 @@ describe('QATEST-96657 - Check URL in deriv.com for ROW', () => {
     'should request for all  Links for region ROW',
     {
       retries: { runMode: 0, openMode: 0 },
-      tags: ['@full-tests', '@row-tests'],
+      tags: ['@full_extended-tests', '@row-tests'],
     },
     () => {
       verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })

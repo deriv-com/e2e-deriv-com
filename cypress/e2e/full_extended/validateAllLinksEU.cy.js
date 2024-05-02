@@ -27,7 +27,7 @@ describe('QATEST-96657 - Check URL in deriv.com for EU', () => {
     'should visit all deriv Links for region EU',
     {
       retries: { runMode: 0, openMode: 0 },
-      tags: ['@full-tests', '@eu-tests'],
+      tags: ['@full_extended-tests', '@eu-tests'],
     },
 
     () => {
@@ -44,7 +44,7 @@ describe('QATEST-96657 - Check URL in deriv.com for EU', () => {
     'should request for all  Links for region EU',
     {
       retries: { runMode: 0, openMode: 0 },
-      tags: ['@full-tests', '@eu-tests'],
+      tags: ['@full_extended-tests', '@eu-tests'],
     },
     () => {
       verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })
