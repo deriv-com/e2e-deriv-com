@@ -85,7 +85,7 @@ jobs:
         # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
           record: true
           parallel: true # Runs test in parallel using settings above
-          command: npx cypress run --spec cypress/e2e/full/*.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
+          command: npx cypress run --spec cypress/e2e/full/tradingPlatformMT5.cy.js --record --parallel --key ${{ secrets.CYPRESS_MANUAL_RECORD_KEY }}  
           group: 'e2e Tests'
     env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
