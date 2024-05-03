@@ -130,6 +130,7 @@ function validate_dmt5page(region) {
 
     if (index > 0) {
       cy.findAllByRole('listitem').contains(`${realaccount.realtext}`).click()
+      cy.c_waitForPageLoad()
       cy.findByRole('img', { name: `${realaccount.realimg}` })
         .scrollIntoView()
         .should('be.visible')
@@ -137,6 +138,7 @@ function validate_dmt5page(region) {
   })
 
   cy.findByText('Real account').click()
+  cy.c_waitForPageLoad()
 
   cy.findByRole('link', { name: 'sign in' }).click()
   cy.findByText('Welcome!').should('be.visible')
@@ -150,6 +152,7 @@ function validate_dmt5page(region) {
     .scrollIntoView()
     .should('be.visible', { timeout: 50000 })
   cy.findByRole('link', { name: 'Try our margin calculator' }).click()
+  cy.c_waitForPageLoad()
   cy.url().should('include', 'margin')
   cy.go('back')
   cy.c_waitForPageLoad()
@@ -160,10 +163,12 @@ function validate_dmt5page(region) {
   cy.get(
     '.carousel-style__StyledChevron-sc-1wwuyp8-5.carousel-style__ChevronRight-sc-1wwuyp8-8.kDISbi.jVDjEi'
   ).click()
+  cy.c_waitForPageLoad()
   cy.findByRole('img', { name: 'DMT5 swap trading calculator' }).should(
     'be.visible'
   )
   cy.findByRole('link', { name: 'Try our swap calculator' }).click()
+  cy.c_waitForPageLoad()
   cy.url().should('include', 'swap')
   cy.go('back')
   cy.c_waitForPageLoad()
@@ -171,6 +176,7 @@ function validate_dmt5page(region) {
   cy.findByRole('link', { name: 'Trade without commission' }).click()
 
   cy.contains('Create free demo account').click()
+  cy.c_waitForPageLoad()
   cy.findByText('Join over 2.5 million traders').should('be.visible')
   cy.go('back')
   cy.c_waitForPageLoad()
