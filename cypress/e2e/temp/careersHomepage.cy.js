@@ -10,7 +10,6 @@ function redirectPopup(region) {
 function careersHomepage(size, region) {
   cy.url().should('include', '/careers/')
   cy.findByRole('heading', { name: 'We are Deriv' }).click()
-  cy.c_waitForPageLoad()
   cy.findByRole('img', { name: 'deriv careers' }).should('be.visible', {
     timeout: 50000,
   })
