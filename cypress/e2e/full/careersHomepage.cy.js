@@ -114,6 +114,7 @@ describe('QATEST-1659 - should validate the Career Home page in desktop', () => 
       cy.c_visitResponsive('', { size: 'desktop' })
       homeBanner.elements.aboutUsMenu().should('be.visible').click()
       homeBanner.elements.careers().should('be.visible').first().click()
+      cy.c_waitForPageLoad()
       careersHomepage('desktop', 'ROW')
     }
   )
@@ -125,6 +126,7 @@ describe('QATEST-1659 - should validate the Career Home page in desktop', () => 
       cy.c_visitResponsive(Cypress.env('RegionEU'), { size: 'desktop' })
       homeBanner.elements.aboutUsMenu().should('be.visible').click()
       homeBanner.elements.careers().should('be.visible').first().click()
+      cy.c_waitForPageLoad()
       careersHomepage('desktop', 'EU')
     }
   )
@@ -138,6 +140,7 @@ describe('QATEST-1659 - should validate the Career Home page in Responsive', () 
       homeBanner.elements.hamBurgerMenu().should('be.visible').click()
       homeBanner.elements.aboutUsMenu().click()
       homeBanner.elements.careers().should('be.visible').click()
+      cy.c_waitForPageLoad()
       careersHomepage('mobile', 'ROW')
     }
   )
@@ -150,6 +153,7 @@ describe('QATEST-1659 - should validate the Career Home page in Responsive', () 
       homeBanner.elements.hamBurgerMenu().should('be.visible').click()
       homeBanner.elements.aboutUsMenu().click()
       homeBanner.elements.careers().should('be.visible').click()
+      cy.c_waitForPageLoad()
       careersHomepage('mobile', 'EU')
     }
   )

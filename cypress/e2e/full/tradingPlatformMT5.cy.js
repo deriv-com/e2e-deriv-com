@@ -173,16 +173,10 @@ function validate_dmt5page(region) {
   cy.go('back')
   cy.c_waitForPageLoad()
 
-  cy.findByRole('link', { name: 'Trade without commission' }).then((link) => {
-    cy.request({ url: link.prop('href') }).then((response) => {
-      expect(response.status).to.eq(200)
-    })
-  })
-
   cy.contains('Create free demo account').scrollIntoView().click()
-  cy.c_waitForPageLoad()
   cy.findByText('Join over 2.5 million traders').should('be.visible')
-  cy.go('back')
+  //cy.c_waitForPageLoad()
+  cy.go(-1)
   cy.c_waitForPageLoad()
 
   if (region === 'ROW') {
@@ -225,6 +219,11 @@ function validate_dmt5page(region) {
   cy.findByText('Join over 2.5 million traders').should('be.visible')
   cy.go('back')
   cy.c_waitForPageLoad()
+  cy.findByRole('link', { name: 'Trade without commission' }).then((link) => {
+    cy.request({ url: link.prop('href') }).then((response) => {
+      expect(response.status).to.eq(200)
+    })
+  })
 }
 
 function validateBladeBanner(region) {
