@@ -16,7 +16,8 @@ Cypress.Commands.add('c_waitForPageLoad', (options = {}) => {
   cy.findByRole('button', {
     name: 'whatsapp icon',
     timeout: 35000,
-  }).should('be.visible')
+    log: logging,
+  }).should('be.visible', { log: logging })
 })
 
 Cypress.Commands.add('c_visitResponsive', (path, options = {}) => {
