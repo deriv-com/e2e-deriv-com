@@ -1,5 +1,5 @@
 name: Run Tests Manually
-run-name: Run Tests Manually on ${{ github.event.inputs.environment }}
+run-name: Run ${{ github.event.inputs.suite }} Tests Manually on ${{ github.event.inputs.environment }}
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ on:
 jobs:
 
   Smoke:  
-    if: ${{ github.event.inputs.suite == 'smoke'}}
+    if: ${{ github.event.inputs.suite == 'smoke' }}
     runs-on: ubuntu-latest
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
