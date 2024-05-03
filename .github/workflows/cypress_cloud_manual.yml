@@ -1,5 +1,5 @@
 name: Run Tests Manually
-run-name: Run ${{ github.event.inputs.suite }} Tests Manually on ${{ github.event.inputs.environment }}
+run-name: Run ${{ github.event.inputs.suite }} tests manually on ${{ github.event.inputs.environment }}
 
 on:
   workflow_dispatch:
