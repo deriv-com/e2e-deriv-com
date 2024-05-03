@@ -175,7 +175,7 @@ function validate_dmt5page(region) {
 
   cy.contains('Create free demo account').scrollIntoView().click()
   cy.findByText('Join over 2.5 million traders').should('be.visible')
-  //cy.c_waitForPageLoad()
+  cy.c_waitForPageLoad()
   cy.go(-1)
   cy.c_waitForPageLoad()
 
