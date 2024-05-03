@@ -328,7 +328,7 @@ export const verifyRequestLink = (testRegion, options = {}) => {
           url: requestLink,
           failOnStatusCode: false,
           timeout: 120000,
-          log: true,
+          log: false,
         }).then((response) => {
           verifiedLinkDetails.requestLinks.push(requestLink)
           if (!isPassingStatusCode(response.status)) {
