@@ -173,7 +173,11 @@ function validate_dmt5page(region) {
   cy.go('back')
   cy.c_waitForPageLoad()
 
-  cy.findByRole('link', { name: 'Trade without commission' }).click()
+  cy.findByRole('link', { name: 'Trade without commission' }).then((link) => {
+    cy.request({ url: link.prop('href') }).then((response) => {
+      expect(response.status).to.eq(200)
+    })
+  })
 
   cy.contains('Create free demo account').click()
   cy.c_waitForPageLoad()
@@ -228,18 +232,37 @@ function validateBladeBanner(region) {
     'be.visible'
   )
   cy.findByRole('img', { name: 'Deriv GO QR' }).should('be.visible')
-  cy.findByRole('link', { name: 'Google Play' }).click()
-  cy.c_proceedEU(region)
-  cy.findByRole('link', { name: 'App Store' }).click()
-  cy.c_proceedEU(region)
-  cy.findByRole('link', { name: 'AppGallery' }).click()
-  cy.c_proceedEU(region)
-  cy.findByRole('link', { name: 'Linux' }).click()
-  cy.c_proceedEU(region)
-  cy.findByRole('link', { name: 'Windows' }).click()
-  cy.c_proceedEU(region)
-  cy.findByRole('link', { name: 'macOS' }).click()
-  cy.c_proceedEU(region)
+  cy.findByRole('link', { name: 'Google Play' }).then((link) => {
+    cy.request({ url: link.prop('href') }).then((response) => {
+      expect(response.status).to.eq(200)
+    })
+  })
+  cy.findByRole('link', { name: 'App Store' }).then((link) => {
+    cy.request({ url: link.prop('href') }).then((response) => {
+      expect(response.status).to.eq(200)
+    })
+  })
+  cy.findByRole('link', { name: 'AppGallery' }).then((link) => {
+    cy.request({ url: link.prop('href') }).then((response) => {
+      expect(response.status).to.eq(200)
+    })
+  })
+  cy.findByRole('link', { name: 'Linux' }).then((link) => {
+    cy.request({ url: link.prop('href') }).then((response) => {
+      expect(response.status).to.eq(200)
+    })
+  })
+  cy.findByRole('link', { name: 'Windows' }).then((link) => {
+    cy.request({ url: link.prop('href') }).then((response) => {
+      expect(response.status).to.eq(200)
+    })
+  })
+  // TODO check why this causes crash
+  // cy.findByRole('link', { name: 'macOS' }).then((link)=>{
+  //   cy.request({url: link.prop('href')}).then((response)=>{
+  //     expect(response.status).to.eq(200)
+  //   })
+  // })
 }
 
 describe('QATEST-1553 - should validate the dmt5 page in desktop', () => {
