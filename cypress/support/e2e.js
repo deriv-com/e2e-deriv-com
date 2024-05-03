@@ -104,6 +104,7 @@ Cypress.Commands.add('c_checkAllPlatformLinks', (urlDetails) => {
     cy.contains('h1', details.content)
     cy.url().should('contain', details.url)
     cy.c_go('back')
+    cy.c_waitForPageLoad()
   })
 })
 
