@@ -14,6 +14,7 @@ module.exports = defineConfig({
     baseUrl: process.env.BASE_URL || 'https://staging.deriv.com', 
     defaultCommandTimeout: 10000,
     supportFile: "cypress/support/e2e.js",
+    numTestsKeptInMemory:1,
     setupNodeEvents(on, config) {
       require('@bahmutov/cy-grep/src/plugin')(config);
       // IMPORTANT: return the config object

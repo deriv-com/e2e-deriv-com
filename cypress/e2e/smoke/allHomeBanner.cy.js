@@ -6,7 +6,7 @@ function checkHeroBanner(region) {
   cy.findByRole('heading', {
     name: 'Trading for anyone. Anywhere. Anytime.',
   }).should('be.visible')
-  cy.findByRole('img', { name: 'Trustpilot' }).click()
+  // cy.findByRole('img', { name: 'Trustpilot' }).click() Temporarily removed due to https://app.clickup.com/t/20696747/DPROD-4124
 
   if (region === 'ROW') {
     cy.findByRole('img', {

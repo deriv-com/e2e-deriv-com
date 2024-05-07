@@ -1,8 +1,8 @@
 import '@testing-library/cypress/add-commands'
 import {
   normalizeUrl,
-  verifyVisitLink,
   verifyRequestLink,
+  verifyVisitLink,
 } from '../../support/validateLinks'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
@@ -12,10 +12,9 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 })
 
 let visitTestComplete = false
-const testRegion = 'DIEL'
-const dielUrl = `${normalizeUrl(Cypress.config('baseUrl'))}${Cypress.env('RegionDIEL')}`
-
-describe('QATEST-96657 - Check URL in deriv.com for DIEL', () => {
+const testRegion = 'ROW'
+const rowUrl = `${normalizeUrl(Cypress.config('baseUrl'))}`
+describe('QATEST-96657 - Check URL in deriv.com for ROW', () => {
   before(() => {
     cy.clearAllSessionStorage()
     cy.clearAllLocalStorage()
@@ -24,13 +23,13 @@ describe('QATEST-96657 - Check URL in deriv.com for DIEL', () => {
     cy.intercept({ resourceType: /xhr|fetch/ }, { log: false })
   })
   it(
-    'should visit all deriv Links for region DIEL',
+    'should visit all deriv Links for region ROW',
     {
       retries: { runMode: 0, openMode: 0 },
-      tags: ['@full-tests', '@row-tests'],
+      tags: ['@full_extended-tests', '@row-tests'],
     },
     () => {
-      verifyVisitLink(dielUrl, testRegion, { appendRegion: true })
+      verifyVisitLink(rowUrl, testRegion)
       visitTestComplete = true
       cy.readFile(
         `cypress/full_extended_results/failedVisitLinks/${testRegion}.json`
@@ -40,10 +39,10 @@ describe('QATEST-96657 - Check URL in deriv.com for DIEL', () => {
     }
   )
   it(
-    'should request for all  Links for region DIEL',
+    'should request for all  Links for region ROW',
     {
       retries: { runMode: 0, openMode: 0 },
-      tags: ['@full-tests', '@row-tests'],
+      tags: ['@full_extended-tests', '@row-tests'],
     },
     () => {
       verifyRequestLink(testRegion, { visitTestPass: visitTestComplete })

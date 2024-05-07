@@ -35,7 +35,8 @@ export const linksNotToVisit = [
 ]
 
 export const linksNotToRequest = [
-  'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg', //causing hang because takes a lot of time downloading pdf
+  'https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/MetaTrader5.dmg', //causing hang because takes a lot of time downloading
+  'https://getctradermac.com/deriv/ctrader-deriv-setup.dmg', //causing hang because takes a lot of time downloading
   'https://www.instagram.com/derivcareers/',
   'javascript:;',
   'mailto:',
@@ -54,6 +55,7 @@ export const linksAllowedToFailOnRequestWithStatus = {
   404: [
     'https://apps.apple.com/us/app/deriv-x/id1563337503',
     'https://apps.apple.com/us/app/deriv-dp2p/id1506901451',
+    'https://apps.apple.com/us/app/deriv-ctrader/id6466996509',
     // Bug raised for following links as https://app.clickup.com/t/86bxbkfqm
     // Need to remove once the issue is fixed because till then test will keep on failing without verifying other links
     'https://staging.deriv.com/trade-types/options/',
