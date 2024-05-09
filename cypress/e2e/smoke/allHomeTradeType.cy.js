@@ -45,7 +45,7 @@ const tradeTypeConfig = {
   },
 }
 
-function checkTradeTypes(region, index = 0) {
+function checkTradeTypes(region,dimension,viewport,index = 0) {
   const config = tradeTypeConfig[region]
   const trade = config.types[index]
 
@@ -62,10 +62,24 @@ function checkTradeTypes(region, index = 0) {
   cy.get('@learnMoreLink').click()
   cy.url().should('include', config.urls[index])
   cy.findByRole('heading', { name: trade.learnmorecontent }).should('exist')
+  if (Cypress.env('percy') == true) {
+    const pageName = ('Trade type ' + trade.name + ' ' + region + ' '+ viewport )
+    cy.findByRole('button', { name: 'whatsapp icon' }).should('be.visible',{ timeout: 50000 })
+    cy.get('img').each(($img) => {
+      cy.wrap($img).invoke('width').then((width) => {
+      if (width > 600) {
+      cy.wrap($img).c_waitForImageLoad()
+      }
+    })
+    }).then(() => {
+    cy.percySnapshot(pageName, { widths: [dimension] })
+    })    
+    
+  }
   cy.go('back')
 
   if (index + 1 < config.types.length) {
-    checkTradeTypes(region, index + 1)
+    checkTradeTypes(region,dimension,viewport,index + 1)
   }
 }
 
@@ -75,7 +89,7 @@ describe('QATEST-1342 Trade Types - EU', () => {
     { tags: ['@smoke-tests', '@eu-tests'] },
     () => {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
-      checkTradeTypes('EU')
+      checkTradeTypes('EU',414,'mobile')
     }
   )
 
@@ -84,7 +98,7 @@ describe('QATEST-1342 Trade Types - EU', () => {
     { tags: ['@smoke-tests', '@eu-tests'] },
     () => {
       cy.c_visitResponsive(Cypress.env('RegionEU'), { size: 'desktop' })
-      checkTradeTypes('EU')
+      checkTradeTypes('EU',1280,'desktop')
     }
   )
 })
@@ -95,7 +109,7 @@ describe('QATEST-1336 Trade Types - ROW', () => {
     { tags: ['@smoke-tests', '@row-tests'] },
     () => {
       cy.c_visitResponsive('')
-      checkTradeTypes('ROW')
+      checkTradeTypes('ROW',414,'mobile')
     }
   )
 
@@ -104,7 +118,7 @@ describe('QATEST-1336 Trade Types - ROW', () => {
     { tags: ['@smoke-tests', '@row-tests'] },
     () => {
       cy.c_visitResponsive('', { size: 'desktop' })
-      checkTradeTypes('ROW')
+      checkTradeTypes('ROW',1280,'desktop')
     }
   )
 })

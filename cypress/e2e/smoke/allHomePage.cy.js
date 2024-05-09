@@ -40,6 +40,9 @@ describe('QATEST-1395 - Validate the section "We are 25 years strong" in homepag
     () => {
       cy.c_visitResponsive('')
       checkContentandImages()
+      if (Cypress.env('percy') == true) {
+          cy.percySnapshot('Home page - ROW', { widths: [414] })
+      }
     }
   )
   it(
@@ -48,6 +51,9 @@ describe('QATEST-1395 - Validate the section "We are 25 years strong" in homepag
     () => {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
       checkContentandImages()
+      if (Cypress.env('percy') == true) {
+        cy.percySnapshot('Home page - EU', { widths: [414] })
+    }
     }
   )
 })

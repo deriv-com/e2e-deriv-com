@@ -127,3 +127,19 @@ Cypress.Commands.add('c_proceedEU', (region) => {
     cy.findByRole('link', { name: 'Proceed' }).click()
   }
 })
+Cypress.Commands.add('c_waitForImageLoad', { prevSubject: true }, ($img) => {
+  const startTime = new Date();
+  return new Cypress.Promise((resolve, reject) => {
+    const checkLoaded = () => {
+      if ($img.prop('naturalWidth') > 0 && $img.prop('naturalHeight') > 0) {
+        resolve(); // Resolve the promise if width and height are greater than 0
+      } else if (new Date() - startTime > 10000) { // Timeout after 10 seconds
+        reject(new Error('Image loading timeout'))
+      } else {
+        setTimeout(checkLoaded, 5000) // Retry after 500 milliseconds
+      }
+    };
+    checkLoaded()
+  })
+})
+

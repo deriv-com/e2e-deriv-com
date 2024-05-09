@@ -16,6 +16,7 @@ on:
         - full
         - full_extended
         - regression 
+        - regression-percy
         - temp
 jobs:
 
@@ -190,7 +191,7 @@ jobs:
             E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
      
   Regression:  
-    if: ${{ github.event.inputs.suite == 'Regression' }}    
+    if: ${{ github.event.inputs.suite == 'Regression' }} || ${{ github.event.inputs.suite == 'Regression-percy' }}    
     runs-on: ubuntu-latest
     strategy:
         fail-fast: false # https://github.com/cypress-io/github-action/issues/48
@@ -218,6 +219,9 @@ jobs:
               cypress/e2e/full/*.js
               cypress/e2e/full_extended/*.js
           group: 'e2e Tests'
+      - name: Execute Percy
+        if: ${{ github.event.inputs.suite == 'Regression-percy' }}
+        run: npx percy exec -- cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --tag 'Percy Snapshot'
     env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
         # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
@@ -234,3 +238,4 @@ jobs:
         # Set test env variables
         E2E_DERIV_LOGIN_PROD: ${{secrets.E2E_DERIV_LOGIN_PROD}}
         E2E_DERIV_PASSWORD_PROD: ${{secrets.E2E_DERIV_PASSWORD_PROD}}
+        PERCY_TOKEN: ${{ secrets.PERCY_TEST_TOKEN }}
