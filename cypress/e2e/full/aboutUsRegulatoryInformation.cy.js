@@ -1,6 +1,5 @@
 import '@testing-library/cypress/add-commands'
 import homeBanner from '../../support/POM/homePage'
-import { findByRole } from '@testing-library/dom'
 import { elements } from '../../support/POM/commonPage'
 
 function check_on_regulatory_information_page()
@@ -97,7 +96,7 @@ function check_on_pdf_documents()
     })
 }
 
-describe('QATEST-71097 - should validate the About Us - Regulatory Information - EU', () => 
+describe('QATEST-71097 - should validate the About Us - Regulatory Information - EU', { tags: ['@full-tests', '@eu-tests'] }, () => 
 {
     const country_names = [
         'Austria', 'Bulgaria', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden'
@@ -111,7 +110,7 @@ describe('QATEST-71097 - should validate the About Us - Regulatory Information -
     })
 })
 
-describe('QATEST-71097- Responsive - should validate the About Us - Regulatory Information - EU', () => 
+describe('QATEST-71097- Responsive - should validate the About Us - Regulatory Information - EU', { tags: ['@full-tests', '@eu-tests'] }, () => 
 {
     const country_names = [
         'Austria', 'Bulgaria', 'Croatia', 'Cyprus', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Netherlands', 'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden'
