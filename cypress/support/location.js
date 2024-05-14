@@ -28,12 +28,12 @@ Cypress.Commands.add('c_checkPageContent',(location) => {
 
 Cypress.Commands.add('c_checkMap',(view) => {
     cy.findByRole('img', { name: "map pin"}).scrollIntoView({ force: true }).should('be.visible')
-    cy.iframe('._location-layout__Iframe-sc-17k1bne-12').find('#mapDiv').should('be.visible')
-    //cy.iframe('._location-layout__Iframe-sc-17k1bne-12').contains("View larger map", { timeout: 10000 }).should('be.visible').click()
+    cy.iframe('._location-layout__Iframe-sc-n7n0xj-12').find('#mapDiv').should('be.visible')
+    cy.iframe('._location-layout__Iframe-sc-n7n0xj-12').contains("View larger map", { timeout: 10000 }).should('be.visible').click()
     if(view === 'desktop')
        {
-       cy.iframe('._location-layout__Iframe-sc-17k1bne-12').find('[title="Zoom in"]').should('be.visible').click()
-       cy.iframe('._location-layout__Iframe-sc-17k1bne-12').find('[title="Zoom out"]').should('be.visible').click()
-       cy.iframe('._location-layout__Iframe-sc-17k1bne-12').contains("Directions").should('be.visible').click()
+       cy.iframe('._location-layout__Iframe-sc-n7n0xj-12').find('[title="Zoom in"]').should('be.visible').click()
+       cy.iframe('._location-layout__Iframe-sc-n7n0xj-12').find('[title="Zoom out"]').should('be.visible').click()
+       cy.iframe('._location-layout__Iframe-sc-n7n0xj-12').contains("Directions").should('be.visible').click()
        }
  })

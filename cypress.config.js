@@ -11,13 +11,21 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) { },
     //baseUrl: 'https://deriv.com',
     //baseUrl: 'https://deriv-com-v2.pages.dev/',
-    baseUrl: 'https://staging.deriv.com', 
+    baseUrl: process.env.BASE_URL || 'https://staging.deriv.com', 
     defaultCommandTimeout: 10000,
-    supportFile: "cypress/support/e2e.js",    
+    supportFile: "cypress/support/e2e.js",
+    numTestsKeptInMemory:1,
+    setupNodeEvents(on, config) {
+      require('@bahmutov/cy-grep/src/plugin')(config);
+      // IMPORTANT: return the config object
+      return config;
+    } 
   },
   env: {
-    RegionEU: '/?region=at',
-    RegionROW: '/?region=id',
+    grepTags: process.env.GREP_TAGS || false,
+    grepOmitFiltered:  process.env.GREP_TAGS ? true : false,
+    grepFilterSpecs: process.env.GREP_TAGS ? true : false,
+    RegionEU: 'https://staging.eu-deriv-com-pages.pages.dev',
     RegionDIEL: '/?region=za',
     skipROWTests: false,
     email: 'test@example.com',
@@ -37,7 +45,8 @@ module.exports = defineConfig({
     country_of_residence: process.env.COUNTRY_OF_RESIDENCE,
     citizenship: process.env.CITIZENSHIP,
     user_password: process.env.USERPASSWORD,
-    diel_country_list: ['Ecuador', 'South Africa', 'Brazil', 'Sri Lanka', 'Uruguay', 'Switzerland']
+    diel_country_list: ['Ecuador', 'South Africa', 'Brazil', 'Sri Lanka', 'Uruguay', 'Switzerland'],
+    webflow_env: process.env.WEBFLOW_ENV
   },
   retries: {
     "runMode": 2,

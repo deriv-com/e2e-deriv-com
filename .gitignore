@@ -3,3 +3,6 @@ node_modules
 cypress/.DS_Store
 screenshots
 .env
+full_extended_results
+cypress/fixtures/requestedLinks/
+cypress/fixtures/toRequestLinks/
