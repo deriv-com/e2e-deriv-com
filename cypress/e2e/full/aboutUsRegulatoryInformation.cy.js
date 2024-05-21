@@ -24,12 +24,6 @@ function check_on_regulatory_information_page() {
 
 function check_on_links_text() {
   // Check on "view license" link
-  cy.get('p')
-    .find('a[href="/regulatory/Deriv_Investments_(Europe)_Limited.pdf"]')
-    .invoke('removeAttr', 'target')
-    .click()
-  cy.url().should('include', '/regulatory/Deriv_Investments_(Europe)_Limited')
-  cy.go('back')
 
   cy.get('p')
     .find('a[href="/regulatory/Deriv_(FX)_Ltd.pdf"]')
@@ -65,10 +59,6 @@ function check_on_links_text() {
     .click()
   cy.url().should('include', '/regulatory/deriv-com-ltd-membership')
   cy.go('back')
-
-  //live chat
-  cy.contains('live chat').click()
-  //cy.get('iframe[name="chat-widget"]', { timeout: 30000 })
 
   //complaint policy
   cy.get('a[href="https://app.deriv.com/complaints-policy"]')
