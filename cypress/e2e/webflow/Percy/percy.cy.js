@@ -20,7 +20,9 @@ function snapshot(pageName) {
   if (webflowbaseUrl.includes(webflow)) {
     cy.get('.new-navbar_component-wrapper')
       .eq(0)
-      .scrollIntoView({ duration: 2000 })
+      .scrollIntoView({ duration: 2000 }).then(() => {
+        cy.wait(1000) 
+    })
   }
   cy.percySnapshot(pageName)
   cy.viewport('macbook-16')
@@ -28,7 +30,9 @@ function snapshot(pageName) {
   if (webflowbaseUrl.includes(webflow)) {
     cy.get('.new-navbar_component-wrapper')
       .eq(0)
-      .scrollIntoView({ duration: 2000 })
+      .scrollIntoView({ duration: 2000 }).then(() => {
+        cy.wait(1000) 
+      })
   }
   cy.percySnapshot(pageName)
 }
