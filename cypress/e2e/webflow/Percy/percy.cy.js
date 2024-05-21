@@ -20,21 +20,25 @@ function snapshot(pageName) {
   if (webflowbaseUrl.includes(webflow)) {
     cy.get('.new-navbar_component-wrapper')
       .eq(0)
-      .scrollIntoView({ duration: 2000 }).then(() => {
-        cy.wait(2000) 
-    })
+      .scrollIntoView({ duration: 2000 })
+      .then(() => {
+        cy.percySnapshot(pageName)
+      })
+  } else {
+    cy.percySnapshot(pageName)
   }
-  cy.percySnapshot(pageName)
   cy.viewport('macbook-16')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
   if (webflowbaseUrl.includes(webflow)) {
     cy.get('.new-navbar_component-wrapper')
       .eq(0)
-      .scrollIntoView({ duration: 2000 }).then(() => {
-        cy.wait(2000) 
+      .scrollIntoView({ duration: 2000 })
+      .then(() => {
+        cy.percySnapshot(pageName)
       })
+  } else {
+    cy.percySnapshot(pageName)
   }
-  cy.percySnapshot(pageName)
 }
 
 describe('Visit URLs and Capture Percy Snapshots', () => {
