@@ -6,7 +6,7 @@ on:
       environment:
         type: string
         description: Select the environment
-        default: https://deriv.com
+        default: https://webflow.deriv.com
       suite:
         type: choice
         description: Run full or rerun
