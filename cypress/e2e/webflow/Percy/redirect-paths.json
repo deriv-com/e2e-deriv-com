@@ -1,156 +1,158 @@
 {
-  "pages": [
-    {
-      "url": "/",
-      "value": "home"
-    },
-    {
-      "url": "/responsible",
-      "value": "Home"
-    },
-    {
-      "url": "/who-we-are",
-      "value": "About us & resources pages"
-    },
-    {
-      "url": "/regulatory",
-      "value": "About us & resources pages"
-    },
-    {
-      "url":  "/our-principles",
-      "value": "About us & resources pages"
-    },
-    {
-      "url":  "/why-choose-us",
-      "value": "About us & resources pages"
-    },
-    {
-      "url":   "/contact-us",
-      "value": "About us & resources pages"
-    },
-    {
-      "url":  "/help-centre",
-      "value": "About us & resources pages"
-    },
-    {
-      "url":  "/payment-methods",
-      "value": "About us & resources pages"
-    },
-    {
-      "url":  "/careers",
-      "value": "Careers"
-    },
-    {
-      "url":  "/terms-and-conditions",
-      "value": "Careers"
-    },
-    {
-      "url":  "/markets/forex",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/markets/derived-indices/synthetic-indices",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/markets/stocks",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/markets/stock-indices",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/markets/commodities",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/markets/cryptocurrencies",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/markets/etfs",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/trade/cfds",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/trade/options",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/signup",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/partners",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":  "/partners/payment-agent",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url":   "/partners/deriv-prime",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url": "/fraud-prevention",
-      "value": "Trade types, Markets & Partners"
-    },
-    {
-      "url": "/trading-platforms/deriv-mt5",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/trading-platforms/deriv-ctrader",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/trading-platforms/deriv-trader",  
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/trading-platforms/deriv-go",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url":  "/trading-platforms/deriv-bot",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/trading-platforms/deriv-x",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/p2p",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/derivtech",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/derivlife",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/trading-specifications",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/product-explorer",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/404",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    },
-    {
-      "url": "/partners/affiliate-ib",
-      "value": "Platforms, Product explorer, Signup & PPC landing pages"
-    }
-    
-    ]}
+    "urls": [
+      {
+        "url": "/",
+        "value": "home"
+      },
+      {
+        "url": "/responsible",
+        "value": "Home"
+      },
+      {
+        "url": "/who-we-are",
+        "value": "About us & resources pages"
+      },
+      {
+        "url": "/regulatory",
+        "value": "About us & resources pages"
+      },
+      {
+        "url":  "/our-principles",
+        "value": "About us & resources pages"
+      },
+      {
+        "url":  "/why-choose-us",
+        "value": "About us & resources pages"
+      },
+      {
+        "url":   "/contact-us",
+        "value": "About us & resources pages"
+      },
+      {
+        "url":  "/help-centre",
+        "value": "About us & resources pages"
+      },
+      {
+        "url":  "/payment-methods",
+        "value": "About us & resources pages"
+      },
+      {
+        "url":  "/careers",
+        "value": "Careers"
+      },
+      {
+        "url":  "/terms-and-conditions",
+        "value": "Careers"
+      },
+      {
+        "url":  "/markets/forex",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/markets/derived-indices/synthetic-indices",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/markets/stocks",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/markets/stock-indices",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/markets/commodities",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/markets/cryptocurrencies",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/markets/etfs",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/trade/cfds",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/trade/options",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/signup",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/partners",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":  "/partners/payment-agent",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url":   "/partners/deriv-prime",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url": "/fraud-prevention",
+        "value": "Trade types, Markets & Partners"
+      },
+      {
+        "url": "/trading-platforms/deriv-mt5",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/trading-platforms/deriv-ctrader",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/trading-platforms/deriv-trader",  
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/trading-platforms/deriv-go",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url":  "/trading-platforms/deriv-bot",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/trading-platforms/deriv-x",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/p2p",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/derivtech",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/derivlife",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/trading-specifications",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/product-explorer",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/404",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      },
+      {
+        "url": "/partners/affiliate-ib",
+        "value": "Platforms, Product explorer, Signup & PPC landing pages"
+      }
+      
+]}
+  
+  
