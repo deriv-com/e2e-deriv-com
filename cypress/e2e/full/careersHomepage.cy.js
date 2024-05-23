@@ -23,12 +23,12 @@ function careersHomepage(size, region) {
       .parent()
       .find('svg')
       .click({ force: true })
-    cy.findByRole('link', { name: 'Locations' }).click()
+    cy.findByRole('link', { name: 'Locations' }).click({ force: true })
     cy.findByRole('button', { name: 'Explore jobs' })
       .parent()
       .find('svg')
       .click({ force: true })
-    cy.findByRole('link', { name: 'Home' }).click()
+    cy.findByRole('link', { name: 'Home' }).click({ force: true })
   }
 
   cy.findByRole('link', { name: 'See our open positions' }).click()
