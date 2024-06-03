@@ -56,7 +56,7 @@ function marginCalculatorPage(region) {
       if (region === 'EU') {
         redirectPopup()
       } else {
-        cy.url().should('contain', 'oauth.deriv.com')
+        cy.url().should('contain', 'app.deriv.com')
       }
     })
 
