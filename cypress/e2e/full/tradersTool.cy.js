@@ -4,7 +4,7 @@ function redirectPopup() {
   cy.findByText('Redirect notice', { timeout: 10000 }).should('be.visible')
   cy.findByRole('link', { name: 'Proceed' })
     .should('exist')
-    .should('have.attr', 'href', 'https://app.deriv.com/appstore/traders-hub')
+    .should('have.attr', 'href', 'https://app.deriv.com/')
     .then((link) => {
       cy.request(link.prop('href')).its('status').should('eq', 200)
     })
@@ -56,7 +56,7 @@ function marginCalculatorPage(region) {
       if (region === 'EU') {
         redirectPopup()
       } else {
-        cy.url().should('contain', 'oauth.deriv.com')
+        cy.url().should('contain', 'app.deriv.com')
       }
     })
 
