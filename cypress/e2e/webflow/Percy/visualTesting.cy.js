@@ -2,8 +2,9 @@ import '@testing-library/cypress/add-commands'
 import homePage from '../../../support/POM/homePage'
 
 // Load URLs from the JSON file
-const urls = require('./redirect-paths.json')
-const webflowbaseUrl = Cypress.env('webflow_env')
+//const urls = require('./redirect-paths.json')
+const urls = require('./test.json')
+const webflowbaseUrl = 'https://webflow.deriv.com'
 const webflow = 'webflow'
 
 function mapUrlForSnapshot(url) {
@@ -14,7 +15,7 @@ function mapUrlForSnapshot(url) {
     return trimmedUrl
   }
 }
-function snapshot(pageName,group,fullUrl) {
+function snapshot(pageName,fullUrl) {
   cy.viewport('iphone-xr')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
   if (webflowbaseUrl.includes(webflow)&& !fullUrl.includes("404")) {
@@ -25,7 +26,7 @@ function snapshot(pageName,group,fullUrl) {
         cy.wait(1000)
       })
   }
-  cy.percySnapshot(pageName, {testcase: group})
+  cy.percySnapshot(pageName)
   cy.viewport('macbook-16')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
   if (webflowbaseUrl.includes(webflow) && !fullUrl.includes("404")){
@@ -36,19 +37,26 @@ function snapshot(pageName,group,fullUrl) {
         cy.wait(1000)
       })
   }
-  cy.percySnapshot(pageName, {testcase: group})
+  cy.percySnapshot(pageName)
 }
 
 describe('Visit URLs and Capture Percy Snapshots', () => {
-  urls.urls.forEach((urlObject) => {
+  urls.urls.forEach((url) => {
     let pageName
-    const group = urlObject.value
-    const fullUrl = `${webflowbaseUrl}${urlObject.url}`
+    const fullUrl = `${webflowbaseUrl}${url}`
     it(`Visits ${fullUrl} and captures Percy snapshot`, () => {
       cy.log('WEBFLOW_ENV value:', Cypress.env('webflow_env'))
       cy.visit(fullUrl)
-      pageName = mapUrlForSnapshot(urlObject.url)
-      snapshot(pageName,group,fullUrl)
+      pageName = mapUrlForSnapshot(url)
+      snapshot(pageName,fullUrl)
+      cy.log('the url is '+ cy.url)
+      if(url.includes('options')){
+        const optionsType = Cypress.env('optionsType')
+        optionsType.forEach(option => {
+          cy.findByRole('tab', { name: option }).click()
+          cy.log('clicked on tab' + option)
+          pageName = mapUrlForSnapshot(url) + option
+          snapshot(pageName,fullUrl)})}
     })
   })
 })
