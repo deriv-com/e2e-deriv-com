@@ -7,6 +7,7 @@ const webflowbaseUrl = Cypress.env('webflow_env')
 const webflow = 'webflow'
 
 function mapUrlForSnapshot(url) {
+  cy.log('the url is' + url)
   if (url === '/') {
     return 'home'
   } else {
