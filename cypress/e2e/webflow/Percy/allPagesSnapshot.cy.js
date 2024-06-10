@@ -1,5 +1,4 @@
 import '@testing-library/cypress/add-commands'
-import homePage from '../../../support/POM/homePage'
 
 // Load URLs from the JSON file
 //const urls = require('./redirect-paths.json')
@@ -16,7 +15,7 @@ function mapUrlForSnapshot(url) {
   }
 }
 function snapshot(pageName,fullUrl) {
-  cy.viewport('iphone-xr')
+  //cy.viewport('iphone-xr')
   cy.scrollTo('bottom', { ensureScrollable: false, duration: 2000 })
   if (webflowbaseUrl.includes(webflow)&& !fullUrl.includes("404")) {
     cy.get('.new-navbar_component-wrapper')
