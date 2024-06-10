@@ -3,6 +3,7 @@ import '@testing-library/cypress/add-commands'
 // Load URLs from the JSON file
 const urls = require('./redirect-paths.json')
 const webflowbaseUrl = Cypress.env('webflow_env')
+//const webflowbaseUrl = 'https://webflow.deriv.com'
 const webflow = 'webflow'
 
 function mapUrlForSnapshot(url) {
@@ -41,6 +42,7 @@ function snapshot(pageName,fullUrl) {
 
 
 describe('Visit URLs and Capture Percy Snapshots', () => {
+  cy.log('webflow link is ' + webflowbaseUrl)
   urls.urls.forEach((url) => {
     let pageName
     const fullUrl = `${webflowbaseUrl}${url}`
