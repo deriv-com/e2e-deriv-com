@@ -127,3 +127,7 @@ Cypress.Commands.add('c_proceedEU', (region) => {
     cy.findByRole('link', { name: 'Proceed' }).click()
   }
 })
+
+Cypress.Commands.add('c_generateRandomUsername', () => {
+  return `test${Math.floor(Math.random() * 100000)}`
+})
