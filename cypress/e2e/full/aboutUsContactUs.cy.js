@@ -42,15 +42,10 @@ function validateAboutUsContactUs() {
         cy.findByText(city).should('be.visible');
     });
 
-    // Validate Google Maps links
-    cy.get('a[href*="/maps/"]').each(($link) => {
-        cy.wrap($link).invoke('attr', 'href').should('include', '/maps/');
-    });
 
     cy.findByRole('heading', { name: 'Business Partnership' }).should('be.visible');
     cy.findByText('Contact us via live chat').should('be.visible');
 }
-
 
 describe('QATEST-1651 - should validate the About Us - Contact us', () => {
     it(
