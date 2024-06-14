@@ -51,26 +51,49 @@ function validateAboutUsContactUs() {
     cy.findByText('Contact us via live chat').should('be.visible');
 }
 
+
 describe('QATEST-1651 - should validate the About Us - Contact us', () => {
-    it('should validate Contact Us page for EU', () => {
-        cy.c_visitResponsive(`/contact-us/${Cypress.env('RegionEU')}`, 'desktop');
+    it(
+      'should validate Contact Us page for EU',
+      { tags: ['@full-tests', '@eu-tests'] },
+      () => {
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/contact-us`, {
+          size: 'desktop',
+        })
+  
+        validateAboutUsContactUs()
+      }
+    )
+  
+    it(
+      'should validate Contact Us page for ROW',
+      { tags: ['@full-tests', '@row-tests'] },
+      () => {
+        cy.c_visitResponsive(`/contact-us`, { size: 'desktop' })
+  
+        validateAboutUsContactUs()
+      }
+    )
+  })
+  
+  describe('QATEST-1651- Responsive - should validate the About Us - Contact us', () => {
+    it(
+      'should validate Contact Us page for EU',
+      { tags: ['@full-tests', '@eu-tests'] },
+      () => {
+        cy.c_visitResponsive(`${Cypress.env('RegionEU')}/contact-us`)
+  
         validateAboutUsContactUs();
-    });
-
-    it('should validate Contact Us page for ROW', () => {
-        cy.c_visitResponsive(`/contact-us/${Cypress.env('RegionROW')}`, 'desktop');
-        validateAboutUsContactUs();
-    });
-});
-
-describe('QATEST-1651- Responsive - should validate the About Us - Contact us', () => {
-    it('should validate Contact Us page for EU', () => {
-        cy.c_visitResponsive(`/contact-us/${Cypress.env('RegionEU')}`);
-        validateAboutUsContactUs();
-    });
-
-    it('should validate Contact Us page for ROW', () => {
-        cy.c_visitResponsive(`/contact-us/${Cypress.env('RegionROW')}`);
-        validateAboutUsContactUs();
-    });
-});
+      }
+    )
+  
+    it(
+      'should validate Contact Us page for ROW',
+      { tags: ['@full-tests', '@row-tests'] },
+      () => {
+        cy.c_visitResponsive(`/contact-us`)
+  
+        validateAboutUsContactUs()
+      }
+    )
+  })
