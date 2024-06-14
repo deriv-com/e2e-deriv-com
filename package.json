@@ -3,7 +3,7 @@
     "@bahmutov/cy-grep": "^1.9.17",
     "@percy/cypress": "^3.1.2",
     "@testing-library/cypress": "^10.0.1",
-    "cypress": "^13.11.0",
+    "cypress": "^13.2.0",
     "cypress-dotenv": "^2.0.0",
     "cypress-iframe": "^1.0.1",
     "dotenv": "^16.3.1",
