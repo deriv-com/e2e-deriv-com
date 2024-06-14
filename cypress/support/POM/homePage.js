@@ -16,7 +16,7 @@ class homeBanner {
         hamBurgerMenu: () => cy.get('[data-cy="mobile-header"]').find('[data-cy="hamburger-menu"]'),
         derivLogo: () =>   cy.get('[data-cy="mobile-header"]').find('[data-cy="deriv-logo"]'),
         langEnglish: () => cy.findByText('English'),
-        tradeMenu: () => cy.findByRole('navigation').contains('Trade'),
+        tradeMenu: () => cy.findByRole('navigation').contains('Trade', {timeout: 5000}),
         marketsMenu: () => cy.findByRole('navigation').contains('Markets'),
         aboutUsMenu: () => cy.findByRole('navigation').contains('About us'),
         resourcesMenu: () => cy.findByRole('navigation').contains('Resources'),
