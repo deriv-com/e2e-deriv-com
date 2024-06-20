@@ -6,7 +6,7 @@ on:
       environment:
         type: string
         description: Select the environment
-        default: https://deriv.com
+        default: https://webflow.deriv.com
       suite:
         type: choice
         description: Run full or rerun
@@ -41,10 +41,10 @@ jobs:
       with:
         record: true
         parallel: true # Runs test in parallel using settings above
-        spec: cypress/e2e/webflow/Percy/percy.cy.js
-        command: npx percy exec -- cypress run --spec cypress/e2e/webflow/Percy/percy.cy.js --record --key ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }} 
+        spec: cypress/e2e/webflow/Percy/allPagesSnapshot.cy.js
+        command: npx percy exec -- cypress run --spec cypress/e2e/webflow/Percy/allPagesSnapshot.cy.js --record --key ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }} 
       env:
-        PERCY_TOKEN: ${{ secrets.E2E_PERCY_TOKEN }}
+        PERCY_TOKEN: ${{ secrets.WEBFLOW_PERCY_TOKEN }}
         TEST_SUITE: ${{ github.event.inputs.suite }}
         WEBFLOW_ENV: ${{ github.event.inputs.environment }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }}
