@@ -46,7 +46,8 @@ module.exports = defineConfig({
     citizenship: process.env.CITIZENSHIP,
     user_password: process.env.USERPASSWORD,
     diel_country_list: ['Ecuador', 'South Africa', 'Brazil', 'Sri Lanka', 'Uruguay', 'Switzerland'],
-    webflow_env: process.env.WEBFLOW_ENV
+    webflow_env: process.env.WEBFLOW_ENV,
+    percy: process.env.PERCY || true,
   },
   retries: {
     "runMode": 2,

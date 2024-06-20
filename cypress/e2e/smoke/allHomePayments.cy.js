@@ -87,6 +87,10 @@ describe('QATEST-118896 - Validate Homepage Payment methods for ROW', () => {
     () => {
       cy.c_visitResponsive('')
       c_validatePaymentSection('ROW')
+      if (Cypress.env('percy') == true) {
+        cy.get('#payment-list').should('be.visible')
+        cy.percySnapshot('Payment method page - ROW, Mobile', { widths: [414] })
+    }
     }
   )
 })
@@ -98,6 +102,10 @@ describe('QATEST-118897 - Validate Homepage Payment methods for EU', () => {
     () => {
       cy.c_visitResponsive(Cypress.env('RegionEU'))
       c_validatePaymentSection('EU')
+      if (Cypress.env('percy') == true) {
+        cy.get('#payment-list').should('be.visible')
+        cy.percySnapshot('Payment method page - EU, Mobile', { widths: [414] })
+    }
     }
   )
 })
