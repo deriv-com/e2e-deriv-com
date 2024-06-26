@@ -49,9 +49,10 @@ jobs:
         record: true
         parallel: true # Runs test in parallel using settings above
         spec: cypress/e2e/webflow/Percy/allPagesSnapshot.cy.js
-        command: npx percy exec -- cypress run --spec cypress/e2e/webflow/Percy/allPagesSnapshot.cy.js --record --key ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }} --commit "$COMMIT_MESSAGE"
+        command: npx percy exec -- cypress run --spec cypress/e2e/webflow/Percy/allPagesSnapshot.cy.js --record --key ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }}
       env:
         PERCY_TOKEN: ${{ secrets.PERCY_TEST_TOKEN }}
+        PERCY_COMMIT: ${{ github.event.inputs.commit_message }}
         TEST_SUITE: ${{ github.event.inputs.suite }}
         WEBFLOW_ENV: ${{ github.event.inputs.environment }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }}
