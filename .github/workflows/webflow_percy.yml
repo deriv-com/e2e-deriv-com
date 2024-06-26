@@ -39,6 +39,8 @@ jobs:
           npm install cypress --save-dev
           echo "Percy Cypress version: $(npx percy --version)"
           echo "Cypress version: $(npx cypress --version)" 
+    - name: Set Commit Message
+      run: echo "COMMIT_MESSAGE=${{ github.event.inputs.commit_message }}" >> $GITHUB_ENV
     - name: Run Percy  
       if: ${{ github.event.inputs.suite == 'full' && github.event.inputs.rerun == '' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
@@ -47,9 +49,9 @@ jobs:
         record: true
         parallel: true # Runs test in parallel using settings above
         spec: cypress/e2e/webflow/Percy/allPagesSnapshot.cy.js
-        command: npx percy exec -- cypress run --spec cypress/e2e/webflow/Percy/allPagesSnapshot.cy.js --record --key ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }} 
+        command: npx percy exec -- cypress run --spec cypress/e2e/webflow/Percy/allPagesSnapshot.cy.js --record --key ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }} --commit "$COMMIT_MESSAGE"
       env:
-        PERCY_TOKEN: ${{ secrets.WEBFLOW_PERCY_TOKEN }}
+        PERCY_TOKEN: ${{ secrets.PERCY_TEST_TOKEN }}
         TEST_SUITE: ${{ github.event.inputs.suite }}
         WEBFLOW_ENV: ${{ github.event.inputs.environment }}
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }}
