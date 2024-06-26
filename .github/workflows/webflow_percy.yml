@@ -13,6 +13,11 @@ on:
         options:
         - full
         - rerun(not in use)
+      commit_message:
+        type: string
+        description: Commit message
+        required: true
+        default: 'Manual Percy run'
 jobs:
   percy-run:
     runs-on: ubuntu-latest
