@@ -1,0 +1,8 @@
+version: 1
+snapshot:
+  widths: [375, 1280]
+  minHeight: 1024
+  #percyCSS: ".my-element { visibility: hidden; }"
+  enableJavaScript: true
+  waitForTimeout: 80000  # Increase timeout to 5000 milliseconds
+  waitForSelector: ".new-navbar_component-wrapper"
