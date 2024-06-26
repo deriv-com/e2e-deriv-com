@@ -40,7 +40,7 @@ jobs:
           echo "Percy Cypress version: $(npx percy --version)"
           echo "Cypress version: $(npx cypress --version)" 
     - name: Set Commit Message
-      run: echo "COMMIT_MESSAGE=${{ github.event.inputs.commit_message }}" >> $GITHUB_ENV
+      run: echo "Commit Message: ${{ github.event.inputs.commit_message }}"
     - name: Run Percy  
       if: ${{ github.event.inputs.suite == 'full' && github.event.inputs.rerun == '' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
