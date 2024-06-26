@@ -41,7 +41,6 @@ jobs:
           echo "Percy Cypress version: $(npx percy --version)"
           echo "Cypress version: $(npx cypress --version)" 
     - name: Set Commit Message
-        id: set-commit-message
         run: echo "COMMIT_MESSAGE=${{ github.event.inputs.commit_message }}" >> $GITHUB_ENV
     - name: Run Percy  
       if: ${{ github.event.inputs.suite == 'full' && github.event.inputs.rerun == '' }}
