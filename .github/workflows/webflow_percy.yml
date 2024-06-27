@@ -34,7 +34,7 @@ jobs:
         repository: deriv-com/e2e-deriv-com # Replace with your repository name
     - name: Install percy cli
       run: |
-          npm i @percy/cli@1.27.3
+          npm install -g @percy/cli
           echo "Installed Percy CLI version: $(npx percy --version)"
     - name: Install percy cypress
       run: |
