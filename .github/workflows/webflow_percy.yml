@@ -18,6 +18,11 @@ on:
         description: Commit message
         required: true
         default: 'Manual Percy run'
+      percy_build_number:
+        type: string
+        description: 'Percy build number'
+        
+
 jobs:
   percy-run:
     runs-on: ubuntu-latest
@@ -63,12 +68,27 @@ jobs:
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
     
-    - name: Run Percy rerun # Not in use, yet to confirm on this flow
+    - name: Set Percy Default Base Build for Percy rerun # Not in use, yet to confirm on this flow
       if: ${{ github.event.inputs.suite == 'rerun' && github.event.inputs.rerun != '' }}
+      run: |
+        curl -X PATCH https://percy.io/api/v1/projects/70364898/builds/settings \
+          -H "Authorization: Token ${{ secrets.PERCY_TEST_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+                "default_comparison_base": "${{ github.event.inputs.percy_build_number }}"
+              }'
+      env:
+        PERCY_API_TOKEN: ${{ secrets.PERCY_TEST_TOKEN }}
+
+    - name: Run Percy 
+      if: ${{ steps.set_percy_default_base_build_for_percy_rerun.outputs.default_comparison_base != '' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
       uses: cypress-io/github-action@1b70233146622b69e789ccdd4f9452adc638d25a
       with:
+        record: true
+        parallel: true
         spec: cypress/e2e/webflow/Percy/percy.cy.js
+        command: npx percy exec -- cypress run --spec cypress/e2e/webflow/Percy/percy.cy.js --ci-build-id=$PERCY_BUILD
       env:
         TEST_SUITE: ${{ github.event.inputs.suite }}
         # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
@@ -77,4 +97,9 @@ jobs:
         CYPRESS_BASE_URL: "${{ github.event.inputs.environment }}"
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
+        PERCY_TOKEN: ${{ secrets.PERCY_TEST_TOKEN }}
+        PERCY_COMMIT: ${{ github.event.inputs.commit_message }}
+        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_WEBFLOW_RECORD_KEY }}
+        CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_WEBFLOW_PROJECT_ID }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
