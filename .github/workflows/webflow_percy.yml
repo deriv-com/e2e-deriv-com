@@ -12,7 +12,7 @@ on:
         description: Run full or rerun
         options:
         - full
-        - rerun(not in use)
+        - rerun
       commit_message:
         type: string
         description: Commit message
@@ -67,9 +67,8 @@ jobs:
         CYPRESS_BASE_URL: "${{ github.event.inputs.environment }}"
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
-    
-    - name: Set Percy Default Base Build for Percy rerun # Not in use, yet to confirm on this flow
-      if: ${{ github.event.inputs.suite == 'rerun' && github.event.inputs.rerun != '' }}
+    - name: Set Percy Default Base Build for Percy rerun 
+      if: ${{ github.event.inputs.percy_build_number != null && github.event.inputs.suite == 'rerun' && github.event.inputs.rerun != '' }}
       run: |
         curl -X PATCH https://percy.io/api/v1/projects/70364898/builds/settings \
           -H "Authorization: Token ${{ secrets.PERCY_TEST_TOKEN }}" \
@@ -79,7 +78,6 @@ jobs:
               }'
       env:
         PERCY_API_TOKEN: ${{ secrets.PERCY_TEST_TOKEN }}
-
     - name: Run Percy 
       if: ${{ steps.set_percy_default_base_build_for_percy_rerun.outputs.default_comparison_base != '' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
