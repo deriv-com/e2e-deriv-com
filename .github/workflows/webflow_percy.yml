@@ -43,11 +43,8 @@ jobs:
           echo "Percy Cypress version: $(npx percy --version)"
           echo "Cypress version: $(npx cypress --version)" 
           echo "commit message is ${{ github.event.inputs.commit_message }}"
-     - name: Display Input Values
-        run: |
-          echo "percy_build_number: ${{ github.event.inputs.percy_build_number }}"
+          echo "Percy build number is: ${{ github.event.inputs.percy_build_number }}"
           echo "suite: ${{ github.event.inputs.suite }}"
-          echo "rerun: ${{ github.event.inputs.rerun }}"
     - name: Run Percy  
       if: ${{ github.event.inputs.suite == 'full' && github.event.inputs.rerun == '' }}
       # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
