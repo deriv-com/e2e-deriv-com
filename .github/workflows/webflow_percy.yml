@@ -68,7 +68,6 @@ jobs:
         # Send PR details to Cypress test run
         COMMIT_INFO_MESSAGE: Manual Run of "${{ github.event.inputs.suite }} tests" on "${{ github.event.inputs.environment }}"
     - name: Set Percy Default Base Build for Percy rerun 
-      if: ${{ github.event.inputs.percy_build_number != null && github.event.inputs.suite == 'rerun' && github.event.inputs.rerun != '' }}
       run: |
         curl -X PATCH https://percy.io/api/v1/projects/70364898/builds/settings \
           -H "Authorization: Token ${{ secrets.PERCY_TEST_TOKEN }}" \
