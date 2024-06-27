@@ -21,8 +21,6 @@ on:
       percy_build_number:
         type: string
         description: 'Percy build number'
-        
-
 jobs:
   percy-run:
     runs-on: ubuntu-latest
