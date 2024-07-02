@@ -64,6 +64,12 @@ function validate_dtraderpage(region) {
       .eq(index)
       .invoke('attr', 'target', '_self')
       .click()
+    cy.url().then((url) => {
+      cy.request(url).then((response) => {
+        cy.log(`URL: ${url} - Status Code: ${response.status}`)
+        expect(response.status).not.to.eq(404)
+      })
+    })
     cy.c_go('back')
   }
   cy.contains('Create free demo account').eq(0).click()
