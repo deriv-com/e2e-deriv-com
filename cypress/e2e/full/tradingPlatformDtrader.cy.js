@@ -14,7 +14,10 @@ function validate_dtraderpage(region) {
   cy.findByRole('img', { name: 'Select an asset' })
     .scrollIntoView()
     .should('be.visible', { timeout: 50000 })
-  cy.findAllByRole('listitem').contains('Monitor the chart').click()
+  cy.findAllByRole('listitem')
+    .contains('Monitor the chart')
+    .scrollIntoView()
+    .click()
   cy.findByRole('img', { name: 'Monitor the chart' })
     .scrollIntoView()
     .should('be.visible', { timeout: 50000 })
@@ -64,7 +67,11 @@ function validate_dtraderpage(region) {
       .eq(index)
       .invoke('attr', 'target', '_self')
       .click()
-    cy.c_go('back')
+    if (region === 'EU') {
+      cy.findByText('Cancel').click()
+    } else {
+      cy.c_go('back')
+    }
   }
   cy.contains('Create free demo account').eq(0).click()
 }
