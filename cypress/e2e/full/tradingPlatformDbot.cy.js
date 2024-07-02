@@ -69,6 +69,12 @@ function Dbot_page() {
       .eq(index)
       .invoke('attr', 'target', '_self')
       .click()
+    cy.url().then((url) => {
+      cy.request(url).then((response) => {
+        cy.log(`URL: ${url} - Status Code: ${response.status}`)
+        expect(response.status).not.to.eq(404)
+      })
+    })
     cy.c_go('back')
   }
 
