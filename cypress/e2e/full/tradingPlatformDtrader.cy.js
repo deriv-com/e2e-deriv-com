@@ -64,7 +64,11 @@ function validate_dtraderpage(region) {
       .eq(index)
       .invoke('attr', 'target', '_self')
       .click()
-    cy.c_go('back')
+    if (region === 'EU') {
+      cy.findByText('Cancel').click()
+    } else {
+      cy.c_go('back')
+    }
   }
   cy.contains('Create free demo account').eq(0).click()
 }
